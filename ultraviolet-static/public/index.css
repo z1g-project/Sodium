@@ -1,0 +1,150 @@
+/* Reset default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Set the background color */
+  body {
+    background-color: #f5f5f5;
+  }
+  
+  /* Center the content vertically and horizontally */
+  .flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  
+  /* Header styles */
+  .logo-wrapper {
+    margin-top: 50px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .logo {
+    width: 100px;
+    height: 100px;
+    margin-right: 10px;
+  }
+  
+  h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 28px;
+    color: #333;
+  }
+  
+  /* Description styles */
+  .desc {
+    margin: 20px;
+    text-align: center;
+  }
+  
+  p {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 18px;
+    color: #666;
+  }
+  
+  /* Form styles */
+  #uv-form {
+    margin: 20px;
+    text-align: center;
+  }
+  
+  #uv-address {
+    width: 300px;
+    height: 40px;
+    padding: 10px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Error styles */
+  #uv-error {
+    font-family: 'Open Sans', sans-serif;
+    color: #ff5252;
+    font-weight: bold;
+  }
+  
+  #uv-error-code {
+    font-family: Consolas, monospace;
+    font-size: 14px;
+    color: #f44336;
+    white-space: pre-wrap;
+  }
+  
+  /* Footer styles */
+  footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #333;
+    color: #fff;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+  }
+  
+  footer a {
+    font-family: 'Open Sans', sans-serif;
+    color: #fff;
+    text-decoration: none;
+    margin-right: 10px;
+  }
+  
+  footer a:hover {
+    text-decoration: underline;
+  }
+  
+  footer span {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+  }
+  
+  /* Responsive styles */
+  @media (max-width: 480px) {
+    .logo-wrapper {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .logo {
+      margin-bottom: 10px;
+    }
+  
+    h1 {
+      font-size: 24px;
+    }
+  
+    .desc,
+    #uv-form,
+    .left-margin {
+      margin: 10px;
+    }
+  
+    p {
+      font-size: 16px;
+    }
+  
+    #uv-address {
+      width: 100%;
+      max-width: 300px;
+    }
+  
+    footer {
+      flex-wrap: wrap;
+      justify-content: center;
+      position: static;
+    }
+  }
+  

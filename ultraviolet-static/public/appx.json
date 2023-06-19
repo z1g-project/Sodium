@@ -1,0 +1,30 @@
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is Sodium (Web Proxy)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sodium is a highly sophisticated proxy used for evading internet censorship or accessing websites in a controlled sandbox using the power of service workers and more!"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I unblock sites using Sodium?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Simply head to an official site featuring Sodium such as Holy Unblocker or Incognito! You can also self-host Sodium on your own web server for maximum privacy."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What if Sodium is blocked or not working?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Join the Titanium Network Discord at discord.gg/unblock!"
+        }
+      }
+    ]
+  }
