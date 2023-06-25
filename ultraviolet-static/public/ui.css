@@ -1,0 +1,149 @@
+    /* Custom styles for Android-like top bar */
+    .top-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: #000;
+      color: #fff;
+      height: 24px;
+      padding: 4px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+    }
+
+    .top-bar-left {
+      display: flex;
+      align-items: center;
+    }
+
+    .top-bar-item {
+      margin-right: 8px;
+    }
+
+    /* Custom styles for the second bar */
+    .second-bar {
+      position: fixed;
+      top: 24px; /* Adjust top position to account for the height of the Android-like top bar */
+      left: 0;
+      width: 100%;
+      background-color: #434c5e;
+      color: #fff;
+      height: 40px;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      font-size: 16px;
+    }
+
+    .second-bar a {
+      color: #fff;
+      text-decoration: none;
+      margin-right: 10px;
+      padding: 8px;
+    }
+
+    .second-bar a:hover {
+      background-color: #434c5e;
+    }
+
+    /* Apply existing styles to the body */
+    body {
+      background-color: #1a1a1a;
+      color: #ffffff;
+      font-family: 'Montserrat', sans-serif;
+      margin: 0;
+      padding: 0;
+      padding-top: 64px; /* Adjust top padding to account for the Android-like top bar and the second bar */
+    }
+
+    .flex-center {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .logo-wrapper {
+      flex-direction: column;
+      margin-top: 30px;
+    }
+
+    .logo {
+      width: 100px;
+      height: 100px;
+    }
+
+    h1 {
+      margin-top: 10px;
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    .desc {
+      margin-top: 30px;
+      font-size: 18px;
+    }
+
+    #uv-form {
+      margin-top: 20px;
+    }
+
+    #uv-address {
+      width: 400px;
+      height: 40px;
+      font-size: 16px;
+      padding: 0 10px;
+      border: none;
+      border-radius: 4px;
+    }
+
+    #searchButton {
+      height: 40px;
+      padding: 0 20px;
+      font-size: 16px;
+      margin-left: 10px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    #searchButton:hover {
+      background-color: #0056b3;
+    }
+
+    .left-margin {
+      margin-left: 20px;
+    }
+
+    footer {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      background-color: #434c5e;
+      color: #ffffff;
+      padding: 10px;
+      font-size: 14px;
+      margin-top: 30px;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+    }
+
+    footer a {
+      color: #ffffff;
+      text-decoration: none;
+      margin-right: 10px;
+    }
+
+    footer a:hover {
+      color: #cccccc;
+    }
+
+    footer span {
+      margin-left: auto;
+    }

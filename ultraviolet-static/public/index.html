@@ -37,6 +37,32 @@
       margin-right: 8px;
     }
 
+    /* Custom styles for the second bar */
+    .second-bar {
+      position: fixed;
+      top: 24px; /* Adjust top position to account for the height of the Android-like top bar */
+      left: 0;
+      width: 100%;
+      background-color: #434c5e;
+      color: #fff;
+      height: 40px;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      font-size: 16px;
+    }
+
+    .second-bar a {
+      color: #fff;
+      text-decoration: none;
+      margin-right: 10px;
+      padding: 8px;
+    }
+
+    .second-bar a:hover {
+      background-color: #434c5e;
+    }
+
     /* Apply existing styles to the body */
     body {
       background-color: #1a1a1a;
@@ -44,7 +70,7 @@
       font-family: 'Montserrat', sans-serif;
       margin: 0;
       padding: 0;
-      padding-top: 32px; /* Adjust top padding to account for the top bar */
+      padding-top: 64px; /* Adjust top padding to account for the Android-like top bar and the second bar */
     }
 
     .flex-center {
@@ -71,28 +97,31 @@
 
     .desc {
       margin-top: 30px;
-      margin-bottom: 10px;
-      text-align: center;
+      font-size: 18px;
     }
 
     #uv-form {
-      margin-top: 10px;
+      margin-top: 20px;
     }
 
     #uv-address {
       width: 400px;
       height: 40px;
       font-size: 16px;
-      padding: 5px;
+      padding: 0 10px;
+      border: none;
+      border-radius: 4px;
     }
 
     #searchButton {
-      background-color: #007bff;
-      border: none;
-      color: #ffffff;
+      height: 40px;
+      padding: 0 20px;
       font-size: 16px;
-      padding: 5px 10px;
       margin-left: 10px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
       cursor: pointer;
     }
 
@@ -139,15 +168,23 @@
   <script src="search.js" defer></script>
   <script src="index.js" defer></script>
   <script src="appx.json" defer></script>
+  <script src="time.js" defer></script>
 </head>
 
 <body>
   <div class="top-bar">
     <div class="top-bar-left">
-      <div class="top-bar-item">Time</div>
-      <div class="top-bar-item">Notifications</div>
+      <div class="top-bar-item" id="time">Time: 12:00 PM</div>
+      <!-- <div class="top-bar-item">Notifications</div> -->
     </div>
-    <div class="top-bar-item">Battery</div>
+    <div class="top-bar-item" id="battery">Battery: 0%</div>
+  </div>
+
+  <div class="second-bar">
+    <a href="#">Home</a>
+    <a href="games.html">Games</a>
+    <a href="apps.html">Apps</a>
+    <a href="settings.html">Settings</a>
   </div>
 
   <div title="Sodium Logo" class="flex-center logo-wrapper header-center">
