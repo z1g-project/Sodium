@@ -11,6 +11,128 @@
   <link rel="shortcut icon" href="favicon.ico" />
   <link rel="stylesheet" href="index.css" />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet"/>
+  <style>
+    /* Custom styles for Android-like top bar */
+    .top-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: #000;
+      color: #fff;
+      height: 24px;
+      padding: 4px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+    }
+
+    .top-bar-left {
+      display: flex;
+      align-items: center;
+    }
+
+    .top-bar-item {
+      margin-right: 8px;
+    }
+
+    /* Apply existing styles to the body */
+    body {
+      background-color: #1a1a1a;
+      color: #ffffff;
+      font-family: 'Montserrat', sans-serif;
+      margin: 0;
+      padding: 0;
+      padding-top: 32px; /* Adjust top padding to account for the top bar */
+    }
+
+    .flex-center {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .logo-wrapper {
+      flex-direction: column;
+      margin-top: 30px;
+    }
+
+    .logo {
+      width: 100px;
+      height: 100px;
+    }
+
+    h1 {
+      margin-top: 10px;
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    .desc {
+      margin-top: 30px;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    #uv-form {
+      margin-top: 10px;
+    }
+
+    #uv-address {
+      width: 400px;
+      height: 40px;
+      font-size: 16px;
+      padding: 5px;
+    }
+
+    #searchButton {
+      background-color: #007bff;
+      border: none;
+      color: #ffffff;
+      font-size: 16px;
+      padding: 5px 10px;
+      margin-left: 10px;
+      cursor: pointer;
+    }
+
+    #searchButton:hover {
+      background-color: #0056b3;
+    }
+
+    .left-margin {
+      margin-left: 20px;
+    }
+
+    footer {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      background-color: #434c5e;
+      color: #ffffff;
+      padding: 10px;
+      font-size: 14px;
+      margin-top: 30px;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+    }
+
+    footer a {
+      color: #ffffff;
+      text-decoration: none;
+      margin-right: 10px;
+    }
+
+    footer a:hover {
+      color: #cccccc;
+    }
+
+    footer span {
+      margin-left: auto;
+    }
+  </style>
   <script src="uv/uv.bundle.js" defer></script>
   <script src="uv/uv.config.js" defer></script>
   <script src="register-sw.js" defer></script>
@@ -20,22 +142,33 @@
 </head>
 
 <body>
+  <div class="top-bar">
+    <div class="top-bar-left">
+      <div class="top-bar-item">Time</div>
+      <div class="top-bar-item">Notifications</div>
+    </div>
+    <div class="top-bar-item">Battery</div>
+  </div>
+
   <div title="Sodium Logo" class="flex-center logo-wrapper header-center">
     <img class="logo" src="sodium.png" alt="Sodium" />
     <h1>Sodium</h1>
   </div>
   <div class="flex-center desc">
-    <p>Sodium is a Ultraviolet Based proxy used for evading internet censorship.</p>
+    <p>Sodium is an Ultraviolet-based proxy used for evading internet censorship.</p>
   </div>
 
   <form id="uv-form" class="flex-center">
     <input id="uv-search-engine" value="https://www.google.com/search?q=%s" type="hidden" />
     <input id="uv-address" type="text" placeholder="Search the web freely" />
+    <button id="searchButton">Search</button>
   </form>
+
   <div class="desc left-margin">
     <p id="uv-error"></p>
     <pre id="uv-error-code"></pre>
   </div>
+
   <footer>
     <a title="The z1g Project GitHub organization" href="https://github.com/z1g-project">z1g Project</a>
     <a title="The z1g Project Discord" href="https://discord.gg/unblock">Discord</a>
