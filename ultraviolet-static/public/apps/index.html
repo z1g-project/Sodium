@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base href="../">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+    <title>Sodium</title>
+    <meta name="description" content="Sodium is an Ultraviolet-based proxy used for evading internet censorship." />
+    <meta name="keywords" content="proxy, web proxy, ultraviolet, service workers, unblock websites, unblock chromebook, free web proxy, proxy list, proxy sites, un block chromebook, online proxy, proxy server, proxysite, proxy youtube, bypass securly, bypass iboss, bypass lightspeed filter, sodium, titanium network, unblock youtube, youtube proxy, unblocked youtube, youtube unblocked" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#434c5e" />
+    <meta name="googlebot" content="index, follow, snippet" />
+    <link rel="shortcut icon" href="favicon.ico" />
+    <link rel="stylesheet" href="index.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet"/>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <link rel="stylesheet" href="ui.css"/>
+    <style>
+      /* CSS for the grid container */
+      .grid-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Adjust the column width as needed */
+        gap: 20px; /* Adjust the gap between grid items as needed */
+        margin: 20px auto;
+        max-width: 800px; /* Adjust the maximum width of the grid container as needed */
+      }
+
+      /* CSS for the grid items */
+      .grid-item {
+        background-color: #2e6dcc; /* Set the background color for grid items */
+        padding: 20px;
+        text-align: center;
+      }
+    </style>
+    <script src="uv/uv.bundle.js" defer></script>
+    <script src="uv/uv.config.js" defer></script>
+    <script src="register-sw.js" defer></script>
+    <script src="search.js" defer></script>
+    <link rel="json" href="appx.json" defer></script>
+    <script src="time.js" defer></script>
+    <script src="apps.js" defer></script>
+    <script src="particles.js" defer></script>
+    <script src="settings.js" defer></script>
+  </head>
+
+  <body>
+    <div class="top-bar">
+      <div class="top-bar-left">
+        <div class="top-bar-item" id="time">Time: 12:00 PM</div>
+        <!-- <div class="top-bar-item">Notifications</div> -->
+      </div>
+      <div class="top-bar-item" id="battery">Battery: 0%</div>
+    </div>
+
+    <div class="second-bar">
+      <a href="/">Home</a>
+      <a href="/games/">Games</a>
+      <a href="/apps/">Apps</a>
+      <a href="/settings/">Settings</a>
+    </div>
+
+    <div class="grid-container">
+      <div class="grid-item" onclick="loadApp('apps/discord/')">
+        <img src="apps/assets/app1.jpg" height="200" width="200" alt="Discord Logo">
+        <h3>Discord</h3>
+        <p>A popular texting platform.</p>
+      </div>
+
+      <div class="grid-item" onclick="loadApp('apps/gfn/')">
+        <img src="apps/assets/app2.jpg" height="200" width="200" alt="GFN Logo">
+        <h3>GeForce NOW</h3>
+        <p>A popular game streaming service</p>
+      </div>
+
+      <div class="grid-item" onclick="loadApp('apps/cmg/')">
+        <img src="apps/assets/app3.jpg" height="200" width="200" alt="CMG Logo">
+        <h3>Cool Math Games</h3>
+        <p>The website that your school somehow blocked</p>
+      </div>
+
+      <div class="grid-item" onclick="loadApp('apps/xbox/')">
+        <img src="apps/assets/app4.jpg" height="200" width="200" alt="Xbox Cloud Gaming Logo">
+        <h3>Xbox Cloud Gaming</h3>
+        <p>Another Cloud Gaming Service</p>
+      </div>
+
+      <div class="grid-item" onclick="loadApp('apps/youtube/')">
+        <img src="apps/assets/app5.jpg" height="200" width="200" alt="YT Logo">
+        <h3>Youtube</h3>
+        <p>The Worlds Most Popular video website</p>
+      </div>
+
+      <div class="grid-item" onclick="loadApp('apps/spotify/')">
+        <img src="apps/assets/app6.jpg" height="200" width="200" alt="Spotify">
+        <h3>Spotify</h3>
+        <p>A Huge music streaming platform</p>
+      </div>
+    </div>
+
+    <div id="particles-js"></div>
+
+    <footer>
+      <a title="The z1g Project GitHub organization" href="https://github.com/z1g-project">z1g Project</a>
+      <a title="The z1g Project Discord" href="https://discord.gg/unblock">Discord</a>
+      <a title="The TompHTTP GitHub organization" href="https://github.com/tomphttp">TompHTTP</a>
+      <a title="The official deployment repository for Sodium" href="https://github.com/z1g-project/Sodium">GitHub</a>
+      <a title="License information" href="credits.html" style="margin-left: auto">Credits</a>
+      <span>Sodium &copy; z1g Project 2023</span>
+    </footer>
+  </body>
+</html>

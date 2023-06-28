@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <base href="../">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
     <title>Sodium</title>
@@ -34,10 +35,11 @@
     <script src="uv/uv.config.js" defer></script>
     <script src="register-sw.js" defer></script>
     <script src="search.js" defer></script>
-    <link rel="json" href="appx.json" defer></script>
+    <link rel="json" href="gamesx.json" defer></script>
     <script src="time.js" defer></script>
-    <script src="apps.js" defer></script>
+    <script src="games.js" defer></script>
     <script src="particles.js" defer></script>
+    <script src="settings.js" defer></script>
   </head>
 
   <body>
@@ -51,46 +53,82 @@
 
     <div class="second-bar">
       <a href="/">Home</a>
-      <a href="#">Games</a>
-      <a href="apps.html">Apps</a>
-      <a href="settings.html">Settings</a>
+      <a href="/games/">Games</a>
+      <a href="/apps/">Apps</a>
+      <a href="/settings/">Settings</a>
     </div>
 
     <div class="grid-container">
-      <div class="grid-item" onclick="loadApp('apps/discord/')">
-        <img src="apps/assets/app1.jpg" height="200" width="200" alt="Discord Logo">
-        <h3>Discord</h3>
-        <p>A popular texting platform.</p>
+      <div class="grid-item" onclick="loadgames('games/eagler/')">
+        <img src="games/assets/game1.jpg" height="200" width="200" alt="EaglerCraft Logo">
+        <h3>EaglerCraft 1.5</h3>
+        <p>A popular game during school hours</p>
       </div>
 
-      <div class="grid-item" onclick="loadApp('apps/gfn/')">
-        <img src="apps/assets/app2.jpg" height="200" width="200" alt="GFN Logo">
-        <h3>GeForce NOW</h3>
-        <p>A popular game streaming service</p>
+      <div class="grid-item" onclick="loadgames('games/rblx/')">
+        <img src="games/assets/game2.jpg" height="200" width="200" alt="RBLX Logo">
+        <h3>Roblox (Now.gg)</h3>
+        <p>Play Roblox over the cloud!</p>
       </div>
 
-      <div class="grid-item" onclick="loadApp('apps/cmg/')">
-        <img src="apps/assets/app3.jpg" height="200" width="200" alt="CMG Logo">
-        <h3>Cool Math Games</h3>
-        <p>The website that your school somehow blocked</p>
+      <div class="grid-item" onclick="loadgames('gamess/slope/')">
+        <img src="games/assets/game3.jpg" height="200" width="200" alt="Slope Logo">
+        <h3>Slope</h3>
+        <p>Probably isnt blocked on ur school wifi...</p>
       </div>
 
-      <div class="grid-item" onclick="loadApp('apps/xbox/')">
-        <img src="apps/assets/app4.jpg" height="200" width="200" alt="Xbox Cloud Gaming Logo">
-        <h3>Xbox Cloud Gaming</h3>
-        <p>Another Cloud Gaming Service</p>
+      <div class="grid-item" onclick="loadgames('games/suprem/')">
+        <img src="games/assets/game4.jpg" height="200" width="200" alt="Suprem.io Logo">
+        <h3>Suprem.io</h3>
+        <p>A popular game during school hours</p>
       </div>
 
-      <div class="grid-item" onclick="loadApp('apps/youtube/')">
-        <img src="apps/assets/app5.jpg" height="200" width="200" alt="YT Logo">
-        <h3>Youtube</h3>
-        <p>The Worlds Most Popular video website</p>
+      <div class="grid-item" onclick="loadgames('games/2048/')">
+        <img src="games/assets/game5.jpg" height="200" width="200" alt="2048 Logo">
+        <h3>2048</h3>
+        <p>Try and beat your friends high score</p>
       </div>
 
-      <div class="grid-item" onclick="loadApp('apps/spotify/')">
-        <img src="apps/assets/app6.jpg" height="200" width="200" alt="Spotify">
-        <h3>Spotify</h3>
-        <p>A Huge music streaming platform</p>
+      <div class="grid-item" onclick="loadgames('games/retrobowl/')">
+        <img src="games/assets/game6.jpg" height="200" width="200" alt="retrobowl Logo">
+        <h3>Retrobowl</h3>
+        <p>A old style football game</p>
+      </div>
+
+      <div class="grid-item" onclick="loadgames('games/run3/')">
+        <img src="games/assets/game7.jpg" height="200" width="200" alt="Run3 Logo">
+        <h3>Run 3</h3>
+        <p>A cool platformer game Avalible in Flash or HTML5</p>
+      </div>
+
+      <div class="grid-item" onclick="loadgames('games/drifthunters/')">
+        <img src="games/assets/game8.jpg" height="200" width="200" alt="Drift Hunters Logo">
+        <h3>DriftHunters</h3>
+        <p>A fun game to play!</p>
+      </div>
+
+      <div class="grid-item" onclick="loadgames('gamess/dino/')">
+        <img src="games/assets/game9.jpg" height="200" width="200" alt="Chrome Dino Logo">
+        <h3>Chrome Dino</h3>
+        <p>This is definatly blocked on ur school pc for "educational purposes"</p>
+      </div>
+
+      <div class="grid-item" onclick="loadgames('games/flappy/')">
+        <img src="games/assets/game10.jpg" height="200" width="200" alt="Flappy Bird Logo">
+        <h3>Flappy Bird</h3>
+        <p>Somehow banned from iOS I think?</p>
+      </div>
+
+      <div class="grid-item" onclick="loadgames('games/geodash/')">
+        <img src="games/assets/game11.jpg" height="200" width="200" alt="Geometry Dash Logo">
+        <h3>Geometry Dash</h3>
+        <p>100% Mobile game that was made on scratch</p>
+      </div>
+
+      <div class="grid-item" onclick="loadgames('games/cookieclicker/')">
+        <img src="games/assets/game12.jpg" height="200" width="200" alt="Cookie Clicker Logo">
+        <h3>Cookie Clicker</h3>
+        <p>Spam Cookie = Stocks</p>
       </div>
     </div>
 

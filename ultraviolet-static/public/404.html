@@ -6,10 +6,10 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
     />
-    <title>BruhProx | Error</title>
+    <title>Sodium | Error</title>
     <meta
       name="description"
-      content="BruhProx is a highly sophisticated proxy used for evading internet censorship or accessing websites in a controlled sandbox using the power of service-workers. Unblock sites today!"
+      content="Sodium is a highly sophisticated proxy used for evading internet censorship or accessing websites in a controlled sandbox using the power of service-workers. Unblock sites today!"
     />
     <meta
       name="theme-color"
@@ -20,11 +20,30 @@
     <base href="/" />
     <link rel="shortcut icon" content="favicon.ico" />
     <link rel="stylesheet" href="index.css" />
+    <link rel="stylesheet" href="ui.css" />
+    <script src="particles.js" defer></script>
+    <script src="settings.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
   </head>
 
   <body>
+    <div class="top-bar">
+      <div class="top-bar-left">
+        <div class="top-bar-item" id="time">Time: 12:00 PM</div>
+        <!-- <div class="top-bar-item">Notifications</div> -->
+      </div>
+      <div class="top-bar-item" id="battery">Battery: 0%</div>
+    </div>
+  
+    <div class="second-bar">
+      <a href="/">Home</a>
+      <a href="/games/">Games</a>
+      <a href="/apps/">Apps</a>
+      <a href="/settings/">Settings</a>
+    </div>
+
     <div class="logo-wrapper left-margin">
-      <h1>BruhProx | Error</h1>
+      <h1>Sodium | Error</h1>
     </div>
     <div class="desc left-margin">
       <p>The server could not route your request.</p>
@@ -34,18 +53,22 @@
         Register ServiceWorker
       </button>
     </div>
+    
+    <div id="particles-js"></div>
+
     <footer>
-      <a
-        title="License information"
-        href="credits.html"
-        style="margin-left: auto"
-        >Credits</a
-      >
-      <span>BruhProx &copy; z1g Project 2023</span>
+      <a title="The z1g Project GitHub organization" href="https://github.com/z1g-project">z1g Project</a>
+      <a title="The z1g Project Discord" href="https://discord.gg/unblock">Discord</a>
+      <a title="The TompHTTP GitHub organization" href="https://github.com/tomphttp">TompHTTP</a>
+      <a title="The official deployment repository for Sodium" href="https://github.com/z1g-project/Sodium">GitHub</a>
+      <a title="License information" href="credits.html" style="margin-left: auto">Credits</a>
+      <span>Sodium &copy; z1g Project 2023</span>
     </footer>
+
     <script src="uv/uv.bundle.js"></script>
     <script src="uv/uv.config.js"></script>
     <script src="register-sw.js"></script>
     <script src="error.js"></script>
+    <script src="time.js"></script>
   </body>
 </html>

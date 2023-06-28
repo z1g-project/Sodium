@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <base href="../../"></base>
+  <base href="../">
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
   <title>Sodium</title>
-  <meta name="description" content="Sodium is an Ultraviolet-based proxy used for evading internet censorship." />
+  <meta name="description" content="Sodium is a highly sophisticated proxy used for evading internet censorship or accessing websites in a controlled sandbox using the power of service workers. Unblock sites today!" />
   <meta name="keywords" content="proxy, web proxy, ultraviolet, service workers, unblock websites, unblock chromebook, free web proxy, proxy list, proxy sites, un block chromebook, online proxy, proxy server, proxysite, proxy youtube, bypass securly, bypass iboss, bypass lightspeed filter, sodium, titanium network, unblock youtube, youtube proxy, unblocked youtube, youtube unblocked" />
   <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#434c5e" />
   <meta name="googlebot" content="index, follow, snippet" />
@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="index.css" />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="ui.css" />
+  <link rel="stylesheet" href="custom.css" />
   <script src="uv/uv.bundle.js" defer></script>
   <script src="uv/uv.config.js" defer></script>
   <script src="register-sw.js" defer></script>
@@ -23,27 +24,12 @@
   <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
   <script src="particles.js" defer></script>
   <script src="settings.js" defer></script>
-  <style>
-    iframe {
-      flex: 1;
-      border: none;
-    }
-  </style>
-  <script>
-    window.addEventListener('DOMContentLoaded', () => {
-      const iframe = document.getElementById('discord');
-      if (iframe) {
-        const encodedURL = Ultraviolet.codec.xor.encode('https://discord.com/app');
-        iframe.src = window.location.origin + `/uv/service/${encodedURL}`;
-      }
-    });
-  </script>
 </head>
-
 <body>
   <div class="top-bar">
     <div class="top-bar-left">
       <div class="top-bar-item" id="time">Time: 12:00 PM</div>
+      <!-- <div class="top-bar-item">Notifications</div> -->
     </div>
     <div class="top-bar-item" id="battery">Battery: 0%</div>
   </div>
@@ -55,9 +41,46 @@
     <a href="/settings/">Settings</a>
   </div>
 
-  <iframe id="discord"></iframe>
-
   <div id="particles-js"></div>
+
+  <div class="settings-container">
+    <h2>Settings</h2>
+
+    <div class="settings-section">
+      <h3>Tab Cloak Icon</h3>
+      <div class="setting-option">
+        <input type="text" id="tab-cloak-icon-input" placeholder="Enter Tab Cloak Icon URL" />
+        <button id="tab-cloak-icon-save-btn">Save</button>
+        <button id="tab-cloak-icon-reset-btn">Reset</button>
+        <div id="tab-cloak-icon-value"></div>
+      </div>
+    </div>    
+
+    <div class="settings-section">
+      <h3>Cloak</h3>
+      <div class="setting-option">
+        <input type="text" id="cloak-input" placeholder="Enter cloak value" />
+        <button id="cloak-save-btn">Save</button>
+        <button id="cloak-reset-btn">Reset</button>
+      </div>
+    </div>
+
+    <div class="settings-section">
+      <h3>CSS Modification</h3>
+      <div class="setting-option">
+        <textarea id="css-modification-input" placeholder="Enter CSS code"></textarea>
+        <button id="css-modification-save-btn">Save</button>
+        <button id="css-modification-reset-btn">Reset to Default</button>
+      </div>
+    </div>
+
+    <!-- Display the saved values -->
+    <div>
+      <p>Tab Cloak Icon: <span id="tab-cloak-icon-value"></span></p>
+      <p>Cloak Value: <span id="cloak-value"></span></p>
+      <p>CSS Modification: <span id="css-modification-value"></span></p>
+    </div>
+  </div>
 
   <footer>
     <a title="The z1g Project GitHub organization" href="https://github.com/z1g-project">z1g Project</a>

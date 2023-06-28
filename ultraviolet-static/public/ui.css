@@ -166,3 +166,24 @@ iframe {
   height: calc(100% - 64px - 40px); /* Adjust height to account for the Android-like top bar and the second bar */
   border: none;
 }
+
+button {
+  height: 40px;
+  padding: 0 20px;
+  font-size: 16px;
+  margin-left: 10px;
+  background-color: #2e6dcc;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+textarea {
+  width: 400px;
+  height: 40px;
+  font-size: 16px;
+  padding: 0 10px;
+  border: none;
+  border-radius: 4px;
+}
