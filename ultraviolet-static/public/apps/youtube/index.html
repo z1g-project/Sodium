@@ -28,15 +28,100 @@
       flex: 1;
       border: none;
     }
+
+    .info-menu {
+      display: block;
+    }
+
+    .info-menu-item {
+      font-size: 12px;
+    }
   </style>
   <script>
-    window.addEventListener('DOMContentLoaded', () => {
-      const iframe = document.getElementById('apploader');
-      if (iframe) {
-        const encodedURL = Ultraviolet.codec.xor.encode('https://youtube.com');
-        iframe.src = window.location.origin + `/uv/service/${encodedURL}`;
-      }
-    });
+window.addEventListener('DOMContentLoaded', () => {
+  const iframe = document.getElementById('apploader');
+  if (iframe) {
+    const encodedURL = Ultraviolet.codec.xor.encode('https://youtube.com');
+    iframe.src = window.location.origin + `/uv/service/${encodedURL}`;
+  }
+
+  // Update the info values
+  const transferRate = calculateTransferRate(); // Example: Calculate the transfer rate
+  const latency = calculateLatency(); // Example: Calculate the latency
+  const fps = calculateFPS(); // Example: Calculate the FPS
+
+  updateInfoMenuItem('transferRate', `Transfer Rate: ${transferRate}`);
+  updateInfoMenuItem('latency', `Latency: ${latency}`);
+  updateInfoMenuItem('fps', `FPS: ${fps}`);
+});
+
+let totalBytes = 0;
+let totalTime = 0;
+
+function trackTransfer(bytesTransferred) {
+  totalBytes += bytesTransferred;
+  const currentTime = performance.now();
+  if (totalTime === 0) {
+    totalTime = currentTime;
+  } else {
+    totalTime = currentTime - totalTime;
+  }
+}
+
+function calculateTransferRate() {
+  if (totalBytes > 0 && totalTime > 0) {
+    const transferRate = (totalBytes / totalTime) * 8 / 1000; // Kilobits per second
+    const transferRateFormatted = transferRate.toFixed(2);
+    return `${transferRateFormatted} kbps`;
+  }
+  return 'N/A';
+}
+
+function simulateTransfer() {
+  // Simulating a transfer of 2 MB over 5 seconds
+  const bytesToTransfer = 2 * 1024 * 1024; // 2 MB
+  const transferInterval = 5000; // 5 seconds
+
+  const transferChunks = Math.ceil(bytesToTransfer / 100);
+  const chunkSize = Math.ceil(bytesToTransfer / transferChunks);
+
+  let transferredBytes = 0;
+  let chunkCount = 0;
+
+  const transferIntervalId = setInterval(() => {
+    const remainingBytes = bytesToTransfer - transferredBytes;
+    const chunkBytes = Math.min(chunkSize, remainingBytes);
+
+    trackTransfer(chunkBytes);
+
+    transferredBytes += chunkBytes;
+    chunkCount++;
+
+    if (chunkCount === transferChunks) {
+      clearInterval(transferIntervalId);
+      console.log('Transfer complete!');
+    }
+  }, transferInterval / transferChunks);
+}
+
+simulateTransfer();
+
+function calculateLatency() {
+  const latency = performance.timing.responseStart - performance.timing.requestStart;
+  return `${latency} ms`;
+}
+
+function calculateFPS() {
+  // Since this is an apps page, we can't measure FPS accurately
+  return 'N/A';
+}
+
+function updateInfoMenuItem(itemId, content) {
+  const infoMenuItem = document.getElementById(itemId);
+  if (infoMenuItem) {
+    infoMenuItem.textContent = content;
+  }
+}
   </script>
 </head>
 
@@ -53,6 +138,11 @@
     <a href="/games/">Games</a>
     <a href="/apps/">Apps</a>
     <a href="/settings/">Settings</a>
+    <div class="info-menu" id="info-menu" style="margin-left: auto">
+      <div class="info-menu-item" id="transferRate"></div>
+      <div class="info-menu-item" id="latency"></div>
+      <div class="info-menu-item" id="fps"></div>
+    </div>
   </div>
 
   <iframe id="apploader"></iframe>
@@ -67,5 +157,12 @@
     <a title="License information" href="credits.html" style="margin-left: auto">Credits</a>
     <span>Sodium &copy; z1g Project 2023</span>
   </footer>
+
+  <script>
+    function showInfoMenu() {
+      const infoMenu = document.getElementById('info-menu');
+      infoMenu.classList.toggle('show');
+    }
+  </script>
 </body>
 </html>
