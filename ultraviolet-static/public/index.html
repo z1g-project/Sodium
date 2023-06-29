@@ -22,12 +22,22 @@
   <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
   <script src="particles.js" defer></script>
   <script src="settings.js" defer></script>
+  <script src="stealth.js" defer></script>
   <style>
     #apploader {
       display: none; /* Initially hide the iframe */
     }
+    
     .show-iframe #apploader {
       display: block; /* Show the iframe when .show-iframe class is applied */
+    }
+
+    .info-menu {
+      display: block;
+    }
+
+    .info-menu-item {
+      font-size: 12px;
     }
   </style>
 </head>
@@ -46,6 +56,11 @@
     <a href="/games/">Games</a>
     <a href="/apps/">Apps</a>
     <a href="/settings/">Settings</a>
+    <div class="info-menu" id="info-menu" style="margin-left: auto">
+      <div class="info-menu-item" id="transferRate"></div>
+      <div class="info-menu-item" id="latency"></div>
+      <div class="info-menu-item" id="fps"></div>
+    </div>
   </div>
 
   <div title="Sodium Logo" class="flex-center logo-wrapper header-center">
@@ -68,7 +83,7 @@
 
   <div id="particles-js"></div>
 
-  <iframe id="apploader"></iframe> <!-- Placeholder for the iframe -->
+  <iframe id="apploader"></iframe>
 
   <footer>
     <a title="The z1g Project GitHub organization" href="https://github.com/z1g-project">z1g Project</a>
