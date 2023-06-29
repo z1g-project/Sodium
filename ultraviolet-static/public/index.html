@@ -8,7 +8,7 @@
   <meta name="keywords" content="proxy, web proxy, ultraviolet, service workers, unblock websites, unblock chromebook, free web proxy, proxy list, proxy sites, un block chromebook, online proxy, proxy server, proxysite, proxy youtube, bypass securly, bypass iboss, bypass lightspeed filter, sodium, titanium network, unblock youtube, youtube proxy, unblocked youtube, youtube unblocked" />
   <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#434c5e" />
   <meta name="googlebot" content="index, follow, snippet" />
-  <link rel="shortcut icon" href="favicon.ico" />
+  <link id="favicon" rel="icon" type="image/png" href="favicon.ico">
   <link rel="stylesheet" href="index.css" />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="ui.css" />
@@ -22,6 +22,14 @@
   <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
   <script src="particles.js" defer></script>
   <script src="settings.js" defer></script>
+  <style>
+    #apploader {
+      display: none; /* Initially hide the iframe */
+    }
+    .show-iframe #apploader {
+      display: block; /* Show the iframe when .show-iframe class is applied */
+    }
+  </style>
 </head>
 
 <body>
@@ -59,6 +67,8 @@
   </div>
 
   <div id="particles-js"></div>
+
+  <iframe id="apploader"></iframe> <!-- Placeholder for the iframe -->
 
   <footer>
     <a title="The z1g Project GitHub organization" href="https://github.com/z1g-project">z1g Project</a>

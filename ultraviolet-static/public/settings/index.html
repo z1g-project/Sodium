@@ -9,7 +9,7 @@
   <meta name="keywords" content="proxy, web proxy, ultraviolet, service workers, unblock websites, unblock chromebook, free web proxy, proxy list, proxy sites, un block chromebook, online proxy, proxy server, proxysite, proxy youtube, bypass securly, bypass iboss, bypass lightspeed filter, sodium, titanium network, unblock youtube, youtube proxy, unblocked youtube, youtube unblocked" />
   <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#434c5e" />
   <meta name="googlebot" content="index, follow, snippet" />
-  <link rel="shortcut icon" href="favicon.ico" />
+  <link id="favicon" rel="icon" type="image/png" href="favicon.ico">
   <link rel="stylesheet" href="index.css" />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="ui.css" />
@@ -46,41 +46,19 @@
   <div class="settings-container">
     <h2>Settings</h2>
 
-    <div class="settings-section">
-      <h3>Tab Cloak Icon</h3>
-      <div class="setting-option">
-        <input type="text" id="tab-cloak-icon-input" placeholder="Enter Tab Cloak Icon URL" />
-        <button id="tab-cloak-icon-save-btn">Save</button>
-        <button id="tab-cloak-icon-reset-btn">Reset</button>
-        <div id="tab-cloak-icon-value"></div>
-      </div>
-    </div>    
-
-    <div class="settings-section">
-      <h3>Cloak</h3>
-      <div class="setting-option">
-        <input type="text" id="cloak-input" placeholder="Enter cloak value" />
-        <button id="cloak-save-btn">Save</button>
-        <button id="cloak-reset-btn">Reset</button>
-      </div>
-    </div>
-
-    <div class="settings-section">
-      <h3>CSS Modification</h3>
-      <div class="setting-option">
-        <textarea id="css-modification-input" placeholder="Enter CSS code"></textarea>
-        <button id="css-modification-save-btn">Save</button>
-        <button id="css-modification-reset-btn">Reset to Default</button>
-      </div>
-    </div>
-
-    <!-- Display the saved values -->
-    <div>
-      <p>Tab Cloak Icon: <span id="tab-cloak-icon-value"></span></p>
-      <p>Cloak Value: <span id="cloak-value"></span></p>
-      <p>CSS Modification: <span id="css-modification-value"></span></p>
-    </div>
-  </div>
+    <label for="title-input">Title:</label>
+  <input type="text" id="title-input"><br><br>
+  
+  <label for="icon-input">Icon:</label>
+  <input type="text" id="icon-input"><br><br>
+  
+  <button onclick="saveWebsiteSettings()">Save Settings</button>
+  
+  <h2>Current Settings:</h2>
+  <p>Title: <span id="website-title"></span></p>
+  
+  <h2>Favicon:</h2>
+  <link id="favicon" rel="icon" type="image/png" width="100" height="100">
 
   <footer>
     <a title="The z1g Project GitHub organization" href="https://github.com/z1g-project">z1g Project</a>

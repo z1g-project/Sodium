@@ -1,5 +1,4 @@
 "use strict";
-
 /**
  * @type {HTMLFormElement}
  */
@@ -33,9 +32,5 @@ form.addEventListener("submit", async (event) => {
   }
 
   const url = search(address.value, searchEngine.value);
-  const encodedURL = Ultraviolet.codec.xor.encode(url);
-
-  const iframe = document.getElementById("apploader");
-  iframe.style.display = "block";
-  iframe.src = `${window.location.origin}/uv/service/${encodedURL}`;
+  location.href = __uv$config.prefix + __uv$config.encodeUrl(url);
 });

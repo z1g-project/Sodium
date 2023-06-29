@@ -1,0 +1,181 @@
+document.addEventListener('DOMContentLoaded', function () {
+  // Add event listeners for save and reset buttons
+  const tabCloakIconSaveBtn = document.getElementById('tab-cloak-icon-save-btn');
+  const tabCloakIconResetBtn = document.getElementById('tab-cloak-icon-reset-btn');
+  const cloakSaveBtn = document.getElementById('cloak-save-btn');
+  const cloakResetBtn = document.getElementById('cloak-reset-btn');
+  const cssModificationSaveBtn = document.getElementById('css-modification-save-btn');
+  const cssModificationResetBtn = document.getElementById('css-modification-reset-btn');
+
+  // Load and set saved settings
+  loadSavedSettings();
+
+  if (tabCloakIconSaveBtn) {
+    tabCloakIconSaveBtn.addEventListener('click', saveTabCloakIcon);
+  }
+
+  if (tabCloakIconResetBtn) {
+    tabCloakIconResetBtn.addEventListener('click', resetTabCloakIcon);
+  }
+
+  if (cloakSaveBtn) {
+    cloakSaveBtn.addEventListener('click', saveCloakValue);
+  }
+
+  if (cloakResetBtn) {
+    cloakResetBtn.addEventListener('click', resetCloakValue);
+  }
+
+  if (cssModificationSaveBtn) {
+    cssModificationSaveBtn.addEventListener('click', saveCSSModification);
+  }
+
+  if (cssModificationResetBtn) {
+    cssModificationResetBtn.addEventListener('click', resetCSSModification);
+  }
+
+  // Apply settings on initial load
+  applySettings();
+});
+
+function loadSavedSettings() {
+  // Load Tab Cloak Icon URL
+  const tabCloakIconURL = getCookie('tabCloakIconURL');
+  if (tabCloakIconURL) {
+    document.getElementById('tab-cloak-icon-input').value = tabCloakIconURL;
+    document.getElementById('tab-cloak-icon-value').textContent = tabCloakIconURL;
+  }
+
+  // Load Cloak value
+  const cloakValue = getCookie('cloakValue');
+  if (cloakValue) {
+    document.getElementById('cloak-input').value = cloakValue;
+    document.getElementById('cloak-value').textContent = cloakValue;
+    document.title = cloakValue; // Set the tab title to the cloak value
+  }
+
+  // Load CSS modification
+  const cssModification = getCookie('cssModification');
+  if (cssModification) {
+    document.getElementById('css-modification-input').value = cssModification;
+    document.getElementById('css-modification-value').textContent = cssModification;
+  }
+}
+
+function applySettings() {
+  const tabCloakIconURL = getCookie('tabCloakIconURL');
+  const cloakValue = getCookie('cloakValue');
+  const cssModification = getCookie('cssModification');
+
+  applyTabSettings(tabCloakIconURL);
+  applyCloakTitle(cloakValue);
+  applyCSSModification(cssModification);
+}
+
+function applyCloakTitle(cloakTitle) {
+  // Set the Cloak title on the current page
+  document.title = cloakTitle || 'Sodium';
+}
+
+function applyTabSettings(tabCloakIconURL) {
+  // Apply Tab Cloak Icon URL to the current page
+  const existingIcon = document.getElementById('custom-tab-cloak-icon');
+  if (tabCloakIconURL) {
+    if (existingIcon) {
+      existingIcon.href = tabCloakIconURL;
+    } else {
+      const newIcon = document.createElement('link');
+      newIcon.id = 'custom-tab-cloak-icon';
+      newIcon.rel = 'icon';
+      newIcon.href = tabCloakIconURL;
+      document.head.appendChild(newIcon);
+    }
+  } else {
+    if (existingIcon) {
+      existingIcon.remove();
+    }
+  }
+}
+
+function getCookie(name) {
+  const cookies = document.cookie.split(';');
+  for (let i = 0; i < cookies.length; i++) {
+    const cookie = cookies[i].trim();
+    if (cookie.startsWith(name + '=')) {
+      return cookie.substring(name.length + 1);
+    }
+  }
+  return null;
+}
+
+function setCookie(name, value) {
+  const cookie = `${name}=${value}`;
+  document.cookie = cookie;
+}
+
+function saveTabCloakIcon() {
+  const tabCloakIconURLInput = document.getElementById('tab-cloak-icon-input');
+  const newTabCloakIconURL = tabCloakIconURLInput.value;
+  setCookie('tabCloakIconURL', newTabCloakIconURL);
+  document.getElementById('tab-cloak-icon-value').textContent = newTabCloakIconURL;
+  applyTabSettings(newTabCloakIconURL);
+}
+
+function resetTabCloakIcon() {
+  const tabCloakIconURLInput = document.getElementById('tab-cloak-icon-input');
+  tabCloakIconURLInput.value = '';
+  setCookie('tabCloakIconURL', '');
+  document.getElementById('tab-cloak-icon-value').textContent = '';
+  applyTabSettings('');
+}
+
+function saveCloakValue() {
+  const cloakValueInput = document.getElementById('cloak-input');
+  const newCloakValue = cloakValueInput.value;
+  setCookie('cloakValue', newCloakValue);
+  document.getElementById('cloak-value').textContent = newCloakValue;
+  applyCloakTitle(newCloakValue);
+}
+
+function resetCloakValue() {
+  const cloakValueInput = document.getElementById('cloak-input');
+  cloakValueInput.value = '';
+  setCookie('cloakValue', '');
+  document.getElementById('cloak-value').textContent = '';
+  applyCloakTitle('');
+}
+
+function saveCSSModification() {
+  const cssModificationInput = document.getElementById('css-modification-input');
+  const newCSSModification = cssModificationInput.value;
+  setCookie('cssModification', newCSSModification);
+  document.getElementById('css-modification-value').textContent = newCSSModification;
+  applyCSSModification(newCSSModification);
+}
+
+function resetCSSModification() {
+  const cssModificationInput = document.getElementById('css-modification-input');
+  cssModificationInput.value = '';
+  setCookie('cssModification', '');
+  document.getElementById('css-modification-value').textContent = '';
+  applyCSSModification('');
+}
+
+function applyCSSModification(cssModification) {
+  // Apply CSS Modification to the current page
+  const existingStyle = document.getElementById('custom-css-modification');
+  if (cssModification) {
+    if (existingStyle) {
+      existingStyle.textContent = cssModification;
+    } else {
+      const newStyle = document.createElement('style');
+      newStyle.id = 'custom-css-modification';
+      newStyle.textContent = cssModification;
+      document.head.appendChild(newStyle);
+    }
+  } else {
+    if (existingStyle) {
+      existingStyle.remove();
+    }
+  }
+}
