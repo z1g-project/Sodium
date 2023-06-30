@@ -187,3 +187,31 @@ textarea {
   border: none;
   border-radius: 4px;
 }
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Adjust the number of columns as needed */
+  grid-gap: 20px; /* Adjust the gap between grid items as needed */
+  margin: 20px auto;
+  max-width: 800px; /* Adjust the maximum width of the grid container as needed */
+}
+
+/* Updated styles for the grid items */
+.grid-item {
+  background-color: #333; /* Set the background color for grid items */
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.grid-item:hover {
+  transform: scale(1.05);
+}
+
+.grid-item img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
