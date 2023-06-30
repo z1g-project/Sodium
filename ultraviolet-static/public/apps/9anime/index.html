@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <base href="../../"></base>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+  <title>Sodium</title>
+  <meta name="description" content="Sodium is an Ultraviolet-based proxy used for evading internet censorship." />
+  <meta name="keywords" content="proxy, web proxy, ultraviolet, service workers, unblock websites, unblock chromebook, free web proxy, proxy list, proxy sites, un block chromebook, online proxy, proxy server, proxysite, proxy youtube, bypass securly, bypass iboss, bypass lightspeed filter, sodium, titanium network, unblock youtube, youtube proxy, unblocked youtube, youtube unblocked" />
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#434c5e" />
+  <meta name="googlebot" content="index, follow, snippet" />
+  <link id="favicon" rel="icon" type="image/png" href="favicon.ico">
+  <link rel="stylesheet" href="index.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="ui.css" />
+  <script src="uv/uv.bundle.js" defer></script>
+  <script src="uv/uv.config.js" defer></script>
+  <script src="register-sw.js" defer></script>
+  <script src="search.js" defer></script>
+  <script src="index.js" defer></script>
+  <link rel="json" href="appx.json"></link>
+  <script src="time.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <script src="particles.js" defer></script>
+  <script src="settings.js" defer></script>
+  <style>
+    iframe {
+      flex: 1;
+      border: none;
+    }
+
+    .info-menu {
+      display: block;
+    }
+
+    .info-menu-item {
+      font-size: 12px;
+    }
+  </style>
+  <script>
+window.addEventListener('DOMContentLoaded', () => {
+  const iframe = document.getElementById('apploader');
+  if (iframe) {
+    const encodedURL = Ultraviolet.codec.xor.encode('https://9anime.se');
+    iframe.src = window.location.origin + `/uv/service/${encodedURL}`;
+  }
+
+  // Update the info values
+  const transferRate = calculateTransferRate(); // Example: Calculate the transfer rate
+  const latency = calculateLatency(); // Example: Calculate the latency
+  const fps = calculateFPS(); // Example: Calculate the FPS
+
+  updateInfoMenuItem('transferRate', `Transfer Rate: ${transferRate}`);
+  updateInfoMenuItem('latency', `Latency: ${latency}`);
+  updateInfoMenuItem('fps', `FPS: ${fps}`);
+});
+
+let totalBytes = 0;
+let totalTime = 0;
+
+function trackTransfer(bytesTransferred) {
+  totalBytes += bytesTransferred;
+  const currentTime = performance.now();
+  if (totalTime === 0) {
+    totalTime = currentTime;
+  } else {
+    totalTime = currentTime - totalTime;
+  }
+}
+
+function calculateTransferRate() {
+  if (totalBytes > 0 && totalTime > 0) {
+    const transferRate = (totalBytes / totalTime) * 8 / 1000; // Kilobits per second
+    const transferRateFormatted = transferRate.toFixed(2);
+    return `${transferRateFormatted} kbps`;
+  }
+  return 'N/A';
+}
+
+function simulateTransfer() {
+  // Simulating a transfer of 2 MB over 5 seconds
+  const bytesToTransfer = 2 * 1024 * 1024; // 2 MB
+  const transferInterval = 5000; // 5 seconds
+
+  const transferChunks = Math.ceil(bytesToTransfer / 100);
+  const chunkSize = Math.ceil(bytesToTransfer / transferChunks);
+
+  let transferredBytes = 0;
+  let chunkCount = 0;
+
+  const transferIntervalId = setInterval(() => {
+    const remainingBytes = bytesToTransfer - transferredBytes;
+    const chunkBytes = Math.min(chunkSize, remainingBytes);
+
+    trackTransfer(chunkBytes);
+
+    transferredBytes += chunkBytes;
+    chunkCount++;
+
+    if (chunkCount === transferChunks) {
+      clearInterval(transferIntervalId);
+      console.log('Transfer complete!');
+    }
+  }, transferInterval / transferChunks);
+}
+
+simulateTransfer();
+
+function calculateLatency() {
+  const latency = performance.timing.responseStart - performance.timing.requestStart;
+  return `${latency} ms`;
+}
+
+function calculateFPS() {
+  // Since this is an apps page, we can't measure FPS accurately
+  return 'N/A';
+}
+
+function updateInfoMenuItem(itemId, content) {
+  const infoMenuItem = document.getElementById(itemId);
+  if (infoMenuItem) {
+    infoMenuItem.textContent = content;
+  }
+}
+  </script>
+</head>
+
+<body>
+  <div class="top-bar">
+    <div class="top-bar-left">
+      <div class="top-bar-item" id="time">Time: 12:00 PM</div>
+    </div>
+    <div class="top-bar-item" id="battery">Battery: 0%</div>
+  </div>
+
+  <div class="second-bar">
+    <a href="/">Home</a>
+    <a href="/games/">Games</a>
+    <a href="/apps/">Apps</a>
+    <a href="/settings/">Settings</a>
+    <div class="info-menu" id="info-menu" style="margin-left: auto">
+      <div class="info-menu-item" id="transferRate"></div>
+      <div class="info-menu-item" id="latency"></div>
+      <div class="info-menu-item" id="fps"></div>
+    </div>
+  </div>
+
+  <iframe id="discord"></iframe>
+
+  <div id="particles-js"></div>
+
+  <footer>
+    <a title="The z1g Project GitHub organization" href="https://github.com/z1g-project">z1g Project</a>
+    <a title="The z1g Project Discord" href="https://discord.gg/unblock">Discord</a>
+    <a title="The TompHTTP GitHub organization" href="https://github.com/tomphttp">TompHTTP</a>
+    <a title="The official deployment repository for Sodium" href="https://github.com/z1g-project/Sodium">GitHub</a>
+    <a title="License information" href="credits.html" style="margin-left: auto">Credits</a>
+    <span>Sodium &copy; z1g Project 2023</span>
+  </footer>
+</body>
+</html>

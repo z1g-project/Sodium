@@ -215,3 +215,9 @@ textarea {
   height: auto;
   border-radius: 8px;
 }
+
+a {
+  color: #ffffff;
+  text-decoration: none;
+  margin-right: 10px;
+}

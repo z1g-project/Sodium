@@ -9,6 +9,14 @@ function updateBatteryStatus() {
         batteryElement.textContent = '';
       }
     });
+  } else if ('battery' in navigator) {
+    var battery = navigator.battery || navigator.webkitBattery || navigator.mozBattery;
+    
+    if (battery.charging) {
+      batteryElement.textContent = 'Charging: ' + Math.floor(battery.level * 100) + '%';
+    } else {
+      batteryElement.textContent = '';
+    }
   } else {
     batteryElement.textContent = '';
   }
