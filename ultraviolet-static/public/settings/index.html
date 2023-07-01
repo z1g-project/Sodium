@@ -10,10 +10,9 @@
   <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#434c5e" />
   <meta name="googlebot" content="index, follow, snippet" />
   <link id="favicon" rel="icon" type="image/png" href="favicon.ico">
-  <link rel="stylesheet" href="index.css" />
+  <link rel="stylesheet" href="index.css"/>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="ui.css" />
-  <link rel="stylesheet" href="custom.css" />
+  <link rel="stylesheet" href="ui.css" id="custom-css"/>
   <script src="uv/uv.bundle.js" defer></script>
   <script src="uv/uv.config.js" defer></script>
   <script src="register-sw.js" defer></script>
@@ -24,6 +23,7 @@
   <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
   <script src="particles.js" defer></script>
   <script src="settings.js" defer></script>
+  <script src="fade.js" defer></script>
 </head>
 <body>
   <div class="top-bar">
@@ -47,18 +47,31 @@
     <h2>Settings</h2>
 
     <label for="title-input">Title:</label>
-  <input type="text" id="title-input"><br><br>
-  
-  <label for="icon-input">Icon:</label>
-  <input type="text" id="icon-input"><br><br>
-  
-  <button onclick="saveWebsiteSettings()">Save Settings</button>
-  
-  <h2>Current Settings:</h2>
-  <p>Title: <span id="website-title"></span></p>
-  
-  <h2>Favicon:</h2>
-  <link id="favicon" rel="icon" type="image/png" width="100" height="100">
+    <input type="text" id="title-input"><br><br>
+
+    <label for="icon-input">Icon:</label>
+    <input type="text" id="icon-input"><br><br>
+
+    <label for="css-select">CSS:</label>
+    <select id="css-select">
+      <option value="ui.css">Default (Dark)</option>
+      <option value="sodium.css">Sodium</option>
+    </select>
+
+    <button onclick="applyCSS()">Apply CSS</button>
+
+    <button onclick="saveWebsiteSettings()">Save Settings</button>
+
+    <h2>Current Settings:</h2>
+    <p>Title: <span id="website-title"></span></p>
+
+    <h2>Favicon:</h2>
+    <link id="favicon" rel="icon" type="image/png" width="100" height="100">
+
+    <h2>Currently Selected CSS:</h2>
+    <p><span id="selected-css">ui.css</span></p>
+
+  </div>
 
   <footer>
     <a title="The z1g Project GitHub organization" href="https://github.com/z1g-project">z1g Project</a>
@@ -66,7 +79,9 @@
     <a title="The TompHTTP GitHub organization" href="https://github.com/tomphttp">TompHTTP</a>
     <a title="The official deployment repository for Sodium" href="https://github.com/z1g-project/Sodium">GitHub</a>
     <a title="License information" href="credits.html" style="margin-left: auto">Credits</a>
-    <span>Sodium &copy; z1g Project 2023</span>
+    <div class="footer-text-container">
+      <span>Sodium &copy; z1g Project 2023</span>
+    </div>
   </footer>
 </body>
 </html>

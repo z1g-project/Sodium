@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="index.css" />
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet"/>
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    <link rel="stylesheet" href="ui.css"/>
+    <link rel="stylesheet" href="ui.css" id="custom-css"/>
     <script src="uv/uv.bundle.js" defer></script>
     <script src="uv/uv.config.js" defer></script>
     <script src="register-sw.js" defer></script>
@@ -23,6 +23,7 @@
     <script src="games.js" defer></script>
     <script src="particles.js" defer></script>
     <script src="settings.js" defer></script>
+    <script src="fade.js" defer></script>
   </head>
 
   <body>
@@ -118,12 +119,14 @@
     <div id="particles-js"></div>
 
     <footer>
-      <a title="The z1g Project GitHub organization" href="https://github.com/z1g-project">z1g Project</a>
-      <a title="The z1g Project Discord" href="https://discord.gg/unblock">Discord</a>
-      <a title="The TompHTTP GitHub organization" href="https://github.com/tomphttp">TompHTTP</a>
-      <a title="The official deployment repository for Sodium" href="https://github.com/z1g-project/Sodium">GitHub</a>
-      <a title="License information" href="credits.html" style="margin-left: auto">Credits</a>
-      <span>Sodium &copy; z1g Project 2023</span>
-    </footer>
+  <a title="The z1g Project GitHub organization" href="https://github.com/z1g-project">z1g Project</a>
+  <a title="The z1g Project Discord" href="https://discord.gg/unblock">Discord</a>
+  <a title="The TompHTTP GitHub organization" href="https://github.com/tomphttp">TompHTTP</a>
+  <a title="The official deployment repository for Sodium" href="https://github.com/z1g-project/Sodium">GitHub</a>
+  <a title="License information" href="credits.html" style="margin-left: auto">Credits</a>
+  <div class="footer-text-container">
+    <span>Sodium &copy; z1g Project 2023</span>
+  </div>
+</footer>
   </body>
 </html>

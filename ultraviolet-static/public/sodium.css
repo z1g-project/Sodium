@@ -198,16 +198,19 @@ textarea {
 
 /* Updated styles for the grid items */
 .grid-item {
-  background-color: #333; /* Set the background color for grid items */
+  background-color: #333;
   padding: 20px;
   border-radius: 8px;
   text-align: center;
   transition: transform 0.3s ease;
   cursor: pointer;
+  opacity: 1; /* Set opacity to 1 to make grid items visible */
+  transform: scale(1); /* Set transform scale to 1 to restore original size */
+  transition: transform 0.3s ease, opacity 0.5s ease-in-out;
 }
 
 .grid-item:hover {
-  transform: scale(1.05);
+  transform: scale(1.1); /* Increase the scale on hover if desired */
 }
 
 .grid-item img {
@@ -216,8 +219,55 @@ textarea {
   border-radius: 8px;
 }
 
+.fade-out {
+  animation: fade-out 0.5s ease-in-out forwards;
+}
+
+/* Animation for fading in elements */
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Animation for fading out elements */
+@keyframes fade-out {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
 a {
   color: #ffffff;
   text-decoration: none;
   margin-right: 10px;
+}
+
+/* CSS animations */
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-down {
+  from {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
