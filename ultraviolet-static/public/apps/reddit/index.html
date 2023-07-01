@@ -41,7 +41,7 @@
 window.addEventListener('DOMContentLoaded', () => {
   const iframe = document.getElementById('apploader');
   if (iframe) {
-    const encodedURL = Ultraviolet.codec.xor.encode('https://bing.com');
+    const encodedURL = Ultraviolet.codec.xor.encode('https://reddit.com');
     iframe.src = window.location.origin + `/uv/service/${encodedURL}`;
   }
 
