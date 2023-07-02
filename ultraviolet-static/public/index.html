@@ -53,7 +53,10 @@
       <div class="top-bar-item" id="time">Time: 12:00 PM</div>
       <!-- <div class="top-bar-item">Notifications</div> -->
     </div>
-    <div class="top-bar-item" id="battery">Battery: 0%</div>
+    <div class="top-bar-item" id="battery">
+      <span class="battery-icon"></span>
+      <p class="battery-text"></p>
+    </div>
   </div>
 
   <div class="second-bar">
@@ -89,6 +92,12 @@
   <div id="particles-js"></div>
 
   <iframe id="apploader"></iframe>
+
+  <div id="side-rail-ad-container">
+    <script>
+      googletag.cmd.push(function() { googletag.display('side-rail-ad-container'); });
+    </script>
+  </div>
 
   <footer>
   <a title="The z1g Project GitHub organization" href="https://github.com/z1g-project">z1g Project</a>

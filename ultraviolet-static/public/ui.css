@@ -311,3 +311,53 @@ textarea {
   height: auto;
   border-radius: 8px;
 }
+
+#battery {
+  display: flex;
+  align-items: center;
+}
+
+.battery-text {
+  margin: 0;
+  text-align: center;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.battery-icon {
+  display: flex;
+  width: 30px;
+  height: 10px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  position: relative;
+  margin-right: 5px;
+  align-items: center;
+  justify-content: center;
+}
+
+.battery-icon.low {
+  background-image: url('assets/img/bat-low.png');
+}
+
+.battery-icon.medium {
+  background-image: url('assets/img/bat-medium.png');
+}
+
+.battery-icon.high {
+  background-image: url('assets/img/bat-high.png');
+}
+
+.battery-icon.charging.low {
+  background-image: url('assets/img/bat-charging-low.png');
+}
+
+.battery-icon.charging.medium {
+  background-image: url('assets/img/bat-charging-medium.png');
+}
+
+.battery-icon.charging.high {
+  background-image: url('assets/img/bat-charging-high.png');
+}

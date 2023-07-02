@@ -35,5 +35,7 @@ function updateTime() {
   timeElement.textContent = 'Time: ' + hours + ':' + (minutes < 10 ? '0' + minutes : minutes) + ' ' + ampm;
 }
 
+updateTime()
+
 setInterval(updateBatteryStatus, 1000);
 setInterval(updateTime, 1000);
