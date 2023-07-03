@@ -34,7 +34,7 @@ function updateBatteryText(percentage, isCharging) {
   }
 
   const chargingSymbol = isCharging ? ' ⚡' : '';
-  batteryTextElement.textContent = `${percentage}%${chargingSymbol}`;
+  batteryTextElement.textContent = `${chargingSymbol} ${percentage}%`;
 }
 
 function formatTime(time) {
