@@ -312,30 +312,30 @@ textarea {
   border-radius: 8px;
 }
 
-#battery {
-  display: flex;
-  align-items: center;
-}
-
-.battery-text {
-  margin: 0;
-  text-align: center;
-  font-size: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 .battery-icon {
-  display: flex;
+  position: relative;
+  display: inline-block;
   width: 30px;
   height: 10px;
   background-position: center center;
   background-repeat: no-repeat;
-  position: relative;
-  margin-right: 5px;
-  align-items: center;
-  justify-content: center;
+}
+
+.battery-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background-color: transparent;
+}
+
+.battery-text {
+  position: absolute;
+  top: -1px;
+  left: 97.1%;
+  transform: translateX(-50%);
+  font-size: 10px;
+  color: white;
 }
 
 .battery-icon.low {
@@ -360,4 +360,60 @@ textarea {
 
 .battery-icon.charging.high {
   background-image: url('assets/img/bat-charging-high.png');
+}
+
+.internet-connection.ethernet-connected {
+  background-image: url('assets/img/ethernet_connected.png');
+}
+
+.internet-connection.cell-none {
+  background-image: url('assets/img/cell_none.png');
+}
+
+.internet-connection.cell-bad {
+  background-image: url('assets/img/cell_bad.png');
+}
+
+.internet-connection.wifi-connected {
+  background-image: url('assets/img/wifi_connected.png');
+}
+
+.internet-connection.wifi-unavailable {
+  background-image: url('assets/img/wifi_unavailable.png');
+}
+
+.ethernet-connected {
+  background-image: url("assets/img/ethernet_connected.png");
+}
+
+.cell-none {
+  background-image: url("assets/img/cell_none.png");
+}
+
+.cell-bad {
+  background-image: url("assets/img/cell_bad.png");
+}
+
+.cell-low {
+  background-image: url("assets/img/cell_low.png");
+}
+
+.cell-med {
+  background-image: url("assets/img/cell_med.png");
+}
+
+.cell-good {
+  background-image: url("assets/img/cell_good.png");
+}
+
+.cell-best {
+  background-image: url("assets/img/cell_best.png");
+}
+
+.wifi-connected {
+  background-image: url("assets/img/wifi_connected.png");
+}
+
+.wifi-unavailable {
+  background-image: url("assets/img/wifi_unavailable.png");
 }
