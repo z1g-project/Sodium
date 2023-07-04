@@ -1,0 +1,65 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.browser {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  background-color: #343434;
+  padding: 10px;
+}
+
+.toolbar-button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  outline: none;
+}
+
+#address-bar {
+  flex-grow: 1;
+  height: 30px;
+  margin: 0 10px;
+  padding: 5px;
+  font-size: 16px;
+  border: none;
+}
+
+.tabs {
+  display: flex;
+  background-color: #454545;
+  padding: 10px;
+}
+
+.tab {
+  padding: 5px 10px;
+  margin-right: 10px;
+  cursor: pointer;
+  background-color: #333;
+}
+
+.tab.active {
+  background-color: #555d64;
+  color: white;
+}
+
+.content {
+  flex-grow: 1;
+  position: relative;
+}
+
+#browser-iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}

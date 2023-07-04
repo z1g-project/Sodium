@@ -1,19 +1,19 @@
 {
   "name": "uv-app",
   "version": "1.0.0",
-  "description": "Ultraviolet instance",
+  "description": "Sodium Instance",
   "type": "module",
   "engines": {
     "npm": ">=7.0.0",
     "node": ">=16.0.0"
   },
   "scripts": {
-    "start": "node src/index.js"
+    "start": "node index.js"
   },
   "keywords": [
     "proxy"
   ],
-  "author": "",
+  "author": "z1g Project",
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@titaniumnetwork-dev/ultraviolet": "^2.0.0",

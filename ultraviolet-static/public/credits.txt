@@ -4,5 +4,15 @@ Here at the z1g Project we like focusing on helping the community bypass their s
 
 Thank you for supporting us since 2021!
 
-Last Updated: 4/8/2022
-Made with ❤️ by XSTARS#9715
+Sodium Credits
+- UI & Visials: XSTARS
+- Logos and General Design: XSTARS
+
+Ultraviolet Credits
+- Created by Titanium network
+
+Other Licenses
+- Particles.js by Vincent Garreau
+
+Last Updated: 7/3/2023
+Made with ❤️ by XSTARS

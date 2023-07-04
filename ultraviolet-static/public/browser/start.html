@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base href="../">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+    <title>Sodium</title>
+    <meta name="description" content="Sodium is an Ultraviolet-based proxy used for evading internet censorship." />
+    <meta name="keywords" content="proxy, web proxy, ultraviolet, service workers, unblock websites, unblock chromebook, free web proxy, proxy list, proxy sites, un block chromebook, online proxy, proxy server, proxysite, proxy youtube, bypass securly, bypass iboss, bypass lightspeed filter, sodium, titanium network, unblock youtube, youtube proxy, unblocked youtube, youtube unblocked" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#434c5e" />
+    <meta name="googlebot" content="index, follow, snippet" />
+    <link id="favicon" rel="icon" type="image/png" href="favicon.ico">
+    <link rel="stylesheet" href="index.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet"/>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <link rel="stylesheet" href="ui.css" id="custom-css"/>
+    <script src="uv/uv.bundle.js" defer></script>
+    <script src="uv/uv.config.js" defer></script>
+    <script src="register-sw.js" defer></script>
+    <script src="search.js" defer></script>
+    <link rel="json" href="appx.json" defer></script>
+    <link rel="manifest" href="manifest.webmanifest"/>
+    <script src="time.js" defer></script>
+    <script src="apps.js" defer></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2910142417276964"
+     crossorigin="anonymous"></script>
+    <script src="particles.js" defer></script>
+    <script src="ads.js" defer></script>
+    <script src="settings.js" defer></script>
+    <script src="fade.js" defer></script>
+  </head>
+  <body>
+    <div title="Sodium Logo" class="flex-center logo-wrapper header-center">
+        <img class="logo" src="sodium.png" alt="Sodium" />
+        <h1>Sodium</h1>
+      </div>
+      <div class="flex-center desc">
+        <p>Sodium is an Ultraviolet-based proxy used for evading internet censorship.</p>
+      </div>
+      <form id="uv-form" class="flex-center">
+        <input id="uv-search-engine" value="https://www.google.com/search?q=%s" type="hidden" />
+        <input id="uv-address" type="text" placeholder="Search the web freely" />
+        <button id="searchButton">Search</button>
+      </form>
+    
+      <div class="desc left-margin">
+        <p id="uv-error"></p>
+        <pre id="uv-error-code"></pre>
+      </div>
+    
+      <h1 style="text-align: center;">Recommended Sites</h1>
+    <h3 style="text-align: center;">Official Sites that are working and ready for use!</h3>
+
+    <div class="grid-container">
+      <div class="grid-item" onclick="loadApp('apps/discord/')">
+        <img src="apps/assets/app1.jpg" height="200" width="200" alt="Discord Logo">
+        <h3>Discord</h3>
+        <p>A popular texting platform.</p>
+      </div>
+
+      <div class="grid-item" onclick="loadApp('apps/gfn/')">
+        <img src="apps/assets/app2.jpg" height="200" width="200" alt="GFN Logo">
+        <h3>GeForce NOW</h3>
+        <p>A popular game streaming service</p>
+      </div>
+
+      <div class="grid-item" onclick="loadApp('apps/cmg/')">
+        <img src="apps/assets/app3.jpg" height="200" width="200" alt="CMG Logo">
+        <h3>Cool Math Games</h3>
+        <p>The website that your school somehow blocked</p>
+      </div>
+    </div>
+
+    <div id="particles-js"></div>
+
+    <div id="side-rail-ad-container">
+      <script>
+        googletag.cmd.push(function() { googletag.display('side-rail-ad-container'); });
+      </script>
+    </div>
+
+    <footer>
+      <a title="The z1g Project GitHub organization" href="https://github.com/z1g-project">z1g Project</a>
+      <a title="The z1g Project Discord" href="https://discord.gg/unblock">Discord</a>
+      <a title="The TompHTTP GitHub organization" href="https://github.com/tomphttp">TompHTTP</a>
+      <a title="The official deployment repository for Sodium" href="https://github.com/z1g-project/Sodium">GitHub</a>
+      <a title="License information" href="credits.html" style="margin-left: auto">Credits</a>
+      <div class="footer-text-container">
+    <span>Sodium &copy; z1g Project 2023</span>
+  </div>
+</footer>
+  </body>
+</html>

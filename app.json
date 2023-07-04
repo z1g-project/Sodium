@@ -1,7 +1,7 @@
 {
-  "name": "Ultraviolet App",
-  "description": "Node.js Ultraviolet instance",
-  "repository": "https://github.com/titaniumnetwork-dev/Ultraviolet-App",
-  "logo": "https://raw.githubusercontent.com/titaniumnetwork-dev/Ultraviolet-Static/main/public/uv.png",
-  "keywords": ["tomp", "ultraviolet"]
+  "name": "Sodium",
+  "description": "Sodium is a proxy site built on Node.js",
+  "repository": "https://github.com/z1g-project/sodium.git",
+  "logo": "./ultraviolet-static/public/sodium.png",
+  "keywords": ["tomp", "ultraviolet", "z1g-project"]
 }
