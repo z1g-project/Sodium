@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <base href="../">
+  <base href="../../">
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
   <title>Sodium</title>
@@ -48,59 +48,67 @@
     <a href="/settings/">Settings</a>
   </div>
 
+  <div class="settings-container">
+    <h2>Compatibility Checker</h2>
+  
+    <p><strong>Operating System:</strong> <span id="osCompatibility"></span></p>
+    <p><strong>Browser Version:</strong> <span id="browserCompatibility"></span></p>
+    <p><strong>PWA Support:</strong> <span id="pwaCompatibility"></span></p>
+    <p><strong>Battery API Support:</strong> <span id="batteryCompatibility"></span></p>
+  </div>
+   
   <div id="particles-js"></div>
 
-  <div class="settings-container">
-    <h2>Settings</h2>
-
-    <label for="title-input">Title:</label>
-    <input type="text" id="title-input"><br><br>
-
-    <label for="icon-input">Icon:</label>
-    <input type="text" id="icon-input"><br><br>
-
-    <label for="css-select">CSS:</label>
-    <select id="css-select">
-      <option value="ui.css">Default (Dark)</option>
-      <option value="sodium.css">Sodium</option>
-    </select>
-
-    <button onclick="applyCSS()">Apply CSS</button>
-
-    <button onclick="saveWebsiteSettings()">Save Settings</button>
-
-    <button onclick="openCSSEditor()">Open CSS Editor</button>
-    <button onclick="openCompactChecker()">Open Compatibility Checker</button>
-
-    <h2>Current Settings:</h2>
-    <p>Title: <span id="website-title"></span></p>
-
-    <h2>Favicon:</h2>
-    <link id="favicon" rel="icon" type="image/png" width="100" height="100">
-
-    <h2>Currently Selected CSS:</h2>
-    <p><span id="selected-css">ui.css</span></p>
-
-  </div>
-
-  <footer>
-    <a title="The z1g Project GitHub organization" href="/github/z1g-project/">z1g Project</a>
-    <a title="The z1g Project Discord" href="/discord/">Discord</a>
-    <a title="The TompHTTP GitHub organization" href="/github/tomphttp/">TompHTTP</a>
-    <a title="The official deployment repository for Sodium" href="/github/">GitHub</a>
-    <a title="License information" href="credits.html" style="margin-left: auto">Credits</a>
+   <footer>
+     <a title="The z1g Project GitHub organization" href="/github/z1g-project/">z1g Project</a>
+     <a title="The z1g Project Discord" href="/discord/">Discord</a>
+     <a title="The TompHTTP GitHub organization" href="/github/tomphttp/">TompHTTP</a>
+     <a title="The official deployment repository for Sodium" href="/github/">GitHub</a>
+     <a title="License information" href="credits.html" style="margin-left: auto">Credits</a>
     <div class="footer-text-container">
-      <span>Sodium &copy; z1g Project 2023</span>
+     <span>Sodium &copy; z1g Project 2023</span>
     </div>
   </footer>
-
   <script>
-    function openCSSEditor() {
-    window.location.href = "/settings/css-editor/";
-  }
-  function openCompactChecker() {
-    window.location.href = "/settings/compat/";
-  }
+    // Compatibility Checker
+    const osCompatibility = document.getElementById('osCompatibility');
+    const browserCompatibility = document.getElementById('browserCompatibility');
+    const pwaCompatibility = document.getElementById('pwaCompatibility');
+    const batteryCompatibility = document.getElementById('batteryCompatibility');
+  
+    // Check Operating System
+    const operatingSystem = navigator.platform.toLowerCase();
+    if (
+      operatingSystem.includes('win') ||
+      operatingSystem.includes('mac') ||
+      operatingSystem.includes('linux')
+    ) {
+      osCompatibility.textContent = "✅ Compatible";
+    } else {
+      osCompatibility.textContent = "❌ Incompatible";
+    }
+  
+    // Check Browser Version
+    const browserVersion = navigator.userAgentData?.brands.find(brand => brand.brand === 'Google Chrome')?.version;
+    if (browserVersion && parseFloat(browserVersion) <= 114.0) {
+      browserCompatibility.textContent = "❌ Incompatible";
+    } else {
+      browserCompatibility.textContent = "✅ Compatible";
+    }
+  
+    // Check PWA Support
+    if (window.matchMedia('(display-mode: standalone)').matches) {
+      pwaCompatibility.textContent = "✅ Supported";
+    } else {
+      pwaCompatibility.textContent = "⚠️ May not be supported";
+    }
+  
+    // Check Battery API Support
+    if ('getBattery' in navigator) {
+      batteryCompatibility.textContent = "✅ Supported";
+    } else {
+      batteryCompatibility.textContent = "❌ Unsupported";
+    }
   </script>
-</body>
+ </body>
 </html>
