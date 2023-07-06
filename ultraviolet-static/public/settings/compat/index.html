@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <base href="../../">
+  <base href="../">
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
   <title>Sodium</title>
@@ -50,65 +50,74 @@
 
   <div class="settings-container">
     <h2>Compatibility Checker</h2>
-  
-    <p><strong>Operating System:</strong> <span id="osCompatibility"></span></p>
-    <p><strong>Browser Version:</strong> <span id="browserCompatibility"></span></p>
-    <p><strong>PWA Support:</strong> <span id="pwaCompatibility"></span></p>
-    <p><strong>Battery API Support:</strong> <span id="batteryCompatibility"></span></p>
-  </div>
-   
-  <div id="particles-js"></div>
 
-   <footer>
-     <a title="The z1g Project GitHub organization" href="/github/z1g-project/">z1g Project</a>
-     <a title="The z1g Project Discord" href="/discord/">Discord</a>
-     <a title="The TompHTTP GitHub organization" href="/github/tomphttp/">TompHTTP</a>
-     <a title="The official deployment repository for Sodium" href="/github/">GitHub</a>
-     <a title="License information" href="credits.html" style="margin-left: auto">Credits</a>
-    <div class="footer-text-container">
-     <span>Sodium &copy; z1g Project 2023</span>
+    <div id="compatibility-check">
+      <p id="os-compatibility"></p>
+      <p id="browser-compatibility"></p>
+      <p id="pwa-support"></p>
+      <p id="battery-api-support"></p>
     </div>
-  </footer>
-  <script>
-    // Compatibility Checker
-    const osCompatibility = document.getElementById('osCompatibility');
-    const browserCompatibility = document.getElementById('browserCompatibility');
-    const pwaCompatibility = document.getElementById('pwaCompatibility');
-    const batteryCompatibility = document.getElementById('batteryCompatibility');
-  
+  </div>
+Continued code:
+
+```html
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const osCompatibility = document.getElementById("os-compatibility");
+    const browserCompatibility = document.getElementById("browser-compatibility");
+    const pwaSupport = document.getElementById("pwa-support");
+    const batteryAPISupport = document.getElementById("battery-api-support");
+
     // Check Operating System
-    const operatingSystem = navigator.platform.toLowerCase();
-    if (
-      operatingSystem.includes('win') ||
-      operatingSystem.includes('mac') ||
-      operatingSystem.includes('linux')
-    ) {
-      osCompatibility.textContent = "✅ Compatible";
+    const os = navigator.platform.toLowerCase();
+    const partiallySupportedOS = ["win7", "win8", "win8.1", "ubuntu 16"];
+    if (partiallySupportedOS.includes(os)) {
+      osCompatibility.innerText = "Operating System: ⚠️ Partially Supported";
+    } else if (partiallySupportedOS.some(partialOS => os.includes(partialOS))) {
+      osCompatibility.innerText = "Operating System: ⚠️ Partially Supported (Unknown Version)";
     } else {
-      osCompatibility.textContent = "❌ Incompatible";
+      osCompatibility.innerText = "Operating System: ✅ Compatible";
     }
-  
+
     // Check Browser Version
-    const browserVersion = navigator.userAgentData?.brands.find(brand => brand.brand === 'Google Chrome')?.version;
-    if (browserVersion && parseFloat(browserVersion) <= 114.0) {
-      browserCompatibility.textContent = "❌ Incompatible";
+    const browser = navigator.userAgent.toLowerCase();
+    const chromeVersion = browser.match(/chrome\/(\d+)/);
+    const firefoxVersion = browser.match(/firefox\/(\d+)/);
+    if (chromeVersion && parseInt(chromeVersion[1]) <= 112) {
+      browserCompatibility.innerText = "Browser Version: ❌ Incompatible";
+    } else if (firefoxVersion && parseInt(firefoxVersion[1]) <= 102) {
+      browserCompatibility.innerText = "Browser Version: ❌ Incompatible";
     } else {
-      browserCompatibility.textContent = "✅ Compatible";
+      browserCompatibility.innerText = "Browser Version: ✅ Compatible";
     }
-  
+
     // Check PWA Support
-    if (window.matchMedia('(display-mode: standalone)').matches) {
-      pwaCompatibility.textContent = "✅ Supported";
+    if ("serviceWorker" in navigator && window.matchMedia("(display-mode: standalone)").matches) {
+      pwaSupport.innerText = "PWA Support: ✅ Supported";
     } else {
-      pwaCompatibility.textContent = "⚠️ May not be supported";
+      pwaSupport.innerText = "PWA Support: ⚠️ May not be supported";
     }
-  
+
     // Check Battery API Support
-    if ('getBattery' in navigator) {
-      batteryCompatibility.textContent = "✅ Supported";
+    if ("getBattery" in navigator) {
+      batteryAPISupport.innerText = "Battery API Support: ✅ Supported";
     } else {
-      batteryCompatibility.textContent = "❌ Unsupported";
+      batteryAPISupport.innerText = "Battery API Support: ❌ Not supported";
     }
-  </script>
- </body>
+  });
+</script>
+
+<div id="particles-js"></div>
+
+<footer>
+  <a title="The z1g Project GitHub organization" href="/github/z1g-project/">z1g Project</a>
+  <a title="The z1g Project Discord" href="/discord/">Discord</a>
+  <a title="The TompHTTP GitHub organization" href="/github/tomphttp/">TompHTTP</a>
+  <a title="The official deployment repository for Sodium" href="/github/">GitHub</a>
+  <a title="License information" href="credits.html" style="margin-left: auto">Credits</a>
+  <div class="footer-text-container">
+    <span>Sodium &copy; z1g Project 2023</span>
+  </div>
+</footer>
+</body>
 </html>
