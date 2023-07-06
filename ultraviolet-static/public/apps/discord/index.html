@@ -71,12 +71,18 @@ function trackTransfer(bytesTransferred) {
 }
 
 function calculateTransferRate() {
-  if (totalBytes > 0 && totalTime > 0) {
-    const transferRate = (totalBytes / totalTime) * 8 / 1000; // Kilobits per second
-    const transferRateFormatted = transferRate.toFixed(2);
-    return `${transferRateFormatted} kbps`;
-  }
-  return 'N/A';
+  setInterval(() => {
+    if (totalBytes > 0 && totalTime > 0) {
+      const transferRate = (totalBytes / totalTime) * 8 / 1000; // Kilobits per second
+      const transferRateFormatted = transferRate.toFixed(2);
+      const transferRateDisplay = `${transferRateFormatted} kbps`;
+      updateInfoMenuItem('transferRate', `Transfer Rate: ${transferRateDisplay}`);
+    } else {
+      updateInfoMenuItem('transferRate', `Transfer Rate: N/A`);
+    }
+    totalBytes = 0;
+    totalTime = 0;
+  }, 1000); // Update every second
 }
 
 function simulateTransfer() {
@@ -124,6 +130,39 @@ function updateInfoMenuItem(itemId, content) {
     infoMenuItem.textContent = content;
   }
 }
+
+let fps = 0;
+let frameCount = 0;
+let lastTime = performance.now();
+
+function updateFPS() {
+  const currentTime = performance.now();
+  const deltaTime = currentTime - lastTime;
+  frameCount++;
+
+  // Calculate FPS every second
+  if (deltaTime >= 1000) {
+    fps = Math.round((frameCount * 1000) / deltaTime);
+    frameCount = 0;
+    lastTime = currentTime;
+  }
+
+  // Update FPS display
+  updateInfoMenuItem('fps', `FPS: ${fps}`);
+
+  // Call the next frame
+  requestAnimationFrame(updateFPS);
+}
+
+// Start the FPS tracking
+updateFPS();
+
+function updateInfoMenuItem(itemId, content) {
+  const infoMenuItem = document.getElementById(itemId);
+  if (infoMenuItem) {
+    infoMenuItem.textContent = content;
+  }
+}
   </script>
 </head>
 
@@ -159,14 +198,14 @@ function updateInfoMenuItem(itemId, content) {
   <div id="particles-js"></div>
 
   <footer>
-  <a title="The z1g Project GitHub organization" href="/github/z1g-project/">z1g Project</a>
-  <a title="The z1g Project Discord" href="/discord/">Discord</a>
-  <a title="The TompHTTP GitHub organization" href="/github/tomphttp/">TompHTTP</a>
-  <a title="The official deployment repository for Sodium" href="/github/">GitHub</a>
-  <a title="License information" href="credits.html" style="margin-left: auto">Credits</a>
-  <div class="footer-text-container">
-    <span>Sodium &copy; z1g Project 2023</span>
-  </div>
-</footer>
+    <a title="The z1g Project GitHub organization" href="/github/z1g-project/">z1g Project</a>
+    <a title="The z1g Project Discord" href="/discord/">Discord</a>
+    <a title="The TompHTTP GitHub organization" href="/github/tomphttp/">TompHTTP</a>
+    <a title="The official deployment repository for Sodium" href="/github/">GitHub</a>
+    <a title="License information" href="credits.html" style="margin-left: auto">Credits</a>
+    <div class="footer-text-container">
+      <span>Sodium &copy; z1g Project 2023</span>
+    </div>
+  </footer>
 </body>
 </html>

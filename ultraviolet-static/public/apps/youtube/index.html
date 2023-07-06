@@ -40,7 +40,7 @@
     }
   </style>
   <script>
-window.addEventListener('DOMContentLoaded', () => {
+    window.addEventListener('DOMContentLoaded', () => {
   const iframe = document.getElementById('apploader');
   if (iframe) {
     const encodedURL = Ultraviolet.codec.xor.encode('https://youtube.com');
@@ -71,12 +71,18 @@ function trackTransfer(bytesTransferred) {
 }
 
 function calculateTransferRate() {
-  if (totalBytes > 0 && totalTime > 0) {
-    const transferRate = (totalBytes / totalTime) * 8 / 1000; // Kilobits per second
-    const transferRateFormatted = transferRate.toFixed(2);
-    return `${transferRateFormatted} kbps`;
-  }
-  return 'N/A';
+  setInterval(() => {
+    if (totalBytes > 0 && totalTime > 0) {
+      const transferRate = (totalBytes / totalTime) * 8 / 1000; // Kilobits per second
+      const transferRateFormatted = transferRate.toFixed(2);
+      const transferRateDisplay = `${transferRateFormatted} kbps`;
+      updateInfoMenuItem('transferRate', `Transfer Rate: ${transferRateDisplay}`);
+    } else {
+      updateInfoMenuItem('transferRate', `Transfer Rate: N/A`);
+    }
+    totalBytes = 0;
+    totalTime = 0;
+  }, 1000); // Update every second
 }
 
 function simulateTransfer() {
@@ -124,6 +130,39 @@ function updateInfoMenuItem(itemId, content) {
     infoMenuItem.textContent = content;
   }
 }
+
+let fps = 0;
+let frameCount = 0;
+let lastTime = performance.now();
+
+function updateFPS() {
+  const currentTime = performance.now();
+  const deltaTime = currentTime - lastTime;
+  frameCount++;
+
+  // Calculate FPS every second
+  if (deltaTime >= 1000) {
+    fps = Math.round((frameCount * 1000) / deltaTime);
+    frameCount = 0;
+    lastTime = currentTime;
+  }
+
+  // Update FPS display
+  updateInfoMenuItem('fps', `FPS: ${fps}`);
+
+  // Call the next frame
+  requestAnimationFrame(updateFPS);
+}
+
+// Start the FPS tracking
+updateFPS();
+
+function updateInfoMenuItem(itemId, content) {
+  const infoMenuItem = document.getElementById(itemId);
+  if (infoMenuItem) {
+    infoMenuItem.textContent = content;
+  }
+}
   </script>
 </head>
 
@@ -131,8 +170,15 @@ function updateInfoMenuItem(itemId, content) {
   <div class="top-bar">
     <div class="top-bar-left">
       <div class="top-bar-item" id="time">Time: 12:00 PM</div>
+      <!-- <div class="top-bar-item">Notifications</div> -->
     </div>
-    <div class="top-bar-item" id="battery">Battery: 0%</div>
+    <div class="top-bar-item">
+      <div class="battery-icon-container">
+        <div id="battery" class="battery-icon"></div>
+        <div class="battery-fill"></div>
+        <p class="battery-text"></p>
+      </div>
+    </div>
   </div>
 
   <div class="second-bar">
@@ -141,9 +187,9 @@ function updateInfoMenuItem(itemId, content) {
     <a href="/apps/">Apps</a>
     <a href="/settings/">Settings</a>
     <div class="info-menu" id="info-menu" style="margin-left: auto">
-      <div class="info-menu-item" id="transferRate"></div>
-      <div class="info-menu-item" id="latency"></div>
-      <div class="info-menu-item" id="fps"></div>
+      <div class="info-menu-item" id="transferRate">Transfer Rate: -</div>
+      <div class="info-menu-item" id="latency">Latency: -</div>
+      <div class="info-menu-item" id="fps">FPS: N/A</div>
     </div>
   </div>
 
@@ -161,12 +207,5 @@ function updateInfoMenuItem(itemId, content) {
     <span>Sodium &copy; z1g Project 2023</span>
   </div>
 </footer>
-
-  <script>
-    function showInfoMenu() {
-      const infoMenu = document.getElementById('info-menu');
-      infoMenu.classList.toggle('show');
-    }
-  </script>
 </body>
 </html>

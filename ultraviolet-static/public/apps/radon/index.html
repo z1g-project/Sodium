@@ -71,12 +71,18 @@ function trackTransfer(bytesTransferred) {
 }
 
 function calculateTransferRate() {
-  if (totalBytes > 0 && totalTime > 0) {
-    const transferRate = (totalBytes / totalTime) * 8 / 1000; // Kilobits per second
-    const transferRateFormatted = transferRate.toFixed(2);
-    return `${transferRateFormatted} kbps`;
-  }
-  return 'N/A';
+  setInterval(() => {
+    if (totalBytes > 0 && totalTime > 0) {
+      const transferRate = (totalBytes / totalTime) * 8 / 1000; // Kilobits per second
+      const transferRateFormatted = transferRate.toFixed(2);
+      const transferRateDisplay = `${transferRateFormatted} kbps`;
+      updateInfoMenuItem('transferRate', `Transfer Rate: ${transferRateDisplay}`);
+    } else {
+      updateInfoMenuItem('transferRate', `Transfer Rate: N/A`);
+    }
+    totalBytes = 0;
+    totalTime = 0;
+  }, 1000); // Update every second
 }
 
 function simulateTransfer() {
@@ -117,6 +123,39 @@ function calculateFPS() {
   // Since this is an apps page, we can't measure FPS accurately
   return 'N/A';
 }
+
+function updateInfoMenuItem(itemId, content) {
+  const infoMenuItem = document.getElementById(itemId);
+  if (infoMenuItem) {
+    infoMenuItem.textContent = content;
+  }
+}
+
+let fps = 0;
+let frameCount = 0;
+let lastTime = performance.now();
+
+function updateFPS() {
+  const currentTime = performance.now();
+  const deltaTime = currentTime - lastTime;
+  frameCount++;
+
+  // Calculate FPS every second
+  if (deltaTime >= 1000) {
+    fps = Math.round((frameCount * 1000) / deltaTime);
+    frameCount = 0;
+    lastTime = currentTime;
+  }
+
+  // Update FPS display
+  updateInfoMenuItem('fps', `FPS: ${fps}`);
+
+  // Call the next frame
+  requestAnimationFrame(updateFPS);
+}
+
+// Start the FPS tracking
+updateFPS();
 
 function updateInfoMenuItem(itemId, content) {
   const infoMenuItem = document.getElementById(itemId);
