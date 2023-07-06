@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <base href="../../">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+  <title>Sodium</title>
+  <meta name="description" content="Sodium is a highly sophisticated proxy used for evading internet censorship or accessing websites in a controlled sandbox using the power of service workers. Unblock sites today!" />
+  <meta name="keywords" content="proxy, web proxy, ultraviolet, service workers, unblock websites, unblock chromebook, free web proxy, proxy list, proxy sites, un block chromebook, online proxy, proxy server, proxysite, proxy youtube, bypass securly, bypass iboss, bypass lightspeed filter, sodium, titanium network, unblock youtube, youtube proxy, unblocked youtube, youtube unblocked" />
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#434c5e" />
+  <meta name="googlebot" content="index, follow, snippet" />
+  <link id="favicon" rel="icon" type="image/png" href="favicon.ico">
+  <link rel="stylesheet" href="index.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="ui.css" id="custom-css"/>
+  <style id="custom-css-editor">
+    /* Add your CSS styles here */
+    /* Example: */
+    body {
+      font-family: Arial, sans-serif;
+      color: #333;
+      background-color: #f0f0f0;
+    }
+  </style>
+  <script src="uv/uv.bundle.js" defer></script>
+  <script src="uv/uv.config.js" defer></script>
+  <script src="register-sw.js" defer></script>
+  <script src="search.js" defer></script>
+  <script src="index.js" defer></script>
+  <link rel="json" href="appx.json"></link>
+  <link rel="manifest" href="manifest.webmanifest"/>
+  <script src="time.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <script src="particles.js" defer></script>
+  <script src="settings.js" defer></script>
+  <script src="fade.js" defer></script>
+</head>
+<body>
+    <div class="top-bar">
+      <div class="top-bar-left">
+        <div class="top-bar-item" id="time">Time: 12:00 PM</div>
+        <!-- <div class="top-bar-item">Notifications</div> -->
+      </div>
+      <div class="top-bar-item">
+        <div class="battery-icon-container">
+          <div id="battery" class="battery-icon"></div>
+          <div class="battery-fill"></div>
+          <p class="battery-text"></p>
+        </div>
+      </div>
+    </div>
+  
+    <div class="second-bar">
+      <a href="/">Home</a>
+      <a href="/games/">Games</a>
+      <a href="/apps/">Apps</a>
+      <a href="/settings/">Settings</a>
+    </div>
+
+    <div class="settings-container">
+      <h2>Settings</h2>
+      
+      <textarea id="css-editor" rows="15" placeholder="Enter your custom CSS"></textarea>
+      <button onclick="saveCustomCSS()">Save Settings</button>
+    </div>
+
+    <div id="particles-js"></div>
+
+    <footer>
+      <a title="The z1g Project GitHub organization" href="/github/z1g-project/">z1g Project</a>
+      <a title="The z1g Project Discord" href="/discord/">Discord</a>
+      <a title="The TompHTTP GitHub organization" href="/github/tomphttp/">TompHTTP</a>
+      <a title="The official deployment repository for Sodium" href="/github/">GitHub</a>
+      <a title="License information" href="credits.html" style="margin-left: auto">Credits</a>
+      <div class="footer-text-container">
+        <span>Sodium &copy; z1g Project 2023</span>
+      </div>
+    </footer>
+</body>
+</html>

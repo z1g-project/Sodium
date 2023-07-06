@@ -69,6 +69,8 @@
 
     <button onclick="saveWebsiteSettings()">Save Settings</button>
 
+    <button onclick="openCSSEditor()">Open CSS Editor</button>
+
     <h2>Current Settings:</h2>
     <p>Title: <span id="website-title"></span></p>
 
@@ -81,14 +83,23 @@
   </div>
 
   <footer>
-    <a title="The z1g Project GitHub organization" href="https://github.com/z1g-project">z1g Project</a>
-    <a title="The z1g Project Discord" href="https://discord.gg/unblock">Discord</a>
-    <a title="The TompHTTP GitHub organization" href="https://github.com/tomphttp">TompHTTP</a>
-    <a title="The official deployment repository for Sodium" href="https://github.com/z1g-project/Sodium">GitHub</a>
+    <a title="The z1g Project GitHub organization" href="/github/z1g-project/">z1g Project</a>
+    <a title="The z1g Project Discord" href="/discord/">Discord</a>
+    <a title="The TompHTTP GitHub organization" href="/github/tomphttp/">TompHTTP</a>
+    <a title="The official deployment repository for Sodium" href="/github/">GitHub</a>
     <a title="License information" href="credits.html" style="margin-left: auto">Credits</a>
     <div class="footer-text-container">
       <span>Sodium &copy; z1g Project 2023</span>
     </div>
   </footer>
+
+  <script>
+    function openCSSEditor() {
+    // Perform any necessary actions before loading the app
+  
+    // Redirect to the specified URL
+    window.location.href = "/settings/css-editor/";
+  }
+  </script>
 </body>
 </html>

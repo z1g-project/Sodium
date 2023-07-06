@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <base href="../../"></base>
+  <base href="../../../"></base>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
   <title>Sodium</title>
@@ -43,7 +43,7 @@
 window.addEventListener('DOMContentLoaded', () => {
   const iframe = document.getElementById('apploader');
   if (iframe) {
-    const encodedURL = Ultraviolet.codec.xor.encode('https://open.spotify.com');
+    const encodedURL = Ultraviolet.codec.xor.encode('https://github.com/tomphttp');
     iframe.src = window.location.origin + `/uv/service/${encodedURL}`;
   }
 

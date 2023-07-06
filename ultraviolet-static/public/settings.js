@@ -81,3 +81,41 @@ function loadSavedSettings() {
     loadSavedSettings();
   });
   
+function loadCSS() {
+  const cssEditor = document.getElementById('css-editor');
+  const savedCSS = localStorage.getItem('websiteCSS');
+
+  if (savedCSS) {
+    cssEditor.value = savedCSS;
+  } else {
+    fetch('ui.css')
+      .then(response => response.text())
+      .then(css => {
+        cssEditor.value = css;
+        saveCustomCSS();
+      })
+      .catch(error => {
+        console.error('Error loading CSS:', error);
+      });
+  }
+}
+
+// Function to save the custom CSS
+function saveCustomCSS() {
+  const cssEditor = document.getElementById('css-editor');
+  const customCSS = cssEditor.value;
+
+  // Save the custom CSS in localStorage
+  localStorage.setItem('websiteCSS', customCSS);
+}
+
+// Load the saved custom CSS or the default CSS when the DOM is ready
+document.addEventListener('DOMContentLoaded', function () {
+  loadCSS();
+});
+
+// Event listener for the "Save Settings" button
+const saveButton = document.getElementById('save-button');
+saveButton.addEventListener('click', function () {
+  saveCustomCSS();
+});
