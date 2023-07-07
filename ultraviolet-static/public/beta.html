@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+  <title>Sodium</title>
+  <meta name="description" content="Sodium is a highly sophisticated proxy used for evading internet censorship or accessing websites in a controlled sandbox using the power of service workers. Unblock sites today!" />
+  <meta name="keywords" content="proxy, web proxy, ultraviolet, service workers, unblock websites, unblock chromebook, free web proxy, proxy list, z1g project, proxy sites, un block chromebook, online proxy, proxy server, proxysite, proxy youtube, bypass securly, bypass iboss, bypass lightspeed filter, sodium, titanium network, unblock youtube, youtube proxy, unblocked youtube, youtube unblocked" />
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#434c5e" />
+  <meta name="googlebot" content="index, follow, snippet" />
+  <link id="favicon" rel="icon" type="image/png" href="favicon.ico">
+  <link rel="stylesheet" href="index.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="ui.css" id="custom-css"/>
+  <script src="uv/uv.bundle.js" defer></script>
+  <script src="uv/uv.config.js" defer></script>
+  <script src="register-sw.js" defer></script>
+  <script src="search.js" defer></script>
+  <script src="index.js" defer></script>
+  <link rel="manifest" href="manifest.webmanifest"/>
+  <link rel="json" href="appx.json"></link>
+  <script src="time.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <script src="particles.js" defer></script>
+  <script src="settings.js" defer></script>
+  <script src="stealth.js" defer></script>
+  <script src="fade.js" defer></script>
+  <script src="ads.js" defer></script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2910142417276964" crossorigin="anonymous"></script>
+  <style>
+    /* Rest of the existing styles */
+
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      font-family: 'Montserrat', sans-serif;
+      background-color: #000;
+      color: #fff;
+    }
+
+    .tabbed-ui {
+      display: flex;
+      align-items: center;
+      height: 40px;
+      background-color: #333;
+      padding: 0 8px;
+    }
+
+    .tabbed-ui__tab {
+      position: relative;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      padding: 0 12px;
+      margin-right: 4px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: bold;
+      color: #fff;
+    }
+
+    .tabbed-ui__tab:hover {
+      background-color: #333;
+    }
+
+    .tabbed-ui__tab-close {
+      position: absolute;
+      right: 4px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 12px;
+      height: 12px;
+      background-color: #fff;
+      display: none;
+      border-radius: 50%;
+      justify-content: center;
+      align-items: center;
+      font-size: 10px;
+      color: #000;
+      cursor: pointer;
+    }
+
+    .tabbed-ui__tab:hover .tabbed-ui__tab-close {
+      display: flex;
+    }
+
+    .tabbed-ui__tab-add {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      padding: 0 12px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: bold;
+      color: #fff;
+      background-color: transparent;
+      border: none;
+    }
+
+    .tabbed-ui__tab-add:hover {
+      background-color: #424141;
+    }
+
+    .tabbed-ui__tab-preview {
+      display: none;
+      position: absolute;
+      top: 40px;
+      left: 0;
+      width: 100%;
+      height: calc(100% - 40px);
+      background-color: #333;
+      padding: 8px;
+      overflow-y: auto;
+      z-index: 1;
+    }
+
+    .tabbed-ui__tab:hover .tabbed-ui__tab-preview {
+      display: block;
+    }
+
+    .tabbed-ui__tab-preview-item {
+      color: #fff;
+      padding: 4px 8px;
+      cursor: pointer;
+    }
+
+    .tabbed-ui__tab-preview-item:hover {
+      background-color: #333;
+    }
+
+    .tabbed-ui__tab-preview-item:not(:last-child) {
+      margin-bottom: 4px;
+    }
+
+    .iframe-container {
+      height: calc(100% - 40px);
+      width: 100%;
+    }
+
+    .iframe-container iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="tabbed-ui">
+    <div class="tabbed-ui__tab" onclick="loadTab(this, '/')">
+      Home
+      <div class="tabbed-ui__tab-close" onclick="closeTab(event)">x</div>
+      <div class="tabbed-ui__tab-preview"></div>
+    </div>
+    <button class="tabbed-ui__tab-add" onclick="addTab()">+</button>
+  </div>
+
+  <div class="iframe-container">
+    <iframe id="preview-iframe" src="/newtab.html" frameborder="0"></iframe>
+  </div>
+
+  <script>
+    const tabContainer = document.querySelector('.tabbed-ui');
+    const iframeContainer = document.querySelector('.iframe-container');
+    const previewIframe = document.getElementById('preview-iframe');
+    let tabs = document.querySelectorAll('.tabbed-ui__tab');
+    let activeTab = null;
+    let tabStates = {}; // Stores the loaded URLs of each tab
+
+    function loadTab(tab, url) {
+  if (activeTab) {
+    activeTab.classList.remove('active');
+    activeTab.querySelector('.tabbed-ui__tab-preview').innerHTML = '';
+  }
+
+  url = '/newtab.html'; // Set the URL to the desired page
+
+  tab.classList.add('active');
+  previewIframe.src = url;
+  activeTab = tab;
+
+  // Save the loaded URL of the tab
+  const tabId = tab.getAttribute('id');
+  tabStates[tabId] = url;
+}
+
+
+    function addTab() {
+      const tabId = `tab-${tabs.length + 1}`;
+      const tabTitle = `Tab ${tabs.length + 1}`;
+
+      const tab = document.createElement('div');
+      tab.classList.add('tabbed-ui__tab');
+      tab.setAttribute('id', tabId);
+      tab.innerHTML = `
+        ${tabTitle}
+        <div class="tabbed-ui__tab-close" onclick="closeTab(event)">x</div>
+        <div class="tabbed-ui__tab-preview"></div>
+      `;
+      tabContainer.insertBefore(tab, tabContainer.lastElementChild);
+      tabs = document.querySelectorAll('.tabbed-ui__tab'); // Update the tabs collection
+      tab.addEventListener('click', () => loadTab(tab, tabStates[tabId] || '/newtab.html'));
+      loadTab(tab, tabStates[tabId] || '/newtab.html');
+    }
+
+    function closeTab(event) {
+      const tab = event.target.parentElement;
+      const tabId = tab.getAttribute('id');
+      tab.parentNode.removeChild(tab);
+      tabs = document.querySelectorAll('.tabbed-ui__tab'); // Update the tabs collection
+
+      if (tab.classList.contains('active')) {
+        const nextTab = tabs[tabs.length - 1];
+        if (nextTab) {
+          loadTab(nextTab, tabStates[nextTab.getAttribute('id')] || '/newtab.html');
+        }
+      }
+
+      delete tabStates[tabId]; // Remove the tab state from the object
+      event.stopPropagation();
+    }
+
+    window.addEventListener('resize', () => {
+      const iframeHeight = `${iframeContainer.clientHeight}px`;
+      iframeContainer.style.height = iframeHeight;
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+      tabs.forEach((tab) => {
+        tab.addEventListener('mouseenter', () => {
+          tab.querySelector('.tabbed-ui__tab-preview').classList.add('active');
+        });
+        tab.addEventListener('mouseleave', () => {
+          tab.querySelector('.tabbed-ui__tab-preview').classList.remove('active');
+        });
+      });
+    });
+  </script>
+</body>
+</html>

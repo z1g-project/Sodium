@@ -27,6 +27,16 @@ function loadSavedSettings() {
       cssSelect.value = css;
       applyCSS();
     }
+
+    const betaMode = localStorage.getItem('betaMode');
+  const currentURL = window.location.pathname;
+
+  // Check if the beta mode is enabled and the page URL is "/"
+  if (betaMode === 'true' && currentURL === '/') {
+    // Load the "/beta.html" page instead
+    window.location.href = '/beta.html';
+    return;
+  }
   }
   
   // Function to apply the selected CSS
@@ -58,6 +68,16 @@ function loadSavedSettings() {
   
     const title = titleInput.value;
     const icon = iconInput.value;
+
+    const toggleBeta = document.getElementById('toggle-beta');
+  const betaMode = toggleBeta.checked;
+
+  // Save the beta mode in localStorage only if it is checked
+  if (betaMode) {
+    localStorage.setItem('betaMode', 'true');
+  } else {
+    localStorage.removeItem('betaMode');
+  }
   
     // Set the title and icon in localStorage
     localStorage.setItem('websiteTitle', title);
@@ -118,4 +138,8 @@ document.addEventListener('DOMContentLoaded', function () {
 const saveButton = document.getElementById('save-button');
 saveButton.addEventListener('click', function () {
   saveCustomCSS();
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+  loadWebsiteSettings();
 });
