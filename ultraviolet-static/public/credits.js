@@ -1,8 +1,8 @@
 function toggleLicense(license) {
-    var licenseContent = document.getElementById(license + '-license');
-    licenseContent.style.display = licenseContent.style.display === 'none' ? 'block' : 'none';
-  }
-  
+  var licenseContent = document.getElementById(license + '-license');
+  licenseContent.style.display = licenseContent.style.display === '' ? 'block' : '';
+}
+
   window.addEventListener('DOMContentLoaded', function() {
     fetch('MIT.txt')
       .then(response => response.text())
@@ -22,6 +22,6 @@ function toggleLicense(license) {
       .then(text => {
         var creditsLicense = document.getElementById('credits-license');
         creditsLicense.textContent = text;
-      });
+    });
   });
   

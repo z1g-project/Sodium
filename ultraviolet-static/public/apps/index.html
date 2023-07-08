@@ -12,7 +12,6 @@
     <link id="favicon" rel="icon" type="image/png" href="favicon.ico">
     <link rel="stylesheet" href="index.css" />
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet"/>
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <link rel="stylesheet" href="ui.css" id="custom-css"/>
     <script src="uv/uv.bundle.js" defer></script>
     <script src="uv/uv.config.js" defer></script>
@@ -24,33 +23,39 @@
     <script src="apps.js" defer></script>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2910142417276964"
      crossorigin="anonymous"></script>
-    <script src="particles.js" defer></script>
     <script src="ads.js" defer></script>
     <script src="settings.js" defer></script>
     <script src="fade.js" defer></script>
   </head>
 
   <body>
-    <div class="top-bar">
-    <div class="top-bar-left">
-      <div class="top-bar-item" id="time">Time: 12:00 PM</div>
-      <!-- <div class="top-bar-item">Notifications</div> -->
-    </div>
-    <div class="top-bar-item">
-      <div class="battery-icon-container">
-        <div id="battery" class="battery-icon"></div>
-        <div class="battery-fill"></div>
-        <p class="battery-text"></p>
-      </div>
-    </div>
-  </div>
-
     <div class="second-bar">
-      <a href="/">Home</a>
-      <a href="/games/">Games</a>
-      <a href="/apps/">Apps</a>
-      <a href="/settings/">Settings</a>
-    </div>
+      <a href="/" class="second-bar-link">
+        <img src="assets/img/house.jpg" alt="Home" height="30" width="30">
+      </a>
+      <a href="/games/" class="second-bar-link">
+        <img src="assets/img/games.jpg" alt="Games" height="30" width="30">
+      </a>
+      <a href="/apps/" class="second-bar-link">
+        <img src="assets/img/apps.jpg" alt="Apps" height="30" width="30">
+      </a>
+      <a href="/settings/" class="second-bar-link">
+        <img src="assets/img/settings.jpg" alt="Settings" height="30" width="30">
+      </a>
+      <div class="info-menu" id="info-menu" style="margin-left: auto">
+        <div class="info-menu-item" id="transferRate"></div>
+        <div class="info-menu-item" id="latency"></div>
+        <div class="info-menu-item" id="fps"></div>
+      </div>
+      <div class="top-bar-item" id="time"></div>
+      <div class="top-bar-item">
+        <div class="battery-icon-container">
+          <div id="battery" class="battery-icon"></div>
+          <div class="battery-fill"></div>
+          <p class="battery-text"></p>
+        </div>
+      </div>
+    </div>  
     
     <h1 style="text-align: center;">Apps</h1>
     <h3 style="text-align: center;">Official Sites that are working and ready for use!</h3>
@@ -137,8 +142,6 @@
       </div>
     </div>
 
-    <div id="particles-js"></div>
-
     <div id="side-rail-ad-container">
       <script>
         googletag.cmd.push(function() { googletag.display('side-rail-ad-container'); });
@@ -146,14 +149,13 @@
     </div>
 
     <footer>
-      <a title="The z1g Project GitHub organization" href="/github/z1g-project/">z1g Project</a>
-      <a title="The z1g Project Discord" href="/discord/">Discord</a>
-      <a title="The TompHTTP GitHub organization" href="/github/tomphttp/">TompHTTP</a>
-      <a title="The official deployment repository for Sodium" href="/github/">GitHub</a>
-      <a title="License information" href="credits.html" style="margin-left: auto">Credits</a>
-      <div class="footer-text-container">
+      <img src="assets/img/z1g.png" alt="z1g Project" title="The z1g Project GitHub organization" height="30" width="30" onclick="location.href='/github/z1g-project/'" />
+      <img src="assets/img/discord.jpg" alt="Discord" title="The z1g Project Discord" height="30" width="30" onclick="location.href='/discord/'" />
+      <img src="assets/img/github.png" alt="GitHub" title="The official deployment repository for Sodium" height="30" width="30" onclick="location.href='/github/'" />
+      <img src="assets/img/credits.png" alt="Credits" title="License information" height="30" width="30" onclick="location.href='credits.html'" />   
+      <div class="footer-text-container" style="margin-left: auto">
         <span>Sodium &copy; z1g Project 2023</span>
-      </div>
-    </footer>
+      </div> 
+  </footer>
   </body>
 </html>

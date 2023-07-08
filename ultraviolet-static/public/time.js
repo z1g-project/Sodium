@@ -58,7 +58,7 @@ function updateTime() {
     timeString = hours + ':' + minutes + ' AM';
   }
 
-  timeElement.textContent = 'Time: ' + timeString;
+  timeElement.textContent = timeString;
 }
 
 // Get battery percentage and charging status

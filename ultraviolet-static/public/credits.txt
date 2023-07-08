@@ -1,18 +1,27 @@
+Sodium Credits
+
 Thank you for supporting the z1g Project!
 
 Here at the z1g Project we like focusing on helping the community bypass their schools restrictions and have freedom on their end!
 
 Thank you for supporting us since 2021!
 
-Sodium Credits
+Sodium Visual Credits
+
 - UI & Visials: XSTARS
 - Logos and General Design: XSTARS
 
 Ultraviolet Credits
+
 - Created by Titanium network
 
-Other Licenses
-- Particles.js by Vincent Garreau
+Honorable Mentions
 
-Last Updated: 7/3/2023
+- Icccy: Helping me with Logo & Some CSS Stuff
+- carter: Helping me setup UV on a static sites
+- Bluu: Motivation
+
+Wishing the best of luck for you guys!
+
+Last Updated: 7/8/2023
 Made with ❤️ by XSTARS
