@@ -1,27 +1,3 @@
-// Function to set a cookie
-function setCookie(name, value, days) {
-  const date = new Date();
-  date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-  const expires = "expires=" + date.toUTCString();
-  document.cookie = name + "=" + value + ";" + expires + ";path=/";
-}
-
-// Function to get a cookie by name
-function getCookie(name) {
-  const cookieName = name + "=";
-  const cookieArray = document.cookie.split(';');
-  for (let i = 0; i < cookieArray.length; i++) {
-    let cookie = cookieArray[i];
-    while (cookie.charAt(0) === ' ') {
-      cookie = cookie.substring(1);
-    }
-    if (cookie.indexOf(cookieName) === 0) {
-      return cookie.substring(cookieName.length, cookie.length);
-    }
-  }
-  return "";
-}
-
 // Function to load and apply the saved settings
 function loadSavedSettings() {
   // Load and set the title
@@ -62,11 +38,11 @@ function loadSavedSettings() {
     return;
   }
 
-  // Check if the "Open in New Window" setting is enabled
-  const openNewWindow = getCookie('openNewWindow');
-  if (openNewWindow && openNewWindow === 'true') {
-    // Open the page in a new about:blank window
-    window.open('/', '_blank');
+  const openNewWindow = localStorage.getItem('openNewWindow');
+  if (openNewWindow === 'true' && currentURL === '/') {
+    // Open the about:blank page in a new window
+    window.open('about:blank', '_blank');
+    return;
   }
 }
 
@@ -110,6 +86,16 @@ function saveWebsiteSettings() {
     localStorage.removeItem('betaMode');
   }
 
+  const toggleAboutBlank = document.getElementById('toggle-about-blank');
+  const aboutBlankMode = toggleAboutBlank.checked;
+
+  // Save the about:blank mode in localStorage only if it is checked
+  if (aboutBlankMode) {
+    localStorage.setItem('openNewWindow', 'true');
+  } else {
+    localStorage.removeItem('openNewWindow');
+  }
+
   // Set the title and icon in localStorage
   localStorage.setItem('websiteTitle', title);
   localStorage.setItem('websiteIcon', icon);
@@ -130,7 +116,22 @@ function saveWebsiteSettings() {
 // Load the saved settings when the DOM is ready
 document.addEventListener('DOMContentLoaded', function () {
   loadSavedSettings();
+  checkOpenNewWindow();
 });
+
+function checkOpenNewWindow() {
+  const openNewWindow = localStorage.getItem('openNewWindow');
+
+  if (openNewWindow === 'true' && window.location.pathname === '/') {
+    const newWindow = window.open('about:blank', '_blank');
+    const iframe = document.createElement('iframe');
+    iframe.src = '/';
+    iframe.style.width = '100%';
+    iframe.style.height = '100%';
+    newWindow.document.body.appendChild(iframe);
+    window.location.href = 'https://www.google.com';
+  }
+}
 
 function loadCSS() {
   const cssEditor = document.getElementById('css-editor');
@@ -151,55 +152,35 @@ function loadCSS() {
   }
 }
 
-function handleOpenNewWindow() {
-  const openNewWindowCheckbox = document.getElementById('open-new-window');
+// Function to handle the toggle about:blank checkbox
+function handleToggleAboutBlank() {
+  const toggleAboutBlank = document.getElementById('toggle-about-blank');
 
-  if (openNewWindowCheckbox.checked) {
-    // Set the cookie to indicate that the page should be opened in a new window
-    setCookie('openNewWindow', 'true', 365);
+  if (toggleAboutBlank.checked) {
+    // Set the state in localStorage to indicate about:blank mode
+    localStorage.setItem('openNewWindow', 'true');
   } else {
-    // Remove the cookie
-    setCookie('openNewWindow', '', -1);
+    // Remove the state from localStorage
+    localStorage.removeItem('openNewWindow');
   }
 }
 
-// Function to check if the page should be opened in a new window based on the cookie
-function checkOpenNewWindow() {
-  const openNewWindow = getCookie('openNewWindow');
-
-  if (openNewWindow && openNewWindow === 'true') {
-    // Open the page in a new about:blank window
-    window.open('/', '_blank');
-  }
-}
-
-// Function to save the custom CSS
-function saveCustomCSS() {
-  const cssEditor = document.getElementById('css-editor');
-  const customCSS = cssEditor.value;
-
-  // Save the custom CSS in localStorage
-  localStorage.setItem('websiteCSS', customCSS);
-}
-
-// Load the saved custom CSS or the default CSS when the DOM is ready
-document.addEventListener('DOMContentLoaded', function () {
-  loadCSS();
+// Event listener for the "Toggle about:blank" checkbox
+const toggleAboutBlank = document.getElementById('toggle-about-blank');
+toggleAboutBlank.addEventListener('change', function () {
+  handleToggleAboutBlank();
 });
 
 // Event listener for the "Save Settings" button
 const saveButton = document.getElementById('save-button');
 saveButton.addEventListener('click', function () {
-  saveCustomCSS();
-  handleOpenNewWindow();
+  saveWebsiteSettings();
+  handleToggleAboutBlank();
 
-  checkOpenNewWindow();
+  // Reload the page to apply the settings
+  window.location.reload();
 });
 
 document.addEventListener('DOMContentLoaded', function () {
-  loadWebsiteSettings();
-});
-
-document.addEventListener('DOMContentLoaded', function () {
-  checkOpenNewWindow();
+  loadCSS();
 });
