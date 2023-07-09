@@ -64,7 +64,7 @@
   window.addEventListener("load", (event) => {
     const ruffle = window.RufflePlayer.newest();
     const player = ruffle.createPlayer();
-    player.style.width = "100%"; player.style.height = "800px";
+    player.style.width = "100%"; player.style.height = "100%";
     const container = document.getElementById("container");
     container.appendChild(player);
     player.load({
