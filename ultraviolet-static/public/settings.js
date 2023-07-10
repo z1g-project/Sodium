@@ -25,23 +25,6 @@ function loadSavedSettings() {
   if (css) {
     applyCSS(css);
   }
-
-  const betaMode = localStorage.getItem('betaMode');
-  const currentURL = window.location.pathname;
-
-  // Check if the beta mode is enabled and the page URL is "/"
-  if (betaMode === 'true' && currentURL === '/') {
-    // Load the "/beta.html" page instead
-    window.location.href = '/beta.html';
-    return;
-  }
-
-  const openNewWindow = localStorage.getItem('openNewWindow');
-  if (openNewWindow === 'true' && currentURL === '/') {
-    // Open the about:blank page in a new window
-    window.open('about:blank', '_blank');
-    return;
-  }
 }
 
 function applyCSS(selectedCSS) {
@@ -55,19 +38,6 @@ function applyCSS(selectedCSS) {
   }
 }
 
-const applyCSSButton = document.getElementById('apply-css-button');
-if (applyCSSButton) {
-  applyCSSButton.addEventListener('click', function () {
-    const cssSelect = document.getElementById('css-select');
-    const selectedCSS = cssSelect.value;
-    applyCSS(selectedCSS);
-
-    // Save the selected CSS in localStorage
-    localStorage.setItem('websiteCSS', selectedCSS);
-  });
-}
-
-// Function to save the website settings
 function saveWebsiteSettings() {
   const titleInput = document.getElementById('title-input');
   const iconInput = document.getElementById('icon-input');
@@ -78,26 +48,10 @@ function saveWebsiteSettings() {
   const toggleBeta = document.getElementById('toggle-beta');
   const betaMode = toggleBeta.checked;
 
-  // Save the beta mode in localStorage only if it is checked
-  if (betaMode) {
-    localStorage.setItem('betaMode', 'true');
-  } else {
-    localStorage.removeItem('betaMode');
-  }
-
-  const toggleAboutBlank = document.getElementById('toggle-about-blank');
-  const aboutBlankMode = toggleAboutBlank.checked;
-
-  // Save the about:blank mode in localStorage only if it is checked
-  if (aboutBlankMode) {
-    localStorage.setItem('openNewWindow', 'true');
-  } else {
-    localStorage.removeItem('openNewWindow');
-  }
-
-  // Set the title and icon in localStorage
+  // Save the settings in localStorage
   localStorage.setItem('websiteTitle', title);
   localStorage.setItem('websiteIcon', icon);
+  localStorage.setItem('betaMode', betaMode ? 'true' : 'false');
 
   // Apply the saved settings
   document.title = title;
@@ -110,50 +64,39 @@ function saveWebsiteSettings() {
     favicon.href = icon;
     favicon.setAttribute('type', 'image/png');
   }
+
+  console.log('Settings saved:');
+  console.log('Title:', title);
+  console.log('Icon:', icon);
+  console.log('Beta Mode:', betaMode);
 }
 
 // Load the saved settings when the DOM is ready
 document.addEventListener('DOMContentLoaded', function () {
   loadSavedSettings();
-  checkOpenNewWindow();
 });
 
-function checkOpenNewWindow() {
-  const openNewWindow = localStorage.getItem('openNewWindow');
+const applyCSSButton = document.getElementById('apply-css-button');
+if (applyCSSButton) {
+  applyCSSButton.addEventListener('click', function () {
+    const cssSelect = document.getElementById('css-select');
+    const selectedCSS = cssSelect.value;
+    applyCSS(selectedCSS);
 
-  if (openNewWindow === 'true' && window.location.pathname === '/') {
-    const newWindow = window.open('about:blank', '_blank');
-    const iframe = document.createElement('iframe');
-    iframe.src = '/';
-    iframe.style.width = '100%';
-    iframe.style.height = '100%';
-    newWindow.document.body.appendChild(iframe);
-    window.location.href = 'https://www.google.com';
-  }
+    // Save the selected CSS in localStorage
+    localStorage.setItem('websiteCSS', selectedCSS);
+  });
 }
 
-function loadCSS() {
-  const cssEditor = document.getElementById('css-editor');
-  const savedCSS = localStorage.getItem('websiteCSS');
-
-  if (savedCSS) {
-    cssEditor.value = savedCSS;
-  } else {
-    fetch('ui.css')
-      .then(response => response.text())
-      .then(css => {
-        cssEditor.value = css;
-        saveCustomCSS();
-      })
-      .catch(error => {
-        console.error('Error loading CSS:', error);
-      });
-  }
+const saveButton = document.getElementById('save-button');
+if (saveButton) {
+  saveButton.addEventListener('click', function () {
+    saveWebsiteSettings();
+  });
 }
 
-// Function to handle the toggle about:blank checkbox
 function handleToggleAboutBlank() {
-  const toggleAboutBlank = document.getElementById('toggle-about-blank');
+  const toggleAboutBlank = document.getElementById('open-new-window');
 
   if (toggleAboutBlank.checked) {
     // Set the state in localStorage to indicate about:blank mode
@@ -165,21 +108,9 @@ function handleToggleAboutBlank() {
 }
 
 // Event listener for the "Toggle about:blank" checkbox
-const toggleAboutBlank = document.getElementById('toggle-about-blank');
-toggleAboutBlank.addEventListener('change', function () {
-  handleToggleAboutBlank();
-});
-
-// Event listener for the "Save Settings" button
-const saveButton = document.getElementById('save-button');
-saveButton.addEventListener('click', function () {
-  saveWebsiteSettings();
-  handleToggleAboutBlank();
-
-  // Reload the page to apply the settings
-  window.location.reload();
-});
-
-document.addEventListener('DOMContentLoaded', function () {
-  loadCSS();
-});
+const toggleAboutBlank = document.getElementById('open-new-window');
+if (toggleAboutBlank) {
+  toggleAboutBlank.addEventListener('change', function () {
+    handleToggleAboutBlank();
+  });
+}
