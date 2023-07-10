@@ -49,10 +49,6 @@
   }
 }
 
-.second-bar img {
-  margin-right: 10px;
-}
-
 footer img {
   margin-right: 10px;
 }
@@ -136,6 +132,7 @@ body {
 .second-bar img {
   display: block;
   max-width: 100%;
+  margin-right: 10px;
   height: auto;
 }
 
@@ -231,10 +228,10 @@ iframe#apploader {
   /* Existing styles */
   /* Add the following styles */
   position: absolute;
-  top: 64px;
+  top: 40px;
   left: 0;
   width: 100%;
-  bottom: 40px; /* Adjust the bottom position based on the footer height */
+  height: calc(100% - 85px); /* Adjusted height to accommodate the top bar and footer */
   border: none;
   opacity: 0;
   animation: fade-in 0.5s ease-in-out forwards;
@@ -289,13 +286,12 @@ footer span {
   z-index: -1;
 }
 
-/* Custom styles for the iframe */
 iframe {
   position: absolute;
-  top: 64px;
+  top: 40px;
   left: 0;
   width: 100%;
-  height: calc(100% - 64px);
+  height: calc(100% - 85px); /* Adjusted height to accommodate the top bar and footer */
   border: none;
   opacity: 0;
   animation: fade-in 0.5s ease-in-out forwards;
@@ -477,4 +473,40 @@ textarea {
 
 .battery-icon.charging.high {
   background-image: url('assets/img/bat-charging-high.png');
+}
+
+.second-bar-link {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+  background-color: transparent;
+}
+
+.second-bar-link.home-link {
+  background-image: url("assets/img/house.jpg");
+  background-size: 67%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.second-bar-link.games-link {
+  background-image: url("assets/img/games.jpg");
+  background-size: 67%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.second-bar-link.apps-link {
+  background-image: url("assets/img/apps.jpg");
+  background-size: 67%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.second-bar-link.settings-link {
+  background-image: url("assets/img/settings.jpg");
+  background-size: 67%;
+  background-repeat: no-repeat;
+  background-position: center;
 }

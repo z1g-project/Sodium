@@ -22,10 +22,8 @@ function loadSavedSettings() {
 
   // Load and apply the CSS
   const css = localStorage.getItem('websiteCSS');
-  const cssSelect = document.getElementById('css-select');
-  if (css && cssSelect) {
-    cssSelect.value = css;
-    applyCSS();
+  if (css) {
+    applyCSS(css);
   }
 
   const betaMode = localStorage.getItem('betaMode');
@@ -46,10 +44,7 @@ function loadSavedSettings() {
   }
 }
 
-// Function to apply the selected CSS
-function applyCSS() {
-  const cssSelect = document.getElementById('css-select');
-  const selectedCSS = cssSelect.value;
+function applyCSS(selectedCSS) {
   const styleSheets = document.getElementsByTagName('link');
 
   for (let i = 0; i < styleSheets.length; i++) {
@@ -58,14 +53,18 @@ function applyCSS() {
       styleSheet.href = selectedCSS;
     }
   }
+}
 
-  const selectedCSSElem = document.getElementById('selected-css');
-  if (selectedCSSElem) {
-    selectedCSSElem.textContent = selectedCSS;
-  }
+const applyCSSButton = document.getElementById('apply-css-button');
+if (applyCSSButton) {
+  applyCSSButton.addEventListener('click', function () {
+    const cssSelect = document.getElementById('css-select');
+    const selectedCSS = cssSelect.value;
+    applyCSS(selectedCSS);
 
-  // Save the selected CSS in localStorage
-  localStorage.setItem('websiteCSS', selectedCSS);
+    // Save the selected CSS in localStorage
+    localStorage.setItem('websiteCSS', selectedCSS);
+  });
 }
 
 // Function to save the website settings

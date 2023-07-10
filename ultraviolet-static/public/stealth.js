@@ -3,6 +3,20 @@ window.addEventListener('DOMContentLoaded', () => {
   const infoMenu = document.getElementById('info-menu');
   const transferRateItem = document.getElementById('transferRate');
   const latencyItem = document.getElementById('latency');
+  const fpsItem = document.getElementById('fps');
+
+  function calculateTransferRate(url, callback) {
+    if (totalBytes > 0 && totalTime > 0) {
+      const transferRate = (totalBytes / totalTime) * 8 / 1000; // Kilobits per second
+      const transferRateFormatted = transferRate.toFixed(2);
+      callback(`${transferRateFormatted} kbps`);
+    } else {
+      callback('N/A');
+    }
+  }
+
+  // Hide the FPS counter initially
+  fpsItem.style.display = 'none';
 
   iframe.addEventListener('load', () => {
     infoMenu.style.display = 'block';
@@ -12,8 +26,43 @@ window.addEventListener('DOMContentLoaded', () => {
     calculateLatency(iframe.src, latency => {
       latencyItem.textContent = `Latency: ${latency}`;
     });
+
+    const fps = calculateFPS();
+    fpsItem.textContent = `FPS: ${fps}`;
+    fpsItem.style.display = 'block'; // Show the FPS counter after the iframe has loaded
   });
 
+  function calculateLatency(callback) {
+    const timing = performance.timing;
+    const latency = timing.responseStart - timing.requestStart;
+    callback(`${latency} ms`);
+  }
+
+  function calculateFPS() {
+    let fps = 0;
+    let frameCount = 0;
+    let lastTime = performance.now();
+  
+    function updateFPS() {
+      const currentTime = performance.now();
+      const deltaTime = currentTime - lastTime;
+      frameCount++;
+  
+      if (deltaTime >= 1000) {
+        fps = Math.round((frameCount * 1000) / deltaTime);
+        frameCount = 0;
+        lastTime = currentTime;
+      }
+  
+      fpsItem.textContent = `FPS: ${fps}`;
+      requestAnimationFrame(updateFPS);
+    }
+  
+    updateFPS();
+  }
+  
+  calculateFPS();  
+  
   let totalBytes = 0;
   let totalTime = 0;
 
@@ -56,44 +105,16 @@ window.addEventListener('DOMContentLoaded', () => {
 
   simulateTransfer();
 
-  function calculateTransferRate(url, callback) {
-    if (totalBytes > 0 && totalTime > 0) {
-      const transferRate = (totalBytes / totalTime) * 8 / 1000; // Kilobits per second
-      const transferRateFormatted = transferRate.toFixed(2);
-      callback(`${transferRateFormatted} kbps`);
-    } else {
-      callback('N/A');
-    }
-  }
-
-  function calculateLatency(url, callback) {
-    const xhr = new XMLHttpRequest();
-    xhr.open('HEAD', url, true);
-
-    xhr.onload = () => {
-      const latency = xhr.getResponseHeader('x-request-start');
-      callback(`${latency} ms`);
-    };
-
-    xhr.send();
-  }
-
-  function calculateFPS() {
-    return 'N/A';
-  }
-
-  function updateInfoMenuItem(itemId, content) {
-    const infoMenuItem = document.getElementById(itemId);
-    if (infoMenuItem) {
-      infoMenuItem.textContent = content;
-    }
-  }
-
-  const transferRate = calculateTransferRate(iframe.src);
-  const latency = calculateLatency(iframe.src);
-  const fps = calculateFPS();
-
-  updateInfoMenuItem('transferRate', `Transfer Rate: ${transferRate}`);
-  updateInfoMenuItem('latency', `Latency: ${latency}`);
-  updateInfoMenuItem('fps', `FPS: ${fps}`);
+  iframe.addEventListener('load', () => {
+    infoMenu.style.display = 'block';
+    calculateTransferRate(iframe.src, transferRate => {
+      transferRateItem.textContent = `Transfer Rate: ${transferRate}`;
+    });
+    calculateLatency(latency => {
+      latencyItem.textContent = `Latency: ${latency}`;
+    });
+    const fps = calculateFPS();
+    fpsItem.textContent = `FPS: ${fps}`;
+    fpsItem.style.display = 'block';
+  });
 });
