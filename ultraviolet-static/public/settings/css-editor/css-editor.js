@@ -19,7 +19,6 @@ function loadSelectedCSS() {
     });
 }
 
-// Function to apply the custom CSS to the website
 function applyCustomCSS() {
   const cssEditor = document.getElementById('css-editor');
   const customCSS = cssEditor.value;
@@ -35,6 +34,9 @@ function applyCustomCSS() {
 
   // Update the CSS Editor with escaped HTML entities
   cssEditor.value = escapeHTML(customCSS);
+
+  // Save the custom CSS in localStorage
+  localStorage.setItem('websiteCSS', customCSS);
 }
 
 // Event listener for the "Apply" button
@@ -42,6 +44,27 @@ const applyButton = document.getElementById('apply-button');
 applyButton.addEventListener('click', function () {
   applyCustomCSS();
 });
+
+// Call the applyCustomCSS function when the page loads
+document.addEventListener('DOMContentLoaded', function () {
+  //applyCustomCSS();
+});
+
+// Function to load the default CSS content into the CSS Editor
+function loadDefaultCSS() {
+  fetch('ui.css')
+    .then(response => response.text())
+    .then(css => {
+      const cssEditor = document.getElementById('css-editor');
+      cssEditor.value = css;
+    })
+    .catch(error => {
+      console.error('Error loading default CSS:', error);
+    });
+}
+
+// Load the default CSS content into the CSS Editor
+loadDefaultCSS();
 
 // Load the selected CSS into the CSS Editor by default
 loadSelectedCSS();
