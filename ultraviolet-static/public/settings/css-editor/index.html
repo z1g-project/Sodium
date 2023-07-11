@@ -53,7 +53,7 @@
         <button id="export-button">Export</button>
         <button id="apply-button">Apply</button>
       </div>
-      <textarea id="css-editor" rows="15"></textarea>
+      <div id="css-editor"></div>
     </div>
     <!--button id="save-button">Save CSS</button-->
   </div>
@@ -67,6 +67,90 @@
       <span>Sodium &copy; z1g Project 2023</span>
     </div> 
   </footer>
-  <script src="/settings/css-editor/css-editor.js" defer></script>
+  <script src="/settings/css-editor/monaco/loader.js"></script>
+<script>
+ // Function to escape HTML entities in the CSS code
+function escapeHTML(css) {
+  return css.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
+function applyCustomCSS() {
+  const cssEditor = document.getElementById('css-editor');
+  const customCSS = cssEditor.value;
+
+  const styleSheets = document.getElementsByTagName('link');
+
+  for (let i = 0; i < styleSheets.length; i++) {
+    const styleSheet = styleSheets[i];
+    if (styleSheet.getAttribute('id') === 'custom-css') {
+      styleSheet.href = 'data:text/css;charset=utf-8,' + encodeURIComponent(customCSS);
+    }
+  }
+
+  // Update the CSS Editor with escaped HTML entities
+  cssEditor.value = escapeHTML(customCSS);
+
+  // Save the custom CSS in localStorage
+  localStorage.setItem('websiteCSS', customCSS);
+}
+
+// Event listener for the "Apply" button
+const applyButton = document.getElementById('apply-button');
+applyButton.addEventListener('click', function () {
+  applyCustomCSS();
+});
+
+// Initialize the Monaco Editor
+require.config({ paths: { 'vs': '/settings/css-editor/monaco' } });
+require(['vs/editor/editor.main'], function () {
+  monaco.editor.create(document.getElementById('css-editor'), {
+    value: '', // Initial value of the editor
+    language: 'css', // Specify the language mode
+    theme: 'vs-dark' // Specify the theme (change it as per your preference)
+  });
+
+  // Load the default CSS content into the CSS Editor
+  loadDefaultCSS();
+
+  // Load the selected CSS into the CSS Editor by default
+  loadSelectedCSS();
+});
+
+// Function to load the default CSS content into the CSS Editor
+function loadDefaultCSS() {
+  fetch('ui.css')
+    .then(response => response.text())
+    .then(css => {
+      const editor = monaco.editor.getModels()[0];
+      editor.setValue(css);
+    })
+    .catch(error => {
+      console.error('Error loading default CSS:', error);
+    });
+}
+
+// Function to load the selected CSS into the CSS Editor by default
+function loadSelectedCSS() {
+  const cssSelect = document.getElementById('css-select');
+  const selectedCSS = cssSelect.value;
+
+  fetch(selectedCSS)
+    .then(response => response.text())
+    .then(css => {
+      const cssEditor = document.getElementById('css-editor');
+      cssEditor.value = css;
+    })
+    .catch(error => {
+      console.error('Error loading CSS:', error);
+    });
+}
+
+// Load the default CSS content into the CSS Editor
+loadDefaultCSS();
+
+// Load the selected CSS into the CSS Editor by default
+loadSelectedCSS();
+
+</script>
 </body>
 </html>
