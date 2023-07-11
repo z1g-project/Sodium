@@ -25,6 +25,23 @@ function loadSavedSettings() {
   if (css) {
     applyCSS(css);
   }
+
+  // Load and set the search engine
+  const searchEngine = localStorage.getItem('searchEngine');
+  if (searchEngine) {
+    const searchEngineSelect = document.getElementById('search-engine-select');
+    if (searchEngineSelect) {
+      searchEngineSelect.value = searchEngine;
+    }
+  }
+
+  // Load and set the website title and icon inputs
+  const titleInput = document.getElementById('title-input');
+  const iconInput = document.getElementById('icon-input');
+  if (titleInput && iconInput) {
+    titleInput.value = title || '';
+    iconInput.value = icon || '';
+  }
 }
 
 function applyCSS(selectedCSS) {

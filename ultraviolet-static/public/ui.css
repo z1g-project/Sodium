@@ -510,3 +510,24 @@ textarea {
   background-repeat: no-repeat;
   background-position: center;
 }
+
+.config-label {
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.config-input {
+  padding: 5px;
+  border: 1px solid #ccc;
+  color: #fff;
+  background-color: #333;
+  border-radius: 4px;
+}
+
+.config-select {
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  color: white;
+  background-color: #333;
+}

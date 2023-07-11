@@ -48,23 +48,33 @@
   <div class="settings-container">
     <h2>Settings</h2>
 
-    <label for="title-input">Title:</label>
-    <input type="text" id="title-input">
+    <label for="title-input" class="config-label">Title:</label>
+    <input type="text" id="title-input" class="config-input">
     <br>
     <br>
-    <label for="icon-input">Icon:</label>
-    <input type="text" id="icon-input">
+    <label for="icon-input" class="config-label">Icon:</label>
+    <input type="text" id="icon-input" class="config-input">
     <br>
     <br>
-
-    <label for="css-select">CSS:</label>
-    <select id="css-select">
+    <label for="search-engine-select" class="config-label">Search Engine:</label>
+    <select id="search-engine-select" class="config-select">
+      <option value="https://www.google.com/search?q=%s">Google</option>
+      <option value="https://www.bing.com/search?q=%s">Bing</option>
+      <option value="https://duckduckgo.com/?q=%s">DuckDuckGo</option>
+      <option value="https://search.yahoo.com/search?p=%s">Yahoo</option>
+      <option value="custom">Custom</option>
+    </select>
+    <input type="text" id="custom-search-engine-input" placeholder="Enter custom search engine URL" style="display: none;">
+    <br>
+    <br>
+    <label for="css-select" class="config-label">CSS:</label>
+    <select id="css-select" class="config-select">
       <option value="ui.css">Default (Dark)</option>
       <option value="sodium.css">Sodium</option>
       <option value="light.css">Light</option>
       <option value="amoled.css">Amoled</option>
-    </select>
-
+    </select>    
+    
     <h2>Beta Features</h2>
     <div class="beta-features">
       <label for="toggle-beta">Enable Tabs Beta:</label>

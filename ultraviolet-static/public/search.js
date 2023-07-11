@@ -1,11 +1,9 @@
 "use strict";
 
-/**
- * @param {string} input
- * @param {string} template Template for a search query.
- * @returns {string} Fully qualified URL
- */
-function search(input, template) {
+function search(input) {
+  const searchEngine = localStorage.getItem('searchEngine');
+  const template = searchEngine || 'https://www.google.com/search?q=%s';
+
   try {
     // input is a valid URL:
     // eg: https://example.com, https://example.com/test?q=param
