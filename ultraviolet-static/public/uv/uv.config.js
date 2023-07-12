@@ -1,3 +1,37 @@
+function customBareServer() {
+  const cookieName = "bareServer";
+  const localStorageKey = "bareServer";
+
+  const cookieValue = getCookie(cookieName);
+
+  if (cookieValue) {
+    console.log("Custom bare server URL found in cookies:", cookieValue);
+    return cookieValue;
+  } else {
+    const localStorageValue = localStorage.getItem(localStorageKey);
+    if (localStorageValue) {
+      console.log("Using custom bare server URL from localStorage:", localStorageValue);
+      return localStorageValue;
+    } else {
+      console.log("Custom bare server URL not found. Falling back to default.");
+      return "https://uv.studentportal.lol/";
+    }
+  }
+}
+
+function getCookie(name) {
+  const cookies = document.cookie.split(";");
+
+  for (let i = 0; i < cookies.length; i++) {
+    const cookie = cookies[i].trim();
+    if (cookie.startsWith(name + "=")) {
+      return cookie.substring(name.length + 1);
+    }
+  }
+
+  return null;
+}
+
 self.__uv$config = {
   prefix: "/uv/service/",
   bare: [
@@ -14,33 +48,3 @@ self.__uv$config = {
   config: "/uv/uv.config.js",
   sw: "/uv/uv.sw.js",
 };
-
-function customBareServer() {
-  const cookieName = "bareServer";
-  const localStorageKey = "bareServer";
-
-  // Check if the custom bare server URL exists in cookies
-  const cookieValue = getCookie(cookieName);
-
-  if (cookieValue) {
-    // Custom bare server URL found in cookies
-    return cookieValue;
-  } else {
-    // Fallback to the value in localStorage
-    const localStorageValue = localStorage.getItem(localStorageKey);
-    return localStorageValue || "https://uv.studentportal.lol/";
-  }
-}
-
-function getCookie(name) {
-  const cookies = document.cookie.split(";");
-
-  for (let i = 0; i < cookies.length; i++) {
-    const cookie = cookies[i].trim();
-    if (cookie.startsWith(name + "=")) {
-      return cookie.substring(name.length + 1);
-    }
-  }
-
-  return null;
-}

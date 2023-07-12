@@ -23,6 +23,11 @@
   <script src="time.js" defer></script>
   <script src="settings.js" defer></script>
   <script src="fade.js" defer></script>
+  <style>
+    .settings-container {
+      margin-left: 25px; /* Adjust the value as needed */
+    }
+  </style>  
 </head>
 <body>
   <div class="second-bar">
@@ -64,17 +69,11 @@
       <option value="https://search.yahoo.com/search?p=%s">Yahoo</option>
       <option value="custom">Custom</option>
     </select>
-    <input type="text" id="custom-search-engine-input" placeholder="Enter a url like so: https://example.com/search?q=%s" class="config-input" style="display: none;">
+    <input type="text" id="custom-search-engine-input" placeholder="Enter a URL like so: https://example.com/search?q=" class="config-input" style="display: none;">
     <br>
     <br>
-    <label for="bare-server-select" class="config-label">Default Bare Server:</label>
-    <select id="bare-server-select" class="config-select">
-      <option value="https://uv.studentportal.lol/">UV Student Portal</option>
-      <option value="https://uv.radon.games/">UV Radon Games</option>
-      <option value="https://uv.holyubofficial.net">UV Holyub Official</option>
-      <option value="custom">Custom</option>
-    </select>
-    <input type="text" id="custom-bare-server-input" placeholder="Enter a url like so: https://bare.example.com" class="config-input" style="display: none;">
+    <label for="fallback-url-input" class="config-label">Fallback URL:</label>
+    <input type="text" id="fallback-url-input" class="config-input">
     <br>
     <br>
     <label for="css-select" class="config-label">CSS:</label>
@@ -106,16 +105,6 @@
     <button onclick="openCSSEditor()">Open CSS Editor</button>
     <button onclick="openCompactChecker()">Open Compatibility Checker</button>
     <button onclick="window.location.href='/archives/'">Open Sodium Archives</button>
-
-    <h2>Current Settings:</h2>
-    <p>Title: <span id="website-title"></span></p>
-
-    <h2>Favicon:</h2>
-    <link rel="icon" type="image/png" width="100" height="100">
-
-    <h2>Currently Selected CSS:</h2>
-    <p><span id="selected-css">ui.css</span></p>
-
   </div>
 
   <footer>

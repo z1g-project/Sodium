@@ -25,6 +25,17 @@
     const css = localStorage.getItem('websiteCSS');
     if (css) {
       applyCSS(css);
+
+      // Set the selected option in the CSS dropdown
+      const cssSelect = document.getElementById('css-select');
+      if (cssSelect) {
+        for (let i = 0; i < cssSelect.options.length; i++) {
+          if (cssSelect.options[i].value === css) {
+            cssSelect.selectedIndex = i;
+            break;
+          }
+        }
+      }
     }
 
     const searchEngine = localStorage.getItem("searchEngine");
@@ -32,6 +43,11 @@
 
     if (searchEngine) {
       searchEngineSelect.value = searchEngine;
+      if (searchEngine === "custom") {
+        const customSearchEngineInput = document.getElementById("custom-search-engine-input");
+        customSearchEngineInput.style.display = 'block';
+        customSearchEngineInput.value = localStorage.getItem("customSearchEngineUrl") || '';
+      }
     }
 
     const bareServer = localStorage.getItem("bareServer");
@@ -39,6 +55,11 @@
 
     if (bareServer) {
       bareServerSelect.value = bareServer;
+      if (bareServer === "custom") {
+        const customBareServerInput = document.getElementById("custom-bare-server-input");
+        customBareServerInput.style.display = 'block';
+        customBareServerInput.value = localStorage.getItem("customBareServerUrl") || '';
+      }
     }
 
     // Load and set the website title and icon inputs
@@ -47,6 +68,20 @@
     if (titleInput && iconInput) {
       titleInput.value = title || '';
       iconInput.value = icon || '';
+    }
+
+    // Check if about:blank mode is enabled
+    const openNewWindow = localStorage.getItem('openNewWindow');
+    const toggleAboutBlank = document.getElementById('open-new-window');
+    if (toggleAboutBlank) {
+      toggleAboutBlank.checked = openNewWindow === 'true';
+    }
+
+    // Check if fallback URL is set
+    const fallbackUrl = localStorage.getItem('fallbackUrl');
+    if (fallbackUrl) {
+      localStorage.removeItem('fallbackUrl');
+      window.location.href = fallbackUrl;
     }
   }
 
@@ -104,6 +139,21 @@
       localStorage.setItem("bareServer", bareServer);
       console.log("Bare server saved:", bareServer);
     }
+
+    // Save the about:blank mode state
+    handleToggleAboutBlank();
+  }
+
+  function handleToggleAboutBlank() {
+    const toggleAboutBlank = document.getElementById('open-new-window');
+
+    if (toggleAboutBlank.checked) {
+      // Set the state in localStorage to indicate about:blank mode
+      localStorage.setItem('openNewWindow', 'true');
+    } else {
+      // Remove the state from localStorage
+      localStorage.removeItem('openNewWindow');
+    }
   }
 
   // Load the saved settings when the script is executed
@@ -125,26 +175,6 @@
   if (saveButton) {
     saveButton.addEventListener('click', function () {
       saveSettings();
-    });
-  }
-
-  function handleToggleAboutBlank() {
-    const toggleAboutBlank = document.getElementById('open-new-window');
-
-    if (toggleAboutBlank.checked) {
-      // Set the state in localStorage to indicate about:blank mode
-      localStorage.setItem('openNewWindow', 'true');
-    } else {
-      // Remove the state from localStorage
-      localStorage.removeItem('openNewWindow');
-    }
-  }
-
-  // Event listener for the "Toggle about:blank" checkbox
-  const toggleAboutBlank = document.getElementById('open-new-window');
-  if (toggleAboutBlank) {
-    toggleAboutBlank.addEventListener('change', function () {
-      handleToggleAboutBlank();
     });
   }
 
@@ -171,4 +201,26 @@
     }
   });
 
+  // Execute code on visiting /
+  if (window.location.pathname === '/') {
+    const openNewWindow = localStorage.getItem('openNewWindow');
+
+    if (openNewWindow === 'true') {
+      const iframe = document.createElement('iframe');
+      iframe.style.border = 'none';
+      iframe.style.width = '100%';
+      iframe.style.height = '100vh';
+      iframe.src = '/newtab.html';
+
+      document.body.innerHTML = '';
+      document.body.appendChild(iframe);
+    } else {
+      const fallbackUrl = localStorage.getItem('fallbackUrl');
+
+      if (fallbackUrl) {
+        localStorage.removeItem('fallbackUrl');
+        window.location.href = fallbackUrl;
+      }
+    }
+  }
 })();

@@ -4,9 +4,10 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
   <title>Sodium</title>
-  <meta name="description" content="Sodium is a highly sophisticated proxy used for evading internet censorship or accessing websites in a controlled sandbox using the power of service workers. Unblock sites today!" />
+  <meta name="description" content="Sodium is an Ultraviolet-based proxy site used for evading internet censorship." />
   <meta name="keywords" content="proxy, web proxy, ultraviolet, service workers, unblock websites, unblock chromebook, free web proxy, proxy list, z1g project, proxy sites, un block chromebook, online proxy, proxy server, proxysite, proxy youtube, bypass securly, bypass iboss, bypass lightspeed filter, sodium, titanium network, unblock youtube, youtube proxy, unblocked youtube, youtube unblocked" />
   <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#434c5e" />
+  <meta property="og:image" content="/sodium.png">
   <meta name="googlebot" content="index, follow, snippet" />
   <link id="favicon" rel="icon" type="image/png" href="favicon.ico">
   <link rel="stylesheet" href="index.css" />
@@ -20,8 +21,6 @@
   <link rel="manifest" href="manifest.webmanifest"/>
   <link rel="json" href="appx.json"></link>
   <script src="time.js" defer></script>
-  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-  <script src="particles.js" defer></script>
   <script src="settings.js" defer></script>
   <script src="stealth.js" defer></script>
   <script src="fade.js" defer></script>
@@ -48,11 +47,17 @@
 </head>
 
 <body>
-  <div class="top-bar">
-    <div class="top-bar-left">
-      <div class="top-bar-item" id="time">Time: 12:00 PM</div>
-      <!-- <div class="top-bar-item">Notifications</div> -->
+  <div class="second-bar">
+    <a href="/" class="second-bar-link home-link"></a>
+    <a href="/games/" class="second-bar-link games-link"></a>
+    <a href="/apps/" class="second-bar-link apps-link"></a>
+    <a href="/settings/" class="second-bar-link settings-link"></a>
+    <div class="info-menu" id="info-menu" style="margin-left: auto">
+      <div class="info-menu-item" id="transferRate"></div>
+      <div class="info-menu-item" id="latency"></div>
+      <div class="info-menu-item" id="fps"></div>
     </div>
+    <div class="top-bar-item" id="time"></div>
     <div class="top-bar-item">
       <div class="battery-icon-container">
         <div id="battery" class="battery-icon"></div>
@@ -60,26 +65,14 @@
         <p class="battery-text"></p>
       </div>
     </div>
-  </div>   
-
-  <div class="second-bar">
-    <a href="/">Home</a>
-    <a href="/games/">Games</a>
-    <a href="/apps/">Apps</a>
-    <a href="/settings/">Settings</a>
-    <div class="info-menu" id="info-menu" style="margin-left: auto">
-      <div class="info-menu-item" id="transferRate"></div>
-      <div class="info-menu-item" id="latency"></div>
-      <div class="info-menu-item" id="fps"></div>
-    </div>
-  </div>
+  </div>  
 
   <div title="Sodium Logo" class="flex-center logo-wrapper header-center">
     <img class="logo" src="sodium.png" alt="Sodium" />
     <h1>Sodium</h1>
   </div>
   <div class="flex-center desc">
-    <p>Sodium is an Ultraviolet-based proxy used for evading internet censorship.</p>
+    <p>Sodium is an Ultraviolet-based proxy site used for evading internet censorship.</p>
   </div>
   <form id="uv-form" class="flex-center">
     <input id="uv-search-engine" value="https://www.google.com/search?q=%s" type="hidden" />
@@ -92,8 +85,6 @@
     <pre id="uv-error-code"></pre>
   </div>
 
-  <div id="particles-js"></div>
-
   <iframe id="apploader"></iframe>
 
   <div id="side-rail-ad-container">
@@ -103,14 +94,13 @@
   </div>
 
   <footer>
-  <a title="The z1g Project GitHub organization" href="/github/z1g-project/">z1g Project</a>
-  <a title="The z1g Project Discord" href="/discord/">Discord</a>
-  <a title="The TompHTTP GitHub organization" href="/github/tomphttp/">TompHTTP</a>
-  <a title="The official deployment repository for Sodium" href="/github/">GitHub</a>
-  <a title="License information" href="credits.html" style="margin-left: auto">Credits</a>
-  <div class="footer-text-container">
-    <span>Sodium &copy; z1g Project 2023</span>
-  </div>
+    <img src="assets/img/z1g.png" alt="z1g Project" title="The z1g Project GitHub organization" height="30" width="30" onclick="location.href='/github/z1g-project/'" />
+    <img src="assets/img/discord.jpg" alt="Discord" title="The z1g Project Discord" height="30" width="30" onclick="location.href='/discord/'" />
+    <img src="assets/img/github.png" alt="GitHub" title="The official deployment repository for Sodium" height="30" width="30" onclick="location.href='/github/'" />
+    <img src="assets/img/credits.png" alt="Credits" title="License information" height="30" width="30" onclick="location.href='credits.html'" />   
+    <div class="footer-text-container" style="margin-left: auto">
+      <span>Sodium &copy; z1g Project 2023</span>
+    </div> 
 </footer>
 </body>
 </html>
