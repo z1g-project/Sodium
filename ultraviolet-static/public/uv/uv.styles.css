@@ -102,7 +102,7 @@
   /* Rest of the existing CSS code */
   
   body {
-    background-color: #86868680;
+    background-color: rgba(0, 0, 0, 0.5);
     /*background-image: url("assets/img/layered-waves-haikei.png");*/
     background-repeat: no-repeat;
     background-size: cover;
