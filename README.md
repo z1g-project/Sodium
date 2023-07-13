@@ -6,6 +6,22 @@
 
 This is my submittion to the Titanium Network Proxathon!
 
+## Features
+
+Sodium has various Features that work great and were tested on some enrolled chromebooks recently (Shoutout xN1ghtmare for testing)
+Some of the features sodium are:
+
+- Auto-Stealth Pages (Loads the pages within the current page your on instead of loading the page classicly with the example.com/uv/service/)
+- Tab Cloaking - Changable Title and Icon
+- Multiple Themes - Dark (defualt), Sodium, Light, and Amoled
+- Nice UV Visual Appearence - Custom CSS for UV!
+- Performance Metrics - Pretty much what qualifies this as Power Users lol but tells you the Transfer Rate, latency between you and the bare server and of course the fps!
+- Battery & Time Displays ***NOTE ONLY WORKS ON CHROMIUM BASED BROWSERS Check the compatibility checker in settings to see if its avalible in your browser***
+- Wide Variety of games! - Total of 33 Games and 15 Apps!
+- Custom CSS Editor **BETA** - Uses Monaco CSS Editor and is still in the works!
+- Tabbed UI **BETA** - A Functional Tabbed UI that hasn't been updated in a few days but should still work.
+- Customizable! - Sodium has tons of other customization options for you to play with!
+
 ## Setup & installation
 
 To Setup Sodium it is quite simple. Below are some instructions to get you started!
