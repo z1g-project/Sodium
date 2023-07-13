@@ -1,4 +1,4 @@
-(function() {
+(function () {
   // Function to load and apply the saved settings
   function loadSavedSettings() {
     // Load and set the title
@@ -38,27 +38,15 @@
       }
     }
 
-    const searchEngine = localStorage.getItem("searchEngine");
-    const searchEngineSelect = document.getElementById("search-engine-select");
+    const searchEngine = localStorage.getItem('searchEngine');
+    const searchEngineSelect = document.getElementById('search-engine-select');
 
     if (searchEngine) {
       searchEngineSelect.value = searchEngine;
-      if (searchEngine === "custom") {
-        const customSearchEngineInput = document.getElementById("custom-search-engine-input");
+      if (searchEngine === 'custom') {
+        const customSearchEngineInput = document.getElementById('custom-search-engine-input');
         customSearchEngineInput.style.display = 'block';
-        customSearchEngineInput.value = localStorage.getItem("customSearchEngineUrl") || '';
-      }
-    }
-
-    const bareServer = localStorage.getItem("bareServer");
-    const bareServerSelect = document.getElementById("bare-server-select");
-
-    if (bareServer) {
-      bareServerSelect.value = bareServer;
-      if (bareServer === "custom") {
-        const customBareServerInput = document.getElementById("custom-bare-server-input");
-        customBareServerInput.style.display = 'block';
-        customBareServerInput.value = localStorage.getItem("customBareServerUrl") || '';
+        customSearchEngineInput.value = localStorage.getItem('customSearchEngineUrl') || '';
       }
     }
 
@@ -77,9 +65,16 @@
       toggleAboutBlank.checked = openNewWindow === 'true';
     }
 
-    // Check if fallback URL is set
+    // Check the debugging checkbox
+    const debugging = localStorage.getItem('debugging');
+    const toggleDebugging = document.getElementById('toggle-debugging');
+    if (toggleDebugging) {
+      toggleDebugging.checked = debugging === 'true';
+    }
+
+    // Check if fallback URL is set and apply it
     const fallbackUrl = localStorage.getItem('fallbackUrl');
-    if (fallbackUrl) {
+    if (fallbackUrl && (window.location.pathname === '/' || window.location.pathname === '/index.html')) {
       localStorage.removeItem('fallbackUrl');
       window.location.href = fallbackUrl;
     }
@@ -99,49 +94,45 @@
   // Function to save the settings
   function saveSettings() {
     // Save the title
-    const titleInput = document.getElementById("title-input");
+    const titleInput = document.getElementById('title-input');
     const title = titleInput.value.trim();
-    localStorage.setItem("websiteTitle", title);
-    console.log("Title saved:", title);
+    localStorage.setItem('websiteTitle', title);
+    console.log('Title saved:', title);
 
     // Save the icon
-    const iconInput = document.getElementById("icon-input");
+    const iconInput = document.getElementById('icon-input');
     const icon = iconInput.value.trim();
-    localStorage.setItem("websiteIcon", icon);
-    console.log("Icon saved:", icon);
+    localStorage.setItem('websiteIcon', icon);
+    console.log('Icon saved:', icon);
 
-    const searchEngineSelect = document.getElementById("search-engine-select");
+    const searchEngineSelect = document.getElementById('search-engine-select');
     const searchEngine = searchEngineSelect.value;
 
-    if (searchEngine === "custom") {
-      const customSearchUrl = document.getElementById("custom-search-engine-input").value.trim();
+    if (searchEngine === 'custom') {
+      const customSearchUrl = document.getElementById('custom-search-engine-input').value.trim();
 
-      if (customSearchUrl !== "") {
-        localStorage.setItem("searchEngine", customSearchUrl);
-        console.log("Search engine saved:", customSearchUrl);
+      if (customSearchUrl !== '') {
+        localStorage.setItem('searchEngine', customSearchUrl);
+        console.log('Search engine saved:', customSearchUrl);
       }
     } else {
-      localStorage.setItem("searchEngine", searchEngine);
-      console.log("Search engine saved:", searchEngine);
-    }
-
-    const bareServerSelect = document.getElementById("bare-server-select");
-    const bareServer = bareServerSelect.value;
-
-    if (bareServer === "custom") {
-      const customBareServerUrl = document.getElementById("custom-bare-server-input").value.trim();
-
-      if (customBareServerUrl !== "") {
-        localStorage.setItem("bareServer", customBareServerUrl);
-        console.log("Bare server saved:", customBareServerUrl);
-      }
-    } else {
-      localStorage.setItem("bareServer", bareServer);
-      console.log("Bare server saved:", bareServer);
+      localStorage.setItem('searchEngine', searchEngine);
+      console.log('Search engine saved:', searchEngine);
     }
 
     // Save the about:blank mode state
     handleToggleAboutBlank();
+
+    // Save the debugging state
+    handleToggleDebugging();
+
+    // Save the fallback URL
+    const fallbackUrlInput = document.getElementById('fallback-url-input');
+    const fallbackUrl = fallbackUrlInput.value.trim();
+    if (fallbackUrl) {
+      localStorage.setItem('fallbackUrl', fallbackUrl);
+      console.log('Fallback URL saved:', fallbackUrl);
+    }
   }
 
   function handleToggleAboutBlank() {
@@ -153,6 +144,18 @@
     } else {
       // Remove the state from localStorage
       localStorage.removeItem('openNewWindow');
+    }
+  }
+
+  function handleToggleDebugging() {
+    const toggleDebugging = document.getElementById('toggle-debugging');
+
+    if (toggleDebugging.checked) {
+      // Set the state in localStorage to indicate debugging mode
+      localStorage.setItem('debugging', 'true');
+    } else {
+      // Remove the state from localStorage
+      localStorage.removeItem('debugging');
     }
   }
 
@@ -178,7 +181,7 @@
     });
   }
 
-  // Event listeners for custom search engine and custom bare server inputs
+  // Event listeners for custom search engine input
   const searchEngineSelect = document.getElementById('search-engine-select');
   const customSearchEngineInput = document.getElementById('custom-search-engine-input');
 
@@ -190,19 +193,24 @@
     }
   });
 
-  const bareServerSelect = document.getElementById('bare-server-select');
-  const customBareServerInput = document.getElementById('custom-bare-server-input');
+  // Event listener for "Open in about:blank Window" checkbox
+  const toggleAboutBlank = document.getElementById('open-new-window');
+  if (toggleAboutBlank) {
+    toggleAboutBlank.addEventListener('change', function () {
+      handleToggleAboutBlank();
+    });
+  }
 
-  bareServerSelect.addEventListener('change', function () {
-    if (bareServerSelect.value === 'custom') {
-      customBareServerInput.style.display = 'block';
-    } else {
-      customBareServerInput.style.display = 'none';
-    }
-  });
+  // Event listener for "Debugging" checkbox
+  const toggleDebugging = document.getElementById('toggle-debugging');
+  if (toggleDebugging) {
+    toggleDebugging.addEventListener('change', function () {
+      handleToggleDebugging();
+    });
+  }
 
   // Execute code on visiting /
-  if (window.location.pathname === '/') {
+  if (window.location.pathname === '/' || window.location.pathname === '/index.html') {
     const openNewWindow = localStorage.getItem('openNewWindow');
 
     if (openNewWindow === 'true') {
