@@ -149,6 +149,24 @@ function getConnectionType() {
   return connectionType;
 }
 
+  // Add an event listener to detect keydown events
+  document.addEventListener('keydown', function (event) {
+    console.log('Keydown event:', event); // Added console.log statement
+    const pressedKey = event.key.toLowerCase();
+    const emergencyHotkey = localStorage.getItem('emergencyHotkey');
+
+    // Check if the pressed key matches the saved emergency hotkey
+    if (pressedKey === emergencyHotkey) {
+      // Retrieve the emergency URL
+      const emergencyURL = localStorage.getItem('emergencyURL');
+
+      // Redirect to the emergency URL
+      if (emergencyURL) {
+        window.location.href = emergencyURL;
+      }
+    }
+  });
+
 //const connectionType = getConnectionType();
 //updateConnectionStatus(connectionType); Removed for maintence
 

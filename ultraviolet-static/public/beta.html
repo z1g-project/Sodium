@@ -59,10 +59,19 @@
       font-size: 14px;
       font-weight: bold;
       color: #fff;
+      transition: background-color 0.3s;
+    }
+
+    .tabbed-ui__tab.active {
+      background-color: #444;
     }
 
     .tabbed-ui__tab:hover {
-      background-color: #333;
+      background-color: #555;
+    }
+
+    .tabbed-ui__tab-icon {
+      margin-right: 4px;
     }
 
     .tabbed-ui__tab-close {
@@ -150,6 +159,7 @@
 <body>
   <div class="tabbed-ui">
     <div class="tabbed-ui__tab" onclick="loadTab(this, '/')">
+      <span class="tabbed-ui__tab-icon">🏠</span>
       Home
       <div class="tabbed-ui__tab-close" onclick="closeTab(event)">x</div>
       <div class="tabbed-ui__tab-preview"></div>
@@ -170,22 +180,22 @@
     let tabStates = {}; // Stores the loaded URLs of each tab
 
     function loadTab(tab, url) {
-  if (activeTab) {
-    activeTab.classList.remove('active');
-    activeTab.querySelector('.tabbed-ui__tab-preview').innerHTML = '';
-  }
+      if (activeTab) {
+        activeTab.classList.remove('active');
+        activeTab.querySelector('.tabbed-ui__tab-preview').innerHTML = '';
+      }
 
-  url = '/newtab.html'; // Set the URL to the desired page
+      tab.classList.add('active');
+      previewIframe.src = url;
+      activeTab = tab;
 
-  tab.classList.add('active');
-  previewIframe.src = url;
-  activeTab = tab;
+      // Save the loaded URL of the tab
+      const tabId = tab.getAttribute('id');
+      tabStates[tabId] = url;
 
-  // Save the loaded URL of the tab
-  const tabId = tab.getAttribute('id');
-  tabStates[tabId] = url;
-}
-
+      // Save the tab states when switching tabs
+      saveTabStates();
+    }
 
     function addTab() {
       const tabId = `tab-${tabs.length + 1}`;
@@ -195,6 +205,7 @@
       tab.classList.add('tabbed-ui__tab');
       tab.setAttribute('id', tabId);
       tab.innerHTML = `
+        <span class="tabbed-ui__tab-icon">🌐</span>
         ${tabTitle}
         <div class="tabbed-ui__tab-close" onclick="closeTab(event)">x</div>
         <div class="tabbed-ui__tab-preview"></div>
@@ -219,7 +230,29 @@
       }
 
       delete tabStates[tabId]; // Remove the tab state from the object
+
+      // Save the tab states when closing a tab
+      saveTabStates();
+
       event.stopPropagation();
+    }
+
+    function saveTabStates() {
+      localStorage.setItem('tabStates', JSON.stringify(tabStates));
+    }
+
+    function loadTabStates() {
+      const savedTabStates = localStorage.getItem('tabStates');
+      if (savedTabStates) {
+        tabStates = JSON.parse(savedTabStates);
+        tabs.forEach((tab) => {
+          const tabId = tab.getAttribute('id');
+          const url = tabStates[tabId];
+          if (url) {
+            tab.addEventListener('click', () => loadTab(tab, url));
+          }
+        });
+      }
     }
 
     window.addEventListener('resize', () => {
@@ -236,7 +269,12 @@
           tab.querySelector('.tabbed-ui__tab-preview').classList.remove('active');
         });
       });
+
+      loadTabStates();
     });
+
+    // Save the tab states when the page is unloaded
+    window.addEventListener('beforeunload', saveTabStates);
   </script>
 </body>
 </html>
