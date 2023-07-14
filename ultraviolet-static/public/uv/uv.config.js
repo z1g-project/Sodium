@@ -37,9 +37,7 @@ self.__uv$config = {
   bare: [
     "https://uv.studentportal.lol/",
     "https://uv.radon.games/",
-    "https://uv.holyubofficial.net/",
-    "https://nebulaproxy.io/bare/",
-    "https://kazwire.com/bare/",
+    "https://uv.holyubofficial.net/"
   ],
   encodeUrl: Ultraviolet.codec.xor.encode,
   decodeUrl: Ultraviolet.codec.xor.decode,
