@@ -225,13 +225,11 @@ h1 {
 }
 
 iframe#apploader {
-  /* Existing styles */
-  /* Add the following styles */
   position: absolute;
   top: 40px;
   left: 0;
   width: 100%;
-  height: calc(100% - 85px); /* Adjusted height to accommodate the top bar and footer */
+  height: calc(100% - 85px); 
   border: none;
   opacity: 0;
   animation: fade-in 0.5s ease-in-out forwards;
@@ -259,7 +257,7 @@ iframe#apploader {
 }
 
 .footer-text-container {
-  padding-right: 20px; /* Adjust the padding value as needed */
+  padding-right: 20px; 
 }
 
 footer a {
@@ -291,7 +289,7 @@ iframe {
   top: 40px;
   left: 0;
   width: 100%;
-  height: calc(100% - 85px); /* Adjusted height to accommodate the top bar and footer */
+  height: calc(100% - 85px);
   border: none;
   opacity: 0;
   animation: fade-in 0.5s ease-in-out forwards;

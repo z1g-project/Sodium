@@ -183,19 +183,20 @@ function saveSettings() {
   localStorage.setItem('emergencyURL', emergencyURL);
   console.log('Emergency URL saved:', emergencyURL);
 
-  // Save the about:blank mode state
   handleToggleAboutBlank();
 
-  // Save the debugging state
-  handleToggleDebugging();
+  //handleToggleDebugging();
 
-  // Save the fallback URL
   const fallbackUrlInput = document.getElementById('fallback-url-input');
   const fallbackUrl = fallbackUrlInput.value.trim();
   if (fallbackUrl) {
     localStorage.setItem('fallbackUrl', fallbackUrl);
     console.log('Fallback URL saved:', fallbackUrl);
   }
+
+  setTimeout(function() {
+    location.reload();
+  }, 100);
 }
 
 function handleToggleBeta() {
