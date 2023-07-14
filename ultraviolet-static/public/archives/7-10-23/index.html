@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-<base href="../">
+  <base href="../../"></base>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
   <title>Sodium</title>
-  <meta name="description" content="Sodium is an Ultraviolet-based proxy site used for evading internet censorship." />
-  <meta name="keywords" content="proxy, web proxy, ultraviolet, service workers, unblock websites, unblock chromebook, free web proxy, proxy list, z1g project, proxy sites, un block chromebook, online proxy, proxy server, proxysite, proxy youtube, bypass securly, bypass iboss, bypass lightspeed filter, sodium, titanium network, unblock youtube, youtube proxy, unblocked youtube, youtube unblocked" />
+  <meta name="description" content="Sodium is an Ultraviolet-based proxy used for evading internet censorship." />
+  <meta name="keywords" content="proxy, web proxy, ultraviolet, service workers, unblock websites, unblock chromebook, free web proxy, proxy list, proxy sites, un block chromebook, online proxy, proxy server, proxysite, proxy youtube, bypass securly, bypass iboss, bypass lightspeed filter, sodium, titanium network, unblock youtube, youtube proxy, unblocked youtube, youtube unblocked" />
   <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#434c5e" />
-  <meta property="og:image" content="/sodium.png">
   <meta name="googlebot" content="index, follow, snippet" />
   <link id="favicon" rel="icon" type="image/png" href="favicon.ico">
   <link rel="stylesheet" href="index.css" />
@@ -19,22 +18,15 @@
   <script src="register-sw.js" defer></script>
   <script src="search.js" defer></script>
   <script src="index.js" defer></script>
-  <link rel="manifest" href="manifest.webmanifest"/>
   <link rel="json" href="appx.json"></link>
+  <link rel="manifest" href="manifest.webmanifest"/>
   <script src="time.js" defer></script>
   <script src="settings.js" defer></script>
-  <script src="stealth.js" defer></script>
   <script src="fade.js" defer></script>
-  <script src="ads.js" defer></script>
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2910142417276964"
-     crossorigin="anonymous"></script>
   <style>
-    #apploader {
-      display: none; /* Initially hide the iframe */
-    }
-    
-    .show-iframe #apploader {
-      display: block; /* Show the iframe when .show-iframe class is applied */
+    iframe {
+      flex: 1;
+      border: none;
     }
 
     .info-menu {
@@ -68,27 +60,8 @@
     </div>
   </div>  
 
-  <div title="Sodium Logo" class="flex-center logo-wrapper header-center">
-    <img class="logo" src="sodium.png" alt="Sodium" />
-    <h1>About Sodium</h1>
-  </div>
-  <div class="flex-center desc">
-    <p>Sodium is an Ultraviolet-based proxy site used for evading internet censorship.</p>
-  </div>
-  <div class="flex-center desc">
-    <p>v1.0.0 RC2 (Released: July 13th 2023 - Build: 69)</p>
-  </div>
-  <div class="flex-center desc">
-    <p>Made with ❤️ by XSTARS!</p>
-  </div>
+  <iframe id="apploader" src="https://87cbb765.sodium-5h8.pages.dev/"></iframe>
   
-
-  <div id="side-rail-ad-container">
-    <script>
-      googletag.cmd.push(function() { googletag.display('side-rail-ad-container'); });
-    </script>
-  </div>
-
   <footer>
     <img src="assets/img/z1g.png" alt="z1g Project" title="The z1g Project GitHub organization" height="30" width="30" onclick="location.href='/github/z1g-project/'" />
     <img src="assets/img/discord.jpg" alt="Discord" title="The z1g Project Discord" height="30" width="30" onclick="location.href='/discord/'" />
@@ -97,6 +70,6 @@
     <div class="footer-text-container" style="margin-left: auto">
       <span>Sodium &copy; z1g Project 2023</span>
     </div> 
-</footer>
+  </footer>
 </body>
 </html>

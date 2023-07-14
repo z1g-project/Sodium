@@ -20,6 +20,7 @@ Some of the features sodium are:
 - Wide Variety of games! - Total of 33 Games and 15 Apps!
 - Custom CSS Editor **BETA** - Uses Monaco CSS Editor and is still in the works!
 - Tabbed UI **BETA** - A Functional Tabbed UI that hasn't been updated in a few days but should still work.
+- Emergency Switch Feature - A functional bindable keybind with a url that when you press the button it exits the page your on and redirects to that url!
 - Customizable! - Sodium has tons of other customization options for you to play with!
 
 ## Setup & installation
