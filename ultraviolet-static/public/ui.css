@@ -99,8 +99,6 @@ footer {
   transform: scale(1.1);
 }
 
-/* Rest of the existing CSS code */
-
 body {
   background-color: #1a1a1a;
   background-image: url("assets/img/layered-waves-haikei.png");
@@ -142,38 +140,6 @@ body {
 
 footer img:hover {
   transform: scale(1.1);
-}
-
-.second-bar .home-icn {
-  width: 30px;
-  height: 30px;
-  margin-right: 10px;
-  background-image: url('assets/img/house.jpg'); /* Replace with appropriate image paths */
-  background-size: cover;
-}
-
-.second-bar .games-icn {
-  width: 30px;
-  height: 30px;
-  margin-right: 10px;
-  background-image: url('assets/img/games.jpg'); /* Replace with appropriate image paths */
-  background-size: cover;
-}
-
-.second-bar .apps-icn {
-  width: 30px;
-  height: 30px;
-  margin-right: 10px;
-  background-image: url('assets/img/apps.jpg'); /* Replace with appropriate image paths */
-  background-size: cover;
-}
-
-.second-bar .settings-icn {
-  width: 30px;
-  height: 30px;
-  margin-right: 10px;
-  background-image: url('assets/img/settings.jpg'); /* Replace with appropriate image paths */
-  background-size: cover;
 }
 
 .flex-center {
@@ -397,12 +363,12 @@ textarea {
 
 .side-rail-ads {
   position: fixed;
-  top: 64px; /* Adjust the top position as needed */
-  width: 100px; /* Adjust the width as needed */
-  height: calc(100% - 64px - 40px); /* Adjust the height based on the top and bottom positions */
-  background-color: #333; /* Same color as grid items */
-  border-radius: 8px; /* Slightly rounded edges */
-  z-index: 10; /* Ensure the ads appear above other elements */
+  top: 64px;
+  width: 100px;
+  height: calc(100% - 64px - 40px);
+  background-color: #333;
+  border-radius: 8px;
+  z-index: 10;
   display: flex;
   align-items: center;
   justify-content: center;

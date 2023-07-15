@@ -98,9 +98,7 @@
   .second-bar a:hover {
     transform: scale(1.1);
   }
-  
-  /* Rest of the existing CSS code */
-  
+    
   body {
     background-color: #000000;
     /* background-image: url("assets/img/amoled-waves-haikei.png"); */
@@ -193,13 +191,11 @@
   }
   
   iframe#apploader {
-    /* Existing styles */
-    /* Add the following styles */
     position: absolute;
     top: 40px;
     left: 0;
     width: 100%;
-    height: calc(100% - 85px); /* Adjusted height to accommodate the top bar and footer */
+    height: calc(100% - 85px);
     border: none;
     opacity: 0;
     animation: fade-in 0.5s ease-in-out forwards;
@@ -227,7 +223,7 @@
   }
   
   .footer-text-container {
-    padding-right: 20px; /* Adjust the padding value as needed */
+    padding-right: 20px;
   }
   
   footer a {
@@ -259,7 +255,7 @@
     top: 40px;
     left: 0;
     width: 100%;
-    height: calc(100% - 85px); /* Adjusted height to accommodate the top bar and footer */
+    height: calc(100% - 85px);
     border: none;
     opacity: 0;
     animation: fade-in 0.5s ease-in-out forwards;
@@ -367,12 +363,12 @@
   
   .side-rail-ads {
     position: fixed;
-    top: 64px; /* Adjust the top position as needed */
-    width: 100px; /* Adjust the width as needed */
-    height: calc(100% - 64px - 40px); /* Adjust the height based on the top and bottom positions */
-    background-color: #333; /* Same color as grid items */
-    border-radius: 8px; /* Slightly rounded edges */
-    z-index: 10; /* Ensure the ads appear above other elements */
+    top: 64px;
+    width: 100px;
+    height: calc(100% - 64px - 40px);
+    background-color: #333;
+    border-radius: 8px;
+    z-index: 10;
     display: flex;
     align-items: center;
     justify-content: center;

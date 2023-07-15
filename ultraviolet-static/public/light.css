@@ -367,12 +367,12 @@ textarea {
 
 .side-rail-ads {
   position: fixed;
-  top: 64px; /* Adjust the top position as needed */
-  width: 100px; /* Adjust the width as needed */
-  height: calc(100% - 64px - 40px); /* Adjust the height based on the top and bottom positions */
-  background-color: #333; /* Same color as grid items */
-  border-radius: 8px; /* Slightly rounded edges */
-  z-index: 10; /* Ensure the ads appear above other elements */
+  top: 64px;
+  width: 100px;
+  height: calc(100% - 64px - 40px);
+  background-color: #333;
+  border-radius: 8px;
+  z-index: 10;
   display: flex;
   align-items: center;
   justify-content: center;

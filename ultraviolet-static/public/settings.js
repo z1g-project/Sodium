@@ -126,6 +126,20 @@ function loadSavedSettings() {
     localStorage.removeItem('fallbackUrl');
     window.location.href = fallbackUrl;
   }
+
+  const customCSS = localStorage.getItem('websiteCSS');
+  if (customCSS) {
+    const styleSheet = document.createElement('style');
+    styleSheet.id = 'custom-css';
+    styleSheet.textContent = customCSS;
+    document.head.appendChild(styleSheet);
+  } else {
+    const defaultStyleSheet = document.createElement('link');
+    defaultStyleSheet.rel = 'stylesheet';
+    defaultStyleSheet.href = 'ui.css';
+    defaultStyleSheet.id = 'custom-css';
+    document.head.appendChild(defaultStyleSheet);
+  }
 }
 
   function applyCSS(selectedCSS) {
