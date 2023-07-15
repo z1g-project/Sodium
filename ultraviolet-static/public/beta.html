@@ -1,280 +1,204 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
-  <title>Sodium</title>
-  <meta name="description" content="Sodium is an Ultraviolet-based proxy site used for evading internet censorship." />
-  <meta property="og:image" content="/sodium.png">
-  <meta name="keywords" content="proxy, web proxy, ultraviolet, service workers, unblock websites, unblock chromebook, free web proxy, proxy list, z1g project, proxy sites, un block chromebook, online proxy, proxy server, proxysite, proxy youtube, bypass securly, bypass iboss, bypass lightspeed filter, sodium, titanium network, unblock youtube, youtube proxy, unblocked youtube, youtube unblocked" />
-  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#434c5e" />
-  <meta name="googlebot" content="index, follow, snippet" />
-  <link id="favicon" rel="icon" type="image/png" href="favicon.ico">
-  <link rel="stylesheet" href="index.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="ui.css" id="custom-css"/>
-  <script src="uv/uv.bundle.js" defer></script>
-  <script src="uv/uv.config.js" defer></script>
-  <script src="register-sw.js" defer></script>
-  <script src="search.js" defer></script>
-  <script src="index.js" defer></script>
-  <link rel="manifest" href="manifest.webmanifest"/>
-  <link rel="json" href="appx.json"></link>
-  <script src="time.js" defer></script>
-  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-  <script src="particles.js" defer></script>
-  <script src="settings.js" defer></script>
-  <script src="stealth.js" defer></script>
-  <script src="fade.js" defer></script>
-  <script src="ads.js" defer></script>
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2910142417276964" crossorigin="anonymous"></script>
+  <title>Sodium Tabs (Beta)</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    /* Rest of the existing styles */
-
-    html, body {
-      height: 100%;
+    /* General styles */
+    body {
       margin: 0;
       padding: 0;
       font-family: 'Montserrat', sans-serif;
-      background-color: #000;
-      color: #fff;
     }
 
-    .tabbed-ui {
+    /* Tabbed UI styles */
+    .tabs-container {
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
+
+    .tab-controls {
       display: flex;
       align-items: center;
-      height: 40px;
       background-color: #333;
-      padding: 0 8px;
-    }
-
-    .tabbed-ui__tab {
-      position: relative;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      padding: 0 12px;
-      margin-right: 4px;
-      cursor: pointer;
-      font-size: 14px;
-      font-weight: bold;
       color: #fff;
-      transition: background-color 0.3s;
+      padding: 5px;
+      margin-bottom: 0px;
     }
 
-    .tabbed-ui__tab.active {
-      background-color: #444;
+    .current-date {
+      font-weight: bold;
+      margin-right: 10px;
     }
 
-    .tabbed-ui__tab:hover {
+    .tab-bar {
+      display: flex;
+      background-color: #333;
+      color: #fff;
+      font-family: 'Montserrat', sans-serif;
+      overflow-x: auto;
+      overflow-y: hidden;
+      white-space: nowrap;
+      padding: 3px;
+    }
+
+    .tab {
+      position: relative;
+      padding: 10px 15px;
+      cursor: pointer;
+      margin-right: 5px;
+    }
+
+    .tab.active {
       background-color: #555;
     }
 
-    .tabbed-ui__tab-icon {
-      margin-right: 4px;
+    .tab-content-container {
+      flex: 1;
+      overflow: hidden;
     }
 
-    .tabbed-ui__tab-close {
-      position: absolute;
-      right: 4px;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 12px;
-      height: 12px;
-      background-color: #fff;
+    .tab-content {
       display: none;
-      border-radius: 50%;
-      justify-content: center;
-      align-items: center;
-      font-size: 10px;
-      color: #000;
-      cursor: pointer;
-    }
-
-    .tabbed-ui__tab:hover .tabbed-ui__tab-close {
-      display: flex;
-    }
-
-    .tabbed-ui__tab-add {
-      height: 100%;
-      display: flex;
-      align-items: center;
-      padding: 0 12px;
-      cursor: pointer;
-      font-size: 14px;
-      font-weight: bold;
-      color: #fff;
-      background-color: transparent;
-      border: none;
-    }
-
-    .tabbed-ui__tab-add:hover {
-      background-color: #424141;
-    }
-
-    .tabbed-ui__tab-preview {
-      display: none;
-      position: absolute;
-      top: 40px;
-      left: 0;
-      width: 100%;
-      height: calc(100% - 40px);
+      padding: 10px;
       background-color: #333;
-      padding: 8px;
+      color: #333;
+      font-family: 'Montserrat', sans-serif;
+      height: calc(100vh - 110px); /* Adjusted height to account for tab bar */
       overflow-y: auto;
-      z-index: 1;
     }
 
-    .tabbed-ui__tab:hover .tabbed-ui__tab-preview {
+    .tab-content.active {
       display: block;
     }
 
-    .tabbed-ui__tab-preview-item {
-      color: #fff;
-      padding: 4px 8px;
+    .close-tab {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      width: 20px;
+      height: 20px;
+      line-height: 20px;
+      text-align: center;
       cursor: pointer;
+      background-color: #ccc;
+      color: #333;
+      font-weight: bold;
+      border-radius: 50%;
     }
 
-    .tabbed-ui__tab-preview-item:hover {
-      background-color: #333;
+    .close-tab:hover {
+      background-color: #f00;
+      color: #fff;
     }
 
-    .tabbed-ui__tab-preview-item:not(:last-child) {
-      margin-bottom: 4px;
-    }
-
-    .iframe-container {
-      height: calc(100% - 40px);
-      width: 100%;
-    }
-
-    .iframe-container iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
+    .new-tab {
+      padding: 5px 10px;
+      cursor: pointer;
     }
   </style>
 </head>
-
 <body>
-  <div class="tabbed-ui">
-    <div class="tabbed-ui__tab" onclick="loadTab(this, '/')">
-      <span class="tabbed-ui__tab-icon">🏠</span>
-      Home
-      <div class="tabbed-ui__tab-close" onclick="closeTab(event)">x</div>
-      <div class="tabbed-ui__tab-preview"></div>
+  <div class="tabs-container">
+    <div class="tab-controls">
+      <div class="current-date"></div>
+      <div class="new-tab">+</div>
     </div>
-    <button class="tabbed-ui__tab-add" onclick="addTab()">+</button>
+    <div class="tab-bar"></div>
+    <div class="tab-content-container"></div>
   </div>
-
-  <div class="iframe-container">
-    <iframe id="preview-iframe" src="/newtab.html" frameborder="0"></iframe>
-  </div>
-
+  
   <script>
-    const tabContainer = document.querySelector('.tabbed-ui');
-    const iframeContainer = document.querySelector('.iframe-container');
-    const previewIframe = document.getElementById('preview-iframe');
-    let tabs = document.querySelectorAll('.tabbed-ui__tab');
-    let activeTab = null;
-    let tabStates = {}; // Stores the loaded URLs of each tab
+    document.addEventListener('DOMContentLoaded', function () {
+      const tabControls = document.querySelector('.tab-controls');
+      const currentDate = document.querySelector('.current-date');
+      const newTabButton = document.querySelector('.new-tab');
+      const tabBar = document.querySelector('.tab-bar');
+      const tabContentContainer = document.querySelector('.tab-content-container');
+      const tabs = [];
+      let activeTabId = '';
 
-    function loadTab(tab, url) {
-      if (activeTab) {
-        activeTab.classList.remove('active');
-        activeTab.querySelector('.tabbed-ui__tab-preview').innerHTML = '';
+      function createTab(contentUrl) {
+        const tabId = `tab${tabs.length}`;
+        const tabContentId = `content${tabs.length}`;
+        const tab = document.createElement('div');
+        const tabContent = document.createElement('div');
+        const closeTabButton = document.createElement('div');
+
+        tab.classList.add('tab');
+        tab.id = tabId;
+        tab.textContent = `Tab ${tabs.length + 1}`;
+
+        tabContent.classList.add('tab-content');
+        tabContent.id = tabContentId;
+        tabContent.innerHTML = `<iframe src="${contentUrl}" frameborder="0" width="100%" height="100%"></iframe>`;
+
+        closeTabButton.classList.add('close-tab');
+        closeTabButton.textContent = 'x';
+
+        tab.appendChild(closeTabButton);
+        tabBar.appendChild(tab);
+        tabContentContainer.appendChild(tabContent);
+
+        tabs.push(tabId);
+
+        setActiveTab(tabId);
       }
 
-      tab.classList.add('active');
-      previewIframe.src = url;
-      activeTab = tab;
+      function setActiveTab(tabId) {
+        const tabs = tabBar.querySelectorAll('.tab');
+        const tabContents = tabContentContainer.querySelectorAll('.tab-content');
 
-      // Save the loaded URL of the tab
-      const tabId = tab.getAttribute('id');
-      tabStates[tabId] = url;
+        tabs.forEach(function (tab) {
+          tab.classList.toggle('active', tab.id === tabId);
+        });
 
-      // Save the tab states when switching tabs
-      saveTabStates();
-    }
+        tabContents.forEach(function (tabContent) {
+          tabContent.classList.toggle('active', tabContent.id === `content${tabId.substr(3)}`);
+        });
 
-    function addTab() {
-      const tabId = `tab-${tabs.length + 1}`;
-      const tabTitle = `Tab ${tabs.length + 1}`;
+        activeTabId = tabId;
+      }
 
-      const tab = document.createElement('div');
-      tab.classList.add('tabbed-ui__tab');
-      tab.setAttribute('id', tabId);
-      tab.innerHTML = `
-        <span class="tabbed-ui__tab-icon">🌐</span>
-        ${tabTitle}
-        <div class="tabbed-ui__tab-close" onclick="closeTab(event)">x</div>
-        <div class="tabbed-ui__tab-preview"></div>
-      `;
-      tabContainer.insertBefore(tab, tabContainer.lastElementChild);
-      tabs = document.querySelectorAll('.tabbed-ui__tab'); // Update the tabs collection
-      tab.addEventListener('click', () => loadTab(tab, tabStates[tabId] || '/newtab.html'));
-      loadTab(tab, tabStates[tabId] || '/newtab.html');
-    }
+      function closeTab(tabId) {
+        const tab = document.getElementById(tabId);
+        const tabContent = document.getElementById(`content${tabId.substr(3)}`);
 
-    function closeTab(event) {
-      const tab = event.target.parentElement;
-      const tabId = tab.getAttribute('id');
-      tab.parentNode.removeChild(tab);
-      tabs = document.querySelectorAll('.tabbed-ui__tab'); // Update the tabs collection
+        tab.remove();
+        tabContent.remove();
 
-      if (tab.classList.contains('active')) {
-        const nextTab = tabs[tabs.length - 1];
-        if (nextTab) {
-          loadTab(nextTab, tabStates[nextTab.getAttribute('id')] || '/newtab.html');
+        const remainingTabs = tabBar.querySelectorAll('.tab');
+        if (remainingTabs.length > 0) {
+          setActiveTab(remainingTabs[0].id);
         }
       }
 
-      delete tabStates[tabId]; // Remove the tab state from the object
-
-      // Save the tab states when closing a tab
-      saveTabStates();
-
-      event.stopPropagation();
-    }
-
-    function saveTabStates() {
-      localStorage.setItem('tabStates', JSON.stringify(tabStates));
-    }
-
-    function loadTabStates() {
-      const savedTabStates = localStorage.getItem('tabStates');
-      if (savedTabStates) {
-        tabStates = JSON.parse(savedTabStates);
-        tabs.forEach((tab) => {
-          const tabId = tab.getAttribute('id');
-          const url = tabStates[tabId];
-          if (url) {
-            tab.addEventListener('click', () => loadTab(tab, url));
-          }
-        });
+      function createNewTab() {
+        createTab('newtab.html');
       }
-    }
 
-    window.addEventListener('resize', () => {
-      const iframeHeight = `${iframeContainer.clientHeight}px`;
-      iframeContainer.style.height = iframeHeight;
-    });
+      function updateCurrentDate() {
+        const date = new Date();
+        const options = { weekday: 'long', month: 'long', day: 'numeric' };
+        const formattedDate = date.toLocaleDateString(undefined, options);
+        currentDate.textContent = formattedDate;
+      }
 
-    document.addEventListener('DOMContentLoaded', () => {
-      tabs.forEach((tab) => {
-        tab.addEventListener('mouseenter', () => {
-          tab.querySelector('.tabbed-ui__tab-preview').classList.add('active');
-        });
-        tab.addEventListener('mouseleave', () => {
-          tab.querySelector('.tabbed-ui__tab-preview').classList.remove('active');
-        });
+      newTabButton.addEventListener('click', createNewTab);
+
+      tabBar.addEventListener('click', function (event) {
+        if (event.target.classList.contains('tab')) {
+          setActiveTab(event.target.id);
+        } else if (event.target.classList.contains('close-tab')) {
+          const tabId = event.target.parentNode.id;
+          closeTab(tabId);
+        }
       });
 
-      loadTabStates();
+      updateCurrentDate();
+      createNewTab();
     });
-
-    // Save the tab states when the page is unloaded
-    window.addEventListener('beforeunload', saveTabStates);
   </script>
 </body>
 </html>

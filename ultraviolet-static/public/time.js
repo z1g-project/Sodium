@@ -181,6 +181,42 @@ function getConnectionType() {
       document.head.appendChild(defaultStyleSheet);
     }
 
+    if (window.location.pathname === '/' || window.location.pathname === '/index.html') {
+      const openNewWindow = localStorage.getItem('openNewWindow');
+    
+      if (openNewWindow === 'true') {
+        const newWindow = window.open('about:blank', '_blank', 'width=800,height=600');
+        const newDocument = newWindow.document.open();
+        newDocument.write(`
+          <!DOCTYPE html>
+          <html>
+            <head></head>
+            <body>
+              <iframe style="border: none; width: 100%; height: 100vh;" src="/newtab.html"></iframe>
+            </body>
+          </html>
+        `);
+        newDocument.close();
+        const fallbackUrl = localStorage.getItem('fallbackUrl');
+    
+        if (fallbackUrl) {
+          window.location.href=fallbackUrl;
+        }
+      } else {
+        
+      }
+    }
+    
+    const betaMode = localStorage.getItem('betaMode');
+
+    if (betaMode === 'true') {
+      if (window.location.pathname === '/' || window.location.pathname === '/index.html') {
+        window.location.href = '/beta.html';
+      }
+    } else {
+      
+    }
+
 //const connectionType = getConnectionType();
 //updateConnectionStatus(connectionType); Removed for maintence
 
