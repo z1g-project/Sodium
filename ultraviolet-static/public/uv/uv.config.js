@@ -1,37 +1,3 @@
-function customBareServer() {
-  const cookieName = "bareServer";
-  const localStorageKey = "bareServer";
-
-  const cookieValue = getCookie(cookieName);
-
-  if (cookieValue) {
-    console.log("Custom bare server URL found in cookies:", cookieValue);
-    return cookieValue;
-  } else {
-    const localStorageValue = localStorage.getItem(localStorageKey);
-    if (localStorageValue) {
-      console.log("Using custom bare server URL from localStorage:", localStorageValue);
-      return localStorageValue;
-    } else {
-      console.log("Custom bare server URL not found. Falling back to default.");
-      return "https://uv.studentportal.lol/";
-    }
-  }
-}
-
-function getCookie(name) {
-  const cookies = document.cookie.split(";");
-
-  for (let i = 0; i < cookies.length; i++) {
-    const cookie = cookies[i].trim();
-    if (cookie.startsWith(name + "=")) {
-      return cookie.substring(name.length + 1);
-    }
-  }
-
-  return null;
-}
-
 self.__uv$config = {
   prefix: "/uv/service/",
   bare: [

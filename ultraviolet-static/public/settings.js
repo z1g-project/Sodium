@@ -104,9 +104,20 @@
     }
 
     const fallbackUrl = localStorage.getItem('fallbackUrl');
-    if (fallbackUrl && (window.location.pathname === '/' || window.location.pathname === '/index.html')) {
-      localStorage.removeItem('fallbackUrl');
-      window.location.href = fallbackUrl;
+    const fallbackUrlInput = document.getElementById('fallback-url-input');
+    if (fallbackUrl && fallbackUrlInput) {
+      fallbackUrlInput.value = fallbackUrl;
+    }
+
+    const proxyOption = localStorage.getItem('proxyOption');
+    const proxySelect = document.getElementById('proxySelect');
+    const options = proxySelect.options;
+    
+    for (let i = 0; i < options.length; i++) {
+      if (options[i].value === proxyOption) {
+        options[i].selected = true;
+        break;
+      }
     }
 
     const customCSS = localStorage.getItem('websiteCSS');
@@ -138,6 +149,7 @@
       }
     }
   }
+
   function saveSettings() {
     const titleInput = document.getElementById('title-input');
     const title = titleInput.value.trim();
@@ -164,6 +176,12 @@
       console.log('Search engine saved:', searchEngine);
     }
 
+    var proxySelect = document.getElementById('proxySelect');
+    var selectedOption = proxySelect.options[proxySelect.selectedIndex].value;
+  
+    localStorage.setItem('proxyOption', selectedOption);
+    console.log('Defualt Proxy Saved:', selectedOption)
+
     handleToggleBeta();
 
     const emergencyHotkeyInput = document.getElementById('emergency-switch-hotkey');
@@ -177,13 +195,6 @@
     console.log('Emergency URL saved:', emergencyURL);
 
     handleToggleAboutBlank();
-
-    const fallbackUrlInput = document.getElementById('fallback-url-input');
-    const fallbackUrl = fallbackUrlInput.value.trim();
-    if (fallbackUrl) {
-      localStorage.setItem('fallbackUrl', fallbackUrl);
-      console.log('Fallback URL saved:', fallbackUrl);
-    }
 
     setTimeout(function () {
       location.reload();
