@@ -1,4 +1,3 @@
-// Function to update battery icon
 function updateBatteryIcon(percentage, isCharging) {
   const batteryElement = document.getElementById('battery');
 
@@ -61,7 +60,6 @@ function updateTime() {
   timeElement.textContent = timeString;
 }
 
-// Get battery percentage and charging status
 function getBatteryInfo() {
   if ('getBattery' in navigator) {
     navigator.getBattery().then(function(battery) {
@@ -81,86 +79,14 @@ function getBatteryInfo() {
   }
 }
 
-function updateConnectionStatus(connectionType) {
-  const connectionElement = document.getElementById('connection');
-
-  // Clear existing classes
-  connectionElement.className = 'internet-connection';
-
-  // Set appropriate class based on the connection type
-  if (connectionType === 'ethernet') {
-    connectionElement.classList.add('ethernet-connected');
-  } else if (connectionType === 'cell_none') {
-    connectionElement.classList.add('cell-none');
-  } else if (connectionType === 'cell_bad') {
-    connectionElement.classList.add('cell-bad');
-  } else if (connectionType === 'cell_low') {
-    connectionElement.classList.add('cell-low');
-  } else if (connectionType === 'cell_med') {
-    connectionElement.classList.add('cell-med');
-  } else if (connectionType === 'cell_good') {
-    connectionElement.classList.add('cell-good');
-  } else if (connectionType === 'cell_best') {
-    connectionElement.classList.add('cell-best');
-  } else if (connectionType === 'wifi_connected') {
-    connectionElement.classList.add('wifi-connected');
-  } else {
-    connectionElement.classList.add('wifi-unavailable');
-  }
-}
-
-// Function to determine the internet connection type
-function getConnectionType() {
-  // Use appropriate logic to determine the connection type
-  // Example: Check if Ethernet is connected
-  const isEthernetConnected = true;
-
-  // Example: Check if cellular connection is available and its quality
-  const isCellularAvailable = true;
-  const cellularSignalQuality = 'good'; // Can be 'none', 'bad', 'low', 'med', 'good', 'best'
-
-  // Example: Check if WiFi is connected
-  const isWifiConnected = false;
-
-  // Determine the connection type based on the conditions
-  let connectionType = '';
-  if (isEthernetConnected) {
-    connectionType = 'ethernet';
-  } else if (isCellularAvailable) {
-    if (cellularSignalQuality === 'none') {
-      connectionType = 'cell_none';
-    } else if (cellularSignalQuality === 'bad') {
-      connectionType = 'cell_bad';
-    } else if (cellularSignalQuality === 'low') {
-      connectionType = 'cell_low';
-    } else if (cellularSignalQuality === 'med') {
-      connectionType = 'cell_med';
-    } else if (cellularSignalQuality === 'good') {
-      connectionType = 'cell_good';
-    } else if (cellularSignalQuality === 'best') {
-      connectionType = 'cell_best';
-    }
-  } else if (isWifiConnected) {
-    connectionType = 'wifi_connected';
-  } else {
-    connectionType = 'wifi_unavailable';
-  }
-
-  return connectionType;
-}
-
-  // Add an event listener to detect keydown events
   document.addEventListener('keydown', function (event) {
-    console.log('Keydown event:', event); // Added console.log statement
+    console.log('Keydown event:', event);
     const pressedKey = event.key.toLowerCase();
     const emergencyHotkey = localStorage.getItem('emergencyHotkey');
 
-    // Check if the pressed key matches the saved emergency hotkey
     if (pressedKey === emergencyHotkey) {
-      // Retrieve the emergency URL
       const emergencyURL = localStorage.getItem('emergencyURL');
 
-      // Redirect to the emergency URL
       if (emergencyURL) {
         window.location.href = emergencyURL;
       }
@@ -190,7 +116,14 @@ function getConnectionType() {
         newDocument.write(`
           <!DOCTYPE html>
           <html>
-            <head></head>
+            <head>
+              <style type="text/css">
+                body, html
+                {
+                  margin: 0; padding: 0; height: 100%; overflow: hidden;
+                }
+             </style>
+            </head>
             <body>
               <iframe style="border: none; width: 100%; height: 100vh;" src="/newtab.html"></iframe>
             </body>
@@ -216,9 +149,6 @@ function getConnectionType() {
     } else {
       
     }
-
-//const connectionType = getConnectionType();
-//updateConnectionStatus(connectionType); Removed for maintence
 
 getBatteryInfo();
 
