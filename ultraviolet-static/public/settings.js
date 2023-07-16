@@ -194,6 +194,11 @@
     localStorage.setItem('emergencyURL', emergencyURL);
     console.log('Emergency URL saved:', emergencyURL);
 
+    const fallbackUrlInput = document.getElementById('fallback-url-input');
+    const fallbackUrl = fallbackUrlInput.value.trim();
+    localStorage.setItem('fallbackUrl', fallbackUrl);
+    console.log('Fallback URL saved:', fallbackUrl);
+    
     handleToggleAboutBlank();
 
     setTimeout(function () {
@@ -283,7 +288,6 @@
       const fallbackUrl = localStorage.getItem('fallbackUrl');
 
       if (fallbackUrl) {
-        localStorage.removeItem('fallbackUrl');
         window.location.href = fallbackUrl;
       }
     }

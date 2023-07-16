@@ -133,7 +133,7 @@ function getBatteryInfo() {
         const fallbackUrl = localStorage.getItem('fallbackUrl');
     
         if (fallbackUrl) {
-          window.location.href=fallbackUrl;
+          window.location.href = fallbackUrl;
         }
       } else {
         

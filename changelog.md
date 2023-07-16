@@ -1,11 +1,13 @@
-# Sodium v1.0 RC2 (Build: 69)
+# Sodium v1.0 Release Preview (Build: 82)
 
 Whats New?
 
-- Fix tabs feature
-- Add emergency switch feature
-- Fix Bugs
-- Switch to beter bare servers
+- MAJOR bug Fixes
+- MAJOR Performance Uplift (Site is way more instant)
+- NEW Features:
+  - About:blank with fallbackUrl support
+  - Working CSS Editor
+  - More Speeeeeeeed
 - More Polishing
 
-Released: 7/14/2023
+Released: 7/16/2023
