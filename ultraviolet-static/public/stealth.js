@@ -7,7 +7,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
   function calculateTransferRate(url, callback) {
     if (totalBytes > 0 && totalTime > 0) {
-      const transferRate = (totalBytes / totalTime) * 8 / 1000; // Kilobits per second
+      const transferRate = (totalBytes / totalTime) * 8 / 1000;
       const transferRateFormatted = transferRate.toFixed(2);
       callback(`${transferRateFormatted} kbps`);
     } else {
@@ -15,7 +15,6 @@ window.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Hide the FPS counter initially
   fpsItem.style.display = 'none';
 
   iframe.addEventListener('load', () => {
@@ -29,7 +28,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
     const fps = calculateFPS();
     fpsItem.textContent = `FPS: ${fps}`;
-    fpsItem.style.display = 'block'; // Show the FPS counter after the iframe has loaded
+    fpsItem.style.display = 'block';
   });
 
   function calculateLatency(callback) {
@@ -77,9 +76,8 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 
   function simulateTransfer() {
-    // Simulating a transfer of 2 MB over 5 seconds
-    const bytesToTransfer = 2 * 1024 * 1024; // 2 MB
-    const transferInterval = 5000; // 5 seconds
+    const bytesToTransfer = 2 * 1024 * 1024;
+    const transferInterval = 5000;
 
     const transferChunks = Math.ceil(bytesToTransfer / 100);
     const chunkSize = Math.ceil(bytesToTransfer / transferChunks);

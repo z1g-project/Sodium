@@ -20,6 +20,14 @@ const error = document.getElementById("uv-error");
  * @type {HTMLPreElement}
  */
 const errorCode = document.getElementById("uv-error-code");
+/**
+ * @type {HTMLDivElement}
+ */
+const loadingOverlay = document.getElementById("loading-overlay");
+/**
+ * @type {HTMLIFrameElement}
+ */
+const iframe = document.getElementById("apploader");
 
 form.addEventListener("submit", async (event) => {
   event.preventDefault();
@@ -35,7 +43,12 @@ form.addEventListener("submit", async (event) => {
   const url = search(address.value, searchEngine.value);
   const encodedURL = Ultraviolet.codec.xor.encode(url);
 
-  const iframe = document.getElementById("apploader");
-  iframe.style.display = "block";
+  loadingOverlay.style.display = "flex";
+  iframe.style.display = "none";
   iframe.src = `${window.location.origin}/uv/service/${encodedURL}`;
+});
+
+iframe.addEventListener("load", () => {
+  loadingOverlay.style.display = "none";
+  iframe.style.display = "block";
 });

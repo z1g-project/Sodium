@@ -1,31 +1,3 @@
-/* Custom styles for Android-like top bar */
-.top-bar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background-color: #000;
-  color: #fff;
-  height: 24px;
-  padding: 4px;
-  display: none;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 12px;
-  opacity: 0;
-  animation: fade-in 0.5s ease-in-out forwards;
-}
-
-.top-bar-left {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.top-bar-item {
-  margin-right: 8px;
-}
-
 #time {
   text-align: center;
   position: absolute;
@@ -53,7 +25,6 @@ footer img {
   margin-right: 10px;
 }
 
-/* Custom styles for the second bar */
 .second-bar {
   position: fixed;
   top: 0px;
@@ -341,7 +312,6 @@ textarea {
   animation: fade-out 0.5s ease-in-out forwards;
 }
 
-/* Animation for fading in elements */
 @keyframes fade-in {
   0% {
     opacity: 0;
@@ -351,7 +321,6 @@ textarea {
   }
 }
 
-/* Animation for fading out elements */
 @keyframes fade-out {
   0% {
     opacity: 1;

@@ -12,20 +12,81 @@
   <link id="favicon" rel="icon" type="image/png" href="favicon.ico">
   <link rel="stylesheet" href="montserrat.css"/>
   <link rel="stylesheet" href="ui.css" id="custom-css"/>
+  <link rel="manifest" href="manifest.webmanifest"/>
   <script src="uv/uv.bundle.js" defer></script>
   <script src="uv/uv.config.js" defer></script>
   <script src="register-sw.js" defer></script>
   <script src="search.js" defer></script>
   <script src="index.js" defer></script>
-  <link rel="json" href="appx.json"></link>
-  <link rel="manifest" href="manifest.webmanifest"/>
   <script src="time.js" defer></script>
   <script src="settings.js" defer></script>
   <script src="fade.js" defer></script>
   <style>
     iframe {
-      flex: 1;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
       border: none;
+      display: none;
+    }
+
+    .show-iframe iframe {
+      display: block;
+    }
+
+    #loading-overlay {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 999;
+    }
+
+    #wave-container {
+      width: 100%;
+      height: 100px;
+      overflow: hidden;
+    }
+
+    .wave {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.3) 50%, rgba(255, 255, 255, 0) 100%);
+      animation: wave-animation 2s infinite;
+    }
+
+    @keyframes wave-animation {
+      0% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(50px);
+      }
+      100% {
+        transform: translateY(0);
+      }
+    }
+
+    .loading-content {
+      text-align: center;
+      color: #fff;
+    }
+
+    .loading-title {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    .loading-message {
+      font-size: 18px;
     }
 
     .info-menu {
@@ -37,138 +98,131 @@
     }
   </style>
   <script>
-window.addEventListener('DOMContentLoaded', () => {
-  const iframe = document.getElementById('apploader');
-  if (iframe) {
-    const encodedURL = Ultraviolet.codec.xor.encode('https://bing.com');
-    iframe.src = window.location.origin + `/uv/service/${encodedURL}`;
-  }
+    window.addEventListener('DOMContentLoaded', () => {
+      const iframe = document.getElementById('apploader');
+      const loadingOverlay = document.getElementById('loading-overlay');
 
-  // Update the info values
-  const transferRate = calculateTransferRate(); // Example: Calculate the transfer rate
-  const latency = calculateLatency(); // Example: Calculate the latency
-  const fps = calculateFPS(); // Example: Calculate the FPS
+      if (iframe) {
+        const encodedURL = Ultraviolet.codec.xor.encode('https://bing.com');
+        iframe.src = `${window.location.origin}/uv/service/${encodedURL}`;
+        iframe.onload = () => {
+          loadingOverlay.style.display = 'none';
+          iframe.parentElement.classList.add('show-iframe');
+        };
+      }
 
-  updateInfoMenuItem('transferRate', `Transfer Rate: ${transferRate}`);
-  updateInfoMenuItem('latency', `Latency: ${latency}`);
-  updateInfoMenuItem('fps', `FPS: ${fps}`);
-});
+      const transferRate = calculateTransferRate();
+      const latency = calculateLatency();
+      const fps = calculateFPS();
 
-let totalBytes = 0;
-let totalTime = 0;
+      updateInfoMenuItem('transferRate', `Transfer Rate: ${transferRate}`);
+      updateInfoMenuItem('latency', `Latency: ${latency}`);
+      updateInfoMenuItem('fps', `FPS: ${fps}`);
+    });
 
-function trackTransfer(bytesTransferred) {
-  totalBytes += bytesTransferred;
-  const currentTime = performance.now();
-  if (totalTime === 0) {
-    totalTime = currentTime;
-  } else {
-    totalTime = currentTime - totalTime;
-  }
-}
+    let totalBytes = 0;
+    let totalTime = 0;
 
-function calculateTransferRate() {
-  setInterval(() => {
-    if (totalBytes > 0 && totalTime > 0) {
-      const transferRate = (totalBytes / totalTime) * 8 / 1000; // Kilobits per second
-      const transferRateFormatted = transferRate.toFixed(2);
-      const transferRateDisplay = `${transferRateFormatted} kbps`;
-      updateInfoMenuItem('transferRate', `Transfer Rate: ${transferRateDisplay}`);
-    } else {
-      updateInfoMenuItem('transferRate', `Transfer Rate: N/A`);
+    function trackTransfer(bytesTransferred) {
+      totalBytes += bytesTransferred;
+      const currentTime = performance.now();
+      if (totalTime === 0) {
+        totalTime = currentTime;
+      } else {
+        totalTime = currentTime - totalTime;
+      }
     }
-    totalBytes = 0;
-    totalTime = 0;
-  }, 1000); // Update every second
-}
 
-function simulateTransfer() {
-  // Simulating a transfer of 2 MB over 5 seconds
-  const bytesToTransfer = 2 * 1024 * 1024; // 2 MB
-  const transferInterval = 5000; // 5 seconds
-
-  const transferChunks = Math.ceil(bytesToTransfer / 100);
-  const chunkSize = Math.ceil(bytesToTransfer / transferChunks);
-
-  let transferredBytes = 0;
-  let chunkCount = 0;
-
-  const transferIntervalId = setInterval(() => {
-    const remainingBytes = bytesToTransfer - transferredBytes;
-    const chunkBytes = Math.min(chunkSize, remainingBytes);
-
-    trackTransfer(chunkBytes);
-
-    transferredBytes += chunkBytes;
-    chunkCount++;
-
-    if (chunkCount === transferChunks) {
-      clearInterval(transferIntervalId);
-      console.log('Transfer complete!');
+    function calculateTransferRate() {
+      setInterval(() => {
+        if (totalBytes > 0 && totalTime > 0) {
+          const transferRate = (totalBytes / totalTime) * 8 / 1000;
+          const transferRateFormatted = transferRate.toFixed(2);
+          const transferRateDisplay = `${transferRateFormatted} kbps`;
+          updateInfoMenuItem('transferRate', `Transfer Rate: ${transferRateDisplay}`);
+        } else {
+          updateInfoMenuItem('transferRate', `Transfer Rate: N/A`);
+        }
+        totalBytes = 0;
+        totalTime = 0;
+      }, 1000);
     }
-  }, transferInterval / transferChunks);
-}
 
-simulateTransfer();
+    function simulateTransfer() {
+      const bytesToTransfer = 2 * 1024 * 1024;
+      const transferInterval = 5000;
 
-function calculateLatency() {
-  const latency = performance.timing.responseStart - performance.timing.requestStart;
-  return `${latency} ms`;
-}
+      const transferChunks = Math.ceil(bytesToTransfer / 100);
+      const chunkSize = Math.ceil(bytesToTransfer / transferChunks);
 
-function calculateFPS() {
-  // Since this is an apps page, we can't measure FPS accurately
-  return 'N/A';
-}
+      let transferredBytes = 0;
+      let chunkCount = 0;
 
-function updateInfoMenuItem(itemId, content) {
-  const infoMenuItem = document.getElementById(itemId);
-  if (infoMenuItem) {
-    infoMenuItem.textContent = content;
-  }
-}
+      const transferIntervalId = setInterval(() => {
+        const remainingBytes = bytesToTransfer - transferredBytes;
+        const chunkBytes = Math.min(chunkSize, remainingBytes);
 
-let fps = 0;
-let frameCount = 0;
-let lastTime = performance.now();
+        trackTransfer(chunkBytes);
 
-function updateFPS() {
-  const currentTime = performance.now();
-  const deltaTime = currentTime - lastTime;
-  frameCount++;
+        transferredBytes += chunkBytes;
+        chunkCount++;
 
-  // Calculate FPS every second
-  if (deltaTime >= 1000) {
-    fps = Math.round((frameCount * 1000) / deltaTime);
-    frameCount = 0;
-    lastTime = currentTime;
-  }
+        if (chunkCount === transferChunks) {
+          clearInterval(transferIntervalId);
+          console.log('Transfer complete!');
+        }
+      }, transferInterval / transferChunks);
+    }
 
-  // Update FPS display
-  updateInfoMenuItem('fps', `FPS: ${fps}`);
+    simulateTransfer();
 
-  // Call the next frame
-  requestAnimationFrame(updateFPS);
-}
+    function calculateLatency() {
+      const latency = performance.timing.responseStart - performance.timing.requestStart;
+      return `${latency} ms`;
+    }
 
-// Start the FPS tracking
-updateFPS();
+    function calculateFPS() {
+      const frameTimes = [];
+      let lastTime = 0;
 
-function updateInfoMenuItem(itemId, content) {
-  const infoMenuItem = document.getElementById(itemId);
-  if (infoMenuItem) {
-    infoMenuItem.textContent = content;
-  }
-}
+      function tick() {
+        const currentTime = performance.now();
+        const deltaTime = currentTime - lastTime;
+        lastTime = currentTime;
+
+        frameTimes.push(deltaTime);
+
+        if (frameTimes.length > 60) {
+          frameTimes.shift();
+        }
+
+        const averageFrameTime = frameTimes.reduce((sum, time) => sum + time, 0) / frameTimes.length;
+        const fps = Math.round(1000 / averageFrameTime);
+
+        return fps || 'N/A';
+      }
+
+      setInterval(() => {
+        const fps = tick();
+        updateInfoMenuItem('fps', `FPS: ${fps}`);
+      }, 1000);
+    }
+
+    function updateInfoMenuItem(itemId, content) {
+      const infoMenuItem = document.getElementById(itemId);
+      if (infoMenuItem) {
+        infoMenuItem.textContent = content;
+      }
+    }
   </script>
 </head>
 
 <body>
   <div class="second-bar">
-      <a href="/" class="second-bar-link home-link"></a>
-      <a href="/games/" class="second-bar-link games-link"></a>
-      <a href="/apps/" class="second-bar-link apps-link"></a>
-      <a href="/settings/" class="second-bar-link settings-link"></a>
+    <a href="/" class="second-bar-link home-link"></a>
+    <a href="/games/" class="second-bar-link games-link"></a>
+    <a href="/apps/" class="second-bar-link apps-link"></a>
+    <a href="/settings/" class="second-bar-link settings-link"></a>
     <div class="info-menu" id="info-menu" style="margin-left: auto">
       <div class="info-menu-item" id="transferRate"></div>
       <div class="info-menu-item" id="latency"></div>
@@ -182,18 +236,30 @@ function updateInfoMenuItem(itemId, content) {
         <p class="battery-text"></p>
       </div>
     </div>
-  </div>  
+  </div>
 
-  <iframe id="apploader"></iframe>
+  <div id="loading-overlay">
+    <div class="loading-content">
+      <h1 class="loading-title">Sodium is loading your content!</h1>
+      <div id="wave-container">
+        <div class="wave"></div>
+      </div>
+      <p class="loading-message">Please wait...</p>
+    </div>
+  </div>
+
+  <div class="show-iframe">
+    <iframe id="apploader"></iframe>
+  </div>
 
   <footer>
     <img src="assets/img/z1g.png" alt="z1g Project" title="The z1g Project GitHub organization" height="30" width="30" onclick="location.href='/github/z1g-project/'" />
     <img src="assets/img/discord.jpg" alt="Discord" title="The z1g Project Discord" height="30" width="30" onclick="location.href='/discord/'" />
     <img src="assets/img/github.png" alt="GitHub" title="The official deployment repository for Sodium" height="30" width="30" onclick="location.href='/github/'" />
-    <img src="assets/img/credits.png" alt="Credits" title="License information" height="30" width="30" onclick="location.href='credits.html'" />   
+    <img src="assets/img/credits.png" alt="Credits" title="License information" height="30" width="30" onclick="location.href='credits.html'" />
     <div class="footer-text-container" style="margin-left: auto">
       <span>Sodium &copy; z1g Project 2023</span>
-    </div> 
-</footer>
+    </div>
+  </footer>
 </body>
 </html>
