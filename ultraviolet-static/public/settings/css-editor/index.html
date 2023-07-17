@@ -117,6 +117,54 @@
       applyCustomCSS();
     });
 
+    const importButton = document.getElementById('import-button');
+    importButton.addEventListener('click', function () {
+      importCSS();
+    });
+
+    const exportButton = document.getElementById('export-button');
+    exportButton.addEventListener('click', function () {
+      exportCSS();
+    });
+
+    function exportCSS() {
+      const cssEditor = monaco.editor.getModels()[0];
+      const cssContent = cssEditor.getValue();
+      const blob = new Blob([cssContent], { type: 'text/css' });
+      const url = URL.createObjectURL(blob);
+
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'custom.css';
+      a.style.display = 'none';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
+
+    
+    function importCSS() {
+      const fileInput = document.createElement('input');
+      fileInput.type = 'file';
+      fileInput.accept = 'text/css';
+
+      fileInput.addEventListener('change', function (event) {
+        const file = event.target.files[0];
+        const reader = new FileReader();
+
+        reader.onload = function (e) {
+          const importedCSS = e.target.result;
+          const cssEditor = monaco.editor.getModels()[0];
+          cssEditor.setValue(importedCSS);
+        };
+
+        reader.readAsText(file);
+      });
+
+      fileInput.click();
+    }
+
     require.config({ paths: { 'vs': '/settings/css-editor/monaco' } });
     require(['vs/editor/editor.main'], function () {
       const editor = monaco.editor.create(document.getElementById('css-editor'), {
