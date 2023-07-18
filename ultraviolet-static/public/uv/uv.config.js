@@ -3,7 +3,8 @@ self.__uv$config = {
   bare: [
     "https://uv.studentportal.lol/",
     "https://uv.radon.games/",
-    "https://uv.holyubofficial.net/"
+    "https://uv.holyubofficial.net/",
+    "https://tomp.app/"
   ],
   encodeUrl: Ultraviolet.codec.xor.encode,
   decodeUrl: Ultraviolet.codec.xor.decode,

@@ -137,6 +137,25 @@
       defaultStyleSheet.id = 'custom-css';
       document.head.appendChild(defaultStyleSheet);
     }
+
+    const use24HourTimeCheckbox = document.getElementById('use-24hour-checkbox');
+    const includeDateCheckbox = document.getElementById('include-date-checkbox');
+    const useSecondsCheckbox = document.getElementById('use-seconds-checkbox');
+
+    const use24HourTime = localStorage.getItem('use24HourTime');
+    if (use24HourTime !== null) {
+      use24HourTimeCheckbox.checked = use24HourTime === 'true';
+    }
+
+    const includeDate = localStorage.getItem('showDate');
+    if (includeDate !== null) {
+      includeDateCheckbox.checked = includeDate === 'true';
+    }
+
+    const useSeconds = localStorage.getItem('useSeconds');
+    if (useSeconds !== null) {
+      useSecondsCheckbox.checked = useSeconds === 'true';
+    }
   }
 
   function applyCSS(selectedCSS) {
@@ -180,7 +199,7 @@
     var selectedOption = proxySelect.options[proxySelect.selectedIndex].value;
   
     localStorage.setItem('proxyOption', selectedOption);
-    console.log('Defualt Proxy Saved:', selectedOption)
+    console.log('Default Proxy Saved:', selectedOption);
 
     handleToggleBeta();
 
@@ -198,7 +217,25 @@
     const fallbackUrl = fallbackUrlInput.value.trim();
     localStorage.setItem('fallbackUrl', fallbackUrl);
     console.log('Fallback URL saved:', fallbackUrl);
-    
+
+    const use24HourTimeCheckbox = document.getElementById('use-24hour-checkbox');
+    if (use24HourTimeCheckbox) {
+      localStorage.setItem('use24HourTime', use24HourTimeCheckbox.checked);
+      console.log('Use 24 Hour Time Saved:', use24HourTimeCheckbox.checked);
+    }
+
+    const includeDateCheckbox = document.getElementById('include-date-checkbox');
+    if (includeDateCheckbox) {
+      localStorage.setItem('showDate', includeDateCheckbox.checked);
+      console.log('Show Date Saved:', includeDateCheckbox.checked);
+    }
+
+    const useSecondsCheckbox = document.getElementById('use-seconds-checkbox');
+    if (useSecondsCheckbox) {
+      localStorage.setItem('useSeconds', useSecondsCheckbox.checked);
+      console.log('Use Seconds:', useSecondsCheckbox.checked);
+    }
+
     handleToggleAboutBlank();
 
     setTimeout(function () {

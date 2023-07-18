@@ -33,10 +33,10 @@ function updateBatteryText(percentage, isCharging) {
   }
 
   const chargingSymbol = isCharging ? ' ⚡' : '';
-  batteryTextElement.textContent = `${chargingSymbol} ${percentage}%`;
+  batteryTextElement.textContent = `${chargingSymbol}${percentage}%`;
 }
 
-function formatTime(time) {
+function formatTime(time, use24HourTime, useSeconds) {
   return time < 10 ? '0' + time : time;
 }
 
@@ -44,17 +44,23 @@ function updateTime() {
   const timeElement = document.getElementById('time');
   const currentTime = new Date();
   let hours = currentTime.getHours();
-  const minutes = formatTime(currentTime.getMinutes());
+  const minutes = formatTime(currentTime.getMinutes(), localStorage.getItem('use24HourTime') === 'true', localStorage.getItem('useSeconds') === 'true');
   let timeString = '';
 
-  if (hours > 12) {
+  if (hours > 12 && localStorage.getItem('use24HourTime') !== 'true') {
     hours -= 12;
     timeString = hours + ':' + minutes + ' PM';
   } else {
     if (hours === 0) {
       hours = 12;
     }
-    timeString = hours + ':' + minutes + ' AM';
+    timeString = hours + ':' + minutes + (localStorage.getItem('use24HourTime') === 'true' ? '' : ' AM');
+  }
+
+  if (localStorage.getItem('showDate') === 'true') {
+    const options = { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' };
+    const dateString = currentTime.toLocaleDateString(undefined, options);
+    timeString = dateString + ' ' + timeString;
   }
 
   timeElement.textContent = timeString;
@@ -67,7 +73,7 @@ function getBatteryInfo() {
       const isCharging = battery.charging;
 
       updateBatteryIcon(batteryPercentage, isCharging);
-      updateBatteryText(batteryPercentage);
+      updateBatteryText(batteryPercentage, isCharging);
     });
   } else if ('battery' in navigator) {
     const battery = navigator.battery || navigator.webkitBattery || navigator.mozBattery;
@@ -75,80 +81,42 @@ function getBatteryInfo() {
     const isCharging = battery.charging;
 
     updateBatteryIcon(batteryPercentage, isCharging);
-    updateBatteryText(batteryPercentage);
+    updateBatteryText(batteryPercentage, isCharging);
   }
 }
 
-  document.addEventListener('keydown', function (event) {
-    console.log('Keydown event:', event);
-    const pressedKey = event.key.toLowerCase();
-    const emergencyHotkey = localStorage.getItem('emergencyHotkey');
+window.addEventListener('DOMContentLoaded', function() {
+  const use24HourTimeCheckbox = document.getElementById('use-24hour-checkbox');
+  if (use24HourTimeCheckbox) {
+    use24HourTimeCheckbox.checked = localStorage.getItem('use24HourTime') === 'true';
+  }
 
-    if (pressedKey === emergencyHotkey) {
-      const emergencyURL = localStorage.getItem('emergencyURL');
+  const includeDateCheckbox = document.getElementById('include-date-checkbox');
+  if (includeDateCheckbox) {
+    includeDateCheckbox.checked = localStorage.getItem('showDate') === 'true';
+  }
 
-      if (emergencyURL) {
-        window.location.href = emergencyURL;
-      }
-    }
-  });
+  const useSecondsCheckbox = document.getElementById('use-seconds-checkbox');
+  if (useSecondsCheckbox) {
+    useSecondsCheckbox.checked = localStorage.getItem('useSeconds') === 'true';
+  }
+});
 
-    const customCSS = localStorage.getItem('websiteCSS');
-    if (customCSS) {
-      const styleSheet = document.createElement('style');
-      styleSheet.id = 'custom-css';
-      styleSheet.textContent = customCSS;
-      document.head.appendChild(styleSheet);
-    } else {
-      const defaultStyleSheet = document.createElement('link');
-      defaultStyleSheet.rel = 'stylesheet';
-      defaultStyleSheet.href = 'ui.css';
-      defaultStyleSheet.id = 'custom-css';
-      document.head.appendChild(defaultStyleSheet);
-    }
+window.addEventListener('change', function(event) {
+  const target = event.target;
 
-    if (window.location.pathname === '/' || window.location.pathname === '/index.html') {
-      const openNewWindow = localStorage.getItem('openNewWindow');
-    
-      if (openNewWindow === 'true') {
-        const newWindow = window.open('about:blank', '_blank', 'width=800,height=600');
-        const newDocument = newWindow.document.open();
-        newDocument.write(`
-          <!DOCTYPE html>
-          <html>
-            <head>
-              <style type="text/css">
-                body, html
-                {
-                  margin: 0; padding: 0; height: 100%; overflow: hidden;
-                }
-             </style>
-            </head>
-            <body>
-              <iframe style="border: none; width: 100%; height: 100vh;" src="/newtab.html"></iframe>
-            </body>
-          </html>
-        `);
-        newDocument.close();
-        const fallbackUrl = localStorage.getItem('fallbackUrl');
-    
-        if (fallbackUrl) {
-          window.location.href = fallbackUrl;
-        }
-      } else {
-        
-      }
-    }
-    
-    const betaMode = localStorage.getItem('betaMode');
+  if (target.id === 'use-24hour-checkbox') {
+    localStorage.setItem('use24HourTime', target.checked);
+  }
 
-    if (betaMode === 'true') {
-      if (window.location.pathname === '/' || window.location.pathname === '/index.html') {
-        window.location.href = '/beta.html';
-      }
-    } else {
-      
-    }
+  if (target.id === 'include-date-checkbox') {
+    localStorage.setItem('showDate', target.checked);
+  }
+
+  if (target.id === 'use-seconds-checkbox') {
+    localStorage.setItem('useSeconds', target.checked);
+  }
+});
 
 getBatteryInfo();
 

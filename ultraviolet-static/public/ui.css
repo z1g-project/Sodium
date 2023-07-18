@@ -367,9 +367,9 @@ textarea {
 
 .battery-text {
   position: absolute;
-  top: 6.5px;
-  right: 0;
-  transform: translate(-100%, -50%);
+  top: 10.5px;
+  right: -19.5px;
+  transform: translate(-100%, -75%);
   font-size: 13px;
   color: white;
 }
