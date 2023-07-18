@@ -139,21 +139,20 @@
     }
 
     const use24HourTimeCheckbox = document.getElementById('use-24hour-checkbox');
-    const includeDateCheckbox = document.getElementById('include-date-checkbox');
-    const useSecondsCheckbox = document.getElementById('use-seconds-checkbox');
-
-    const use24HourTime = localStorage.getItem('use24HourTime');
-    if (use24HourTime !== null) {
+    if (use24HourTimeCheckbox) {
+      const use24HourTime = localStorage.getItem('use24HourTime');
       use24HourTimeCheckbox.checked = use24HourTime === 'true';
     }
 
-    const includeDate = localStorage.getItem('showDate');
-    if (includeDate !== null) {
+    const includeDateCheckbox = document.getElementById('include-date-checkbox');
+    if (includeDateCheckbox) {
+      const includeDate = localStorage.getItem('showDate');
       includeDateCheckbox.checked = includeDate === 'true';
     }
 
-    const useSeconds = localStorage.getItem('useSeconds');
-    if (useSeconds !== null) {
+    const useSecondsCheckbox = document.getElementById('use-seconds-checkbox');
+    if (useSecondsCheckbox) {
+      const useSeconds = localStorage.getItem('useSeconds');
       useSecondsCheckbox.checked = useSeconds === 'true';
     }
   }
@@ -166,6 +165,13 @@
       if (styleSheet.getAttribute('id') === 'custom-css') {
         styleSheet.href = selectedCSS;
       }
+    }
+
+    const saveButton = document.getElementById('save-button');
+    if (saveButton) {
+      saveButton.addEventListener('click', function () {
+        saveSettings();
+      });
     }
   }
 
@@ -220,20 +226,20 @@
 
     const use24HourTimeCheckbox = document.getElementById('use-24hour-checkbox');
     if (use24HourTimeCheckbox) {
-      localStorage.setItem('use24HourTime', use24HourTimeCheckbox.checked);
+      localStorage.setItem('use24HourTime', use24HourTimeCheckbox.checked.toString());
       console.log('Use 24 Hour Time Saved:', use24HourTimeCheckbox.checked);
     }
-
+  
     const includeDateCheckbox = document.getElementById('include-date-checkbox');
     if (includeDateCheckbox) {
-      localStorage.setItem('showDate', includeDateCheckbox.checked);
+      localStorage.setItem('showDate', includeDateCheckbox.checked.toString());
       console.log('Show Date Saved:', includeDateCheckbox.checked);
     }
-
+  
     const useSecondsCheckbox = document.getElementById('use-seconds-checkbox');
     if (useSecondsCheckbox) {
       localStorage.setItem('useSeconds', useSecondsCheckbox.checked);
-      console.log('Use Seconds:', useSecondsCheckbox.checked);
+      console.log('Include Seconds in TimeBar:', useSecondsCheckbox.checked);
     }
 
     handleToggleAboutBlank();

@@ -37,24 +37,47 @@ function updateBatteryText(percentage, isCharging) {
 }
 
 function formatTime(time, use24HourTime, useSeconds) {
-  return time < 10 ? '0' + time : time;
+  if (use24HourTime) {
+    return time < 10 ? '0' + time : time;
+  } else {
+    const isPM = time >= 12;
+    time = time % 12 || 12;
+    let formattedTime = time < 10 ? '0' + time : time;
+    if (isPM) {
+      formattedTime += ' PM';
+    } else {
+      formattedTime += ' AM';
+    }
+    if (useSeconds) {
+      formattedTime += ':' + formatTimeSeconds(new Date().getSeconds());
+    }
+    return formattedTime;
+  }
+}
+
+function formatTimeSeconds(seconds) {
+  return seconds < 10 ? '0' + seconds : seconds;
 }
 
 function updateTime() {
   const timeElement = document.getElementById('time');
   const currentTime = new Date();
   let hours = currentTime.getHours();
-  const minutes = formatTime(currentTime.getMinutes(), localStorage.getItem('use24HourTime') === 'true', localStorage.getItem('useSeconds') === 'true');
+  const minutes = formatTime(currentTime.getMinutes(), true, localStorage.getItem('useSeconds') === 'true');
+  let seconds = '';
+
+  if (localStorage.getItem('useSeconds') === 'true') {
+    seconds = ':' + formatTime(currentTime.getSeconds(), true, false);
+  }
+
   let timeString = '';
 
-  if (hours > 12 && localStorage.getItem('use24HourTime') !== 'true') {
-    hours -= 12;
-    timeString = hours + ':' + minutes + ' PM';
+  if (localStorage.getItem('use24HourTime') === 'true') {
+    timeString = formatTime(hours, localStorage.getItem('use24HourTime') === 'true', false) + ':' + minutes + seconds;
   } else {
-    if (hours === 0) {
-      hours = 12;
-    }
-    timeString = hours + ':' + minutes + (localStorage.getItem('use24HourTime') === 'true' ? '' : ' AM');
+    const isPM = hours >= 12;
+    hours = hours % 12 || 12;
+    timeString = hours + ':' + minutes + seconds + (isPM ? ' PM' : ' AM');
   }
 
   if (localStorage.getItem('showDate') === 'true') {
@@ -85,13 +108,13 @@ function getBatteryInfo() {
   }
 }
 
-window.addEventListener('DOMContentLoaded', function() {
-  const use24HourTimeCheckbox = document.getElementById('use-24hour-checkbox');
+window.addEventListener('DOMContentLoaded', function () {
+  const use24HourTimeCheckbox = document.getElementById('checkbox-24h');
   if (use24HourTimeCheckbox) {
     use24HourTimeCheckbox.checked = localStorage.getItem('use24HourTime') === 'true';
   }
 
-  const includeDateCheckbox = document.getElementById('include-date-checkbox');
+  const includeDateCheckbox = document.getElementById('checkbox-show-date');
   if (includeDateCheckbox) {
     includeDateCheckbox.checked = localStorage.getItem('showDate') === 'true';
   }
@@ -100,22 +123,18 @@ window.addEventListener('DOMContentLoaded', function() {
   if (useSecondsCheckbox) {
     useSecondsCheckbox.checked = localStorage.getItem('useSeconds') === 'true';
   }
-});
 
-window.addEventListener('change', function(event) {
-  const target = event.target;
+  use24HourTimeCheckbox.addEventListener('change', function (event) {
+    localStorage.setItem('use24HourTime', event.target.checked);
+  });
 
-  if (target.id === 'use-24hour-checkbox') {
-    localStorage.setItem('use24HourTime', target.checked);
-  }
+  includeDateCheckbox.addEventListener('change', function (event) {
+    localStorage.setItem('showDate', event.target.checked);
+  });
 
-  if (target.id === 'include-date-checkbox') {
-    localStorage.setItem('showDate', target.checked);
-  }
-
-  if (target.id === 'use-seconds-checkbox') {
-    localStorage.setItem('useSeconds', target.checked);
-  }
+  useSecondsCheckbox.addEventListener('change', function (event) {
+    localStorage.setItem('useSeconds', event.target.checked);
+  });
 });
 
 getBatteryInfo();
