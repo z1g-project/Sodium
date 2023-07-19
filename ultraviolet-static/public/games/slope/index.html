@@ -98,122 +98,124 @@
     }
   </style>
   <script>
-    window.addEventListener('DOMContentLoaded', () => {
-      const iframe = document.getElementById('apploader');
-      const loadingOverlay = document.getElementById('loading-overlay');
+    function encodeURL(url) {
+  return Ultraviolet.codec.xor.encode(url);
+}
 
-      if (iframe) {
-        const encodedURL = Ultraviolet.codec.xor.encode('https://science246.github.io/SlopeHD/');
-        iframe.src = `${window.location.origin}/uv/service/${encodedURL}`;
-        iframe.onload = () => {
-          loadingOverlay.style.display = 'none';
-          iframe.parentElement.classList.add('show-iframe');
-        };
-      }
+window.addEventListener('DOMContentLoaded', () => {
+  const iframe = document.getElementById('apploader');
+  const loadingOverlay = document.getElementById('loading-overlay');
+  const infoMenu = document.getElementById('info-menu');
+  const transferRateItem = document.getElementById('transferRate');
+  const latencyItem = document.getElementById('latency');
+  const fpsItem = document.getElementById('fps');
 
-      const transferRate = calculateTransferRate();
-      const latency = calculateLatency();
-      const fps = calculateFPS();
+  function calculateTransferRate(url, callback) {
+    if (totalBytes > 0 && totalTime > 0) {
+      const transferRate = (totalBytes / totalTime) * 8 / 1000;
+      const transferRateFormatted = transferRate.toFixed(2);
+      callback(`${transferRateFormatted} kbps`);
+    } else {
+      callback('N/A');
+    }
+  }
 
-      updateInfoMenuItem('transferRate', `Transfer Rate: ${transferRate}`);
-      updateInfoMenuItem('latency', `Latency: ${latency}`);
-      updateInfoMenuItem('fps', `FPS: ${fps}`);
-    });
+  fpsItem.style.display = 'none';
 
-    let totalBytes = 0;
-    let totalTime = 0;
+  if (iframe) {
+    const encodedURL = encodeURL('https://science246.github.io/SlopeHD/');
+    iframe.src = `${window.location.origin}/uv/service/${encodedURL}`;
+    iframe.onload = () => {
+      loadingOverlay.style.display = 'none';
+      iframe.parentElement.classList.add('show-iframe');
+    };
+  }
 
-    function trackTransfer(bytesTransferred) {
-      totalBytes += bytesTransferred;
+  function calculateLatency(url, callback) {
+    const timing = performance.timing;
+    const latency = timing.responseStart - timing.requestStart;
+    callback(`${latency} ms`);
+  }
+
+  function calculateFPS() {
+    let fps = 0;
+    let frameCount = 0;
+    let lastTime = performance.now();
+
+    function updateFPS() {
       const currentTime = performance.now();
-      if (totalTime === 0) {
-        totalTime = currentTime;
-      } else {
-        totalTime = currentTime - totalTime;
-      }
-    }
+      const deltaTime = currentTime - lastTime;
+      frameCount++;
 
-    function calculateTransferRate() {
-      setInterval(() => {
-        if (totalBytes > 0 && totalTime > 0) {
-          const transferRate = (totalBytes / totalTime) * 8 / 1000;
-          const transferRateFormatted = transferRate.toFixed(2);
-          const transferRateDisplay = `${transferRateFormatted} kbps`;
-          updateInfoMenuItem('transferRate', `Transfer Rate: ${transferRateDisplay}`);
-        } else {
-          updateInfoMenuItem('transferRate', `Transfer Rate: N/A`);
-        }
-        totalBytes = 0;
-        totalTime = 0;
-      }, 1000);
-    }
-
-    function simulateTransfer() {
-      const bytesToTransfer = 2 * 1024 * 1024;
-      const transferInterval = 5000;
-
-      const transferChunks = Math.ceil(bytesToTransfer / 100);
-      const chunkSize = Math.ceil(bytesToTransfer / transferChunks);
-
-      let transferredBytes = 0;
-      let chunkCount = 0;
-
-      const transferIntervalId = setInterval(() => {
-        const remainingBytes = bytesToTransfer - transferredBytes;
-        const chunkBytes = Math.min(chunkSize, remainingBytes);
-
-        trackTransfer(chunkBytes);
-
-        transferredBytes += chunkBytes;
-        chunkCount++;
-
-        if (chunkCount === transferChunks) {
-          clearInterval(transferIntervalId);
-          console.log('Transfer complete!');
-        }
-      }, transferInterval / transferChunks);
-    }
-
-    simulateTransfer();
-
-    function calculateLatency() {
-      const latency = performance.timing.responseStart - performance.timing.requestStart;
-      return `${latency} ms`;
-    }
-
-    function calculateFPS() {
-      const frameTimes = [];
-      let lastTime = 0;
-
-      function tick() {
-        const currentTime = performance.now();
-        const deltaTime = currentTime - lastTime;
+      if (deltaTime >= 1000) {
+        fps = Math.round((frameCount * 1000) / deltaTime);
+        frameCount = 0;
         lastTime = currentTime;
-
-        frameTimes.push(deltaTime);
-
-        if (frameTimes.length > 60) {
-          frameTimes.shift();
-        }
-
-        const averageFrameTime = frameTimes.reduce((sum, time) => sum + time, 0) / frameTimes.length;
-        const fps = Math.round(1000 / averageFrameTime);
-
-        return fps || 'N/A';
       }
 
-      setInterval(() => {
-        const fps = tick();
-        updateInfoMenuItem('fps', `FPS: ${fps}`);
-      }, 1000);
+      fpsItem.textContent = `FPS: ${fps}`;
+      requestAnimationFrame(updateFPS);
     }
 
-    function updateInfoMenuItem(itemId, content) {
-      const infoMenuItem = document.getElementById(itemId);
-      if (infoMenuItem) {
-        infoMenuItem.textContent = content;
-      }
+    updateFPS();
+  }
+
+  calculateFPS();
+
+  let totalBytes = 0;
+  let totalTime = 0;
+
+  function trackTransfer(bytesTransferred) {
+    totalBytes += bytesTransferred;
+    const currentTime = performance.now();
+    if (totalTime === 0) {
+      totalTime = currentTime;
+    } else {
+      totalTime = currentTime - totalTime;
     }
+  }
+
+  function simulateTransfer() {
+    const bytesToTransfer = 2 * 1024 * 1024;
+    const transferInterval = 5000;
+
+    const transferChunks = Math.ceil(bytesToTransfer / 100);
+    const chunkSize = Math.ceil(bytesToTransfer / transferChunks);
+
+    let transferredBytes = 0;
+    let chunkCount = 0;
+
+    const transferIntervalId = setInterval(() => {
+      const remainingBytes = bytesToTransfer - transferredBytes;
+      const chunkBytes = Math.min(chunkSize, remainingBytes);
+
+      trackTransfer(chunkBytes);
+
+      transferredBytes += chunkBytes;
+      chunkCount++;
+
+      if (chunkCount === transferChunks) {
+        clearInterval(transferIntervalId);
+        console.log('Transfer complete!');
+      }
+    }, transferInterval / transferChunks);
+  }
+
+  simulateTransfer();
+
+  iframe.addEventListener('load', () => {
+    infoMenu.style.display = 'block';
+    calculateTransferRate(iframe.src, transferRate => {
+      transferRateItem.textContent = `Transfer Rate: ${transferRate}`;
+    });
+    calculateLatency(iframe.src, latency => {
+      latencyItem.textContent = `Latency: ${latency}`;
+    });
+    const fps = calculateFPS();
+    fpsItem.textContent = `FPS: ${fps}`;
+    fpsItem.style.display = 'block';
+  });
+});
   </script>
 </head>
 

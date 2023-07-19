@@ -46,10 +46,9 @@
     iframe.src = `/games/eagler/versionselect.html`;
   }
 
-  // Update the info values
-  const transferRate = calculateTransferRate(); // Example: Calculate the transfer rate
-  const latency = calculateLatency(); // Example: Calculate the latency
-  const fps = calculateFPS(); // Example: Calculate the FPS
+  const transferRate = calculateTransferRate(); 
+  const latency = calculateLatency(); 
+  const fps = calculateFPS(); 
 
   updateInfoMenuItem('transferRate', `Transfer Rate: ${transferRate}`);
   updateInfoMenuItem('latency', `Latency: ${latency}`);
@@ -72,7 +71,7 @@ function trackTransfer(bytesTransferred) {
 function calculateTransferRate() {
   setInterval(() => {
     if (totalBytes > 0 && totalTime > 0) {
-      const transferRate = (totalBytes / totalTime) * 8 / 1000; // Kilobits per second
+      const transferRate = (totalBytes / totalTime) * 8 / 1000;
       const transferRateFormatted = transferRate.toFixed(2);
       const transferRateDisplay = `${transferRateFormatted} kbps`;
       updateInfoMenuItem('transferRate', `Transfer Rate: ${transferRateDisplay}`);
@@ -81,13 +80,12 @@ function calculateTransferRate() {
     }
     totalBytes = 0;
     totalTime = 0;
-  }, 1000); // Update every second
+  }, 1000); 
 }
 
 function simulateTransfer() {
-  // Simulating a transfer of 2 MB over 5 seconds
-  const bytesToTransfer = 2 * 1024 * 1024; // 2 MB
-  const transferInterval = 5000; // 5 seconds
+  const bytesToTransfer = 2 * 1024 * 1024; 
+  const transferInterval = 5000; 
 
   const transferChunks = Math.ceil(bytesToTransfer / 100);
   const chunkSize = Math.ceil(bytesToTransfer / transferChunks);
@@ -119,7 +117,6 @@ function calculateLatency() {
 }
 
 function calculateFPS() {
-  // Since this is an apps page, we can't measure FPS accurately
   return 'N/A';
 }
 
@@ -139,21 +136,17 @@ function updateFPS() {
   const deltaTime = currentTime - lastTime;
   frameCount++;
 
-  // Calculate FPS every second
   if (deltaTime >= 1000) {
     fps = Math.round((frameCount * 1000) / deltaTime);
     frameCount = 0;
     lastTime = currentTime;
   }
 
-  // Update FPS display
   updateInfoMenuItem('fps', `FPS: ${fps}`);
 
-  // Call the next frame
   requestAnimationFrame(updateFPS);
 }
 
-// Start the FPS tracking
 updateFPS();
 
 function updateInfoMenuItem(itemId, content) {
