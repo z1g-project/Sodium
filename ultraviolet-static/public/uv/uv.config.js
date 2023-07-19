@@ -4,7 +4,8 @@ self.__uv$config = {
     "https://uv.studentportal.lol/",
     "https://uv.radon.games/",
     "https://uv.holyubofficial.net/",
-    "https://tomp.app/"
+    "https://tomp.app/",
+    "https://uvbare.onlycs.net/"
   ],
   encodeUrl: Ultraviolet.codec.xor.encode,
   decodeUrl: Ultraviolet.codec.xor.decode,

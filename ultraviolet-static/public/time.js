@@ -112,30 +112,104 @@ window.addEventListener('DOMContentLoaded', function () {
   const use24HourTimeCheckbox = document.getElementById('checkbox-24h');
   if (use24HourTimeCheckbox) {
     use24HourTimeCheckbox.checked = localStorage.getItem('use24HourTime') === 'true';
+
+    use24HourTimeCheckbox.addEventListener('change', function (event) {
+      localStorage.setItem('use24HourTime', event.target.checked);
+    });
   }
 
   const includeDateCheckbox = document.getElementById('checkbox-show-date');
   if (includeDateCheckbox) {
     includeDateCheckbox.checked = localStorage.getItem('showDate') === 'true';
+
+    includeDateCheckbox.addEventListener('change', function (event) {
+      localStorage.setItem('showDate', event.target.checked);
+    });
   }
 
   const useSecondsCheckbox = document.getElementById('use-seconds-checkbox');
   if (useSecondsCheckbox) {
     useSecondsCheckbox.checked = localStorage.getItem('useSeconds') === 'true';
+
+    useSecondsCheckbox.addEventListener('change', function (event) {
+      localStorage.setItem('useSeconds', event.target.checked);
+    });
   }
-
-  use24HourTimeCheckbox.addEventListener('change', function (event) {
-    localStorage.setItem('use24HourTime', event.target.checked);
-  });
-
-  includeDateCheckbox.addEventListener('change', function (event) {
-    localStorage.setItem('showDate', event.target.checked);
-  });
-
-  useSecondsCheckbox.addEventListener('change', function (event) {
-    localStorage.setItem('useSeconds', event.target.checked);
-  });
 });
+
+const customCSS = localStorage.getItem('websiteCSS');
+    if (customCSS) {
+      const styleSheet = document.createElement('style');
+      styleSheet.id = 'custom-css';
+      styleSheet.textContent = customCSS;
+      document.head.appendChild(styleSheet);
+    } else {
+      const defaultStyleSheet = document.createElement('link');
+      defaultStyleSheet.rel = 'stylesheet';
+      defaultStyleSheet.href = 'ui.css';
+      defaultStyleSheet.id = 'custom-css';
+      document.head.appendChild(defaultStyleSheet);
+    }
+
+    if (window.location.pathname === '/' || window.location.pathname === '/index.html') {
+      const openNewWindow = localStorage.getItem('openNewWindow');
+    
+      if (openNewWindow === 'true') {
+        const newWindow = window.open('about:blank', '_blank', 'width=800,height=600');
+        const newDocument = newWindow.document.open();
+        newDocument.write(`
+          <!DOCTYPE html>
+          <html>
+            <head>
+              <style type="text/css">
+                body, html
+                {
+                  margin: 0; padding: 0; height: 100%; overflow: hidden;
+                }
+             </style>
+            </head>
+            <body>
+              <iframe style="border: none; width: 100%; height: 100vh;" src="/newtab.html"></iframe>
+            </body>
+          </html>
+        `);
+        newDocument.close();
+        const fallbackUrl = localStorage.getItem('fallbackUrl');
+    
+        if (fallbackUrl) {
+          window.location.href = fallbackUrl;
+        }
+      } else {
+        
+      }
+    }
+    
+    const betaMode = localStorage.getItem('betaMode');
+
+    if (betaMode === 'true') {
+      if (window.location.pathname === '/' || window.location.pathname === '/index.html') {
+        window.location.href = '/beta.html';
+      }
+    } else {
+      
+    }
+
+    document.addEventListener('keydown', function (event) {
+      console.log('Keydown event:', event);
+      const target = event.target;
+      if (target && target.nodeName === 'INPUT' && target.getAttribute('id') === 'uv-address') {
+        const pressedKey = event.key.toLowerCase();
+        const emergencyHotkey = localStorage.getItem('emergencyHotkey');
+      
+        if (pressedKey === emergencyHotkey) {
+          const emergencyURL = localStorage.getItem('emergencyURL');
+      
+          if (emergencyURL) {
+            window.location.href = emergencyURL;
+          }
+        }
+      }
+    }); 
 
 getBatteryInfo();
 

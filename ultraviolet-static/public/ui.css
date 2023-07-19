@@ -155,10 +155,10 @@ h1 {
   color: white;
   width: 400px;
   height: 45px;
-  font-size: 35px;
-  padding: 0 17px;
+  font-size: 25px;
+  padding: 0 12px;
   border: none;
-  border-radius: 12px;
+  border-radius: 7px;
 }
 
 iframe#apploader {
@@ -318,34 +318,6 @@ textarea {
   100% {
     opacity: 0;
   }
-}
-
-.side-rail-ads {
-  position: fixed;
-  top: 64px;
-  width: 100px;
-  height: calc(100% - 64px - 40px);
-  background-color: #333;
-  border-radius: 8px;
-  z-index: 10;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: transform 0.3s ease;
-  cursor: pointer;
-  opacity: 1;
-  transform: scale(1);
-  transition: transform 0.3s ease, opacity 0.5s ease-in-out;
-}
-
-.side-rail-ads-container:hover {
-  transform: scale(1.1);
-}
-
-.side-rail-ads-container img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 8px;
 }
 
 .battery-icon {

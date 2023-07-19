@@ -31,7 +31,7 @@ window.addEventListener('DOMContentLoaded', () => {
     fpsItem.style.display = 'block';
   });
 
-  function calculateLatency(callback) {
+  function calculateLatency(url, callback) {
     const timing = performance.timing;
     const latency = timing.responseStart - timing.requestStart;
     callback(`${latency} ms`);
@@ -108,7 +108,7 @@ window.addEventListener('DOMContentLoaded', () => {
     calculateTransferRate(iframe.src, transferRate => {
       transferRateItem.textContent = `Transfer Rate: ${transferRate}`;
     });
-    calculateLatency(latency => {
+    calculateLatency(iframe.src, latency => {
       latencyItem.textContent = `Latency: ${latency}`;
     });
     const fps = calculateFPS();
