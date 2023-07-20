@@ -139,13 +139,26 @@
     
     <br>
     <br>
-    <h2>Extra's</h2>
 
-    <button onclick="openCSSEditor()">Open CSS Editor</button>
-    <button onclick="openCompactChecker()">Open Compatibility Checker</button>
-    <button onclick="window.location.href='/archives/'">Open Sodium Archives</button>
-    <br>
-    <br>
+    <h2>Cache Options</h2>
+    <div>
+      <button onclick="clearCache()">Clear Local Storage Cache</button>
+      <input type="file" id="importFile" style="display: none;" accept=".json">
+      <button onclick="openImportFile()">Import Cache</button>
+      <button onclick="exportCache()">Export Cache</button>
+      <br>
+      <br>
+    </div>
+
+    <h2>Extra's</h2>
+    <div>
+      <button onclick="openCSSEditor()">Open CSS Editor</button>
+      <button onclick="openCompactChecker()">Open Compatibility Checker</button>
+      <button onclick="window.location.href='/archives/'">Open Sodium Archives</button>
+      <br>
+      <br>
+    </div>
+
     <br>
     <br>
   </div>
@@ -159,6 +172,53 @@
       <span>Sodium &copy; z1g Project 2023</span>
     </div> 
   </footer>
+  <script>
+    function clearCache() {
+      localStorage.clear();
+      alert('Local Storage cache has been cleared.');
+      location.reload();
+    }
+  
+    function openImportFile() {
+      const fileInput = document.getElementById('importFile');
+      fileInput.addEventListener('change', handleImportFile, false);
+      fileInput.click();
+    }
+  
+    function handleImportFile(event) {
+      const file = event.target.files[0];
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        try {
+          const importedData = JSON.parse(e.target.result);
+          Object.keys(importedData).forEach((key) => {
+            localStorage.setItem(key, importedData[key]);
+          });
+          alert('Cache data imported successfully.');
+          location.reload();
+        } catch (error) {
+          alert('Error importing cache data. Please check the file format.');
+        }
+      };
+      reader.readAsText(file);
+    }
+  
+    function exportCache() {
+      const cacheData = {};
+      Object.keys(localStorage).forEach((key) => {
+        cacheData[key] = localStorage.getItem(key);
+      });
+      const exportedData = JSON.stringify(cacheData);
+  
+      const blob = new Blob([exportedData], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = 'cache_data.json';
+      link.click();
+      URL.revokeObjectURL(url);
+    }
+  </script>
   <script>
     function openCSSEditor() {
       window.location.href = "/settings/css-editor/";
