@@ -4,102 +4,108 @@
   <title>Sodium Tabs</title>
   <link rel="stylesheet" href="montserrat.css"/>
   <link rel="manifest" href="manifest.webmanifest"/>
+  <link id="favicon" rel="icon" type="image/png" href="favicon.ico">
   <script src="time.js" defer></script>
   <script src="settings.js" defer></script>
   <script src="fade.js" defer></script>
   <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Montserrat', sans-serif;
-    }
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Montserrat', sans-serif;
+}
 
-    .tabs-container {
-      display: flex;
-      flex-direction: column;
-      height: 100vh;
-      padding-top: 0px;
-    }
+.tabs-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  padding-top: 40px;
+}
 
-    .tab-controls {
-      display: flex;
-      align-items: center;
-      background-color: #333;
-      color: #fff;
-      padding: 5px;
-      margin-bottom: 0px;
-    }
+.tab-controls {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: #333;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 10px;
+}
 
-    .current-date {
-      font-weight: bold;
-      margin-right: 10px;
-    }
+.current-date {
+  font-weight: bold;
+  margin-right: 10px;
+}
 
-    .tab-bar {
-      display: flex;
-      background-color: #333;
-      color: #fff;
-      font-family: 'Montserrat', sans-serif;
-      overflow-x: auto;
-      overflow-y: hidden;
-      white-space: nowrap;
-      padding: 3px;
-    }
+.tab-bar {
+  display: flex;
+  background-color: #333;
+  color: #fff;
+  font-family: 'Montserrat', sans-serif;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+  padding: 3px;
+}
 
-    .tab {
-      position: relative;
-      padding: 10px 15px;
-      cursor: pointer;
-      margin-right: 5px;
-    }
+.tab {
+  position: relative;
+  padding: 10px 15px;
+  cursor: pointer;
+  margin-right: 5px;
+}
 
-    .tab.active {
-      background-color: #555;
-    }
+.tab.active {
+  background-color: #555;
+}
 
-    .tab-content-container {
-      flex: 1;
-      overflow: hidden;
-    }
+.tab-content-container {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+}
 
-    .tab-content {
-      display: none;
-      padding: 10px;
-      background-color: #333;
-      color: #fff;
-      font-family: 'Montserrat', sans-serif;
-      height: calc(100vh - 110px);
-      overflow-y: auto;
-    }
+.tab-content {
+  display: none;
+  padding: 10px;
+  background-color: #333;
+  color: #fff;
+  font-family: 'Montserrat', sans-serif;
+  height: calc(100vh - 96px);
+  overflow-y: auto;
+}
 
-    .tab-content.active {
-      display: block;
-    }
+.tab-content.active {
+  display: block;
+}
 
-    .close-tab {
-      position: absolute;
-      top: 5px;
-      right: 5px;
-      width: 20px;
-      height: 20px;
-      line-height: 20px;
-      text-align: center;
-      cursor: pointer;
-      background-color: #ccc;
-      color: #333;
-      font-weight: bold;
-      border-radius: 50%;
-    }
+.close-tab {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+  text-align: center;
+  cursor: pointer;
+  background-color: #ccc;
+  color: #333;
+  font-weight: bold;
+  border-radius: 50%;
+}
 
-    .close-tab:hover {
-      background-color: #f00;
-      color: #fff;
-    }
+.close-tab:hover {
+  background-color: #f00;
+  color: #fff;
+}
 
-    .new-tab {
-      padding: 5px 10px;
-      cursor: pointer;
-    }
+.new-tab {
+  padding: 5px 10px;
+  cursor: pointer;
+}
   </style>
 </head>
 <body>
