@@ -1,4 +1,4 @@
-# Sodium v1.0 RTM - Stable Release (Build: 96)
+# Sodium v1.0 RTM - Stable Release (Build: 98)
 
 Whats New?
 
