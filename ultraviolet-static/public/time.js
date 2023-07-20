@@ -197,19 +197,20 @@ const customCSS = localStorage.getItem('websiteCSS');
     document.addEventListener('keydown', function (event) {
       console.log('Keydown event:', event);
       const target = event.target;
-      if (target && target.nodeName === 'INPUT' && target.getAttribute('id') === 'uv-address') {
+      const customCSS = localStorage.getItem('emergencyHotkey');
+      if (customCSS && (!target || (target.nodeName !== 'INPUT' || target.getAttribute('id') !== 'uv-address'))) {
         const pressedKey = event.key.toLowerCase();
         const emergencyHotkey = localStorage.getItem('emergencyHotkey');
-      
+  
         if (pressedKey === emergencyHotkey) {
           const emergencyURL = localStorage.getItem('emergencyURL');
-      
+  
           if (emergencyURL) {
             window.location.href = emergencyURL;
           }
         }
       }
-    }); 
+    });
 
 getBatteryInfo();
 
