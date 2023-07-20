@@ -123,7 +123,7 @@ window.addEventListener('DOMContentLoaded', () => {
   fpsItem.style.display = 'none';
 
   if (iframe) {
-    const encodedURL = encodeURL('https://metallic.gq/files/mario/index.html');
+    const encodedURL = encodeURL('https://raw.githack.com/3kh0/3kh0-assets/main/mario/index.html');
     iframe.src = `${window.location.origin}/uv/service/${encodedURL}`;
     iframe.onload = () => {
       loadingOverlay.style.display = 'none';
