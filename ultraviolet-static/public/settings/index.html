@@ -219,6 +219,40 @@
       URL.revokeObjectURL(url);
     }
   </script>
+<script>
+function immortalize(arg) {
+    if (arg === 'sodium') {
+      localStorage.setItem('websiteCSS', 'immortal.css');
+
+      console.log('Immortal Requested');
+      console.log('Initializing 3MB Tailwind Package...');
+
+      const tailwindCSSLink = document.createElement('link');
+      tailwindCSSLink.rel = 'stylesheet';
+      tailwindCSSLink.href = 'https://cdn.tailwindcss.com/';
+      document.head.appendChild(tailwindCSSLink);
+
+      setTimeout(() => {
+        console.log('Done!');
+        window.reload();
+      }, 2000);
+    }
+  }
+
+  window.addEventListener('DOMContentLoaded', () => {
+    const command = 'immortalize("sodium")';
+    const consoleStyle = 'background: #333; color: #fff; padding: 5px; font-weight: bold;';
+    //console.log('%c Enter ' + command + ' to access the Easter Egg!', consoleStyle);
+    window.addEventListener('keydown', (event) => {
+      if (event.key === 'F12') {
+        const inputCommand = prompt('Please enter the Easter Egg command:');
+        if (inputCommand === command) {
+          immortalize('sodium');
+        }
+      }
+    });
+  });
+</script>
   <script>
     function openCSSEditor() {
       window.location.href = "/settings/css-editor/";
