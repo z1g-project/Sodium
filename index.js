@@ -9,14 +9,10 @@ import { hostname } from "node:os";
 const bare = createBareServer("/bare/");
 const app = express();
 
-// Load the publicPath first and prioritize it over UV.
 app.use(express.static(publicPath));
 
-// Load vendor files last.
-// The vendor's uv.config.js won't conflict with our uv.config.js inside the publicPath directory.
 app.use("/uv/", express.static(uvPath));
 
-// Error handling for everything else
 app.use((req, res) => {
   res.status(404);
   res.sendFile(join(publicPath, "404.html"));
@@ -47,8 +43,6 @@ if (isNaN(port)) port = 8080;
 server.on("listening", () => {
   const address = server.address();
 
-  // By default, we are listening on 0.0.0.0 (every interface)
-  // We just need to list a few
   console.log("Listening on:");
   console.log(`\thttp://localhost:${address.port}`);
   console.log(`\thttp://${hostname()}:${address.port}`);
@@ -59,7 +53,6 @@ server.on("listening", () => {
   );
 });
 
-// Graceful shutdown
 process.on("SIGINT", shutdown);
 process.on("SIGTERM", shutdown);
 
