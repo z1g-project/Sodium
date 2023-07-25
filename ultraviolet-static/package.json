@@ -1,14 +1,14 @@
 {
   "name": "ultraviolet-static",
   "main": "lib/index.js",
-  "version": "1.0.2",
+  "version": "2.0.0",
   "type": "module",
   "files": [
     "public",
     "lib"
   ],
   "peerDependencies": {
-    "@titaniumnetwork-dev/ultraviolet": "^1.0.8-beta"
+    "@titaniumnetwork-dev/ultraviolet": "^2.0.0"
   },
   "devDependencies": {
     "eslint": "^8.23.0",

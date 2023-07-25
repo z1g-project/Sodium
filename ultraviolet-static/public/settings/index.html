@@ -1,58 +1,137 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <base href="../">
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
-  <title>Sodium</title>
-  <meta name="description" content="Sodium is a highly sophisticated proxy used for evading internet censorship or accessing websites in a controlled sandbox using the power of service workers. Unblock sites today!" />
-  <meta name="keywords" content="proxy, web proxy, ultraviolet, service workers, unblock websites, unblock chromebook, free web proxy, proxy list, proxy sites, un block chromebook, online proxy, proxy server, proxysite, proxy youtube, bypass securly, bypass iboss, bypass lightspeed filter, sodium, titanium network, unblock youtube, youtube proxy, unblocked youtube, youtube unblocked" />
-  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#434c5e" />
-  <meta name="googlebot" content="index, follow, snippet" />
-  <link id="favicon" rel="icon" type="image/png" href="favicon.ico">
-  <link rel="stylesheet" href="montserrat.css"/>
-  <link rel="stylesheet" href="ui.css" id="custom-css"/>
-  <link rel="json" href="appx.json"></link>
-  <link rel="manifest" href="manifest.webmanifest"/>
-  <script src="uv/uv.bundle.js" defer></script>
-  <script src="uv/uv.config.js" defer></script>
-  <script src="register-sw.js" defer></script>
-  <script src="search.js" defer></script>
-  <script src="index.js" defer></script>
-  <script src="time.js" defer></script>
-  <script src="settings.js" defer></script>
-  <script src="fade.js" defer></script>
-  <style>
-    .settings-container {
-      margin-left: 25px;
-    }
-  </style>  
-</head>
-<body>
-  <div class="second-bar">
-    <a href="/" title="Home" class="second-bar-link home-link"></a>
-    <a href="/games/" title="Games" class="second-bar-link games-link"></a>
-    <a href="/apps/" title="Apps" class="second-bar-link apps-link"></a>
-    <a href="/settings/" title="Settings" class="second-bar-link settings-link"></a>
-    <div class="info-menu" id="info-menu" style="margin-left: auto">
-      <div class="info-menu-item" id="transferRate"></div>
-      <div class="info-menu-item" id="latency"></div>
-      <div class="info-menu-item" id="fps"></div>
-    </div>
-    <div class="top-bar-item" id="time"></div>
-    <div class="top-bar-item">
-      <div class="battery-icon-container">
-        <div id="battery" class="battery-icon"></div>
-        <div class="battery-fill"></div>
-        <p class="battery-text"></p>
-      </div>
-    </div>
-  </div>  
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <base href="../">
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+      <title>Sodium</title>
+      <meta name="description" content="Sodium is a highly sophisticated proxy used for evading internet censorship or accessing websites in a controlled sandbox using the power of service workers. Unblock sites today!" />
+      <meta name="keywords" content="proxy, web proxy, ultraviolet, service workers, unblock websites, unblock chromebook, free web proxy, proxy list, proxy sites, un block chromebook, online proxy, proxy server, proxysite, proxy youtube, bypass securly, bypass iboss, bypass lightspeed filter, sodium, titanium network, unblock youtube, youtube proxy, unblocked youtube, youtube unblocked" />
+      <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#434c5e" />
+      <meta name="googlebot" content="index, follow, snippet" />
+      <link id="favicon" rel="icon" type="image/png" href="favicon.ico">
+      <link rel="stylesheet" href="montserrat.css"/>
+      <link rel="stylesheet" href="ui.css" id="custom-css"/>
+      <link rel="json" href="appx.json"></link>
+      <link rel="manifest" href="manifest.webmanifest"/>
+      <script src="uv/uv.bundle.js" defer></script>
+      <script src="uv/uv.config.js" defer></script>
+      <script src="register-sw.js" defer></script>
+      <script src="search.js" defer></script>
+      <script src="index.js" defer></script>
+      <script src="time.js" defer></script>
+      <script src="settings.js" defer></script>
+      <script src="fade.js" defer></script>
+      <style>
+.sidebar {
+  background-color: transparent;
+  width: 250px;
+  padding: 20px;
+  height: 75vh;
+  position: fixed;
+  left: 0;
+  top: 45px;
+  overflow-y: auto;
+}
 
-  <div class="settings-container">
-    <h2>Settings</h2>
+.sidebar h1 {
+  margin-bottom: 20px;
+  text-align: center;
+}
 
-    <label for="title-input" class="config-label">Title:</label>
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar li {
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.content {
+  margin-left: 250px;
+  padding: 20px;
+}
+
+.section {
+  display: none;
+  transition: opacity 0.5s ease;
+  opacity: 0;
+}
+
+.section.active {
+  display: block;
+  opacity: 1;
+}
+
+.reset-button {
+  height: 40px;
+  padding: 0 20px;
+  font-size: 16px;
+  margin-left: 10px;
+  background-color: red;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  opacity: 0;
+  animation: fade-in 0.5s ease-in-out forwards;
+}
+
+.reset-button:hover {
+  background-color: darkred;
+}
+
+.sidebar-buttons {
+  position: absolute;
+  bottom: 0px;
+  width: 75%;
+}
+      </style>  
+    </head>
+    <body>
+      <div class="second-bar">
+        <a href="/" title="Home" class="second-bar-link home-link"></a>
+        <a href="/games/" title="Games" class="second-bar-link games-link"></a>
+        <a href="/apps/" title="Apps" class="second-bar-link apps-link"></a>
+        <a href="/settings/" title="Settings" class="second-bar-link settings-link"></a>
+        <div class="info-menu" id="info-menu" style="margin-left: auto">
+          <div class="info-menu-item" id="transferRate"></div>
+          <div class="info-menu-item" id="latency"></div>
+          <div class="info-menu-item" id="fps"></div>
+        </div>
+        <div class="top-bar-item" id="time"></div>
+        <div class="top-bar-item">
+          <div class="battery-icon-container">
+          <div id="battery" class="battery-icon"></div>
+          <div class="battery-fill"></div>
+          <p class="battery-text"></p>
+        </div>
+    </div>
+  </div> 
+
+  <div class="sidebar">
+    <h1>Settings</h1>
+    <ul>
+      <li data-section="general">General</li>
+      <li data-section="appearance">Appearance</li>
+      <li data-section="account">Cache</li>
+    </ul>
+    <div class="sidebar-buttons">
+      <button id="save-button">Save Settings</button>
+      <br>
+      <br>
+      <button class="reset-button">Reset Settings</button>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="section active" data-section="general">
+      <h2>General Settings</h2>
+      <label for="title-input" class="config-label">Title:</label>
     <input type="text" id="title-input" class="config-input">
     <br>
     <br>
@@ -93,55 +172,53 @@
     <input type="text" id="fallback-url-input" class="config-input">
     <br>
     <br>
-    <label for="css-select" class="config-label">CSS:</label>
-    <select id="css-select" class="config-select">
-      <option value="ui.css">Default (Dark)</option>
-      <option value="sodium.css">Sodium</option>
-      <option value="light.css">Light</option>
-      <option value="amoled.css">Amoled</option>
-    </select>
-    <br>
-    <br>
     <label for="proxySelect" class="config-label">Defualt Proxy:</label>
     <select id="proxySelect" class="config-select">
       <option value="ultraviolet">Ultraviolet</option>
     </select>
     <br>
     <br>
-
-    <h2>Time Settings</h2>
-    <div class="setting-item">
-    <input type="checkbox" id="checkbox-24h" />
-    <label for="checkbox-24h">Use 24-Hour Time</label>
-    </div>
-    <div class="setting-item">
-    <input type="checkbox" id="checkbox-show-date" />
-    <label for="checkbox-show-date">Include Date in Time Bar</label>
-    <div class="setting-item">
-    <input type="checkbox" id="use-seconds-checkbox">
-    <label for="use-seconds-checkbox">Include Seconds in Time Bar</label>
-    </div>
-    
-    <h2>Window Options</h2>
-    <div class="beta-features">
-      <label for="toggle-beta">Enable Tabs:</label>
-      <input type="checkbox" id="toggle-beta">
-      <br>
-      <br>
-      <label for="open-new-window">Open in About:blank Window:</label>
-      <input type="checkbox" id="open-new-window">
-      <br>
-      <br>
-    </div>
-
-    <button id="apply-css-button">Apply CSS</button>
-    <button id="save-button">Save Settings</button>
-    
+    <label for="toggle-beta">Enable Tabs:</label>
+    <input type="checkbox" id="toggle-beta">
     <br>
     <br>
+    <label for="open-new-window">Open in About:blank Window:</label>
+    <input type="checkbox" id="open-new-window">
+    <br>
+    <br>
+    </div>
 
-    <h2>Cache Options</h2>
-    <div>
+    <div class="section" data-section="appearance">
+        <h2>Appearance Settings</h2>
+        <label for="css-select" class="config-label">CSS:</label>
+        <select id="css-select" class="config-select">
+          <option value="ui.css">Default (Dark)</option>
+          <option value="sodium.css">Sodium</option>
+          <option value="light.css">Light</option>
+          <option value="amoled.css">Amoled</option>
+        </select>
+        <br>
+        <br>
+        <input type="checkbox" id="checkbox-24h">
+        <label for="checkbox-24h">Use 24-Hour Time</label>
+        <br>
+        <br>
+        <input type="checkbox" id="checkbox-show-date">
+        <label for="checkbox-show-date">Include Date in Time Bar</label>
+        <br>
+        <br>
+        <input type="checkbox" id="use-seconds-checkbox">
+        <label for="use-seconds-checkbox">Include Seconds in Time Bar</label>
+        <br>
+        <br>
+        <button id="apply-css-button">Apply CSS</button>
+        <br>
+        <br>
+        <button onclick="openCSSEditor()">Open CSS Editor</button>
+      </div>      
+
+    <div class="section" data-section="account">
+      <h2>Account Settings</h2>
       <button onclick="clearCache()">Clear Local Storage Cache</button>
       <input type="file" id="importFile" style="display: none;" accept=".json">
       <button onclick="openImportFile()">Import Cache</button>
@@ -149,29 +226,29 @@
       <br>
       <br>
     </div>
-
-    <h2>Extra's</h2>
-    <div>
-      <button onclick="openCSSEditor()">Open CSS Editor</button>
-      <button onclick="openCompactChecker()">Open Compatibility Checker</button>
-      <button onclick="window.location.href='/archives/'">Open Sodium Archives</button>
-      <br>
-      <br>
-    </div>
-
-    <br>
-    <br>
   </div>
 
-  <footer>
-    <img src="assets/img/z1g.png" alt="z1g Project" title="The z1g Project GitHub organization" height="30" width="30" onclick="location.href='/github/z1g-project/'" />
-    <img src="assets/img/discord.jpg" alt="Discord" title="The z1g Project Discord" height="30" width="30" onclick="location.href='/discord/'" />
-    <img src="assets/img/github.png" alt="GitHub" title="The official deployment repository for Sodium" height="30" width="30" onclick="location.href='/github/'" />
-    <img src="assets/img/credits.png" alt="Credits" title="License information" height="30" width="30" onclick="location.href='credits.html'" />   
-    <div class="footer-text-container" style="margin-left: auto">
-      <span>Sodium &copy; z1g Project 2023</span>
-    </div> 
-  </footer>
+  <script>
+    const sections = document.querySelectorAll('.section');
+const sidebarItems = document.querySelectorAll('.sidebar li');
+
+sidebarItems.forEach(item => {
+  item.addEventListener('click', () => {
+    const sectionName = item.getAttribute('data-section');
+    showSection(sectionName);
+  });
+});
+
+function showSection(sectionName) {
+  sections.forEach(section => {
+    if (section.getAttribute('data-section') === sectionName) {
+      section.classList.add('active');
+    } else {
+      section.classList.remove('active');
+    }
+  });
+}
+  </script>
   <script>
     function clearCache() {
       localStorage.clear();
