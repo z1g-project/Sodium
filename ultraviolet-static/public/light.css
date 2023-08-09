@@ -161,6 +161,17 @@ h1 {
   border-radius: 7px;
 }
 
+.uv-address {
+  background: #cbcccf;
+  color: 000000;
+  width: 400px;
+  height: 45px;
+  font-size: 25px;
+  padding: 0 12px;
+  border: none;
+  border-radius: 7px;
+}
+
 iframe#apploader {
   position: absolute;
   top: 40px;
