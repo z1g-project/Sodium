@@ -5,6 +5,7 @@
       //replaceScript("proxloader", "dynamic-loader.js"); Removed for now
       replaceScript("proxcfg", "/dynamic/dynamic.config.js");
       replaceScript("proxsw", "dynamicsw.js");
+      replaceScript("proxworker", "/dynamic/dynamic.worker.js");
   
       replaceFormElement();
     }
