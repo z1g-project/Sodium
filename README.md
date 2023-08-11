@@ -1,7 +1,7 @@
 # Sodium Source Code
 
 <p align="center">
-  <img src="./ultraviolet-static/public/sodium.png" height="200">
+  <img src="./sodium-static/public/sodium.png" height="200">
 </p>
 
 This is my submittion to the Titanium Network Proxathon!
