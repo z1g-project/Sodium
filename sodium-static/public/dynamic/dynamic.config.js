@@ -8,7 +8,7 @@ self.__dynamic$config = {
     path: "https://uv.studentportal.lol/", "https://uv.radon.games/" : "https://uv.holyubofficial.net/", "https://tomp.app/" : "https://flow-works.me/bare/"
   },
   tab: {
-    title: 'Dynamic',
+    title: 'Service',
     icon: null,
     ua: null,
   },

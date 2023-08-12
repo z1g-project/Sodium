@@ -43,14 +43,14 @@ if (isNaN(port)) port = 8080;
 server.on("listening", () => {
   const address = server.address();
 
-  console.log("Listening on:");
+  console.log("Sodium is running on:");
   console.log(`\thttp://localhost:${address.port}`);
   console.log(`\thttp://${hostname()}:${address.port}`);
-  console.log(
-    `\thttp://${
-      address.family === "IPv6" ? `[${address.address}]` : address.address
-    }:${address.port}`
-  );
+  if (address.family === "IPv4") {
+    console.log(`\thttp://${address.address}:${address.port}`);
+  } else {
+    console.log(`\thttp://[${address.address}]:${address.port}`);
+  }  
 });
 
 process.on("SIGINT", shutdown);
