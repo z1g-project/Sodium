@@ -89,11 +89,12 @@
 </footer>
 <script>
   const owner = 'z1g-project';
-  const repo = window.location.hostname.includes('beta.') ? 'sodium/tree/beta' : 'sodium';
+  const repo = 'sodium';
+  const branch = window.location.hostname.includes('beta.') ? 'beta' : 'main';
   
   const versionInfoElement = document.getElementById('version-info');
   
-  fetch(`https://api.github.com/repos/${owner}/${repo}/commits`, {
+  fetch(`https://api.github.com/repos/${owner}/${repo}/commits?sha=${branch}`, {
     method: 'GET',
     headers: {
       'Accept': 'application/vnd.github.v3+json'
@@ -142,6 +143,5 @@
     console.error('Error fetching data:', error);
   });
 </script>
-
 </body>
 </html>
