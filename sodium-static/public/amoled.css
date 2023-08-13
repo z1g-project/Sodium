@@ -27,7 +27,6 @@
   
   .second-bar {
     position: fixed;
-    z-index: 1;
     top: 0px;
     left: 0;
     width: 100%;
@@ -60,6 +59,7 @@
   
   .second-bar a {
     color: #ffffff;
+    z-index: 1;
     text-decoration: none;
     margin-right: 10px;
     padding: 8px;
