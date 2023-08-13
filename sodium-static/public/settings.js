@@ -48,6 +48,11 @@
         }
       }
 
+      const bareServerInput = document.getElementById('custom-bare-server-input');
+      if (bareServerInput) {
+        bareServerInput.value = localStorage.getItem('bareServer') || '';
+      }
+
       const toggleBeta = document.getElementById('toggle-beta');
       if (toggleBeta) {
         const betaMode = localStorage.getItem('betaMode');
@@ -225,6 +230,13 @@
       const fallbackUrl = fallbackUrlInput.value.trim();
       localStorage.setItem('fallbackUrl', fallbackUrl);
       console.log('Fallback URL saved:', fallbackUrl);
+    }
+
+    const bareServerInput = document.getElementById('custom-bare-server-input');
+    if (bareServerInput) {
+      const bareServer = bareServerInput.value.trim();
+      localStorage.setItem('bareServer', bareServer);
+      console.log('BareServer URL saved:', bareServer);
     }
 
     const use24HourTimeCheckbox = document.getElementById('use-24hour-checkbox');
