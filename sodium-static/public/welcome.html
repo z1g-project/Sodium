@@ -372,6 +372,7 @@ showSlide(currentSlide);
     console.log('Default Proxy Saved:', selectedOption);
 
     //handleToggleBeta();
+    localStorage.setItem('firstRun', 'false');
 
     const emergencyHotkeyInput = document.getElementById('emergency-switch-hotkey');
     if (emergencyHotkeyInput) {
