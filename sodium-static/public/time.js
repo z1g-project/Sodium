@@ -194,6 +194,14 @@ const customCSS = localStorage.getItem('websiteCSS');
       
     }
 
+    const firstRun = localStorage.getItem('firstRun');
+
+    if (firstRun === null || firstRun === 'true') {
+      if (window.location.pathname === '/' || window.location.pathname === '/index.html') {
+        window.location.href = '/welcome.html';
+      }
+    }
+
     document.addEventListener('keydown', function (event) {
       console.log('Keydown event:', event);
       const target = event.target;

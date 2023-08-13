@@ -33,7 +33,7 @@
       }
     }
 
-    if (window.location.pathname.includes('/settings/')) {
+    if (window.location.pathname.includes('/settings/') || window.location.pathname.includes('/welcome.html')) {
       const searchEngine = localStorage.getItem('searchEngine');
       const searchEngineSelect = document.getElementById('search-engine-select');
 
