@@ -149,10 +149,10 @@
     <input type="text" id="custom-search-engine-input" placeholder="Enter a URL like so: https://example.com/search?q=" class="config-input" style="display: none;">
     <br>
     <br>
-    <label for="bare-server-select" class="config-label">Custom Bare Server (Alpha):</label>
+    <!--label for="bare-server-select" class="config-label">Custom Bare Server (Alpha):</label>
     <input type="text" id="custom-bare-server-input" placeholder="Enter a url like so: https://bare.example.com" class="config-input">
     <br>
-    <br>
+    <br-->
     <label for="emergency-switch-hotkey" class="config-label">Emergency Switch Hotkey:</label>
     <input type="text" id="emergency-switch-hotkey" class="config-input">
     <br>
@@ -338,23 +338,6 @@ function immortalize(arg) {
       localStorage.clear();
       location.reload();
     }
-  </script>
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js";
-    import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-analytics.js";
-  
-    const firebaseConfig = {
-      apiKey: "AIzaSyBfkbc2syw2jwomQ_EPZpAKPlfDkkWlqBA",
-      authDomain: "z1g-project-a53ec.firebaseapp.com",
-      projectId: "z1g-project-a53ec",
-      storageBucket: "z1g-project-a53ec.appspot.com",
-      messagingSenderId: "431779137710",
-      appId: "1:431779137710:web:153ed15b388c063e38053f",
-      measurementId: "G-82HEGYSTLP"
-    };
-  
-    const app = initializeApp(firebaseConfig);
-    const analytics = getAnalytics(app);
   </script>
   <script>
     const unregisterButton = document.getElementById('unregisterButton');
