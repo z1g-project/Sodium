@@ -217,6 +217,7 @@
       <input type="file" id="importFile" style="display: none;" accept=".json">
       <button onclick="openImportFile()">Import Cache</button>
       <button onclick="exportCache()">Export Cache</button>
+      <button id="unregisterButton">Unregister Service Workers</button>
       <br>
       <br>
     </div>
@@ -354,6 +355,25 @@ function immortalize(arg) {
   
     const app = initializeApp(firebaseConfig);
     const analytics = getAnalytics(app);
+  </script>
+  <script>
+    const unregisterButton = document.getElementById('unregisterButton');
+    
+    unregisterButton.addEventListener('click', async () => {
+      try {
+        const registrations = await navigator.serviceWorker.getRegistrations();
+        
+        for (const registration of registrations) {
+          await registration.unregister();
+          console.log(`Unregistered service worker: ${registration.scope}`);
+        }
+        
+        alert('All service workers unregistered.');
+      } catch (error) {
+        console.error('Error unregistering service workers:', error);
+        alert('Error unregistering service workers. Check the console for details.');
+      }
+    });
   </script>
 </body>
 </html>
