@@ -353,7 +353,6 @@
   .battery-text {
     position: absolute;
     top: 10.5px;
-    right: -12.7px;
     transform: translate(-100%, -75%);
     font-size: 13px;
     color: white;
