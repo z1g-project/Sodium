@@ -1,5 +1,1 @@
-# Ignore Node Modules
 node_modules/
-
-# Allow only specific Ultraviolet module to be uploaded
-!node_modules/@titaniumnetwork-dev/ultraviolet/
