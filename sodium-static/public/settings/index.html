@@ -89,6 +89,23 @@
   bottom: 0px;
   width: 75%;
 }
+
+.addon-frame {
+  width: 100%;
+  height: 85vh;
+  border: none;
+  overflow: hidden;
+  position: relative;
+}
+
+.addon-frame > iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
       </style>  
     </head>
     <body>
@@ -118,6 +135,7 @@
       <li data-section="general">General</li>
       <li data-section="appearance">Appearance</li>
       <li data-section="account">Cache</li>
+      <!--li data-section="addons">Addons</li-->
     </ul>
     <div class="sidebar-buttons">
       <button id="save-button">Save Settings</button>
@@ -221,7 +239,13 @@
       <br>
       <br>
     </div>
-  </div>
+
+    <div class="section" data-section="addons">
+      <h2>Addons</h2>
+      <div class="addon-frame">
+        <iframe src="/marketplace.html"></iframe>     
+      </div>
+    </div>    
 
   <script>
     const sections = document.querySelectorAll('.section');
@@ -293,23 +317,23 @@ function showSection(sectionName) {
   </script>
 <script>
 function immortalize(arg) {
-    if (arg === 'sodium') {
-      localStorage.setItem('websiteCSS', 'immortal.css');
+  if (arg === 'sodium') {
+    localStorage.setItem('websiteCSS', 'immortal.css');
 
-      console.log('Immortal Requested');
-      console.log('Initializing 3MB Tailwind Package...');
+    console.log('Immortal Requested');
+    console.log('Initializing 3MB Tailwind Package...');
 
-      const tailwindCSSLink = document.createElement('link');
-      tailwindCSSLink.rel = 'stylesheet';
-      tailwindCSSLink.href = 'https://cdn.tailwindcss.com/';
-      document.head.appendChild(tailwindCSSLink);
+    const tailwindCSSLink = document.createElement('link');
+    tailwindCSSLink.rel = 'stylesheet';
+    tailwindCSSLink.href = 'https://cdn.tailwindcss.com/';
+    document.head.appendChild(tailwindCSSLink);
 
-      setTimeout(() => {
-        console.log('Done!');
-        location.reload();
-      }, 2000);
-    }
+    setTimeout(() => {
+      console.log('Done!');
+      location.reload();
+    }, 2000);
   }
+}
 
   window.addEventListener('DOMContentLoaded', () => {
     const command = 'immortalize("sodium")';

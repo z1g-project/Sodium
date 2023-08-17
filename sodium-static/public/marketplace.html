@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+  <title>Addons Marketplace - Sodium</title>
+  <meta name="description" content="Sodium Addons Marketplace - Explore and install addons for Sodium." />
+  <meta name="keywords" content="sodium, addons, marketplace, plugins, themes, web proxy" />
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#434c5e" />
+  <link id="favicon" rel="icon" type="image/png" href="favicon.ico">
+  <link rel="stylesheet" href="montserrat.css"/>
+  <link rel="stylesheet" href="ui.css" id="custom-css"/>
+  <link rel="stylesheet" href="marketplace.css">
+  <script src="uv/uv.bundle.js" defer></script>
+  <script src="uv/uv.config.js" defer></script>
+  <script src="register-sw.js" defer></script>
+  <script src="search.js" defer></script>
+  <script src="settings.js" defer></script>
+  <script src="marketplace.js" defer></script>
+<body>
+    <div class="navbar">
+        <div class="nav-logo">
+          <img src="marketplace-logo.png" alt="Sodium Logo" />
+        </div>
+        <div class="nav-title">
+          Sodium Marketplace
+        </div>
+        <div class="nav-icons">
+          <a href="#">Home</a>
+          <a href="#">Plugins</a>
+          <a href="#">Themes</a>
+          <a href="#">Submit</a>
+        </div>
+      </div>
+
+  <div class="marketplace-featured">
+    <h2>Featured Addons</h2>
+    <div class="featured-addons">
+        <div class="marketplace-item">
+            <h3>Youtube Video Downloader</h3>
+            <p>Allows you to download youtube videos!</p>
+            <button class="view-button" data-url="${URL}">View</button>
+        </div>
+    </div>
+  </div>
+
+  <div class="marketplace-categories">
+    <h2>Browse by Category</h2>
+    <div class="category-grid">
+      <!-- Add your category grid here -->
+    </div>
+  </div>
+
+  <div class="marketplace-submit">
+    <h2>Submit Your Addon</h2>
+    <form id="addon-submission-form" class="addon-submission-form">
+      <label for="addon-name">Addon Name:</label>
+      <input type="text" id="addon-name" name="addonName" required />
+  
+      <label for="addon-category">Category:</label>
+      <select id="addon-category" name="addonCategory">
+        <option value="plugins">Plugins</option>
+        <option value="themes">Themes</option>
+      </select>
+  
+      <label for="addon-description">Description:</label>
+      <textarea id="addon-description" name="addonDescription" required></textarea>
+  
+      <label for="addon-download-link">Download Link:</label>
+      <input type="url" id="addon-download-link" name="addonDownloadLink" required />
+  
+      <button type="submit">Submit Addon</button>
+    </form>
+  </div>
+
+  <script>
+    const jsonData = [
+      {
+        "name": "Plugin 1",
+        "description": "Description for Plugin 1",
+        "url": "plugin1.html"
+      },
+      {
+        "name": "Plugin 2",
+        "description": "Description for Plugin 2",
+        "url": "plugin2.html"
+      }
+    ];
+    
+    const marketplaceGrid = document.getElementById("marketplaceGrid");
+    
+    jsonData.forEach(item => {
+      const itemHtml = `
+        <div class="marketplace-item">
+          <h3>${item.name}</h3>
+          <p>${item.description}</p>
+          <button class="view-button" data-url="${item.url}">View</button>
+        </div>
+      `;
+      marketplaceGrid.insertAdjacentHTML("beforeend", itemHtml);
+    });
+    
+    const viewButtons = document.querySelectorAll(".view-button");
+    viewButtons.forEach(button => {
+      button.addEventListener("click", () => {
+        const iframeUrl = button.getAttribute("data-url");
+        console.log("Open iframe:", iframeUrl);
+      });
+    });
+  </script>
+
+  <footer>
+    <img src="assets/img/z1g.png" alt="z1g Project" title="The z1g Project GitHub organization" height="30" width="30" onclick="location.href='/github/z1g-project/'" />
+    <img src="assets/img/discord.jpg" alt="Discord" title="The z1g Project Discord" height="30" width="30" onclick="location.href='/discord/'" />
+    <img src="assets/img/github.png" alt="GitHub" title="The official deployment repository for Sodium" height="30" width="30" onclick="location.href='/github/'" />
+    <img src="assets/img/credits.png" alt="Credits" title="License information" height="30" width="30" onclick="location.href='credits.html'" />   
+    <div class="footer-text-container" style="margin-left: auto">
+      <span>Sodium &copy; z1g Project 2023</span>
+    </div> 
+  </footer>
+</body>
+</html>
