@@ -1,12 +1,6 @@
 self.__uv$config = {
   prefix: "/uv/service/",
-  bare: [
-    "https://uv.studentportal.lol/",
-    "https://uv.radon.games/",
-    "https://uv.holyubofficial.net/",
-    "https://tomp.app/",
-    "https://flow-works.me/bare/"
-  ],
+  bare: "https://uv.radon.games/",
   encodeUrl: Ultraviolet.codec.xor.encode,
   decodeUrl: Ultraviolet.codec.xor.decode,
   handler: "/uv/uv.handler.js",

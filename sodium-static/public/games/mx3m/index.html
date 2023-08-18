@@ -126,9 +126,9 @@ window.addEventListener('DOMContentLoaded', () => {
     const proxyOption = localStorage.getItem("proxyOption");
 
     if (proxyOption && proxyOption.toLowerCase() === "dynamic") {
-      iframe.src = `${window.location.origin}/service/route?url=https://www.coolmathgames.com/0-moto-x3m/play`;
+      iframe.src = `${window.location.origin}/service/route?url=https://mathlover1.github.io/msgweb-assets/motox3m/index.html`;
     } else {
-      const encodedURL = encodeURL('https://www.coolmathgames.com/0-moto-x3m/play');
+      const encodedURL = encodeURL('https://mathlover1.github.io/msgweb-assets/motox3m/index.html');
       iframe.src = `${window.location.origin}/uv/service/${encodedURL}`;
     }
 

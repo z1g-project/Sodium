@@ -1,4 +1,4 @@
-let bareServer = localStorage.getItem('bareServer')
+var bareServer = localStorage.getItem('bareServer')
 
 importScripts("/uv/uv.bundle.js");
 importScripts("/uv/uv.config.js");

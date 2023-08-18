@@ -5,12 +5,12 @@ self.__dynamic$config = {
   logLevel: 3,
   bare: {
     version: 2,
-    path: "https://uv.studentportal.lol/", "https://uv.radon.games/" : "https://uv.holyubofficial.net/", "https://tomp.app/" : "https://flow-works.me/bare/"
+    path: "https://uv.radon.games/"
   },
   tab: {
     title: 'Service',
     icon: null,
-    ua: null,
+    ua: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36 Sodium/1.3.0',
   },
   assets: {
     prefix: '/dynamic/',
