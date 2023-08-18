@@ -135,6 +135,7 @@
     <ul>
       <li data-section="general">General</li>
       <li data-section="appearance">Appearance</li>
+      <li data-section="network">Network</li>
       <li data-section="account">Cache</li>
       <!--li data-section="addons">Addons</li-->
     </ul>
@@ -166,10 +167,6 @@
       <option value="custom">Custom</option>
     </select>
     <input type="text" id="custom-search-engine-input" placeholder="Enter a URL like so: https://example.com/search?q=" class="config-input" style="display: none;">
-    <br>
-    <br>
-    <label for="bare-server-select" class="config-label">Custom Bare Server (Alpha):</label>
-    <input type="text" id="custom-bare-server-input" placeholder="Enter a url like so: https://bare.example.com" class="config-input">
     <br>
     <br>
     <label for="dynamic-encoder" class="config-label" id="dynamic-encoder-label">Encoder:</label>
@@ -239,6 +236,58 @@
         <button onclick="openCSSEditor()">Open CSS Editor</button>
       </div>
 
+      <div class="section" data-section="network">
+        <h3>Network</h3>
+        <label for="connection-status" class="config-label">Connection Status:</label>
+        <p id="connection-status">Detecting...</p>
+      
+        <label for="bandwidth-limit" class="config-label">Bandwidth Limit (Mbps):</label>
+        <input type="number" id="bandwidth-limit-input" class="config-input" min="1" step="1" />
+        <br>
+        <br>
+        <label for="bare-server-select" class="config-label">Custom Bare Server (Alpha):</label>
+        <input type="text" id="custom-bare-server-input" placeholder="Enter a url like so: https://bare.example.com" class="config-input">
+        <div id="ping-status">Checking server status...</div>
+        <script>
+          const connectionStatusElem = document.getElementById('connection-status');
+
+          function updateConnectionStatus() {
+            connectionStatusElem.textContent = navigator.onLine ? '🟢Online' : '🔴Offline';
+          }
+
+          window.addEventListener('online', updateConnectionStatus);
+          window.addEventListener('offline', updateConnectionStatus);
+
+          updateConnectionStatus();
+
+          function checkServerStatus(url) {
+            const startTime = performance.now();
+  
+            return fetch(url, { method: 'HEAD' })
+              .then(response => {
+                const endTime = performance.now();
+                const ping = Math.round(endTime - startTime);
+      
+                if (response.status === 200) {
+                  return `🟢Online - ${ping}ms`;
+                } else {
+                  return `🔴Offline - 0ms`;
+                }
+              })
+            .catch(() => `🔴Offline - 0ms`);
+          }
+
+          const bareServerUrl = localStorage.getItem('bareServer') || 'https://bare.mathclasses.xyz';
+          checkServerStatus(bareServerUrl)
+          .then(status => {
+            const pingElement = document.getElementById('ping-status');
+            if (pingElement) {
+              pingElement.textContent = status;
+            }
+          });
+        </script>
+      </div>        
+
     <div class="section" data-section="account">
       <h2>Cache Settings</h2>
       <button onclick="clearCache()">Clear Local Storage Cache</button>
@@ -248,7 +297,7 @@
       <button id="unregisterButton">Unregister Service Workers</button>
       <br>
       <br>
-    </div>
+    </div> 
 
     <!--div class="section" data-section="addons">
       <h2>Addons</h2>

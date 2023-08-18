@@ -5,7 +5,7 @@ self.__dynamic$config = {
   logLevel: 3,
   bare: {
     version: 2,
-    path: "https://uv.radon.games/"
+    path: "https://bare.mathclasses.xyz/"
   },
   tab: {
     title: 'Service',

@@ -53,6 +53,35 @@
         bareServerInput.value = localStorage.getItem('bareServer') || '';
       }
 
+      const bandwidthLimitInput = document.getElementById('bandwidth-limit-input');
+      if (bandwidthLimitInput) {
+        bandwidthLimitInput.value = localStorage.getItem('bandwidthLimit') || '';
+      }
+
+      const bandwidthLimit = localStorage.getItem('bandwidthLimit');
+      if (bandwidthLimit) {
+        let totalDataTransferred = 0;
+
+    function handleRequestSize(event) {
+      const requestSize = event.request.headers.get('content-length') || 0;
+      const responseSize = event.response.headers.get('content-length') || 0;
+      totalDataTransferred += Number(requestSize) + Number(responseSize);
+
+      if (totalDataTransferred > limit) {
+        event.preventDefault();
+        alert('Bandwidth Limit Exceeded!');
+        console.log('Request Exceeded Bandwidth Limit:', event.request.url);
+      }
+    }
+
+    self.addEventListener('fetch', (event) => {
+      event.respondWith(fetch(event.request).then((response) => {
+        handleRequestSize(event);
+        return response;
+      }));
+    });
+      }
+      
       const toggleBeta = document.getElementById('toggle-beta');
       if (toggleBeta) {
         const betaMode = localStorage.getItem('betaMode');
@@ -272,6 +301,15 @@
       console.log('Dynamic Encoder Saved:', dynamicEncoder);
     }  
 
+    const bandwidthLimitInput = document.getElementById('bandwidth-limit-input');
+    if (bandwidthLimitInput) {
+      const bandwidthLimit = parseInt(bandwidthLimitInput.value);
+      if (!isNaN(bandwidthLimit)) {
+        localStorage.setItem('bandwidthLimit', bandwidthLimit);
+        console.log('Bandwidth Limit Saved:', bandwidthLimit);
+      }
+    }
+
     const use24HourTimeCheckbox = document.getElementById('use-24hour-checkbox');
     if (use24HourTimeCheckbox) {
       localStorage.setItem('use24HourTime', use24HourTimeCheckbox.checked.toString());
@@ -362,7 +400,6 @@
       handleToggleDebugging();
     });
   }
-
 
   if (window.location.pathname === '/' || window.location.pathname === '/index.html') {
     const openNewWindow = localStorage.getItem('openNewWindow');
