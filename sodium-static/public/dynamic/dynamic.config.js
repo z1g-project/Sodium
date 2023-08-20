@@ -15,10 +15,10 @@ self.__dynamic$config = {
   assets: {
     prefix: '/dynamic/',
     files: {
-      handler: '/dynamic/dynamic.handler.js',
-      client: '/dynamic/dynamic.client.js',
-      worker: '/dynamic/dynamic.worker.js',
-      config: '/dynamic/dynamic.config.js',
+      handler: 'dynamic.handler.js',
+      client: 'dynamic.client.js',
+      worker: 'dynamic.worker.js',
+      config: 'dynamic.config.js',
       inject: null,
     }
   },
