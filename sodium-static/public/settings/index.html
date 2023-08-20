@@ -91,21 +91,17 @@
   width: 75%;
 }
 
-.addon-frame {
-  width: 100%;
-  height: 85vh;
-  border: none;
-  overflow: hidden;
-  position: relative;
+.addon-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  padding: 20px;
 }
 
-.addon-frame > iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border: none;
+.addon-item {
+  border: 1px solid #ddd;
+  padding: 20px;
+  text-align: center;
 }
       </style>  
     </head>
@@ -137,7 +133,7 @@
       <li data-section="appearance">Appearance</li>
       <li data-section="network">Network</li>
       <li data-section="account">Cache</li>
-      <!--li data-section="addons">Addons</li-->
+      <li data-section="addons">Addons</li>
     </ul>
     <div class="sidebar-buttons">
       <button id="save-button">Save Settings</button>
@@ -299,12 +295,54 @@
       <br>
     </div> 
 
-    <!--div class="section" data-section="addons">
+    <div class="section" data-section="addons">
       <h2>Addons</h2>
-      <div class="addon-frame">
-        <iframe src="/marketplace.html"></iframe>     
+      <div class="addon-controls">
+        <label for="addon-category">Category:</label>
+        <select id="addon-category" name="addonCategory">
+          <option value="all">All</option>
+          <option value="plugins">Plugins</option>
+          <option value="themes">Themes</option>
+        </select>
+        <input type="text" id="addon-search" placeholder="Search Addons">
+        <button onclick="window.open('https://forms.gle/QcnfUxXCc3UjChaG8', '_blank');">Submit New Addon</button>
       </div>
-    </div-->    
+      <div class="addon-grid">
+      </div>
+      <!--div id="submission-form" style="display: none;">
+        <h3>Submit New Addon</h3>
+        <form id="addon-form">
+          <label for="addon-name">Name:</label>
+          <input type="text" id="addon-name" required><br>
+          
+          <label for="addon-category">Category:</label>
+          <select id="addon-category" required>
+            <option value="plugins">Plugin</option>
+            <option value="themes">Theme</option>
+          </select><br>
+          
+          <label for="addon-description">Description:</label>
+          <textarea id="addon-description" required></textarea><br>
+          
+          <label for="addon-publisher">Publisher:</label>
+          <input type="text" id="addon-publisher" required><br>
+          
+          <label for="addon-url">URL:</label>
+          <input type="url" id="addon-url" required><br>
+          
+          <button type="submit">Submit</button>
+        </form>
+      </div-->
+      <script src="addons.js"></script>
+      <!--script>
+        const submitAddonButton = document.getElementById('submit-addon-button');
+        const submissionForm = document.getElementById('submission-form');
+
+        submitAddonButton.addEventListener('click', () => {
+          submissionForm.style.display = 'block';
+        });
+      </script-->
+    </div>
 
   <script>
     const sections = document.querySelectorAll('.section');

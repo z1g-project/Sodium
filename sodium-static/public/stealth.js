@@ -115,4 +115,13 @@ window.addEventListener('DOMContentLoaded', () => {
     fpsItem.textContent = `FPS: ${fps}`;
     fpsItem.style.display = 'block';
   });
+
+  const pluginUrls = JSON.parse(localStorage.getItem('websitePlugins')) || [];
+  pluginUrls.forEach(pluginUrl => {
+    const script = document.createElement('script');
+    script.src = pluginUrl;
+    const iframeDocument = iframe.contentWindow.document;
+    iframeDocument.head.appendChild(script);
+    console.log(`Plugin injected into the iframe: ${pluginUrl}`);
+  });
 });
