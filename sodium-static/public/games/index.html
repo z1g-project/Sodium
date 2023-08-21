@@ -20,7 +20,11 @@
     <link rel="json" href="appx.json" defer></script>
     <link rel="manifest" href="manifest.webmanifest"/>
     <script src="time.js" defer></script>
-    <script src="games.js" defer></script>
+    <script>
+      function loadgames(url) {
+        window.location.href = url;
+      }
+    </script>
     <script src="settings.js" defer></script>
     <script src="fade.js" defer></script>
   </head>

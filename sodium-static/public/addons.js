@@ -1,5 +1,5 @@
 const addons = [
-    {
+      {
         name: 'DuoPower for Sodium',
         category: 'plugins',
         description: 'School Blocked Tampermonkey? No Sweat use DuoPower on Sodium!',
@@ -12,6 +12,20 @@ const addons = [
         description: 'A sleek galaxy theme for sodium!',
         publisher: 'Playingallday383',
         url: 'https://cdn.z1g-project.repl.co/sodium/themes/galaxy.css',
+      },
+      {
+        name: 'AdBlocker',
+        category: 'plugins',
+        description: 'Block ads on webpages (Early Alpha)',
+        publisher: '✅ Sodium Addons',
+        url: 'https://cdn.z1g-project.repl.co/sodium/plugins/adblock.js',
+      },
+      {
+        name: 'DarkMode',
+        category: 'plugins',
+        description: 'Make all pages dark so your eyes can rejoice!',
+        publisher: '✅ Sodium Addons',
+        url: 'https://cdn.z1g-project.repl.co/sodium/plugins/darkmode.js',
       },
   ];
   

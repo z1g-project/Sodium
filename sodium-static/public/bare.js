@@ -11,5 +11,8 @@ const req = await fetch(bareServer + "/", {
   redirect: "follow"
 });
 
-self.__uv$config.bare = bareServer;
-self.__dynamic$config.bare.path = bareServer;
+if (self.__uv$config)
+  self.__uv$config.bare = bareServer;
+
+if (self.__dynamic$config)
+  self.__dynamic$config.bare.path = bareServer;
