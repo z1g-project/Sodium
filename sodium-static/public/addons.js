@@ -27,6 +27,27 @@ const addons = [
         publisher: '✅ Sodium Addons',
         url: 'https://cdn.z1g-project.repl.co/sodium/plugins/darkmode.js',
       },
+      {
+        name: 'Youtube Downloader',
+        category: 'plugins',
+        description: 'Youtube Tools All in one local Download mp4, MP3 HIGT QUALITY without external service auto repeat video, skip ads, return dislikes and more',
+        publisher: 'MDCM',
+        url: 'https://cdn.z1g-project.repl.co/sodium/plugins/yt.js',
+      },
+      {
+        name: 'Bing AI',
+        category: 'plugins',
+        description: 'Have the ability to use Bing AI lol',
+        publisher: 'avd3',
+        url: 'https://cdn.z1g-project.repl.co/sodium/plugins/bingai.js',
+      },
+      {
+        name: 'Weird Theme',
+        category: 'themes',
+        description: 'Why does this exist',
+        publisher: 'd8a1',
+        url: 'https://cdn.z1g-project.repl.co/sodium/themes/weird.css',
+      },
   ];
   
   function populateAddons() {

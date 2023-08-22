@@ -126,9 +126,9 @@ window.addEventListener('DOMContentLoaded', () => {
     const proxyOption = localStorage.getItem("proxyOption");
 
     if (proxyOption && proxyOption.toLowerCase() === "dynamic") {
-      iframe.src = `${window.location.origin}/service/route?url=https://drive-mad-game.github.io/drive-mad/`;
+      iframe.src = `${window.location.origin}/service/route?url=https://ubg77.github.io/game131022/drive-mad/`;
     } else {
-      const encodedURL = encodeURL('https://drive-mad-game.github.io/drive-mad/');
+      const encodedURL = encodeURL('https://ubg77.github.io/game131022/drive-mad/');
       iframe.src = `${window.location.origin}/uv/service/${encodedURL}`;
     }
 
