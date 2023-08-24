@@ -1,10 +1,3 @@
-//importScripts("/uv/uv.bundle.js");
-//importScripts("/uv/uv.config.js");
-//importScripts("/uv/uv.sw.js");
-
-//importScripts("/dynamic/dynamic.config.js");
-//importScripts("/dynamic/dynamic.worker.js");
-
 const CACHE_NAME = 'bareServerCache';
 
 async function getBareServerUrl() {
@@ -35,7 +28,24 @@ self.addEventListener('activate', event => {
 });
 
 self.addEventListener('fetch', event => {
-  // Empty Lol
+  // Empty
+});
+
+self.addEventListener('message', async e => {
+  if (e.data === 'updateBareServer') {
+    const bareServer = await getBareServerUrl();
+    if (bareServer) {
+      const req = await fetch(bareServer + "/", {
+        redirect: "follow"
+      });
+
+      if (self.__uv$config)
+        self.__uv$config.bare = req.url;
+
+      if (self.__dynamic$config)
+        self.__dynamic$config.bare.path = req.url;
+    }
+  }
 });
 
 (async () => {
@@ -46,9 +56,9 @@ self.addEventListener('fetch', event => {
     });
 
     if (self.__uv$config)
-      self.__uv$config.bare = bareServer;
+      self.__uv$config.bare = req.url;
 
     if (self.__dynamic$config)
-      self.__dynamic$config.bare.path = bareServer;
+      self.__dynamic$config.bare.path = req.url;
   }
 })();

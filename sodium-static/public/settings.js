@@ -301,6 +301,9 @@
       const dynamicEncoder = dynamicEncoderSelect.value;
       localStorage.setItem('dynamicEncoder', dynamicEncoder);
       self.__dynamic$config.encoding = dynamicEncoder;
+      caches.open('settingsCache').then(cache => {
+        cache.put('dynamicEncoderKey', new Response(dynamicEncoder));
+      });
       console.log('Dynamic Encoder Saved:', dynamicEncoder);
     }  
 

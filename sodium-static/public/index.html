@@ -28,6 +28,13 @@
   <script src="proxhandler.js" defer></script>
   <script src="updates.js" defer></script>
   <script src="bare.js" defer></script>
+  <script>
+    caches.open('settingsCache').then(cache => {
+      const script = document.createElement('script');
+      script.src = 'encoder.js';
+      document.head.appendChild(script);
+    });
+  </script>
   <style>
 #apploader {
   display: none;
