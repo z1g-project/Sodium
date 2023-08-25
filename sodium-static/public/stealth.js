@@ -99,14 +99,27 @@ window.addEventListener('DOMContentLoaded', () => {
     fpsItem.textContent = `FPS: ${fps}`;
     fpsItem.style.display = 'block';
 
+    const useProxy = localStorage.getItem('useProxy') === 'true';
+    const proxyOption = localStorage.getItem('proxyOption');
     const pluginUrls = JSON.parse(localStorage.getItem('websitePlugins')) || [];
+    
     pluginUrls.forEach(pluginUrl => {
       const script = document.createElement('script');
-      script.src = pluginUrl;
+      
+      if (useProxy) {
+        if (proxyOption && proxyOption.toLowerCase() === "dynamic") {
+          script.src = `${window.location.origin}/service/route?url=${(pluginUrl)}`;
+        } else {
+          script.src = `${window.location.origin}/uv/service/${Ultraviolet.codec.xor.encode(pluginUrl)}`;
+        }
+      } else {
+        script.src = pluginUrl;
+      }
+      
       const iframeDocument = iframe.contentWindow.document;
       iframeDocument.head.appendChild(script);
       console.log(`Plugin injected into the iframe: ${pluginUrl}`);
-    });
+    });  
 
     iframe.style.display = "block";
     const loadingOverlay = document.getElementById('loading-overlay');

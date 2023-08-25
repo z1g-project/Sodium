@@ -306,6 +306,10 @@
         </select>
         <input type="text" id="addon-search" placeholder="Search Addons">
         <button onclick="window.open('https://forms.gle/QcnfUxXCc3UjChaG8', '_blank');">Submit New Addon</button>
+        <div class="settings-item">
+          <label for="use-proxy-checkbox">Use Proxy:</label>
+          <input type="checkbox" id="use-proxy-checkbox" onchange="saveUseProxySetting(this.checked)">
+        </div>            
       </div>
       <div class="addon-grid">
       </div>
@@ -345,7 +349,7 @@
     </div>
 
   <script>
-    const sections = document.querySelectorAll('.section');
+const sections = document.querySelectorAll('.section');
 const sidebarItems = document.querySelectorAll('.sidebar li');
 
 sidebarItems.forEach(item => {
@@ -411,6 +415,21 @@ function showSection(sectionName) {
       link.click();
       URL.revokeObjectURL(url);
     }
+
+    function saveUseProxySetting(useProxy) {
+      localStorage.setItem('useProxy', useProxy);
+      console.log(`Use Proxy setting saved: ${useProxy}`);
+    }
+
+    function setCheckboxState() {
+    const useProxyCheckbox = document.getElementById('use-proxy-checkbox');
+    if (useProxyCheckbox) {
+      const useProxy = localStorage.getItem('useProxy');
+      useProxyCheckbox.checked = useProxy === 'true';
+    }
+  }
+
+  setCheckboxState();
   </script>
 <script>
 function immortalize(arg) {
