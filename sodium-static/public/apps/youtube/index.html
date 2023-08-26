@@ -124,20 +124,38 @@ window.addEventListener('DOMContentLoaded', () => {
   fpsItem.style.display = 'none';
 
   if (iframe) {
-        const proxyOption = localStorage.getItem("proxyOption");
+  const proxyOption = localStorage.getItem("proxyOption");
 
-        if (proxyOption && proxyOption.toLowerCase() === "dynamic") {
-          iframe.src = `${window.location.origin}/service/route?url=https://youtube.com`;
-        } else {
-          const encodedURL = encodeURL('https://youtube.com');
-          iframe.src = `${window.location.origin}/uv/service/${encodedURL}`;
-        }
+  if (proxyOption && proxyOption.toLowerCase() === "dynamic") {
+    iframe.src = `${window.location.origin}/service/route?url=https://youtube.com`;
+  } else {
+    const useProxy = localStorage.getItem('useProxy') === 'true';
+    let urlToLoad = '';
 
-        iframe.onload = () => {
-          loadingOverlay.style.display = 'none';
-          iframe.parentElement.classList.add('show-iframe');
-        };
+    if (useProxy) {
+      const encodedURL = encodeURL('https://youtube.com');
+      urlToLoad = `${window.location.origin}/uv/service/${encodedURL}`;
+    } else {
+      urlToLoad = 'https://youtube.com';
+    }
+
+    iframe.src = urlToLoad;
   }
+
+  iframe.onload = () => {
+    loadingOverlay.style.display = 'none';
+    iframe.parentElement.classList.add('show-iframe');
+
+    const pluginUrls = JSON.parse(localStorage.getItem('websitePlugins')) || [];
+    pluginUrls.forEach(pluginUrl => {
+      const script = document.createElement('script');
+      script.src = pluginUrl;
+      const iframeDocument = iframe.contentWindow.document;
+      iframeDocument.head.appendChild(script);
+      console.log(`Plugin injected into the iframe: ${pluginUrl}`);
+    });
+  };
+}
 
   function calculateLatency(url, callback) {
     const timing = performance.timing;
