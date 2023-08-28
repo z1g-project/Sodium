@@ -28,7 +28,26 @@ self.addEventListener('activate', event => {
 });
 
 self.addEventListener('fetch', event => {
-  // Empty
+  event.respondWith(
+    (async function () {
+      try {
+        const cache = await p;
+
+        const cachedResponse = await cache.match(event.request);
+        if (cachedResponse) {
+          return cachedResponse;
+        }
+
+        const fetchedResponse = await fetch(event.request);
+        await cache.put(event.request, fetchedResponse.clone());
+        return fetchedResponse;
+
+      } catch (e) {
+        console.error('Fetch error:', e);
+        return new Response(e.toString(), { status: 500 });
+      }
+    })()
+  );
 });
 
 self.addEventListener('message', async e => {

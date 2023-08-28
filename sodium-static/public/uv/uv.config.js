@@ -1,6 +1,6 @@
 self.__uv$config = {
   prefix: "/uv/service/",
-  bare: "https://bare.mathclasses.xyz/",
+  bare: "https://uv.holyubofficial.net",
   encodeUrl: Ultraviolet.codec.xor.encode,
   decodeUrl: Ultraviolet.codec.xor.decode,
   handler: "/uv/uv.handler.js",

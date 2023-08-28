@@ -5,7 +5,7 @@ self.__dynamic$config = {
   logLevel: 3,
   bare: {
     version: 2,
-    path: "https://bare.mathclasses.xyz/"
+    path: "https://uv.holyubofficial.net"
   },
   tab: {
     title: 'Service',
