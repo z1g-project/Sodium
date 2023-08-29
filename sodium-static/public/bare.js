@@ -31,7 +31,7 @@ self.addEventListener('fetch', event => {
   event.respondWith(
     (async function () {
       try {
-        const cache = await p;
+        const cache = await caches.open(CACHE_NAME);
 
         const cachedResponse = await cache.match(event.request);
         if (cachedResponse) {
@@ -63,7 +63,7 @@ self.addEventListener('message', async e => {
 
       if (self.__dynamic$config)
         self.__dynamic$config.bare.path = req.url;
-    }
+    }      
   }
 });
 

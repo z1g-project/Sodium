@@ -285,7 +285,7 @@
 
     const bareServerInput = document.getElementById('custom-bare-server-input');
     if (bareServerInput) {
-      const bareServer = bareServerInput.value.trim();
+      const bareServer = bareServerInput.value.trim();     
       caches.open('bareServerCache').then(cache => {
         cache.put('bareServerKey', new Response(bareServer));
       });
@@ -293,7 +293,19 @@
       self.__uv$config.bare = bareServer;
       self.__dynamic$config.bare.path = bareServer;
       console.log('BareServer URL saved:', bareServer);
-    }
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.getRegistrations().then(registrations => {
+          for (const registration of registrations) {
+            if (registration.active && registration.active.scriptURL.includes('dynamic.sw.js')) {
+              registration.unregister().then(() => {
+                navigator.serviceWorker.register('/dynamic.sw.js');
+                console.log('Dynamic service worker re-registered.');
+              });
+            }
+          }
+        });
+      }
+    }    
 
     const proxyOption = localStorage.getItem('proxyOption');
     const dynamicEncoderSelect = document.getElementById('dynamic-encoder-select');

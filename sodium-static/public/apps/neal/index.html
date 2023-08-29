@@ -127,16 +127,38 @@ window.addEventListener('DOMContentLoaded', () => {
     const proxyOption = localStorage.getItem("proxyOption");
 
     if (proxyOption && proxyOption.toLowerCase() === "dynamic") {
-      iframe.src = `${window.location.origin}/service/route?url=https://radon.games`;
+      iframe.src = `${window.location.origin}/service/route?url=https://neal.fun`;
     } else {
-      const encodedURL = encodeURL('https://radon.games');
+      const encodedURL = encodeURL('https://neal.fun');
       iframe.src = `${window.location.origin}/uv/service/${encodedURL}`;
     }
 
     iframe.onload = () => {
-      loadingOverlay.style.display = 'none';
-      iframe.parentElement.classList.add('show-iframe');
-    };
+    loadingOverlay.style.display = 'none';
+    iframe.parentElement.classList.add('show-iframe');
+
+    const useProxy = localStorage.getItem('useProxy') === 'true';
+    const proxyOption = localStorage.getItem('proxyOption');
+    const pluginUrls = JSON.parse(localStorage.getItem('websitePlugins')) || [];
+    
+    pluginUrls.forEach(pluginUrl => {
+      const script = document.createElement('script');
+      
+      if (useProxy) {
+        if (proxyOption && proxyOption.toLowerCase() === "dynamic") {
+          script.src = `${window.location.origin}/service/route?url=${(pluginUrl)}`;
+        } else {
+          script.src = `${window.location.origin}/uv/service/${Ultraviolet.codec.xor.encode(pluginUrl)}`;
+        }
+      } else {
+        script.src = pluginUrl;
+      }
+      
+      const iframeDocument = iframe.contentWindow.document;
+      iframeDocument.head.appendChild(script);
+      console.log(`Plugin injected into the iframe: ${pluginUrl}`);
+    });
+  };
   }
 
   function calculateLatency(url, callback) {
