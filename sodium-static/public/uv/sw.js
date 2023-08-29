@@ -11,32 +11,4 @@ importScripts(__uv$config.sw || 'uv.sw.js');
 
 const sw = new UVServiceWorker();
 
-let bareServerUrl;
-
-async function updateBareServerUrl() {
-  const cache = await caches.open('bareServerCache');
-  const response = await cache.match('bareServerKey');
-  if (response) {
-    bareServerUrl = await response.text();
-  }
-}
-
-updateBareServerUrl();
-
-self.addEventListener('fetch', async (event) => {
-  if (bareServerUrl) {
-    const req = new Request(bareServerUrl, {
-      method: 'GET',
-      mode: 'cors',
-      credentials: 'same-origin',
-    });
-
-    const res = await fetch(req);
-
-    if (self.__uv$config) {
-      self.__uv$config.bare = res.url;
-    }
-  }
-
-  event.respondWith(sw.fetch(event));
-});
+self.addEventListener('fetch', (event) => event.respondWith(sw.fetch(event)));
