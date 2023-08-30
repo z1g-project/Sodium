@@ -305,7 +305,7 @@
           }
         });
       }
-    }    
+    }
 
     const proxyOption = localStorage.getItem('proxyOption');
     const dynamicEncoderSelect = document.getElementById('dynamic-encoder-select');
