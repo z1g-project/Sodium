@@ -21,6 +21,7 @@
   <script src="time.js" defer></script>
   <script src="settings.js" defer></script>
   <script src="fade.js" defer></script>
+  <script src="bare.js" defer></script>
   <style>
     iframe {
       position: fixed;
@@ -123,20 +124,42 @@ window.addEventListener('DOMContentLoaded', () => {
   fpsItem.style.display = 'none';
 
   if (iframe) {
-        const proxyOption = localStorage.getItem("proxyOption");
+    const proxyOption = localStorage.getItem("proxyOption");
 
+    if (proxyOption && proxyOption.toLowerCase() === "dynamic") {
+      iframe.src = `${window.location.origin}/service/route?url=https://youtube.com`;
+    } else {
+      const encodedURL = encodeURL('https://youtube.com');
+      iframe.src = `${window.location.origin}/uv/service/${encodedURL}`;
+    }
+
+  iframe.onload = () => {
+    loadingOverlay.style.display = 'none';
+    iframe.parentElement.classList.add('show-iframe');
+
+    const useProxy = localStorage.getItem('useProxy') === 'true';
+    const proxyOption = localStorage.getItem('proxyOption');
+    const pluginUrls = JSON.parse(localStorage.getItem('websitePlugins')) || [];
+    
+    pluginUrls.forEach(pluginUrl => {
+      const script = document.createElement('script');
+      
+      if (useProxy) {
         if (proxyOption && proxyOption.toLowerCase() === "dynamic") {
-          iframe.src = `${window.location.origin}/service/route?url=https://youtube.com`;
+          script.src = `${window.location.origin}/service/route?url=${(pluginUrl)}`;
         } else {
-          const encodedURL = encodeURL('https://youtube.com');
-          iframe.src = `${window.location.origin}/uv/service/${encodedURL}`;
+          script.src = `${window.location.origin}/uv/service/${Ultraviolet.codec.xor.encode(pluginUrl)}`;
         }
-
-        iframe.onload = () => {
-          loadingOverlay.style.display = 'none';
-          iframe.parentElement.classList.add('show-iframe');
-        };
-  }
+      } else {
+        script.src = pluginUrl;
+      }
+      
+      const iframeDocument = iframe.contentWindow.document;
+      iframeDocument.head.appendChild(script);
+      console.log(`Plugin injected into the iframe: ${pluginUrl}`);
+    });
+  };
+}
 
   function calculateLatency(url, callback) {
     const timing = performance.timing;

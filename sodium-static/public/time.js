@@ -188,7 +188,7 @@ const customCSS = localStorage.getItem('websiteCSS');
 
     if (betaMode === 'true') {
       if (window.location.pathname === '/' || window.location.pathname === '/index.html') {
-        window.location.href = '/beta.html';
+        window.location.href = '/tabs/';
       }
     } else {
       

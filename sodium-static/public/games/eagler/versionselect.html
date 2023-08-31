@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <base href="../../">
+    <base href="../../"></base>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
     <title>Sodium</title>
@@ -12,16 +12,16 @@
     <link id="favicon" rel="icon" type="image/png" href="favicon.ico">
     <link rel="stylesheet" href="montserrat.css"/>
     <link rel="stylesheet" href="ui.css" id="custom-css"/>
-    <script src="uv/uv.bundle.js" defer></script>
-    <script src="uv/uv.config.js" defer></script>
-    <script src="register-sw.js" defer></script>
-    <script src="search.js" defer></script>
-    <link rel="json" href="appx.json" defer></script>
     <link rel="manifest" href="manifest.webmanifest"/>
+    <script id="proxcfg" src="uv/uv.bundle.js" defer></script>
+    <script src="uv/uv.config.js" defer></script>
+    <script id="proxsw" src="register-sw.js" defer></script>
+    <script src="search.js" defer></script>
+    <script id="proxloader" src="index.js" defer></script>
     <script src="time.js" defer></script>
-    <script src="apps.js" defer></script>
     <script src="settings.js" defer></script>
     <script src="fade.js" defer></script>
+    <script src="bare.js" defer></script>
   </head>
 
   <body>    
@@ -29,32 +29,32 @@
     <h3 style="text-align: center;">Please Select a Version of Eaglercraft to play!</h3>
 
     <div class="grid-container">
-      <div class="grid-item" onclick="const encodedURL1 = Ultraviolet.codec.xor.encode('https://html5gfiles.github.io/minecraft-15/');
-        window.location.href = window.location.origin + `/uv/service/${encodedURL1}`;">
+      <div class="grid-item" onclick="const proxyOption = localStorage.getItem('proxyOption'); const urlToLoad = proxyOption && proxyOption.toLowerCase() === 'dynamic'
+      ? `${window.location.origin}/service/route?url=https://html5gfiles.github.io/minecraft-15/`
+      : `${window.location.origin}/uv/service/${Ultraviolet.codec.xor.encode('https://html5gfiles.github.io/minecraft-15/')}`;
+    window.location.href = urlToLoad;">
         <img src="games/assets/game1.jpg" height="200" width="200" alt="EaglerCraft Logo">
         <h3>Eaglercraft</h3>
         <p>The regular Eaglercraft 1.5.2 client</p>
       </div>
 
-      <div class="grid-item" onclick="const encodedURL2 = Ultraviolet.codec.xor.encode('https://precisionclient-88k.pages.dev');
-        window.location.href = window.location.origin + `/uv/service/${encodedURL2}`;">
+      <div class="grid-item" onclick="const proxyOption2 = localStorage.getItem('proxyOption'); const urlToLoad2 = proxyOption2 && proxyOption2.toLowerCase() === 'dynamic'
+      ? `${window.location.origin}/service/route?url=https://precisionclient-88k.pages.dev`
+      : `${window.location.origin}/uv/service/${Ultraviolet.codec.xor.encode('https://precisionclient-88k.pages.dev')}`;
+    window.location.href = urlToLoad2;">
         <img src="games/assets/precision.png" height="200" width="200" alt="Eaglercraft Logo">
         <h3>Precision Client</h3>
         <p>A Modded Eaglercraft 1.5 client</p>
       </div>
 
-      <div class="grid-item" onclick="const encodedURL3 = Ultraviolet.codec.xor.encode('https://eaglercraftx.pages.dev');
-        window.location.href = window.location.origin + `/uv/service/${encodedURL3}`">
+      <div class="grid-item" onclick="const proxyOption3 = localStorage.getItem('proxyOption'); const urlToLoad3 = proxyOption3 && proxyOption3.toLowerCase() === 'dynamic'
+      ? `${window.location.origin}/service/route?url=https://eaglercraftx.pages.dev`
+      : `${window.location.origin}/uv/service/${Ultraviolet.codec.xor.encode('https://eaglercraftx.pages.dev')}`;
+    window.location.href = urlToLoad3;">
         <img src="games/assets/game1.jpg" height="200" width="200" alt="Eaglercraft Logo">
         <h3>EaglerCraft X</h3>
         <p>The regular Eaglercraft 1.8.8 Client!</p>
       </div>
-    </div>
-
-    <div id="side-rail-ad-container">
-      <script>
-        googletag.cmd.push(function() { googletag.display('side-rail-ad-container'); });
-      </script>
     </div>
   </body>
 </html>

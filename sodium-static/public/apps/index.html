@@ -20,7 +20,11 @@
     <link rel="json" href="appx.json" defer></script>
     <link rel="manifest" href="manifest.webmanifest"/>
     <script src="time.js" defer></script>
-    <script src="apps.js" defer></script>
+    <script>
+      function loadApp(url) {  
+        window.location.href = url;
+      }      
+    </script>
     <script src="settings.js" defer></script>
     <script src="fade.js" defer></script>
   </head>
@@ -136,10 +140,10 @@
         <p>The best free movie site I can find!</p>
       </div>
 
-      <div class="grid-item" onclick="loadApp('apps/radon/')">
-        <img src="apps/assets/app11.jpg" height="200" width="200" alt="Radon Logo">
-        <h3>Radon.games</h3>
-        <p>HECKER FR — Today at 6:36 PM Do Radeon games or no balls</p>
+      <div class="grid-item" onclick="loadApp('apps/neal/')">
+        <img src="apps/assets/app11.jpg" height="200" width="200" alt="Neal.fun Logo">
+        <h3>Neal.fun</h3>
+        <p>A fun game website</p>
       </div>
 
       <div class="grid-item" onclick="loadApp('apps/9anime/')">

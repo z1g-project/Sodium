@@ -53,6 +53,35 @@
         bareServerInput.value = localStorage.getItem('bareServer') || '';
       }
 
+      const bandwidthLimitInput = document.getElementById('bandwidth-limit-input');
+      if (bandwidthLimitInput) {
+        bandwidthLimitInput.value = localStorage.getItem('bandwidthLimit') || '';
+      }
+
+      const bandwidthLimit = localStorage.getItem('bandwidthLimit');
+      if (bandwidthLimit) {
+        let totalDataTransferred = 0;
+
+    function handleRequestSize(event) {
+      const requestSize = event.request.headers.get('content-length') || 0;
+      const responseSize = event.response.headers.get('content-length') || 0;
+      totalDataTransferred += Number(requestSize) + Number(responseSize);
+
+      if (totalDataTransferred > limit) {
+        event.preventDefault();
+        alert('Bandwidth Limit Exceeded!');
+        console.log('Request Exceeded Bandwidth Limit:', event.request.url);
+      }
+    }
+
+    self.addEventListener('fetch', (event) => {
+      event.respondWith(fetch(event.request).then((response) => {
+        handleRequestSize(event);
+        return response;
+      }));
+    });
+      }
+      
       const toggleBeta = document.getElementById('toggle-beta');
       if (toggleBeta) {
         const betaMode = localStorage.getItem('betaMode');
@@ -85,6 +114,28 @@
           });
         });
       }
+
+      const dynamicEncoderSelect = document.getElementById('dynamic-encoder-select');
+      if (dynamicEncoderSelect) {
+        const proxyOption = localStorage.getItem('proxyOption');
+        if (proxyOption && proxyOption.toLowerCase() === 'dynamic') {
+          dynamicEncoderSelect.style.display = 'warp';
+          const dynamicEncoder = localStorage.getItem('dynamicEncoder');
+          if (dynamicEncoder) {
+            dynamicEncoderSelect.value = dynamicEncoder;
+          }
+          
+          document.getElementById('dynamic-encoder-label').style.display = 'warp';
+          document.getElementById('dynamic-encoder-br1').style.display = 'block';
+          document.getElementById('dynamic-encoder-br2').style.display = 'block';
+        } else {
+          dynamicEncoderSelect.style.display = 'none';
+          
+          document.getElementById('dynamic-encoder-label').style.display = 'none';
+          document.getElementById('dynamic-encoder-br1').style.display = 'none';
+          document.getElementById('dynamic-encoder-br2').style.display = 'none';
+        }
+      }    
 
       const emergencyURL = localStorage.getItem('emergencyURL');
       const emergencyURLInput = document.getElementById('emergency-url-input');
@@ -234,9 +285,47 @@
 
     const bareServerInput = document.getElementById('custom-bare-server-input');
     if (bareServerInput) {
-      const bareServer = bareServerInput.value.trim();
+      const bareServer = bareServerInput.value.trim();     
+      caches.open('bareServerCache').then(cache => {
+        cache.put('bareServerKey', new Response(bareServer));
+      });
       localStorage.setItem('bareServer', bareServer);
+      self.__uv$config.bare = bareServer;
+      self.__dynamic$config.bare.path = bareServer;
       console.log('BareServer URL saved:', bareServer);
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.getRegistrations().then(registrations => {
+          for (const registration of registrations) {
+            if (registration.active && registration.active.scriptURL.includes('dynamic.sw.js')) {
+              registration.unregister().then(() => {
+                navigator.serviceWorker.register('/dynamic.sw.js');
+                console.log('Dynamic service worker re-registered.');
+              });
+            }
+          }
+        });
+      }
+    }
+
+    const proxyOption = localStorage.getItem('proxyOption');
+    const dynamicEncoderSelect = document.getElementById('dynamic-encoder-select');
+    if (proxyOption && proxyOption.toLowerCase() === 'dynamic' && dynamicEncoderSelect) {
+      const dynamicEncoder = dynamicEncoderSelect.value;
+      localStorage.setItem('dynamicEncoder', dynamicEncoder);
+      self.__dynamic$config.encoding = dynamicEncoder;
+      caches.open('settingsCache').then(cache => {
+        cache.put('dynamicEncoderKey', new Response(dynamicEncoder));
+      });
+      console.log('Dynamic Encoder Saved:', dynamicEncoder);
+    }  
+
+    const bandwidthLimitInput = document.getElementById('bandwidth-limit-input');
+    if (bandwidthLimitInput) {
+      const bandwidthLimit = parseInt(bandwidthLimitInput.value);
+      if (!isNaN(bandwidthLimit)) {
+        localStorage.setItem('bandwidthLimit', bandwidthLimit);
+        console.log('Bandwidth Limit Saved:', bandwidthLimit);
+      }
     }
 
     const use24HourTimeCheckbox = document.getElementById('use-24hour-checkbox');
@@ -329,7 +418,6 @@
       handleToggleDebugging();
     });
   }
-
 
   if (window.location.pathname === '/' || window.location.pathname === '/index.html') {
     const openNewWindow = localStorage.getItem('openNewWindow');

@@ -5,6 +5,8 @@ window.addEventListener('DOMContentLoaded', () => {
   const latencyItem = document.getElementById('latency');
   const fpsItem = document.getElementById('fps');
 
+  fpsItem.style.display = 'none';
+
   function calculateTransferRate(url, callback) {
     if (totalBytes > 0 && totalTime > 0) {
       const transferRate = (totalBytes / totalTime) * 8 / 1000;
@@ -14,22 +16,6 @@ window.addEventListener('DOMContentLoaded', () => {
       callback('N/A');
     }
   }
-
-  fpsItem.style.display = 'none';
-
-  iframe.addEventListener('load', () => {
-    infoMenu.style.display = 'block';
-    calculateTransferRate(iframe.src, transferRate => {
-      transferRateItem.textContent = `Transfer Rate: ${transferRate}`;
-    });
-    calculateLatency(iframe.src, latency => {
-      latencyItem.textContent = `Latency: ${latency}`;
-    });
-
-    const fps = calculateFPS();
-    fpsItem.textContent = `FPS: ${fps}`;
-    fpsItem.style.display = 'block';
-  });
 
   function calculateLatency(url, callback) {
     const timing = performance.timing;
@@ -59,9 +45,7 @@ window.addEventListener('DOMContentLoaded', () => {
   
     updateFPS();
   }
-  
-  calculateFPS();  
-  
+
   let totalBytes = 0;
   let totalTime = 0;
 
@@ -114,5 +98,37 @@ window.addEventListener('DOMContentLoaded', () => {
     const fps = calculateFPS();
     fpsItem.textContent = `FPS: ${fps}`;
     fpsItem.style.display = 'block';
+
+    const useProxy = localStorage.getItem('useProxy') === 'true';
+    const proxyOption = localStorage.getItem('proxyOption');
+    const pluginUrls = JSON.parse(localStorage.getItem('websitePlugins')) || [];
+    
+    pluginUrls.forEach(pluginUrl => {
+      const script = document.createElement('script');
+      
+      if (useProxy) {
+        if (proxyOption && proxyOption.toLowerCase() === "dynamic") {
+          script.src = `${window.location.origin}/service/route?url=${(pluginUrl)}`;
+        } else {
+          script.src = `${window.location.origin}/uv/service/${Ultraviolet.codec.xor.encode(pluginUrl)}`;
+        }
+      } else {
+        script.src = pluginUrl;
+      }
+      
+      const iframeDocument = iframe.contentWindow.document;
+      iframeDocument.head.appendChild(script);
+      console.log(`Plugin injected into the iframe: ${pluginUrl}`);
+    });
+
+    iframe.style.display = "block";
+    const loadingOverlay = document.getElementById('loading-overlay');
+    loadingOverlay.style.display = 'none';
+  });
+
+  iframe.addEventListener('loadstart', () => {
+    iframe.style.display = 'none';
+    const loadingOverlay = document.getElementById('loading-overlay');
+    loadingOverlay.style.display = 'flex';
   });
 });

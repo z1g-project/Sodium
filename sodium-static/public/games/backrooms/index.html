@@ -21,6 +21,7 @@
   <script src="time.js" defer></script>
   <script src="settings.js" defer></script>
   <script src="fade.js" defer></script>
+  <script src="bare.js" defer></script>
   <style>
     iframe {
       position: fixed;
@@ -133,9 +134,31 @@ window.addEventListener('DOMContentLoaded', () => {
     }
 
     iframe.onload = () => {
-      loadingOverlay.style.display = 'none';
-      iframe.parentElement.classList.add('show-iframe');
-    };
+    loadingOverlay.style.display = 'none';
+    iframe.parentElement.classList.add('show-iframe');
+
+    const useProxy = localStorage.getItem('useProxy') === 'true';
+    const proxyOption = localStorage.getItem('proxyOption');
+    const pluginUrls = JSON.parse(localStorage.getItem('websitePlugins')) || [];
+    
+    pluginUrls.forEach(pluginUrl => {
+      const script = document.createElement('script');
+      
+      if (useProxy) {
+        if (proxyOption && proxyOption.toLowerCase() === "dynamic") {
+          script.src = `${window.location.origin}/service/route?url=${(pluginUrl)}`;
+        } else {
+          script.src = `${window.location.origin}/uv/service/${Ultraviolet.codec.xor.encode(pluginUrl)}`;
+        }
+      } else {
+        script.src = pluginUrl;
+      }
+      
+      const iframeDocument = iframe.contentWindow.document;
+      iframeDocument.head.appendChild(script);
+      console.log(`Plugin injected into the iframe: ${pluginUrl}`);
+    });
+  };
   }
 
   function calculateLatency(url, callback) {

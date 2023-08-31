@@ -1,5 +1,5 @@
 {
-  "name": "ultraviolet-static",
+  "name": "sodium-static",
   "main": "lib/index.js",
   "version": "2.0.0",
   "type": "module",

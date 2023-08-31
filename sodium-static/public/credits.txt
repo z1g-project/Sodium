@@ -15,8 +15,13 @@ Ultraviolet Credits
 
 - Created by Titanium network
 
+Dynamic Credits
+
+- Created by Nebula Services
+
 Honorable Mentions
 
+- BadPingHere: Fixing the Z-Index Bug for the click hitboxes
 - Icccy: Helping me with Logo & Some CSS Stuff
 - carter: Helping me setup UV on a static sites
 - Bluu: Motivation

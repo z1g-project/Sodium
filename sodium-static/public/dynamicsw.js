@@ -26,10 +26,10 @@ function isUrl(val = "") {
 const inpbox = document.getElementById("uform");
 inpbox.addEventListener("submit", async (event) => {
   event.preventDefault();
-  console.log("Connecting to service -> loading");
+  console.log("Connecting to service -> loading");  
   if (typeof navigator.serviceWorker === "undefined") {
     alert(
-      "An error occurred registering your service worker. Please contact support - discord.gg/unblocker"
+      "An error occurred registering your service worker. Please contact dynamic support - discord.gg/unblocker"
     );
   }
   if (!workerLoaded) {

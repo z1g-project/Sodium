@@ -5,7 +5,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
   <title>Sodium</title>
-  <meta name="description" content="Sodium is a highly sophisticated proxy used for evading internet censorship or accessing websites in a controlled sandbox using the power of service workers. Unblock sites today!" />
+  <meta name="description" content="Sodium is an Ultraviolet-based proxy site used for evading internet censorship." />
   <meta name="keywords" content="proxy, web proxy, ultraviolet, service workers, unblock websites, unblock chromebook, free web proxy, proxy list, proxy sites, un block chromebook, online proxy, proxy server, proxysite, proxy youtube, bypass securly, bypass iboss, bypass lightspeed filter, sodium, titanium network, unblock youtube, youtube proxy, unblocked youtube, youtube unblocked" />
   <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#434c5e" />
   <meta name="googlebot" content="index, follow, snippet" />
@@ -16,6 +16,7 @@
   <link rel="manifest" href="manifest.webmanifest"/>
   <script src="uv/uv.bundle.js" defer></script>
   <script src="uv/uv.config.js" defer></script>
+  <script src="dynamic/dynamic.config.js" defer></script>
   <script src="register-sw.js" defer></script>
   <script src="search.js" defer></script>
   <script src="index.js" defer></script>
@@ -89,6 +90,19 @@
   bottom: 0px;
   width: 75%;
 }
+
+.addon-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  padding: 20px;
+}
+
+.addon-item {
+  border: 1px solid #ddd;
+  padding: 20px;
+  text-align: center;
+}
       </style>  
     </head>
     <body>
@@ -117,7 +131,9 @@
     <ul>
       <li data-section="general">General</li>
       <li data-section="appearance">Appearance</li>
+      <li data-section="network">Network</li>
       <li data-section="account">Cache</li>
+      <li data-section="addons">Addons</li>
     </ul>
     <div class="sidebar-buttons">
       <button id="save-button">Save Settings</button>
@@ -149,10 +165,15 @@
     <input type="text" id="custom-search-engine-input" placeholder="Enter a URL like so: https://example.com/search?q=" class="config-input" style="display: none;">
     <br>
     <br>
-    <!--label for="bare-server-select" class="config-label">Custom Bare Server (Alpha):</label>
-    <input type="text" id="custom-bare-server-input" placeholder="Enter a url like so: https://bare.example.com" class="config-input">
-    <br>
-    <br-->
+    <label for="dynamic-encoder" class="config-label" id="dynamic-encoder-label">Encoder:</label>
+    <select id="dynamic-encoder-select" class="config-select">
+      <option value="aes">AES (Default)</option>
+      <option value="xor">XOR</option>
+      <option value="base64">Base64</option>
+      <option value="plain">Plain (Not recommended)</option>
+    </select>
+    <br id="dynamic-encoder-br1">
+    <br id="dynamic-encoder-br2">
     <label for="emergency-switch-hotkey" class="config-label">Emergency Switch Hotkey:</label>
     <input type="text" id="emergency-switch-hotkey" class="config-input">
     <br>
@@ -211,6 +232,58 @@
         <button onclick="openCSSEditor()">Open CSS Editor</button>
       </div>
 
+      <div class="section" data-section="network">
+        <h3>Network</h3>
+        <label for="connection-status" class="config-label">Connection Status:</label>
+        <p id="connection-status">Detecting...</p>
+      
+        <label for="bandwidth-limit" class="config-label">Bandwidth Limit (Mbps):</label>
+        <input type="number" id="bandwidth-limit-input" class="config-input" min="1" step="1" />
+        <br>
+        <br>
+        <label for="bare-server-select" class="config-label">Custom Bare Server (Beta):</label>
+        <input type="text" id="custom-bare-server-input" placeholder="Enter a url like so: https://bare.example.com" class="config-input">
+        <div id="ping-status">Checking server status...</div>
+        <script>
+          const connectionStatusElem = document.getElementById('connection-status');
+
+          function updateConnectionStatus() {
+            connectionStatusElem.textContent = navigator.onLine ? '🟢Online' : '🔴Offline';
+          }
+
+          window.addEventListener('online', updateConnectionStatus);
+          window.addEventListener('offline', updateConnectionStatus);
+
+          updateConnectionStatus();
+
+          function checkServerStatus(url) {
+            const startTime = performance.now();
+  
+            return fetch(url, { method: 'HEAD' })
+              .then(response => {
+                const endTime = performance.now();
+                const ping = Math.round(endTime - startTime);
+      
+                if (response.status === 200) {
+                  return `🟢Online - ${ping}ms`;
+                } else {
+                  return `🔴Offline - 0ms`;
+                }
+              })
+            .catch(() => `🔴Offline - 0ms`);
+          }
+
+          const bareServerUrl = localStorage.getItem('bareServer') || 'https://uv.holyubofficial.net';
+          checkServerStatus(bareServerUrl)
+          .then(status => {
+            const pingElement = document.getElementById('ping-status');
+            if (pingElement) {
+              pingElement.textContent = status;
+            }
+          });
+        </script>
+      </div>        
+
     <div class="section" data-section="account">
       <h2>Cache Settings</h2>
       <button onclick="clearCache()">Clear Local Storage Cache</button>
@@ -220,11 +293,63 @@
       <button id="unregisterButton">Unregister Service Workers</button>
       <br>
       <br>
+    </div> 
+
+    <div class="section" data-section="addons">
+      <h2>Addons</h2>
+      <div class="addon-controls">
+        <label for="addon-category">Category:</label>
+        <select id="addon-category" name="addonCategory">
+          <option value="all">All</option>
+          <option value="plugins">Plugins</option>
+          <option value="themes">Themes</option>
+        </select>
+        <input type="text" id="addon-search" placeholder="Search Addons">
+        <button onclick="window.open('https://forms.gle/QcnfUxXCc3UjChaG8', '_blank');">Submit New Addon</button>
+        <div class="settings-item">
+          <label for="use-proxy-checkbox">Use Proxy:</label>
+          <input type="checkbox" id="use-proxy-checkbox" onchange="saveUseProxySetting(this.checked)">
+        </div>            
+      </div>
+      <div class="addon-grid">
+      </div>
+      <!--div id="submission-form" style="display: none;">
+        <h3>Submit New Addon</h3>
+        <form id="addon-form">
+          <label for="addon-name">Name:</label>
+          <input type="text" id="addon-name" required><br>
+          
+          <label for="addon-category">Category:</label>
+          <select id="addon-category" required>
+            <option value="plugins">Plugin</option>
+            <option value="themes">Theme</option>
+          </select><br>
+          
+          <label for="addon-description">Description:</label>
+          <textarea id="addon-description" required></textarea><br>
+          
+          <label for="addon-publisher">Publisher:</label>
+          <input type="text" id="addon-publisher" required><br>
+          
+          <label for="addon-url">URL:</label>
+          <input type="url" id="addon-url" required><br>
+          
+          <button type="submit">Submit</button>
+        </form>
+      </div-->
+      <script src="addons.js"></script>
+      <!--script>
+        const submitAddonButton = document.getElementById('submit-addon-button');
+        const submissionForm = document.getElementById('submission-form');
+
+        submitAddonButton.addEventListener('click', () => {
+          submissionForm.style.display = 'block';
+        });
+      </script-->
     </div>
-  </div>
 
   <script>
-    const sections = document.querySelectorAll('.section');
+const sections = document.querySelectorAll('.section');
 const sidebarItems = document.querySelectorAll('.sidebar li');
 
 sidebarItems.forEach(item => {
@@ -290,26 +415,41 @@ function showSection(sectionName) {
       link.click();
       URL.revokeObjectURL(url);
     }
+
+    function saveUseProxySetting(useProxy) {
+      localStorage.setItem('useProxy', useProxy);
+      console.log(`Use Proxy setting saved: ${useProxy}`);
+    }
+
+    function setCheckboxState() {
+    const useProxyCheckbox = document.getElementById('use-proxy-checkbox');
+    if (useProxyCheckbox) {
+      const useProxy = localStorage.getItem('useProxy');
+      useProxyCheckbox.checked = useProxy === 'true';
+    }
+  }
+
+  setCheckboxState();
   </script>
 <script>
 function immortalize(arg) {
-    if (arg === 'sodium') {
-      localStorage.setItem('websiteCSS', 'immortal.css');
+  if (arg === 'sodium') {
+    localStorage.setItem('websiteCSS', 'immortal.css');
 
-      console.log('Immortal Requested');
-      console.log('Initializing 3MB Tailwind Package...');
+    console.log('Immortal Requested');
+    console.log('Initializing 3MB Tailwind Package...');
 
-      const tailwindCSSLink = document.createElement('link');
-      tailwindCSSLink.rel = 'stylesheet';
-      tailwindCSSLink.href = 'https://cdn.tailwindcss.com/';
-      document.head.appendChild(tailwindCSSLink);
+    const tailwindCSSLink = document.createElement('link');
+    tailwindCSSLink.rel = 'stylesheet';
+    tailwindCSSLink.href = 'https://cdn.tailwindcss.com/';
+    document.head.appendChild(tailwindCSSLink);
 
-      setTimeout(() => {
-        console.log('Done!');
-        location.reload();
-      }, 2000);
-    }
+    setTimeout(() => {
+      console.log('Done!');
+      location.reload();
+    }, 2000);
   }
+}
 
   window.addEventListener('DOMContentLoaded', () => {
     const command = 'immortalize("sodium")';
