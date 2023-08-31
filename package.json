@@ -22,7 +22,7 @@
     "ultraviolet-static": "file:sodium-static"
   },
   "devDependencies": {
-    "eslint": "^8.36.0",
+    "eslint": "^8.48.0",
     "prettier": "^2.8.4"
   }
 }
