@@ -11,7 +11,7 @@ body {
 }
 
 .btn1 {
-  color: antiquewhite;
+  color: rgb(0, 0, 0);
   outline: none;
   background-color: Transparent;
   border: none;
@@ -19,7 +19,7 @@ body {
 .btn {
   margin-left: 3px;
   outline: none;
-  color: antiquewhite;
+  color: rgb(0, 0, 0);
   background-color: Transparent;
   border: none;
 }
@@ -44,19 +44,19 @@ body {
 }
 
 .duce {
-  color: #fff;
+  color: #000000;
   display: grid;
   width: min-content;
 }
 
 .covid {
-  color: #fff;
+  color: #000000;
   display: grid;
   width: min-content;
 }
 
 .b3at {
-  color: #fff;
+  color: #000000;
   display: grid;
   width: min-content;
 }
@@ -131,7 +131,7 @@ fieldset {
 #txt {
   padding-top: 50px;
   font-size: 25px;
-  color: #ffffff;
+  color: #000000;
   font-weight: normal;
   margin: 0;
   padding-top: 0;

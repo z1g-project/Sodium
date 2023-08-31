@@ -300,14 +300,14 @@
 
 .urlContainer {
   width: 100%;
-  background-color: #222;
-  color: #fff;
+  background-color: #e2d7d7;
+  color: #000000;
   height: 50px;
   top: 0;
 }
 
 .frameThing {
-  background-color: #222;
+  background-color: #ddcfcf;
   border: hidden;
   border-style: hidden;
 }
@@ -321,7 +321,7 @@
 }
 
 #createTab {
-  color: #fff;
+  color: #000000;
   outline: none;
   height: 30px;
   margin-top: 8px;

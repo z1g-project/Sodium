@@ -48,6 +48,20 @@ const addons = [
         publisher: 'd8a1',
         url: 'https://cdn.z1g-project.repl.co/sodium/themes/weird.css',
       },
+      {
+        name: 'The Sodium Night',
+        category: 'themes',
+        description: 'Sodium lights at night',
+        publisher: 'rekeD',
+        url: 'https://cdn.z1g-project.repl.co/sodium/themes/sodinight.css',
+      },
+      {
+        name: 'Gmail - Remove "Empty Trash Now" link',
+        category: 'plugins',
+        description: 'Removes the "Empty Trash Now" link when in the Trash',
+        publisher: 'r8d8',
+        url: 'https://cdn.z1g-project.repl.co/sodium/plugins/gmailremove.js',
+      },
   ];
   
   function populateAddons() {

@@ -95,53 +95,53 @@
   const versionInfoElement = document.getElementById('version-info');
   
   fetch(`https://api.github.com/repos/${owner}/${repo}/commits?sha=${branch}`, {
-    method: 'GET',
-    headers: {
-      'Accept': 'application/vnd.github.v3+json'
-    }
-  })
-  .then(response => response.json())
-  .then(data => {
-    if (data && data.length > 0) {
-      const commitCount = data.length;
-      const buildNumber = window.location.hostname.includes('beta.') ? commitCount : data[0].sha.substr(0, 7);
-  
-      const releaseDateFormatted = new Date(data[0].commit.author.date);
-      const options = { month: 'long', day: 'numeric', year: 'numeric' };
-      const formattedMonth = new Intl.DateTimeFormat('en-US', { month: 'long' }).format(releaseDateFormatted);
-      const formattedDay = new Intl.DateTimeFormat('en-US', { day: 'numeric' }).format(releaseDateFormatted);
-      const formattedYear = new Intl.DateTimeFormat('en-US', { year: 'numeric' }).format(releaseDateFormatted);
-  
-      const ordinalSuffix = (day) => {
-        if (day >= 11 && day <= 13) {
-          return 'th';
-        }
-        switch (day % 10) {
-          case 1: return 'st';
-          case 2: return 'nd';
-          case 3: return 'rd';
-          default: return 'th';
-        }
-      };
-  
-      const releaseDayWithSuffix = formattedDay + ordinalSuffix(formattedDay);
-  
-      versionInfoElement.textContent = `v1.3.0 - Release Preview (Released: ${formattedMonth} ${releaseDayWithSuffix}, ${formattedYear} - Build: `;
-      
-      const commitLink = document.createElement("a");
-      commitLink.href = data[0].html_url;
-      commitLink.textContent = buildNumber;
-      
-      versionInfoElement.appendChild(commitLink);
-      versionInfoElement.appendChild(document.createTextNode(')'));
-    } else {
-      versionInfoElement.textContent = 'Version information not available.';
-    }
-  })
-  .catch(error => {
-    versionInfoElement.textContent = 'Error fetching version information.';
-    console.error('Error fetching data:', error);
-  });
+  method: 'GET',
+  headers: {
+    'Accept': 'application/vnd.github.v3+json'
+  }
+})
+.then(response => response.json())
+.then(data => {
+  if (data && data.length > 0) {
+    const commitCount = data.length;
+    const commitId = data[0].sha.substring(0, 7);
+
+    const releaseDateFormatted = new Date(data[0].commit.author.date);
+    const options = { month: 'long', day: 'numeric', year: 'numeric' };
+    const formattedMonth = new Intl.DateTimeFormat('en-US', { month: 'long' }).format(releaseDateFormatted);
+    const formattedDay = new Intl.DateTimeFormat('en-US', { day: 'numeric' }).format(releaseDateFormatted);
+    const formattedYear = new Intl.DateTimeFormat('en-US', { year: 'numeric' }).format(releaseDateFormatted);
+
+    const ordinalSuffix = (day) => {
+      if (day >= 11 && day <= 13) {
+        return 'th';
+      }
+      switch (day % 10) {
+        case 1: return 'st';
+        case 2: return 'nd';
+        case 3: return 'rd';
+        default: return 'th';
+      }
+    };
+
+    const releaseDayWithSuffix = formattedDay + ordinalSuffix(formattedDay);
+
+    versionInfoElement.textContent = `v1.3.0 - Release Candidate (Released: ${formattedMonth} ${releaseDayWithSuffix}, ${formattedYear} - Commit: `;
+    
+    const commitLink = document.createElement("a");
+    commitLink.href = data[0].html_url;
+    commitLink.textContent = commitId;
+    
+    versionInfoElement.appendChild(commitLink);
+    versionInfoElement.appendChild(document.createTextNode(')'));
+  } else {
+    versionInfoElement.textContent = 'Version information not available.';
+  }
+})
+.catch(error => {
+  versionInfoElement.textContent = 'Error fetching version information.';
+  console.error('Error fetching data:', error);
+});
 </script>
 </body>
 </html>
