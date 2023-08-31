@@ -299,12 +299,12 @@
       <h2>Addons</h2>
       <div class="addon-controls">
         <label for="addon-category">Category:</label>
-        <select id="addon-category" name="addonCategory">
+        <select id="addon-category" name="addonCategory" class="config-select">
           <option value="all">All</option>
           <option value="plugins">Plugins</option>
           <option value="themes">Themes</option>
         </select>
-        <input type="text" id="addon-search" placeholder="Search Addons">
+        <input type="text" id="addon-search" class="config-input" placeholder="Search Addons">
         <button onclick="window.open('https://forms.gle/QcnfUxXCc3UjChaG8', '_blank');">Submit New Addon</button>
         <div class="settings-item">
           <label for="use-proxy-checkbox">Use Proxy:</label>
@@ -313,39 +313,7 @@
       </div>
       <div class="addon-grid">
       </div>
-      <!--div id="submission-form" style="display: none;">
-        <h3>Submit New Addon</h3>
-        <form id="addon-form">
-          <label for="addon-name">Name:</label>
-          <input type="text" id="addon-name" required><br>
-          
-          <label for="addon-category">Category:</label>
-          <select id="addon-category" required>
-            <option value="plugins">Plugin</option>
-            <option value="themes">Theme</option>
-          </select><br>
-          
-          <label for="addon-description">Description:</label>
-          <textarea id="addon-description" required></textarea><br>
-          
-          <label for="addon-publisher">Publisher:</label>
-          <input type="text" id="addon-publisher" required><br>
-          
-          <label for="addon-url">URL:</label>
-          <input type="url" id="addon-url" required><br>
-          
-          <button type="submit">Submit</button>
-        </form>
-      </div-->
       <script src="addons.js"></script>
-      <!--script>
-        const submitAddonButton = document.getElementById('submit-addon-button');
-        const submissionForm = document.getElementById('submission-form');
-
-        submitAddonButton.addEventListener('click', () => {
-          submissionForm.style.display = 'block';
-        });
-      </script-->
     </div>
 
   <script>
