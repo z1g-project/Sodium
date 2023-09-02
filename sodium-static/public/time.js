@@ -183,6 +183,41 @@ const customCSS = localStorage.getItem('websiteCSS');
         
       }
     }
+
+    if (window.location.pathname === '/' || window.location.pathname === '/index.html') { 
+      const openBlobWindow = localStorage.getItem('openblobwindow');
+    
+      if (openBlobWindow === 'true') { 
+        const htmlContent = `
+          <!DOCTYPE html>
+          <html>
+            <head>
+              <style type="text/css">
+                body, html {
+                  margin: 0;
+                  padding: 0;
+                  height: 100%;
+                  overflow: hidden;
+                }
+              </style>
+              <base href="/">
+            </head>
+            <body>
+              <iframe style="border: none; width: 100%; height: 100vh;" src="/newtab.html"></iframe>
+            </body>
+          </html>
+        `;
+    
+        const blob = new Blob([htmlContent], { type: 'text/html' });
+        const blobURL = URL.createObjectURL(blob);
+        const newWindow = window.open(blobURL, '_blank', 'width=800,height=600');
+        
+        const fallbackUrl = localStorage.getItem('fallbackUrl');
+        if (fallbackUrl) {
+          window.location.href = fallbackUrl;
+        }
+      }
+    }    
     
     const betaMode = localStorage.getItem('betaMode');
 

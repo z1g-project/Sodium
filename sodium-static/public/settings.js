@@ -149,6 +149,12 @@
         toggleAboutBlank.checked = openNewWindow === 'true';
       }
 
+      const openblobWindow = localStorage.getItem('openblobwindow');
+      const toggleblobBlank = document.getElementById('open-blob-window');
+      if (toggleblobBlank) {
+        toggleblobBlank.checked = openblobWindow === 'true';
+      }
+
       const debugging = localStorage.getItem('debugging');
       const toggleDebugging = document.getElementById('toggle-debugging');
       if (toggleDebugging) {
@@ -261,6 +267,7 @@
     console.log('Default Proxy Saved:', selectedOption);
 
     handleToggleBeta();
+    handleblob();
 
     const emergencyHotkeyInput = document.getElementById('emergency-switch-hotkey');
     if (emergencyHotkeyInput) {
@@ -347,7 +354,21 @@
     }
 
     setTimeout(function () {
-      location.reload();
+      const notification = document.getElementById('notification');
+      notification.textContent = 'Settings Saved!';
+      notification.classList.remove('hidden');
+    
+      setTimeout(() => {
+        notification.style.top = '40px';
+      }, 10);
+    
+      setTimeout(() => {
+        notification.style.top = '-50px';
+        setTimeout(() => {
+          notification.classList.add('hidden');
+          //location.reload();
+        }, 500);
+      }, 3000);    
     }, 100);
   }  
 
@@ -358,6 +379,16 @@
       localStorage.setItem('betaMode', 'true');
     } else {
       localStorage.removeItem('betaMode');
+    }
+  }
+
+  function handleblob() {
+    const blobwindow = document.getElementById('open-blob-window');
+
+    if (blobwindow.checked) {
+      localStorage.setItem('openblobwindow', 'true');
+    } else {
+      localStorage.removeItem('openblobwindow');
     }
   }
 

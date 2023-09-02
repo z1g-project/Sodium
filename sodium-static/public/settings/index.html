@@ -103,6 +103,23 @@
   padding: 20px;
   text-align: center;
 }
+
+.notification {
+  position: fixed;
+  top: 40px;
+  left: 0;
+  width: 100%;
+  padding: 10px;
+  background-color: #4CAF50;
+  color: white;
+  text-align: center;
+  font-size: 14px;
+  transition: top 0.5s ease-in-out;
+}
+
+.hidden {
+  visibility: hidden;
+}
       </style>  
     </head>
     <body>
@@ -124,7 +141,10 @@
           <p class="battery-text"></p>
         </div>
     </div>
-  </div> 
+  </div>
+  <div id="notification" class="notification hidden">
+    <p>Settings saved</p>
+  </div>  
 
   <div class="sidebar">
     <h1>Settings</h1>
@@ -165,7 +185,7 @@
     <input type="text" id="custom-search-engine-input" placeholder="Enter a URL like so: https://example.com/search?q=" class="config-input" style="display: none;">
     <br>
     <br>
-    <label for="dynamic-encoder" class="config-label" id="dynamic-encoder-label">Encoder:</label>
+    <label for="dynamic-encoder" class="config-label" id="dynamic-encoder-label">Encoder (Alpha):</label>
     <select id="dynamic-encoder-select" class="config-select">
       <option value="aes">AES (Default)</option>
       <option value="xor">XOR</option>
@@ -182,7 +202,7 @@
     <input type="text" id="emergency-url-input" placeholder="Enter emergency URL" class="config-input">
     <br>
     <br>
-    <label for="fallback-url-input" class="config-label">about:blank Fallback URL:</label>
+    <label for="fallback-url-input" class="config-label">about:blank/blob Fallback URL:</label>
     <input type="text" id="fallback-url-input" class="config-input">
     <br>
     <br>
@@ -199,6 +219,10 @@
     <br>
     <label for="open-new-window">Open in About:blank Window:</label>
     <input type="checkbox" id="open-new-window">
+    <br>
+    <br>
+    <label for="open-blob-window">Open in blob Window (beta):</label>
+    <input type="checkbox" id="open-blob-window">
     <br>
     <br>
     </div>
