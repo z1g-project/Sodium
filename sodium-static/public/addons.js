@@ -62,6 +62,27 @@ const addons = [
         publisher: 'r8d8',
         url: 'https://cdn.z1g-project.repl.co/sodium/plugins/gmailremove.js',
       },
+      {
+        name: 'Vencord for Sodium',
+        category: 'plugins',
+        description: 'A Discord client mod',
+        publisher: '✅ Vencord',
+        url: 'https://cdn.z1g-project.repl.co/sodium/plugins/vencord.js',
+      },
+      {
+        name: 'Paper.io ZOOM HACK - Paperio Hacks',
+        category: 'plugins',
+        description: 'Paperio Mods Features: Zoom Hack, Unlock All Skins, Change Everything, Auto Turn Bot, FPS paper-io.com',
+        publisher: 'GameHackerC',
+        url: 'https://cdn.z1g-project.repl.co/sodium/plugins/paperio.js',
+      },
+      {
+        name: 'Bypass All Shortlinks Manual Captchas',
+        category: 'plugins',
+        description: 'Bypass for Linkvertise',
+        publisher: 'Bloggerpemula',
+        url: 'https://cdn.z1g-project.repl.co/sodium/plugins/linkvert.js',
+      },
   ];
   
   function populateAddons() {
@@ -103,11 +124,39 @@ const addons = [
         if (addonType === 'themes') {
           localStorage.setItem('websiteCSS', addonUrl);
           console.log('Theme downloaded:', addonUrl);
+          const notification = document.getElementById('notification');
+            notification.textContent = 'Theme Downloaded! Refresh to see Changes';
+            notification.classList.remove('hidden');
+          
+            setTimeout(() => {
+              notification.style.top = '40px';
+            }, 10);
+          
+            setTimeout(() => {
+              notification.style.top = '-50px';
+              setTimeout(() => {
+                notification.classList.add('hidden');
+              }, 500);
+            }, 3000);
         } else if (addonType === 'plugins') {
           let websitePlugins = JSON.parse(localStorage.getItem('websitePlugins')) || [];
           websitePlugins.push(addonUrl);
           localStorage.setItem('websitePlugins', JSON.stringify(websitePlugins));
           console.log('Plugin downloaded:', addonUrl);
+            const notification = document.getElementById('notification');
+            notification.textContent = 'Plugin Downloaded!';
+            notification.classList.remove('hidden');
+          
+            setTimeout(() => {
+              notification.style.top = '40px';
+            }, 10);
+          
+            setTimeout(() => {
+              notification.style.top = '-50px';
+              setTimeout(() => {
+                notification.classList.add('hidden');
+              }, 500);
+            }, 3000);
         }
       });
     });
