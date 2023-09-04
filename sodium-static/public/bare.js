@@ -67,6 +67,16 @@ self.addEventListener('message', async e => {
   }
 });
 
+function sendUpdateMessageToServiceWorker() {
+  if (navigator.serviceWorker.controller) {
+    navigator.serviceWorker.controller.postMessage({ action: 'updateBareServerUrl' });
+  }
+}
+
+navigator.serviceWorker.addEventListener('controllerchange', sendUpdateMessageToServiceWorker);
+
+sendUpdateMessageToServiceWorker();
+
 (async () => {
   const bareServer = await getBareServerUrl();
   if (bareServer) {
