@@ -4,7 +4,7 @@
   <img src="./sodium-static/public/sodium.png" height="200">
 </p>
 
-This is my submittion to the Titanium Network Proxathon!
+This was my submittion to the Titanium Network 2023 Proxathon!
 
 ## Features
 
