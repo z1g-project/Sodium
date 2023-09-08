@@ -1,6 +1,9 @@
 self.__uv$config = {
     prefix: "/uv/service/",
-    bare: "https://sodium.onrender.com/bare/",
+    bare: [
+      "https://sodium.onrender.com/bare/",
+      "https://tomp.app",
+    ],
     encodeUrl: Ultraviolet.codec.xor.encode,
     decodeUrl: Ultraviolet.codec.xor.decode,
     handler: "/uv/uv.handler.js",
