@@ -83,6 +83,48 @@ const addons = [
         publisher: 'Bloggerpemula',
         url: 'https://cdn.z1g-project.repl.co/sodium/plugins/linkvert.js',
       },
+      {
+        name: 'Spotify Downloader',
+        category: 'plugins',
+        description: 'Downloads Spotify songs, playlists, and albums as 320kbps MP3. Can also download full playlist or album as ZIP.',
+        publisher: 'Zertalious',
+        url: 'https://cdn.z1g-project.repl.co/sodium/plugins/spotify.js',
+      },
+      {
+        name: 'TikTok Autoscroll',
+        category: 'plugins',
+        description: 'Autoscroll videos on tiktok.',
+        publisher: '@Masiosare',              
+        url: 'https://cdn.z1g-project.repl.co/sodium/plugins/tiktok.js',
+      },
+      {
+        name: 'GPTSearch',
+        category: 'plugins',
+        description: 'Adds a Search that uses chatGPT to pages',
+        publisher: 'Zheng Bang-Bo',              
+        url: 'https://cdn.z1g-project.repl.co/sodium/plugins/gptsearch.js',
+      },
+      {
+        name: 'Powerline.io infinite score and length',
+        category: 'plugins',
+        description: 'Exploits debugging capabilities in the Powerline.io server to grant infinite score and length',
+        publisher: 'ww',              
+        url: 'https://cdn.z1g-project.repl.co/sodium/plugins/powerlineio.js',
+      },
+      {
+        name: 'Quizlet gravity game cheat',
+        category: 'plugins',
+        description: 'The correct answer pops up in the browser console and the restart button down left',
+        publisher: 'Danielv123',              
+        url: 'https://cdn.z1g-project.repl.co/sodium/plugins/quizlet.js',
+      },
+      {
+        name: 'Aternos Minecraft Server Hosting ADBLOCKER',
+        category: 'plugins',
+        description: 'Great minecraft hosting, but it has adblocker detection, this script automatically destroy antiadblock windows. I would prefer to show a donate button instead of forcing Ads.',
+        publisher: 'Lukáš Kovář',              
+        url: 'https://cdn.z1g-project.repl.co/sodium/plugins/aternos.js',
+      },
   ];
   
   function populateAddons() {
