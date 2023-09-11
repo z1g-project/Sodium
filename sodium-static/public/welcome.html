@@ -312,7 +312,7 @@ showSlide(currentSlide);
             localStorage.setItem(key, importedData[key]);
           });
           alert('Cache data imported successfully.');
-          location.reload();
+          location.replace('/');
         } catch (error) {
           alert('Error importing cache data. Please check the file format.');
         }
