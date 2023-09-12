@@ -1,9 +1,22 @@
-# Sodium v1.0 RTM - Stable Release (Build: 98)
+### Sodium v1.3.0 (Stable) - The Customize Update
 
-Whats New?
+**Whats new in v1.3.0**
 
-- Bug Fixes
-- Add Cache Handling Options
-- More Stable
+- Updated Dynamic 0.7.2 > 0.7.3
+- Updated Ruffle nightly 7/29/23 > nightly 8/29/23
+- Redesign Tabs
+- Added Addons!
+- Fix Bare Switcher
+- Improved performance *by up to 70%
+- Fix Bare Offline Issues 
+- More Domains!
+- Add an "offline" version you can download.
+- Other minor Fixes!
 
-Released: 7/20/2023
+### Domains
+
+Main: https://sodium-5h8.pages.dev
+Beta: https://beta.sodium-5h8.pages.dev
+OnRender: https://sodium.onrender.com
+
+Released: 9/1/2023
