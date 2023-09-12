@@ -1,9 +1,10 @@
-Document.addEventListener('DOMContentLoaded', function() { 
-	Document.getElementById('dipform').addEventListener('submit', async (e) => {
+if (typeof window !== "undefined") {
+	const document = window.document;
+	document.getElementById('dipform').addEventListener('submit', async (e) => {
 		e.preventDefault();
 	  
 		try {
-		  const val = Document.getElementById('dipinput').value;
+		  const val = document.getElementById('dipinput').value;
 		  if (!val.startsWith('http')) val = 'https://' + val;
 	  
 		  const response = await fetch(window.__DIP.config.prefix + window.__DIP.encodeURL(val));
@@ -17,4 +18,4 @@ Document.addEventListener('DOMContentLoaded', function() {
 		  console.error('Fetch error:', error);
 		}
 	  });
-});
+  }
