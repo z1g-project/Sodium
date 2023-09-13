@@ -8,7 +8,7 @@ self.__DIP.config = {
   worker: true,
   bare: {
     version: 2,
-    path: "https://sodium.onrender.com/bare/",
+    path: "https://bare.z1g-project.repl.co/",
   },
   tab: {
     title: 'Dynamic Interception Proxy',
