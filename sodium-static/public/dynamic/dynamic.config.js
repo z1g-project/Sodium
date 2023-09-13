@@ -5,7 +5,7 @@ self.__dynamic$config = {
   logLevel: 3,
   bare: {
     version: 2,
-    path: "https://sodium.onrender.com/bare/",
+    path: "https://tomp.app",
   },
   tab: {
     title: 'Service',

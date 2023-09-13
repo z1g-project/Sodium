@@ -8,7 +8,7 @@ self.__DIP.config = {
   worker: true,
   bare: {
     version: 2,
-    path: "https://sodium.onrender.com/bare/",
+    path: "https://tomp.app",
   },
   tab: {
     title: 'Dynamic Interception Proxy',

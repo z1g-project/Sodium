@@ -1,7 +1,7 @@
 self.__uv$config = {
     prefix: "/uv/service/",
     bare: [
-      "https://sodium.onrender.com/bare/",
+      //"https://sodium.onrender.com/bare/", Rate Limited
       "https://tomp.app",
     ],
     encodeUrl: Ultraviolet.codec.xor.encode,
