@@ -6,6 +6,7 @@
   "display": "standalone",
   "scope": "/",
   "start_url": "/",
+  "display_override": ["window-controls-overlay"],
   "icons": [
     {
       "src": "assets/img/icon-72x72.png",
