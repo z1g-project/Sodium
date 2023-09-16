@@ -12,6 +12,7 @@
     <meta name="googlebot" content="index, follow, snippet" />
     <link id="favicon" rel="icon" type="image/png" href="favicon.ico">
     <link rel="stylesheet" href="montserrat.css"/>
+    <link rel="stylesheet" href="item-cards.css"/>
     <link rel="stylesheet" href="ui.css" id="custom-css"/>
     <script src="uv/uv.bundle.js" defer></script>
     <script src="uv/uv.config.js" defer></script>
@@ -20,13 +21,14 @@
     <link rel="json" href="appx.json" defer></script>
     <link rel="manifest" href="manifest.webmanifest"/>
     <script src="time.js" defer></script>
+    <script src="settings.js" defer></script>
+    <script src="fade.js" defer></script>
+    <script src="games.js" defer></script>
     <script>
       function loadgames(url) {
         window.location.href = url;
       }
     </script>
-    <script src="settings.js" defer></script>
-    <script src="fade.js" defer></script>
   </head>
 
   <body>
@@ -53,206 +55,191 @@
     <h1 style="text-align: center;">Games</h1>
     <h3 style="text-align: center;">Official Games that are working and ready for use!</h3>
 
-    <div class="grid-container">
-      <div class="grid-item" onclick="loadgames('games/eagler/')">
-        <img src="games/assets/game1.jpg" height="200" width="200" alt="EaglerCraft Logo">
-        <h3>EaglerCraft</h3>
-        <p>A popular game during school hours (Multiple Versions)</p>
-      </div>
+    <div class="input-container">
+        <input class="config-input" type="text" id="gamesearch" onkeyup="searchgames()" placeholder="Search">
+        <select class="config-select" id="category" name="category" onchange="showImages()">
+          <option value="general">General</option>
+          <option value="online">Online</option>
+          <option value="flash">Flash</option>
+        </select>
+    </div>
 
-      <div class="grid-item" onclick="loadgames('games/rblx/')">
-        <img src="games/assets/game2.jpg" height="200" width="200" alt="RBLX Logo">
-        <h3>Roblox (Now.gg)</h3>
-        <p>Play Roblox over the cloud!</p>
+    <div class="container-apps">
+        <div class="column" data-category="general online">
+            <a onclick="loadgames('/games/eagler/')">
+            <img width="145" height="145" src="/games/assets/game1.jpg">
+            <p>EaglerCraft</p></a>
+        </div>
+        <div class="column" data-category="general online">
+            <a onclick="loadgames('/games/rblx/')">
+            <img width="145" height="145" src="/games/assets/game2.jpg">
+            <p>Roblox</p></a>
+        </div>
+        <div class="column" data-category="general">
+            <a onclick="loadgames('/games/slope/')">
+            <img width="145" height="145" src="/games/assets/game3.jpg">
+            <p>Slope</p></a>
+        </div>
+        <div class="column" data-category="general online">
+            <a onclick="loadgames('/games/suprem/')">
+            <img width="145" height="145" src="/games/assets/game4.jpg">
+            <p>Suprem.io</p></a>
+        </div>
+        <div class="column" data-category="general">
+            <a onclick="loadgames('/games/2048/')">
+            <img width="145" height="145" src="/games/assets/game5.jpg">
+            <p>2048</p></a>
+        </div>
+        <div class="column" data-category="general">
+            <a onclick="loadgames('/games/retrobowl/')">
+            <img width="145" height="145" src="/games/assets/game6.jpg">
+            <p>Retrobowl</p></a>
+        </div>
+        <div class="column" data-category="general flash">
+            <a onclick="loadgames('/games/run3/')">
+            <img width="145" height="145" src="/games/assets/game7.jpg">
+            <p>Run 3</p></a>
+        </div>
+        <div class="column" data-category="general">
+            <a onclick="loadgames('/games/drifthunters/')">
+            <img width="145" height="145" src="/games/assets/game8.jpg">
+            <p>Drifthunters</p></a>
+        </div>
+        <div class="column" data-category="general">
+            <a onclick="loadgames('/games/dino/')">
+            <img width="145" height="145" src="/games/assets/game9.jpg">
+            <p>Chrome Dino</p></a>
+        </div>
+        <div class="column" data-category="general">
+            <a onclick="loadgames('/games/flappy/')">
+            <img width="145" height="145" src="/games/assets/game10.jpg">
+            <p>Flappy Bird</p></a>
+        </div>
+        <div class="column" data-category="general">
+            <a onclick="loadgames('/games/geodash/')">
+            <img width="145" height="145" src="/games/assets/game11.jpg">
+            <p>Geometry Dash</p></a>
+        </div>
+        <div class="column" data-category="general">
+            <a onclick="loadgames('/games/cookieclicker/')">
+            <img width="145" height="145" src="/games/assets/game12.jpg">
+            <p>Cookie Clicker</p></a>
+        </div>
+        <div class="column" data-category="general flash">
+            <a onclick="loadgames('/games/awsomeplanes/')">
+            <img width="145" height="145" src="/games/assets/game13.jpg">
+            <p>Awsome Planes</p></a>
+        </div>
+        <div class="column" data-category="general flash">
+            <a onclick="loadgames('/games/papalouie/')">
+            <img width="145" height="145" src="/games/assets/game14.jpg">
+            <p>Papa Louie 3 - When Sundaes Attack</p></a>
+        </div>
+        <div class="column" data-category="general">
+            <a onclick="loadgames('/games/subwaysurf/')">
+            <img width="145" height="145" src="/games/assets/game15.jpg">
+            <p>Subway Surf</p></a>
+        </div>
+        <div class="column" data-category="general">
+            <a onclick="loadgames('/games/mx3m/')">
+            <img width="145" height="145" src="/games/assets/game16.jpg">
+            <p>Moto x3m</p></a>
+        </div>
+        <div class="column" data-category="general">
+            <a onclick="loadgames('/games/overit/')">
+            <img width="145" height="145" src="/games/assets/game17.jpg">
+            <p>Getting Over It</p></a>
+        </div>
+        <div class="column" data-category="general">
+            <a onclick="loadgames('/games/baseball/')">
+            <img width="145" height="145" src="/games/assets/game18.jpg">
+            <p>Google Baseball</p></a>
+        </div>
+        <div class="column" data-category="general">
+          <a onclick="loadgames('/games/drivemad/')">
+          <img width="145" height="145" src="/games/assets/game19.jpg">
+          <p>Drive Mad</p></a>
       </div>
-
-      <div class="grid-item" onclick="loadgames('games/slope/')">
-        <img src="games/assets/game3.jpg" height="200" width="200" alt="Slope Logo">
-        <h3>Slope</h3>
-        <p>Probably isnt blocked on ur school wifi...</p>
+      <div class="column" data-category="general">
+        <a onclick="loadgames('/games/pong/')">
+        <img width="145" height="145" src="/games/assets/game20.jpg">
+        <p>Pong</p></a>
       </div>
-
-      <div class="grid-item" onclick="loadgames('games/suprem/')">
-        <img src="games/assets/game4.jpg" height="200" width="200" alt="Suprem.io Logo">
-        <h3>Suprem.io</h3>
-        <p>A popular game during school hours</p>
+      <div class="column" data-category="general online">
+        <a onclick="loadgames('/games/paperio/')">
+        <img width="145" height="145" src="/games/assets/game21.jpg">
+        <p>Paper.io</p></a>
       </div>
-
-      <div class="grid-item" onclick="loadgames('games/2048/')">
-        <img src="games/assets/game5.jpg" height="200" width="200" alt="2048 Logo">
-        <h3>2048</h3>
-        <p>Try and beat your friends high score</p>
+      <div class="column" data-category="general online">
+        <a onclick="loadgames('/games/1v1.lol/')">
+        <img width="145" height="145" src="/games/assets/game22.jpg">
+        <p>1v1.lol</p></a>
       </div>
-
-      <div class="grid-item" onclick="loadgames('games/retrobowl/')">
-        <img src="games/assets/game6.jpg" height="200" width="200" alt="retrobowl Logo">
-        <h3>Retrobowl</h3>
-        <p>A old style football game</p>
+      <div class="column" data-category="general">
+        <a onclick="loadgames('/games/1v1.space/')">
+        <img width="145" height="145" src="/games/assets/game23.jpg">
+        <p>1v1.space</p></a>
       </div>
-
-      <div class="grid-item" onclick="loadgames('games/run3/')">
-        <img src="games/assets/game7.jpg" height="200" width="200" alt="Run3 Logo">
-        <h3>Run 3</h3>
-        <p>A cool platformer game Avalible in Flash or HTML5</p>
+      <div class="column" data-category="general">
+        <a onclick="loadgames('/games/99balls/')">
+        <img width="145" height="145" src="/games/assets/game24.jpg">
+        <p>99balls</p></a>
       </div>
-
-      <div class="grid-item" onclick="loadgames('games/drifthunters/')">
-        <img src="games/assets/game8.jpg" height="200" width="200" alt="Drift Hunters Logo">
-        <h3>DriftHunters</h3>
-        <p>A fun game to play!</p>
+      <div class="column" data-category="general online">
+        <a onclick="loadgames('/games/amogus/')">
+        <img width="145" height="145" src="/games/assets/game25.jpg">
+        <p>Among Us</p></a>
       </div>
-
-      <div class="grid-item" onclick="loadgames('games/dino/')">
-        <img src="games/assets/game9.jpg" height="200" width="200" alt="Chrome Dino Logo">
-        <h3>Chrome Dino</h3>
-        <p>This is definatly blocked on ur school pc for "educational purposes"</p>
+      <div class="column" data-category="general">
+        <a onclick="loadgames('/games/backrooms/')">
+        <img width="145" height="145" src="/games/assets/game26.jpg">
+        <p>Backrooms</p></a>
       </div>
-
-      <div class="grid-item" onclick="loadgames('games/flappy/')">
-        <img src="games/assets/game10.jpg" height="200" width="200" alt="Flappy Bird Logo">
-        <h3>Flappy Bird</h3>
-        <p>Somehow banned from iOS I think?</p>
+      <div class="column" data-category="general">
+        <a onclick="loadgames('/games/baldisbasics/')">
+        <img width="145" height="145" src="/games/assets/game27.jpg">
+        <p>Baldis Basics</p></a>
       </div>
-
-      <div class="grid-item" onclick="loadgames('games/geodash/')">
-        <img src="games/assets/game11.jpg" height="200" width="200" alt="Geometry Dash Logo">
-        <h3>Geometry Dash</h3>
-        <p>100% Mobile game that was made on scratch</p>
+      <div class="column" data-category="general online">
+        <a onclick="loadgames('/games/connect3/')">
+        <img width="145" height="145" src="/games/assets/game28.jpg">
+        <p>Connect 3</p></a>
       </div>
-
-      <div class="grid-item" onclick="loadgames('games/cookieclicker/')">
-        <img src="games/assets/game12.jpg" height="200" width="200" alt="Cookie Clicker Logo">
-        <h3>Cookie Clicker</h3>
-        <p>Spam Cookie = Stocks</p>
+      <div class="column" data-category="general">
+        <a onclick="loadgames('/games/death-run/')">
+        <img width="145" height="145" src="/games/assets/game29.jpg">
+        <p>Death Run 3D</p></a>
       </div>
-
-      <div class="grid-item" onclick="loadgames('games/awsomeplanes/')">
-        <img src="games/assets/game13.jpg" height="200" width="200" alt="Awsome Planes Logo">
-        <h3>Awsome Planes</h3>
-        <p>A decent flash game I guess</p>
+      <div class="column" data-category="general">
+        <a onclick="loadgames('/games/flappy-2048/')">
+        <img width="145" height="145" src="/games/assets/game30.jpg">
+        <p>Flappy 2048</p></a>
       </div>
-
-      <div class="grid-item" onclick="loadgames('games/papalouie/')">
-        <img src="games/assets/game14.jpg" height="200" width="200" alt="papalouie Logo">
-        <h3>Papa Louie 3 When Sundaes Attack</h3>
-        <p>A fun game from Elementry school</p>
+      <div class="column" data-category="general online">
+        <a onclick="loadgames('/games/justfall.lol/')">
+        <img width="145" height="145" src="/games/assets/game31.jpg">
+        <p>Justfall.lol</p></a>
       </div>
-
-      <div class="grid-item" onclick="loadgames('games/subwaysurf/')">
-        <img src="games/assets/game15.jpg" height="200" width="200" alt="Subway Surfers Logo">
-        <h3>Subway Surfers</h3>
-        <p>A very fun mobile game but ported to pc!</p>
+      <div class="column" data-category="general">
+        <a onclick="loadgames('/games/mario/')">
+        <img width="145" height="145" src="/games/assets/game32.jpg">
+        <p>Mario</p></a>
       </div>
-
-      <div class="grid-item" onclick="loadgames('games/mx3m/')">
-        <img src="games/assets/game16.jpg" height="200" width="200" alt="mx3m Logo">
-        <h3>Moto x3m</h3>
-        <p>A game where you compleate levels on a motorcycle!</p>
+      <div class="column" data-category="general">
+        <a onclick="loadgames('/games/mx3m-winter/')">
+        <img width="145" height="145" src="/games/assets/game33.jpg">
+        <p>Moto x3m Winter</p></a>
       </div>
-
-      <div class="grid-item" onclick="loadgames('games/overit/')">
-        <img src="games/assets/game17.jpg" height="200" width="200" alt="Overit Logo">
-        <h3>Getting Over it</h3>
-        <p>Free version of a steam game!</p>
-      </div>
-
-      <div class="grid-item" onclick="loadgames('games/baseball/')">
-        <img src="games/assets/game18.jpg" height="200" width="200" alt="Google Baseball Logo">
-        <h3>Google Baseball</h3>
-        <p>Another decent web game</p>
-      </div>
-
-      <div class="grid-item" onclick="loadgames('games/drivemad/')">
-        <img src="games/assets/game19.jpg" height="200" width="200" alt="Drive Mad Logo">
-        <h3>Drive Mad</h3>
-        <p>A fun game to play in class!</p>
-      </div>
-
-      <div class="grid-item" onclick="loadgames('games/pong/')">
-        <img src="games/assets/game20.jpg" height="200" width="200" alt="Pong Logo">
-        <h3>Pong</h3>
-        <p>Very funi game</p>
-      </div>
-
-      <div class="grid-item" onclick="loadgames('games/paperio/')">
-        <img src="games/assets/game21.jpg" height="200" width="200" alt="Paperio Logo">
-        <h3>Paper.io</h3>
-        <p>Another fun game to play in class against your classmates!</p>
-      </div>
-
-      <div class="grid-item" onclick="loadgames('games/1v1.lol/')">
-        <img src="games/assets/game22.jpg" height="200" width="200" alt="1v1.lol Logo">
-        <h3>1v1.lol</h3>
-        <p>like fortnite but spinoff</p>
-      </div>
-
-      <div class="grid-item" onclick="loadgames('games/1v1.space/')">
-        <img src="games/assets/game23.jpg" height="200" width="200" alt="1v1.space Logo">
-        <h3>1v1.space</h3>
-        <p>Another retroish game</p>
-      </div>
-
-      <div class="grid-item" onclick="loadgames('games/99balls/')">
-        <img src="games/assets/game24.jpg" height="200" width="200" alt="99balls Logo">
-        <h3>99balls</h3>
-        <p>Bored? Maybe try this</p>
-      </div>
-
-      <div class="grid-item" onclick="loadgames('games/amogus/')">
-        <img src="games/assets/game25.jpg" height="200" width="200" alt="amogus Logo">
-        <h3>Among Us</h3>
-        <p>Please vote to remove this game...</p>
-      </div>
-
-      <div class="grid-item" onclick="loadgames('games/backrooms/')">
-        <img src="games/assets/game26.jpg" height="200" width="200" alt="Backrooms Logo">
-        <h3>Backrooms</h3>
-        <p>No way this is a web game. veri fun to play</p>
-      </div>
-
-      <div class="grid-item" onclick="loadgames('games/baldisbasics/')">
-        <img src="games/assets/game27.jpg" height="200" width="200" alt="Baldis Basics Logo">
-        <h3>Baldis Basics</h3>
-        <p>The game you played on your moms iPhone 6 in 2015</p>
-      </div>
-
-      <div class="grid-item" onclick="loadgames('games/connect3/')">
-        <img src="games/assets/game28.jpg" height="200" width="200" alt="Connect3 Logo">
-        <h3>Connect 3</h3>
-        <p>Who needs connect 4 when theres connect 3</p>
-      </div>
-
-      <div class="grid-item" onclick="loadgames('games/death-run/')">
-        <img src="games/assets/game29.jpg" height="200" width="200" alt="Death Run Logo">
-        <h3>Death Run 3D</h3>
-        <p>another y8 game on this page</p>
-      </div>
-
-      <div class="grid-item" onclick="loadgames('games/flappy-2048/')">
-        <img src="games/assets/game30.jpg" height="200" width="200" alt="Flappy 2048 Logo">
-        <h3>Flappy 2048</h3>
-        <p>I think this game is broken...</p>
-      </div>
-
-      <div class="grid-item" onclick="loadgames('games/justfall.lol/')">
-        <img src="games/assets/game31.jpg" height="200" width="200" alt="Justfall.lol Logo">
-        <h3>Justfall.lol</h3>
-        <p>Like fall guys I think</p>
-      </div>
-
-      <div class="grid-item" onclick="loadgames('games/mario/')">
-        <img src="games/assets/game32.jpg" height="200" width="200" alt="Mario Logo">
-        <h3>Mario</h3>
-        <p>Its 1985 all over again!</p>
-      </div>
-
-      <div class="grid-item" onclick="loadgames('games/mx3m-winter/')">
-        <img src="games/assets/game33.jpg" height="200" width="200" alt="mx3m-winter Logo">
-        <h3>Moto x3m Winter</h3>
-        <p>Christmas themes Moto x3m</p>
+      <div class="column" data-category="general">
+        <a onclick="loadgames('/games/basketball-stars/')">
+        <img width="145" height="145" src="/games/assets/game34.jpg">
+        <p>Basketball Stars</p></a>
       </div>
     </div>
 
+    <br>
+    <br>
+    <br>
     <footer>
       <img src="assets/img/z1g.png" alt="z1g Project" title="The z1g Project GitHub organization" height="30" width="30" onclick="location.href='/github/z1g-project/'" />
       <img src="assets/img/discord.jpg" alt="Discord" title="The z1g Project Discord" height="30" width="30" onclick="location.href='/discord/'" />
