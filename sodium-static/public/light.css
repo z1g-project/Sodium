@@ -363,7 +363,7 @@ textarea {
   top: 10.5px;
   transform: translate(-100%, -75%);
   font-size: 13px;
-  color: white;
+  color: rgb(0, 0, 0);
 }
 
 .battery-icon.low {

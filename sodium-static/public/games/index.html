@@ -29,6 +29,38 @@
         window.location.href = url;
       }
     </script>
+<script>
+  function loadgame(value) {
+      let url = value.trim();
+      
+      const proxyOption = localStorage.getItem("proxyOption");
+  
+      if (proxyOption && proxyOption.toLowerCase() === "dynamic") {
+        const dynamicURL = `${window.location.origin}/service/route?url=${url}`;
+        sessionStorage.setItem("encodedUrl", dynamicURL);
+      } else {
+        if (!checkUrl(url)) {
+          url = "https://www.google.com/search?q=" + url;
+        } else if (!(url.startsWith("https://") || url.startsWith("http://"))) {
+          url = "https://" + url;
+        }
+  
+        sessionStorage.removeItem("encodedUrl");
+  
+        const encodedUrl = `${window.location.origin}/uv/service/${Ultraviolet.codec.xor.encode(url)}`;
+        sessionStorage.setItem("encodedUrl", encodedUrl);
+      }
+      
+      location.href = "iframe.html";
+    };
+  
+  function checkUrl(val = "") {
+    if (/^http(s?):\/\//.test(val) || (val.includes(".") && val.substr(0, 1) !== " ")) {
+      return true;
+    }
+    return false;
+  }
+  </script>  
   </head>
 
   <body>
@@ -71,27 +103,27 @@
             <p>EaglerCraft</p></a>
         </div>
         <div class="column" data-category="general online">
-            <a onclick="loadgames('/games/rblx/')">
+            <a onclick="loadgame('https://nowgg.nl/play/roblox-corporation/5349/roblox')">
             <img width="145" height="145" src="/games/assets/game2.jpg">
             <p>Roblox</p></a>
         </div>
         <div class="column" data-category="general">
-            <a onclick="loadgames('/games/slope/')">
+            <a onclick="loadgame('https://science246.github.io/SlopeHD/')">
             <img width="145" height="145" src="/games/assets/game3.jpg">
             <p>Slope</p></a>
         </div>
         <div class="column" data-category="general online">
-            <a onclick="loadgames('/games/suprem/')">
+            <a onclick="loadgame('https://suprem.io')">
             <img width="145" height="145" src="/games/assets/game4.jpg">
             <p>Suprem.io</p></a>
         </div>
         <div class="column" data-category="general">
-            <a onclick="loadgames('/games/2048/')">
+            <a onclick="loadgame('https://science246.github.io/2048/')">
             <img width="145" height="145" src="/games/assets/game5.jpg">
             <p>2048</p></a>
         </div>
         <div class="column" data-category="general">
-            <a onclick="loadgames('/games/retrobowl/')">
+            <a onclick="loadgame('https://science246.github.io/retrobowl/')">
             <img width="145" height="145" src="/games/assets/game6.jpg">
             <p>Retrobowl</p></a>
         </div>
@@ -101,27 +133,27 @@
             <p>Run 3</p></a>
         </div>
         <div class="column" data-category="general">
-            <a onclick="loadgames('/games/drifthunters/')">
+            <a onclick="loadgame('https://webglmath.github.io/drift-hunters/')">
             <img width="145" height="145" src="/games/assets/game8.jpg">
             <p>Drifthunters</p></a>
         </div>
         <div class="column" data-category="general">
-            <a onclick="loadgames('/games/dino/')">
+            <a onclick="loadgame('https://science246.github.io/dinosaur-game/')">
             <img width="145" height="145" src="/games/assets/game9.jpg">
             <p>Chrome Dino</p></a>
         </div>
         <div class="column" data-category="general">
-            <a onclick="loadgames('/games/flappy/')">
+            <a onclick="loadgame('https://science246.github.io/flappy/')">
             <img width="145" height="145" src="/games/assets/game10.jpg">
             <p>Flappy Bird</p></a>
         </div>
         <div class="column" data-category="general">
-            <a onclick="loadgames('/games/geodash/')">
+            <a onclick="loadgame('https://geometrydashonline.github.io/')">
             <img width="145" height="145" src="/games/assets/game11.jpg">
             <p>Geometry Dash</p></a>
         </div>
         <div class="column" data-category="general">
-            <a onclick="loadgames('/games/cookieclicker/')">
+            <a onclick="loadgame('https://orteil.dashnet.org/cookieclicker/')">
             <img width="145" height="145" src="/games/assets/game12.jpg">
             <p>Cookie Clicker</p></a>
         </div>
@@ -136,102 +168,102 @@
             <p>Papa Louie 3 - When Sundaes Attack</p></a>
         </div>
         <div class="column" data-category="general">
-            <a onclick="loadgames('/games/subwaysurf/')">
+            <a onclick="loadgame('https://gertdoro.github.io/3hg7dj3bnc82/index.html')">
             <img width="145" height="145" src="/games/assets/game15.jpg">
             <p>Subway Surf</p></a>
         </div>
         <div class="column" data-category="general">
-            <a onclick="loadgames('/games/mx3m/')">
+            <a onclick="loadgame('https://mathlover1.github.io/msgweb-assets/motox3m/index.html')">
             <img width="145" height="145" src="/games/assets/game16.jpg">
             <p>Moto x3m</p></a>
         </div>
         <div class="column" data-category="general">
-            <a onclick="loadgames('/games/overit/')">
+            <a onclick="loadgame('https://moyaimoment.github.io/games/Getting-Over-It/')">
             <img width="145" height="145" src="/games/assets/game17.jpg">
             <p>Getting Over It</p></a>
         </div>
         <div class="column" data-category="general">
-            <a onclick="loadgames('/games/baseball/')">
+            <a onclick="loadgame('https://www.google.com/logos/2019/july4th19/r6/july4th19.html?hl=en')">
             <img width="145" height="145" src="/games/assets/game18.jpg">
             <p>Google Baseball</p></a>
         </div>
         <div class="column" data-category="general">
-          <a onclick="loadgames('/games/drivemad/')">
+          <a onclick="loadgame('https://ubg77.github.io/game131022/drive-mad/')">
           <img width="145" height="145" src="/games/assets/game19.jpg">
           <p>Drive Mad</p></a>
       </div>
       <div class="column" data-category="general">
-        <a onclick="loadgames('/games/pong/')">
+        <a onclick="loadgame('https://sethclydesdale.github.io/browser-pong/')">
         <img width="145" height="145" src="/games/assets/game20.jpg">
         <p>Pong</p></a>
       </div>
       <div class="column" data-category="general online">
-        <a onclick="loadgames('/games/paperio/')">
+        <a onclick="loadgame('https://paper-io.com')">
         <img width="145" height="145" src="/games/assets/game21.jpg">
         <p>Paper.io</p></a>
       </div>
       <div class="column" data-category="general online">
-        <a onclick="loadgames('/games/1v1.lol/')">
+        <a onclick="loadgame('https://1v1.lol')">
         <img width="145" height="145" src="/games/assets/game22.jpg">
         <p>1v1.lol</p></a>
       </div>
       <div class="column" data-category="general">
-        <a onclick="loadgames('/games/1v1.space/')">
+        <a onclick="loadgame('https://flowlab.io/game/embed/1225623')">
         <img width="145" height="145" src="/games/assets/game23.jpg">
         <p>1v1.space</p></a>
       </div>
       <div class="column" data-category="general">
-        <a onclick="loadgames('/games/99balls/')">
+        <a onclick="loadgame('https://html5.gamedistribution.com/rvvASMiM/14a6a32cd96f4acaa04f5440ffe9a865/index.html')">
         <img width="145" height="145" src="/games/assets/game24.jpg">
         <p>99balls</p></a>
       </div>
       <div class="column" data-category="general online">
-        <a onclick="loadgames('/games/amogus/')">
+        <a onclick="loadgame('https://raw.githack.com/3kh0/3kh0-assets/main/among-us/index.html')">
         <img width="145" height="145" src="/games/assets/game25.jpg">
         <p>Among Us</p></a>
       </div>
       <div class="column" data-category="general">
-        <a onclick="loadgames('/games/backrooms/')">
+        <a onclick="loadgame('https://raw.githack.com/3kh0/3kh0-assets/main/backrooms/index.html')">
         <img width="145" height="145" src="/games/assets/game26.jpg">
         <p>Backrooms</p></a>
       </div>
       <div class="column" data-category="general">
-        <a onclick="loadgames('/games/baldisbasics/')">
+        <a onclick="loadgame('https://raw.githack.com/3kh0/3kh0-assets/main/baldis-basics/index.html')">
         <img width="145" height="145" src="/games/assets/game27.jpg">
         <p>Baldis Basics</p></a>
       </div>
       <div class="column" data-category="general online">
-        <a onclick="loadgames('/games/connect3/')">
+        <a onclick="loadgame('https://raw.githack.com/3kh0/3kh0-assets/main/connect3/index.html')">
         <img width="145" height="145" src="/games/assets/game28.jpg">
         <p>Connect 3</p></a>
       </div>
       <div class="column" data-category="general">
-        <a onclick="loadgames('/games/death-run/')">
+        <a onclick="loadgame('https://raw.githack.com/3kh0/3kh0-assets/main/death-run-3d/index.html')">
         <img width="145" height="145" src="/games/assets/game29.jpg">
         <p>Death Run 3D</p></a>
       </div>
       <div class="column" data-category="general">
-        <a onclick="loadgames('/games/flappy-2048/')">
+        <a onclick="loadgame('https://raw.githack.com/3kh0/3kh0-assets/main/flappy-2048/index.html')">
         <img width="145" height="145" src="/games/assets/game30.jpg">
         <p>Flappy 2048</p></a>
       </div>
       <div class="column" data-category="general online">
-        <a onclick="loadgames('/games/justfall.lol/')">
+        <a onclick="loadgame('https://justfall.lol')">
         <img width="145" height="145" src="/games/assets/game31.jpg">
         <p>Justfall.lol</p></a>
       </div>
       <div class="column" data-category="general">
-        <a onclick="loadgames('/games/mario/')">
+        <a onclick="loadgame('https://raw.githack.com/3kh0/3kh0-assets/main/mario/index.html')">
         <img width="145" height="145" src="/games/assets/game32.jpg">
         <p>Mario</p></a>
       </div>
       <div class="column" data-category="general">
-        <a onclick="loadgames('/games/mx3m-winter/')">
+        <a onclick="loadgame('https://mathlover1.github.io/msgweb-assets/motox3m-winter/index.html')">
         <img width="145" height="145" src="/games/assets/game33.jpg">
         <p>Moto x3m Winter</p></a>
       </div>
       <div class="column" data-category="general">
-        <a onclick="loadgames('/games/basketball-stars/')">
+        <a onclick="loadgame('https://tbg95.github.io/basketball-stars/game.html')">
         <img width="145" height="145" src="/games/assets/game34.jpg">
         <p>Basketball Stars</p></a>
       </div>
