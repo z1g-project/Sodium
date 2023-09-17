@@ -5,13 +5,14 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
     <title>Sodium</title>
-    <meta name="description" content="Sodium is a proxy site used for evading internet censorship." />
+    <meta name="description" content="Sodium is a proxy site used for evading internet censorship" />
     <meta property="og:image" content="/sodium.png">
     <meta name="keywords" content="proxy, web proxy, ultraviolet, service workers, unblock websites, unblock chromebook, free web proxy, proxy list, proxy sites, un block chromebook, online proxy, proxy server, proxysite, proxy youtube, bypass securly, bypass iboss, bypass lightspeed filter, sodium, titanium network, unblock youtube, youtube proxy, unblocked youtube, youtube unblocked" />
     <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#434c5e" />
     <meta name="googlebot" content="index, follow, snippet" />
     <link id="favicon" rel="icon" type="image/png" href="favicon.ico">
     <link rel="stylesheet" href="montserrat.css"/>
+    <link rel="stylesheet" href="item-cards.css"/>
     <link rel="stylesheet" href="ui.css" id="custom-css"/>
     <script src="uv/uv.bundle.js" defer></script>
     <script src="uv/uv.config.js" defer></script>
@@ -20,13 +21,41 @@
     <link rel="json" href="appx.json" defer></script>
     <link rel="manifest" href="manifest.webmanifest"/>
     <script src="time.js" defer></script>
-    <script>
-      function loadApp(url) {  
-        window.location.href = url;
-      }      
-    </script>
     <script src="settings.js" defer></script>
     <script src="fade.js" defer></script>
+    <script src="games.js" defer></script>
+    <script>
+    function loadapp(value) {
+      let url = value.trim();
+      
+      const proxyOption = localStorage.getItem("proxyOption");
+  
+      if (proxyOption && proxyOption.toLowerCase() === "dynamic") {
+        const dynamicURL = `${window.location.origin}/service/route?url=${url}`;
+        sessionStorage.setItem("appUrl", dynamicURL);
+      } else {
+        if (!checkUrl(url)) {
+          url = "https://www.google.com/search?q=" + url;
+        } else if (!(url.startsWith("https://") || url.startsWith("http://"))) {
+          url = "https://" + url;
+        }
+  
+        sessionStorage.removeItem("appUrl");
+  
+        const encodedUrl = `${window.location.origin}/uv/service/${Ultraviolet.codec.xor.encode(url)}`;
+        sessionStorage.setItem("appUrl", encodedUrl);
+      }
+      
+      location.href = "appframe.html";
+    };
+  
+  function checkUrl(val = "") {
+    if (/^http(s?):\/\//.test(val) || (val.includes(".") && val.substr(0, 1) !== " ")) {
+      return true;
+    }
+    return false;
+  }
+  </script>  
   </head>
 
   <body>
@@ -49,110 +78,136 @@
         </div>
       </div>
     </div>  
-    
-    <h1 style="text-align: center;">Apps</h1>
-    <h3 style="text-align: center;">Official Sites that are working and ready for use!</h3>
 
-    <div class="grid-container">
-      <div class="grid-item" onclick="loadApp('apps/discord/')">
-        <img src="apps/assets/app1.jpg" height="200" width="200" alt="Discord Logo">
-        <h3>Discord</h3>
-        <p>A popular texting platform.</p>
-      </div>
+    <h1 style="text-align: center;">Games</h1>
+    <h3 style="text-align: center;">Official Games that are working and ready for use!</h3>
 
-      <div class="grid-item" onclick="loadApp('apps/gfn/')">
-        <img src="apps/assets/app2.jpg" height="200" width="200" alt="GFN Logo">
-        <h3>GeForce NOW</h3>
-        <p>A popular game streaming service</p>
-      </div>
-
-      <div class="grid-item" onclick="loadApp('apps/cmg/')">
-        <img src="apps/assets/app3.jpg" height="200" width="200" alt="CMG Logo">
-        <h3>Cool Math Games</h3>
-        <p>The website that your school somehow blocked</p>
-      </div>
-
-      <div class="grid-item" onclick="loadApp('apps/xbox/')">
-        <img src="apps/assets/app4.jpg" height="200" width="200" alt="Xbox Cloud Gaming Logo">
-        <h3>Xbox Cloud Gaming</h3>
-        <p>Another Cloud Gaming Service</p>
-      </div>
-
-      <div class="grid-item" onclick="loadApp('apps/youtube/')">
-        <img src="apps/assets/app5.jpg" height="200" width="200" alt="YT Logo">
-        <h3>Youtube</h3>
-        <p>The Worlds Most Popular video website</p>
-      </div>
-
-      <div class="grid-item" onclick="loadApp('apps/spotify/')">
-        <img src="apps/assets/app6.jpg" height="200" width="200" alt="Spotify">
-        <h3>Spotify</h3>
-        <p>A Huge music streaming platform</p>
-      </div>
-
-      <div class="grid-item" onclick="loadApp('apps/ruffle/')">
-        <img src="apps/assets/app13.jpg" height="200" width="200" alt="Ruffle">
-        <h3>Ruffle</h3>
-        <p>An Open-Source Flash Emulator!</p>
-      </div>
-
-      <div class="grid-item" onclick="loadApp('apps/soundcloud/')">
-        <img src="apps/assets/app15.jpg" height="200" width="200" alt="soundcloud logo">
-        <h3>Sound Cloud</h3>
-        <p>Another Huge music streaming platform</p>
-      </div>
-
-      <div class="grid-item" onclick="loadApp('apps/bing/')">
-        <img src="apps/assets/app14.jpg" height="200" width="200" alt="bing">
-        <h3>Bing</h3>
-        <p>like google but worse</p>
-      </div>
+    <div class="input-container">
+        <input class="config-input" type="text" id="gamesearch" onkeyup="searchgames()" placeholder="Search">
+        <select class="config-select" id="category" name="category" onchange="showImages()">
+          <option value="general">General</option>
+          <option value="media">Media</option>
+          <option value="social">Social</option>
+          <option value="cloud">Cloud</option>
+        </select>
     </div>
 
-    <h1 style="text-align: center;">User Requested Sites</h1>
-    <h3 style="text-align: center;">Sites that I might regret adding later...</h3>
-    <div style="text-align: center;">
-      <a title="Request a Site" href="https://forms.gle/qESSwwa4dZF5nu5LA">Want your site listed? Send a request!</a>
-    </div>   
-
-    <div class="grid-container">
-      <div class="grid-item" onclick="loadApp('apps/reddit/')">
-        <img src="apps/assets/app7.jpg" height="200" width="200" alt="Reddit Logo">
-        <h3>Reddit</h3>
-        <p>A Popular forum website</p>
-      </div>
-
-      <div class="grid-item" onclick="loadApp('apps/fmovies/')">
-        <img src="apps/assets/app8.jpg" height="200" width="200" alt="FMovies Logo">
-        <h3>fmovies</h3>
-        <p>Movie App in your browser!</p>
-      </div>
-
-      <div class="grid-item" onclick="loadApp('apps/github/')">
-        <img src="apps/assets/app9.jpg" height="200" width="200" alt="Github Logo">
-        <h3>Github</h3>
-        <p>Your school blocked github? Wow</p>
-      </div>
-
-      <div class="grid-item" onclick="loadApp('apps/sflix/')">
-        <img src="apps/assets/app10.jpg" height="200" width="200" alt="SFlix Logo">
-        <h3>SFlix</h3>
-        <p>The best free movie site I can find!</p>
-      </div>
-
-      <div class="grid-item" onclick="loadApp('apps/neal/')">
-        <img src="apps/assets/app11.jpg" height="200" width="200" alt="Neal.fun Logo">
-        <h3>Neal.fun</h3>
-        <p>A fun game website</p>
-      </div>
-
-      <div class="grid-item" onclick="loadApp('apps/9anime/')">
-        <img src="apps/assets/app12.jpg" height="200" width="200" alt="9anime Logo">
-        <h3>9anime</h3>
-        <p>Another User Requested Anime Website</p>
-      </div>
+    <div class="container-apps">
+        <div class="column" data-category="general social">
+            <a onclick="loadapp('https://discord.com/app')">
+            <img width="145" height="145" src="/apps/assets/app1.jpg">
+            <p>Discord</p></a>
+        </div>
+        <div class="column" data-category="general cloud">
+            <a onclick="loadapp('https://play.geforcenow.com')">
+            <img width="145" height="145" src="/apps/assets/app2.jpg">
+            <p>GeForce Now</p></a>
+        </div>
+        <div class="column" data-category="general cloud">
+            <a onclick="loadapp('https://coolmathgames')">
+            <img width="145" height="145" src="/apps/assets/app3.jpg">
+            <p>Cool Math Games</p></a>
+        </div>
+        <div class="column" data-category="general cloud">
+          <a onclick="loadapp('https://xbox.com/play')">
+          <img width="145" height="145" src="/apps/assets/app4.jpg">
+          <p>Xbox Cloud Gaming</p></a>
+        </div>
+        <div class="column" data-category="general media social">
+          <a onclick="loadapp('https://play.geforcenow.com')">
+          <img width="145" height="145" src="/apps/assets/app5.jpg">
+          <p>Youtube</p></a>
+        </div>
+        <div class="column" data-category="general media">
+          <a onclick="loadapp('https://open.spotify.com')">
+          <img width="145" height="145" src="/apps/assets/app6.jpg">
+          <p>Spotify</p></a>
+        </div>
+        <div class="column" data-category="general">
+          <a onclick="loadapp('https://ruffle.rs/demo')">
+          <img width="145" height="145" src="/apps/assets/app13.jpg">
+          <p>Ruffle</p></a>
+        </div>
+        <div class="column" data-category="general media">
+          <a onclick="loadapp('https://soundcloud.com')">
+          <img width="145" height="145" src="/apps/assets/app15.jpg">
+          <p>Sound Cloud</p></a>
+        </div>
+        <div class="column" data-category="general media">
+          <a onclick="loadapp('https://bing.com')">
+          <img width="145" height="145" src="/apps/assets/app14.jpg">
+          <p>Bing</p></a>
+        </div>
+        <div class="column" data-category="general media social">
+          <a onclick="loadapp('https://reddit.com')">
+          <img width="145" height="145" src="/apps/assets/app7.jpg">
+          <p>Reddit</p></a>
+        </div>
+        <div class="column" data-category="general media">
+          <a onclick="loadapp('https://movie-web.app')">
+          <img width="145" height="145" src="/apps/assets/app8.jpg">
+          <p>fmovies</p></a>
+        </div>
+        <div class="column" data-category="general">
+          <a onclick="loadapp('https://github.com')">
+          <img width="145" height="145" src="/apps/assets/app9.jpg">
+          <p>Github</p></a>
+        </div>
+        <div class="column" data-category="general cloud media">
+          <a onclick="loadapp('https://sflix.to')">
+          <img width="145" height="145" src="/apps/assets/app10.jpg">
+          <p>SFlix</p></a>
+        </div>
+        <div class="column" data-category="general">
+          <a onclick="loadapp('https://neal.fun')">
+          <img width="145" height="145" src="/apps/assets/app11.jpg">
+          <p>Neal.fun</p></a>
+        </div>
+        <div class="column" data-category="general media">
+          <a onclick="loadapp('https://9anime.se')">
+          <img width="145" height="145" src="/apps/assets/app12.jpg">
+          <p>9anime</p></a>
+        </div>
+        <div class="column" data-category="general media social">
+          <a onclick="loadapp('https://tiktok.com')">
+          <img width="145" height="145" src="/apps/assets/app15.jpg">
+          <p>TikTok</p></a>
+        </div>
+        <div class="column" data-category="general media social">
+          <a onclick="loadapp('https://x.com')">
+          <img width="145" height="145" src="/apps/assets/app16.jpg">            
+          <p>Twitter (X)</p></a>
+        </div>
+        <div class="column" data-category="general media">
+          <a onclick="loadapp('https://vscode.dev')">
+          <img width="145" height="145" src="/apps/assets/app17.jpg">
+          <p>VS Code</p></a>
+        </div>
+        <div class="column" data-category="general media">
+          <a onclick="loadapp('https://twitch.tv')">
+          <img width="145" height="145" src="/apps/assets/app18.jpg">
+          <p>Twitch</p></a>
+        </div>
+        <div class="column" data-category="general media">
+          <a onclick="loadapp('https://poki.com')">
+          <img width="145" height="145" src="/apps/assets/app19.jpg">
+          <p>Poki</p></a>
+        </div>
+        <div class="column" data-category="general social">
+          <a onclick="loadapp('https://chess.com')">
+          <img width="145" height="145" src="/apps/assets/app20.jpg">
+          <p>Chess.com</p></a>
+        </div>
+        <div class="column" data-category="general media">
+          <a onclick="loadapp('https://amazon.com')">
+          <img width="145" height="145" src="/apps/assets/app21.jpg">
+          <p>Amazon</p></a>
+        </div>
     </div>
 
+    <br>
+    <br>
+    <br>
     <footer>
       <img src="assets/img/z1g.png" alt="z1g Project" title="The z1g Project GitHub organization" height="30" width="30" onclick="location.href='/github/z1g-project/'" />
       <img src="assets/img/discord.jpg" alt="Discord" title="The z1g Project Discord" height="30" width="30" onclick="location.href='/discord/'" />
