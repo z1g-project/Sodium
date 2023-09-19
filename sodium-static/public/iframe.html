@@ -227,7 +227,23 @@
         fpsItem.style.display = 'block';
       });
     });
-  </script>  
+   </script>
+   <script>
+window.addEventListener("DOMContentLoaded", () => {
+  const apploader = document.getElementById("apploader");
+  const loadingOverlay = document.getElementById("loading-overlay");
+  
+  apploader.onloadstart = () => {
+    apploader.style.display = "none";
+    loadingOverlay.style.display = "flex";
+  };
+
+  apploader.onload = () => {
+    apploader.style.display = "block";
+    loadingOverlay.style.display = "none";
+  };
+});
+   </script>
   </head>
 
   <body>
