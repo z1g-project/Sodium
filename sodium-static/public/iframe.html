@@ -97,6 +97,75 @@
     .info-menu-item {
       font-size: 12px;
     }
+
+    .open-nav-button {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #151515;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      padding: 10px 20px;
+      cursor: pointer;
+      z-index: 1000;
+    }
+
+    #nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: #333;
+      color: white;
+      padding: 10px;
+      display: none;
+      z-index: 999;
+    }
+
+    #nav.show {
+      display: block;
+    }
+
+.nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #333;
+  color: white;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 999;
+}
+
+.nav-button {
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.nav-input {
+  flex-grow: 1;
+  height: 32px;
+  padding: 5px;
+  font-size: 14px;
+  border: none;
+  border-radius: 5px;
+  background-color: #444;
+  color: white;
+}
+
+#searchButton {
+  margin-left: 10px;
+}
+
+#closeButton {
+  margin-left: 10px;
+}
   </style>
   <script>
     window.addEventListener("DOMContentLoaded", () => {
@@ -243,6 +312,57 @@ window.addEventListener("DOMContentLoaded", () => {
     loadingOverlay.style.display = "none";
   };
 });
+
+const backButton = document.getElementById("backButton");
+const forwardButton = document.getElementById("forwardButton");
+const refreshButton = document.getElementById("refreshButton");
+const urlInput = document.getElementById("urlInput");
+const searchButton = document.getElementById("searchButton");
+const closeButton = document.getElementById("closeButton");
+const apploader = document.getElementById("apploader");
+
+backButton.addEventListener("click", () => {
+  history.back();
+});
+
+forwardButton.addEventListener("click", () => {
+  history.forward();
+});
+
+refreshButton.addEventListener("click", () => {
+  location.reload();
+});
+
+searchButton.addEventListener("click", () => {
+  const url = urlInput.value.trim();
+  if (url !== "") {
+    apploader.location.href = url;
+  }
+});
+
+const nav = document.getElementById("nav");
+let isNavVisible = false;
+
+function toggleNavVisibility() {
+  isNavVisible = !isNavVisible;
+  nav.style.display = isNavVisible ? "flex" : "none";
+}
+
+document.addEventListener("click", (event) => {
+  if (event.target !== urlInput) {
+    toggleNavVisibility();
+  }
+});
+
+urlInput.addEventListener("click", (event) => {
+  event.stopPropagation();
+});
+
+closeButton.addEventListener("click", () => {
+  toggleNavVisibility();
+});
+
+toggleNavVisibility();
    </script>
   </head>
 
@@ -280,6 +400,17 @@ window.addEventListener("DOMContentLoaded", () => {
     <div class="show-iframe">
       <iframe id="apploader"></iframe>
     </div>
+
+    <button id="toggleNavButton" class="open-nav-button">^</button>
+
+    <div id="nav" class="nav">
+      <img src="assets/img/back.png" alt="Back" id="backButton" class="nav-button" />
+      <img src="assets/img/forward.png" alt="Forward" id="forwardButton" class="nav-button" />
+      <img src="assets/img/refresh.png" alt="Refresh" id="refreshButton" class="nav-button" />
+      <input type="text" id="urlInput" class="nav-input" placeholder="Enter URL..." />
+      <img src="assets/img/search.png" alt="Search" id="searchButton" class="nav-button" />
+      <img src="assets/img/close.png" alt="Close" id="closeButton" class="nav-button" />
+    </div>    
   
     <footer>
       <img src="assets/img/z1g.png" alt="z1g Project" title="The z1g Project GitHub organization" height="30" width="30" onclick="location.href='/github/z1g-project/'" />
