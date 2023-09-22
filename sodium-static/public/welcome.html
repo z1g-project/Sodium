@@ -181,6 +181,17 @@ body {
           <label for="bare-server-select" class="config-label">Custom Bare Server (Beta):</label>
           <input type="text" id="custom-bare-server-input" placeholder="Enter a url like so: https://bare.example.com" class="config-input">
         </div>
+
+        <div class="config-row">
+          <label for="css-select" class="config-label">CSS:</label>
+          <select id="css-select" class="config-select">
+            <option value="ui.css">Default (Dark)</option>
+            <option value="sodium.css">Sodium</option>
+            <option value="light.css">Light</option>
+            <option value="amoled.css">Amoled</option>
+          </select>
+          <button id="apply-css-button">Apply CSS</button>
+        </div>
       </div>
     </div>
 
@@ -189,14 +200,23 @@ body {
       <p>Setup the settings you want to use! These can be changed later in the settings page.</p>
 
       <div class="config-row">
-        <label for="css-select" class="config-label">CSS:</label>
-        <select id="css-select" class="config-select">
-          <option value="ui.css">Default (Dark)</option>
-          <option value="sodium.css">Sodium</option>
-          <option value="light.css">Light</option>
-          <option value="amoled.css">Amoled</option>
-        </select>
-        <button id="apply-css-button">Apply CSS</button>
+        <label class="config-label" for="meta-description">Meta Description:</label>
+        <input class="config-input" id="meta-description" name="meta-description"></input>
+      </div>
+
+      <div class="config-row">
+        <label class="config-label" for="meta-og-image">Meta og:image:</label>
+        <input class="config-input" type="text" id="meta-og-image" name="meta-og-image">
+      </div>
+
+      <div class="config-row">
+        <label class="config-label" for="meta-keywords" type="text">Meta Keywords:</label>
+        <input class="config-input" id="meta-keywords" type="text"></input>
+      </div>
+
+      <div class="config-row">
+        <label class="config-label" for="meta-theme-color">Theme Color:</label>
+        <input class="config-input" type="text" id="meta-theme-color" name="meta-theme-color">
       </div>
 
       <div class="config-row">

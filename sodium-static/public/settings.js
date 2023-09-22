@@ -214,6 +214,76 @@
       const useSeconds = localStorage.getItem('useSeconds');
       useSecondsCheckbox.checked = useSeconds === 'true';
     }
+
+    if (window.location.pathname.includes('/settings/')) {
+      const metaDescription = localStorage.getItem('metaDescription');
+      if (metaDescription) {
+        document.getElementById('meta-description').value = metaDescription;
+        const metaDescriptionTag = document.querySelector('meta[name="description"]');
+        if (metaDescriptionTag) {
+          metaDescriptionTag.setAttribute('content', metaDescription);
+        }
+      }
+  
+      const metaOGImage = localStorage.getItem('metaOGImage');
+      if (metaOGImage) {
+        document.getElementById('meta-og-image').value = metaOGImage;
+        const metaOGImageTag = document.querySelector('meta[property="og:image"]');
+        if (metaOGImageTag) {
+          metaOGImageTag.setAttribute('content', metaOGImage);
+        }
+      }
+
+      const metaKeywords = localStorage.getItem('metaKeywords');
+      if (metaKeywords) {
+        document.getElementById('meta-keywords').value = metaKeywords;
+        const metaKeywordsTag = document.querySelector('meta[name="keywords"]');
+        if (metaKeywordsTag) {
+          metaKeywordsTag.setAttribute('content', metaKeywords);
+        }
+      }
+  
+      const metaThemeColor = localStorage.getItem('metaThemeColor');
+      if (metaThemeColor) {
+        document.getElementById('meta-theme-color').value = metaThemeColor;
+        const metaThemeColorTag = document.querySelector('meta[name="theme-color"]');
+        if (metaThemeColorTag) {
+          metaThemeColorTag.setAttribute('content', metaThemeColor);
+        }
+      }
+    }
+    
+    const metaDescription = localStorage.getItem('metaDescription');
+    if (metaDescription) {
+      const metaDescriptionTag = document.querySelector('meta[name="description"]');
+      if (metaDescriptionTag) {
+        metaDescriptionTag.setAttribute('content', metaDescription);
+      }
+    }
+
+    const metaOGImage = localStorage.getItem('metaOGImage');
+    if (metaOGImage) {
+      const metaOGImageTag = document.querySelector('meta[property="og:image"]');
+      if (metaOGImageTag) {
+        metaOGImageTag.setAttribute('content', metaOGImage);
+      }
+    }
+
+    const metaKeywords = localStorage.getItem('metaKeywords');
+    if (metaKeywords) {
+      const metaKeywordsTag = document.querySelector('meta[name="keywords"]');
+      if (metaKeywordsTag) {
+        metaKeywordsTag.setAttribute('content', metaKeywords);
+      }
+    }
+
+    const metaThemeColor = localStorage.getItem('metaThemeColor');
+    if (metaThemeColor) {
+      const metaThemeColorTag = document.querySelector('meta[name="theme-color"]');
+      if (metaThemeColorTag) {
+        metaThemeColorTag.setAttribute('content', metaThemeColor);
+      }
+    }
   }
 
   function applyCSS(selectedCSS) {
@@ -351,6 +421,30 @@
     if (useSecondsCheckbox) {
       localStorage.setItem('useSeconds', useSecondsCheckbox.checked);
       console.log('Include Seconds in TimeBar:', useSecondsCheckbox.checked);
+    }
+
+    const metaDescription = document.getElementById('meta-description').value.trim();
+    if (metaDescription) {
+      localStorage.setItem('metaDescription', metaDescription);
+      console.log('Meta Description:', metaDescription);
+    }
+  
+    const metaOGImage = document.getElementById('meta-og-image').value.trim();
+    if (metaOGImage) {
+      localStorage.setItem('metaOGImage', metaOGImage);
+      console.log('Meta OG Image:', metaOGImage);
+    }
+  
+    const metaKeywords = document.getElementById('meta-keywords').value.trim();
+    if (metaKeywords) {
+      localStorage.setItem('metaKeywords', metaKeywords);
+      console.log('Meta Keywords:', metaKeywords);
+    }
+  
+    const metaThemeColor = document.getElementById('meta-theme-color').value.trim();
+    if (metaThemeColor) {
+      localStorage.setItem('metaThemeColor', metaThemeColor);
+      console.log('Meta Theme Color:', metaThemeColor);
     }
 
     setTimeout(function () {

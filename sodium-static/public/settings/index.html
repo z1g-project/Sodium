@@ -207,9 +207,9 @@
     <input type="text" id="fallback-url-input" class="config-input">
     <br>
     <br>
-    <label for="proxySelect" class="config-label">Defualt Proxy:</label>
+    <label for="proxySelect" class="config-label">Default Proxy:</label>
     <select id="proxySelect" class="config-select">
-      <option value="ultraviolet">Ultraviolet (Defualt)</option>
+      <option value="ultraviolet">Ultraviolet (Default)</option>
       <option value="dynamic">Dynamic (Beta)</option>
     </select>
     <br>
@@ -224,6 +224,22 @@
     <br>
     <label for="open-blob-window">Open in blob Window (beta):</label>
     <input type="checkbox" id="open-blob-window">
+    <br>
+    <br>
+    <label class="config-label" for="meta-description">Meta Description:</label>
+    <input class="config-input" id="meta-description" name="meta-description"></input>
+    <br>
+    <br>
+    <label class="config-label" for="meta-og-image">Meta og:image:</label>
+    <input class="config-input" type="text" id="meta-og-image" name="meta-og-image">
+    <br>
+    <br>
+    <label class="config-label" for="meta-keywords" type="text">Meta Keywords:</label>
+    <input class="config-input" id="meta-keywords" type="text"></input>
+    <br>
+    <br>
+    <label class="config-label" for="meta-theme-color">Theme Color:</label>
+    <input class="config-input" type="text" id="meta-theme-color" name="meta-theme-color">
     <br>
     <br>
     </div>
@@ -461,10 +477,6 @@ function immortalize(arg) {
   <script>
     function openCSSEditor() {
       window.location.href = "/settings/css-editor/";
-    }
-
-    function openCompactChecker() {
-      window.location.href = "/settings/compat/";
     }
 
     function resetSettings() {
