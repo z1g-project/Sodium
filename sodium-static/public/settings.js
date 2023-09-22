@@ -216,33 +216,6 @@
     }
 
     if (window.location.pathname.includes('/settings/')) {
-      const metaDescription = localStorage.getItem('metaDescription');
-      if (metaDescription) {
-        document.getElementById('meta-description').value = metaDescription;
-        const metaDescriptionTag = document.querySelector('meta[name="description"]');
-        if (metaDescriptionTag) {
-          metaDescriptionTag.setAttribute('content', metaDescription);
-        }
-      }
-  
-      const metaOGImage = localStorage.getItem('metaOGImage');
-      if (metaOGImage) {
-        document.getElementById('meta-og-image').value = metaOGImage;
-        const metaOGImageTag = document.querySelector('meta[property="og:image"]');
-        if (metaOGImageTag) {
-          metaOGImageTag.setAttribute('content', metaOGImage);
-        }
-      }
-
-      const metaKeywords = localStorage.getItem('metaKeywords');
-      if (metaKeywords) {
-        document.getElementById('meta-keywords').value = metaKeywords;
-        const metaKeywordsTag = document.querySelector('meta[name="keywords"]');
-        if (metaKeywordsTag) {
-          metaKeywordsTag.setAttribute('content', metaKeywords);
-        }
-      }
-  
       const metaThemeColor = localStorage.getItem('metaThemeColor');
       if (metaThemeColor) {
         document.getElementById('meta-theme-color').value = metaThemeColor;
@@ -250,30 +223,6 @@
         if (metaThemeColorTag) {
           metaThemeColorTag.setAttribute('content', metaThemeColor);
         }
-      }
-    }
-    
-    const metaDescription = localStorage.getItem('metaDescription');
-    if (metaDescription) {
-      const metaDescriptionTag = document.querySelector('meta[name="description"]');
-      if (metaDescriptionTag) {
-        metaDescriptionTag.setAttribute('content', metaDescription);
-      }
-    }
-
-    const metaOGImage = localStorage.getItem('metaOGImage');
-    if (metaOGImage) {
-      const metaOGImageTag = document.querySelector('meta[property="og:image"]');
-      if (metaOGImageTag) {
-        metaOGImageTag.setAttribute('content', metaOGImage);
-      }
-    }
-
-    const metaKeywords = localStorage.getItem('metaKeywords');
-    if (metaKeywords) {
-      const metaKeywordsTag = document.querySelector('meta[name="keywords"]');
-      if (metaKeywordsTag) {
-        metaKeywordsTag.setAttribute('content', metaKeywords);
       }
     }
 
