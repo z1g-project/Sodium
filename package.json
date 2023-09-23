@@ -1,6 +1,6 @@
 {
-  "name": "uv-app",
-  "version": "1.0.0",
+  "name": "sodium-instance",
+  "version": "1.3.7",
   "description": "Sodium Instance",
   "type": "module",
   "engines": {
