@@ -371,24 +371,6 @@
       localStorage.setItem('useSeconds', useSecondsCheckbox.checked);
       console.log('Include Seconds in TimeBar:', useSecondsCheckbox.checked);
     }
-
-    const metaDescription = document.getElementById('meta-description').value.trim();
-    if (metaDescription) {
-      localStorage.setItem('metaDescription', metaDescription);
-      console.log('Meta Description:', metaDescription);
-    }
-  
-    const metaOGImage = document.getElementById('meta-og-image').value.trim();
-    if (metaOGImage) {
-      localStorage.setItem('metaOGImage', metaOGImage);
-      console.log('Meta OG Image:', metaOGImage);
-    }
-  
-    const metaKeywords = document.getElementById('meta-keywords').value.trim();
-    if (metaKeywords) {
-      localStorage.setItem('metaKeywords', metaKeywords);
-      console.log('Meta Keywords:', metaKeywords);
-    }
   
     const metaThemeColor = document.getElementById('meta-theme-color').value.trim();
     if (metaThemeColor) {
