@@ -412,8 +412,10 @@
 
     if (blobwindow.checked) {
       localStorage.setItem('openblobwindow', 'true');
+      localStorage.setItem('usingnewtab', 'true');
     } else {
       localStorage.removeItem('openblobwindow');
+      localStorage.removeItem('usingnewtab');
     }
   }
 
@@ -422,8 +424,10 @@
 
     if (toggleAboutBlank.checked) {
       localStorage.setItem('openNewWindow', 'true');
+      localStorage.setItem('usingnewtab', 'true');
     } else {
       localStorage.removeItem('openNewWindow');
+      localStorage.removeItem('usingnewtab');
     }
   }
 

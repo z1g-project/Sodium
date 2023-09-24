@@ -28,6 +28,13 @@
   <script src="proxhandler.js" defer></script>
   <script src="updates.js" defer></script>
   <script src="bare.js" defer></script>
+  <script>
+    const usenewtab = localStorage.getItem('usingnewtab');
+
+    if (usenewtab === null || usenewtab === 'true') {
+      window.location.replace = '/newtab.html';
+    }
+  </script>
   <style>
 #apploader {
   display: none;
