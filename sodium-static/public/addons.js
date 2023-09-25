@@ -14,11 +14,11 @@ const addons = [
         url: 'https://cdn.z1g-project.repl.co/sodium/themes/galaxy.css',
       },
       {
-        name: 'AdBlocker',
+        name: 'Eruda',
         category: 'plugins',
-        description: 'Block ads on webpages (Early Alpha)',
+        description: 'Adds Console Functionality to Sodium!',
         publisher: '✅ Sodium Addons',
-        url: 'https://cdn.z1g-project.repl.co/sodium/plugins/adblock.js',
+        url: 'https://cdn.jsdelivr.net/npm/eruda',
       },
       {
         name: 'DarkMode',
@@ -124,6 +124,20 @@ const addons = [
         description: 'Great minecraft hosting, but it has adblocker detection, this script automatically destroy antiadblock windows. I would prefer to show a donate button instead of forcing Ads.',
         publisher: 'Lukáš Kovář',              
         url: 'https://cdn.z1g-project.repl.co/sodium/plugins/aternos.js',
+      },
+      {
+        name: 'AdBlocker',
+        category: 'plugins',
+        description: 'Block ads on webpages (Early Alpha)',
+        publisher: '✅ Sodium Addons',
+        url: 'https://cdn.z1g-project.repl.co/sodium/plugins/adblock.js',
+      },
+      {
+        name: 'Yohoho.io Cheats',
+        category: 'plugins',
+        description: 'Cheats for the popular IO game, Yohoho.IO! Press p to change your pet. l to change the pets level, x to change your xp, i to change your island, c to change your character, and o to change your coins.',
+        publisher: 'Steviegt6',
+        url: 'https://greasyfork.org/scripts/391387-yohoho-io-cheats/code/Yohohoio%20Cheats.user.js',
       },
   ];
   
