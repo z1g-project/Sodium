@@ -18,7 +18,7 @@ const addons = [
         category: 'plugins',
         description: 'Adds Console Functionality to Sodium!',
         publisher: '✅ Sodium Addons',
-        url: 'https://cdn.jsdelivr.net/npm/eruda',
+        url: 'https://cdn.z1g-project.repl.co/sodium/plugins/eruda.js',
       },
       {
         name: 'DarkMode',
