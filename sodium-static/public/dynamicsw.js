@@ -38,7 +38,9 @@ inpbox.addEventListener("submit", async (event) => {
   
   const form = document.querySelector("form");
   const formValue = document.querySelector("form input").value;
-  const url = isUrl(formValue) ? prependHttps(formValue) : 'https://www.google.com/search?q=' + encodeURIComponent(formValue);
+  const storedSearchEngine = localStorage.getItem('searchEngine');
+  const searchEngineValue = storedSearchEngine || 'https://www.google.com/search?q=';
+  const url = isUrl(formValue) ? prependHttps(formValue) : searchEngineValue + encodeURIComponent(formValue);
 
   const loadingOverlay = document.getElementById("loading-overlay");
   const iframe = document.getElementById("apploader");
