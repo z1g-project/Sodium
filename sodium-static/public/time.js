@@ -269,3 +269,5 @@ getBatteryInfo();
 updateTime();
 
 setInterval(updateTime, 1000);
+
+setInterval(getBatteryInfo, 1000);
