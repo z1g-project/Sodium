@@ -479,36 +479,4 @@
     });
   }
 
-  if (window.location.pathname === '/' || window.location.pathname === '/index.html') {
-    const openNewWindow = localStorage.getItem('openNewWindow');
-  
-    if (openNewWindow === 'true') {
-      const newWindow = window.open('about:blank', '_blank', 'width=800,height=600');
-      const newDocument = newWindow.document.open();
-      newDocument.write(`
-        <!DOCTYPE html>
-        <html>
-          <head>
-            <style type="text/css">
-              body, html
-              {
-                margin: 0; padding: 0; height: 100%; overflow: hidden;
-              }
-           </style>
-          </head>
-          <body>
-            <iframe style="border: none; width: 100%; height: 100vh;" src="/newtab.html"></iframe>
-          </body>
-        </html>
-      `);
-      newDocument.close();
-      const fallbackUrl = localStorage.getItem('fallbackUrl');
-  
-      if (fallbackUrl) {
-        window.location.href = fallbackUrl;
-      }
-    } else {
-      
-    }
-  }
 })();
