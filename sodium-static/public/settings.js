@@ -113,29 +113,7 @@
             document.removeEventListener('keydown', arguments.callee);
           });
         });
-      }
-
-      const dynamicEncoderSelect = document.getElementById('dynamic-encoder-select');
-      if (dynamicEncoderSelect) {
-        const proxyOption = localStorage.getItem('proxyOption');
-        if (proxyOption && proxyOption.toLowerCase() === 'dynamic') {
-          dynamicEncoderSelect.style.display = 'warp';
-          const dynamicEncoder = localStorage.getItem('dynamicEncoder');
-          if (dynamicEncoder) {
-            dynamicEncoderSelect.value = dynamicEncoder;
-          }
-          
-          document.getElementById('dynamic-encoder-label').style.display = 'warp';
-          document.getElementById('dynamic-encoder-br1').style.display = 'block';
-          document.getElementById('dynamic-encoder-br2').style.display = 'block';
-        } else {
-          dynamicEncoderSelect.style.display = 'none';
-          
-          document.getElementById('dynamic-encoder-label').style.display = 'none';
-          document.getElementById('dynamic-encoder-br1').style.display = 'none';
-          document.getElementById('dynamic-encoder-br2').style.display = 'none';
-        }
-      }    
+      }   
 
       const emergencyURL = localStorage.getItem('emergencyURL');
       const emergencyURLInput = document.getElementById('emergency-url-input');
@@ -332,18 +310,6 @@
         });
       }
     }
-
-    const proxyOption = localStorage.getItem('proxyOption');
-    const dynamicEncoderSelect = document.getElementById('dynamic-encoder-select');
-    if (proxyOption && proxyOption.toLowerCase() === 'dynamic' && dynamicEncoderSelect) {
-      const dynamicEncoder = dynamicEncoderSelect.value;
-      localStorage.setItem('dynamicEncoder', dynamicEncoder);
-      self.__dynamic$config.encoding = dynamicEncoder;
-      caches.open('settingsCache').then(cache => {
-        cache.put('dynamicEncoderKey', new Response(dynamicEncoder));
-      });
-      console.log('Dynamic Encoder Saved:', dynamicEncoder);
-    }  
 
     const bandwidthLimitInput = document.getElementById('bandwidth-limit-input');
     if (bandwidthLimitInput) {
