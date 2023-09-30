@@ -1,7 +1,7 @@
 {
   "name": "Sodium",
-  "description": "Sodium is a proxy site built on Node.js",
+  "description": "Sodium is a site built on Node.js used for evading internet censorship",
   "repository": "https://github.com/z1g-project/sodium.git",
-  "logo": "./ultraviolet-static/public/sodium.png",
+  "logo": "./sodium-static/public/sodium.png",
   "keywords": ["tomp", "ultraviolet", "z1g-project"]
 }
