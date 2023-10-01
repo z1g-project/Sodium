@@ -127,9 +127,9 @@ window.addEventListener('DOMContentLoaded', () => {
     const proxyOption = localStorage.getItem("proxyOption");
 
     if (proxyOption && proxyOption.toLowerCase() === "dynamic") {
-      iframe.src = `${window.location.origin}/service/route?url=https://discord.com/invite/f2Q2qgNNFJ/`;
+      iframe.src = `${window.location.origin}/service/route?url=https://discord.gg/AKTTFyPZNQ`;
     } else {
-      const encodedURL = encodeURL('https://discord.com/invite/f2Q2qgNNFJ/');
+      const encodedURL = encodeURL('https://discord.gg/AKTTFyPZNQ');
       iframe.src = `${window.location.origin}/uv/service/${encodedURL}`;
     }
 
