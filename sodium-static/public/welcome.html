@@ -13,6 +13,31 @@
   <link rel="stylesheet" href="ui.css" id="custom-css"/>
   <link rel="manifest" href="manifest.webmanifest"/>
   <link rel="json" href="appx.json"></link>
+  <script src="/dynamic/dynamic.config.js"></script>
+  <script src="/dynamic/dynamic.worker.js"></script>
+  <script>
+"use strict";
+const stockSW = "/uv/sw.js";
+const swAllowedHostnames = ["localhost", "127.0.0.1"];
+
+async function registerSW() {
+  if (
+    location.protocol !== "https:" &&
+    !swAllowedHostnames.includes(location.hostname)
+  )
+    throw new Error("Service workers cannot be registered without https.");
+
+  if (!navigator.serviceWorker)
+    throw new Error("Your browser doesn't support service workers.");
+
+  await navigator.serviceWorker.register(stockSW, {
+    scope: "/uv/service/",
+  });
+}
+
+window.onload(registerSW());
+  </script>
+  <script src="dynamicsw.js"></script>
   <script src="time.js" defer></script>
   <script src="settings.js" defer></script>
   <script src="fade.js" defer></script>
