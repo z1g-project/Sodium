@@ -155,7 +155,7 @@ const customCSS = localStorage.getItem('websiteCSS');
       const openNewWindow = localStorage.getItem('openNewWindow');
     
       if (openNewWindow === 'true') {
-        const newWindow = window.open('about:blank', '_blank', 'width=800,height=600');
+        const newWindow = window.open('about:blank', '_blank');
         const newDocument = newWindow.document.open();
         newDocument.write(`
           <!DOCTYPE html>
