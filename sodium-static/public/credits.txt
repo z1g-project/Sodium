@@ -10,6 +10,8 @@ Sodium Visual Credits
 
 - UI & Visials: XSTARS
 - Logos and General Design: XSTARS
+- README improvements: 3kh0
+- Frontend Improvements: badpinghere & rare1k
 
 Ultraviolet Credits
 
@@ -28,5 +30,5 @@ Honorable Mentions
 
 Wishing the best of luck for you guys!
 
-Last Updated: 7/8/2023
+Last Updated: 10/02/2023
 Made with ❤️ by XSTARS
