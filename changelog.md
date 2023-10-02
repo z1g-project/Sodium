@@ -1,17 +1,18 @@
-# Sodium v1.3.0 (Stable) - The Customize Update
+# Sodium v1.4.0 (Stable) - The Customize Update
 
-## Whats new in v1.3.0
+## Whats new in v1.4.0
 
-- Updated Dynamic 0.7.2 > 0.7.3
-- Updated Ruffle nightly 7/29/23 > nightly 8/29/23
-- Redesign Tabs
-- Added Addons!
-- Fix Bare Switcher
-- Improved performance *by up to 70%
-- Fix Bare Offline Issues
-- More Domains!
-- Add an "offline" version you can download.
-- Other minor Fixes!
+- Fixed Z-Index on Loading Overlays
+- Updated Ruffle nightly 8/29/23 > nightly 10/02/23
+- Made Tabbed UI dark mode
+- Added more Addons!
+- Made Service Workers auto register!
+- Made Sodium 37% more Efficient than v1.3.7 (LTS)
+- Redesigned Apps/Games Page ui
+- Added PWA Theme Changing
+- New CSS Editor
+- Added Blob Windowing
+- Other minor/major Fixes!
 
 ### Domains
 
@@ -19,4 +20,6 @@ Main: [https://sodium-5h8.pages.dev](https://sodium-5h8.pages.dev)
 Beta: [https://beta.sodium-5h8.pages.dev](https://beta.sodium-5h8.pages.dev)
 OnRender: [https://sodium.onrender.com](https://sodium.onrender.com) !NOTE This is down right now
 
-Released: 9/1/2023
+Need Help? Feel free to join our discord server: [https://discord.gg/AKTTFyPZNQ](https://discord.gg/AKTTFyPZNQ)
+
+Released: 10/3/2023
