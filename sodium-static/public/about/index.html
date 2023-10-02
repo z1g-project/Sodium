@@ -125,7 +125,7 @@
 
     const releaseDayWithSuffix = formattedDay + ordinalSuffix(formattedDay);
 
-    versionInfoElement.textContent = `v1.4.0 Beta Preview (Released: ${formattedMonth} ${releaseDayWithSuffix}, ${formattedYear} - Commit: `;
+    versionInfoElement.textContent = `v1.4.0 Stable (Released: ${formattedMonth} ${releaseDayWithSuffix}, ${formattedYear} - Commit: `;
     
     const commitLink = document.createElement("a");
     commitLink.href = data[0].html_url;
