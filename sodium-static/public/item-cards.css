@@ -1,0 +1,50 @@
+body {
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  background: #1E1E1E;
+}
+
+.input-container {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5em;
+}
+
+.column img {
+  position: absolute;
+  width: 145px;
+  height: 145px;
+  border-radius: 0px;
+  transition: all 0.2s ease;
+  border-radius: 10px;
+}
+
+.column:hover {
+  transform: scale(1.2);
+}
+
+.column:hover .label {
+  transform: translateX(-50%) scale(1.3);
+}
+
+select {
+  padding: 20px;
+  border-radius: 5px;
+  background: #353535;
+  color: white;
+  font-size: 20px;
+  border: 0px;
+  outline: none;
+  cursor: pointer;
+}
+
+.container-apps {
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2.3em;
+  flex-direction: row;
+}

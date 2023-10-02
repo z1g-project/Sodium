@@ -17,8 +17,7 @@
   <meta charset='utf-8'>
   <title>Sodium Tabs</title>
   <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'>
-  <meta name="description" content="Sodium is an Ultraviolet-based proxy site used for evading internet censorship." />
-  <meta name="keywords" content="proxy, web proxy, ultraviolet, service workers, unblock websites, unblock chromebook, free web proxy, proxy list, z1g project, proxy sites, un block chromebook, online proxy, proxy server, proxysite, proxy youtube, bypass securly, bypass iboss, bypass lightspeed filter, sodium, titanium network, unblock youtube, youtube proxy, unblocked youtube, youtube unblocked" />
+  <meta name="description" content="Sodium is a site used for evading internet censorship." />
   <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#434c5e" />
   <meta property="og:image" content="/sodium.png">
   <meta name="googlebot" content="index, follow, snippet" />
@@ -28,7 +27,6 @@
   <link href='css/chrome-tabs.css' rel='stylesheet'>
   <link href='css/chrome-tabs-dark-theme.css' rel='stylesheet'>
   <link href='https://fonts.googleapis.com/icon?family=Material+Icons' rel='stylesheet'>
-  <link rel="manifest" href="manifest.json" />
   <script id="proxcfg" src="../uv/uv.bundle.js" defer></script>
   <script src="../uv/uv.config.js" defer></script>
   <script id="proxsw" src="../register-sw.js" defer></script>
@@ -54,7 +52,6 @@
         if (document.querySelector(".extension_menu")) if (!pass.target.parentElement.classList.contains("extension_menu") && !pass.target.parentElement.parentElement.classList.contains("extension_menu") && !pass.target.classList.contains("extension_menu")) document.querySelector(".extension_menu").style.display = "none"
       }
     })
-
   </script>
   <meta name="theme-color" content="#252729" />
 </head>
@@ -138,18 +135,14 @@
           </svg> <button id='options'
             onclick='openMenu("optionsdrop", "themedrop", "extensiondrop", "uadrop", "customtheme");'>&#x22ee;</button>
       </div>
-      <!-- todo, javascript based dropdown menu  -->
       <div id='optionsdrop' class='dropdown-content'>
          <a class="pointer" onclick='toggleId("optionsdrop");'>Back</a>
         <a class="pointer"
           onclick='toggleId("optionsdrop");document.querySelector("body").requestFullscreen()'>Fullscreen window</a>
         <a class="pointer"
           onclick='toggleId("optionsdrop");skipAd()'>Skip YT AD</a>
-        <!-- <a class="pointer" onclick='toggleId("optionsdrop", "uadrop");'>Set user agent</a> Disabled until I finish adding support-->
         <a class="pointer" onclick='toggleId("optionsdrop", "searchDrop")'>Set search engine</a>
         <a class="pointer" onclick='inspect(); toggleId("optionsdrop");'>Open devtools</a>
-        <!-- <a class="pointer" onclick='toggleId("themedrop", "optionsdrop");'>Themes</a> Disabled until themes have been reworked -->
-        <!-- <a class="pointer" onclick='toggleId("extensiondrop", "optionsdrop");'>Extensions</a> not yet :(-->
       </div>
       <div id="uadrop" class=dropdown-content>
         <a class="pointer tooldivd" onclick='toggleId("uadrop", "optionsdrop");'>back</a>
@@ -199,9 +192,6 @@
     <script src='js/chrome-tabs.js'></script>
     <script src='internal/manager.js'></script>
     <script src='js/js.js'></script>
-    <!-- <script src='js/extensions.js'></script> -->
-    <!-- <script src='js/x/sponsorblock.js'></script>  -->
-    <!-- <script src='js/x/DarkMode.js'></script> -->
 
     <script>document.cookie = "oldsmobile=badcar"</script>
   </div>

@@ -1,7 +1,7 @@
 # Static Hosting
 
 <p align="center">
-  <img src="./ultraviolet-static/public/sodium.png" height="200">
+  <img src="./sodium-static/public/sodium.png" height="200">
 </p>
 
 Learn how to setup Sodium on a Static Host such as Cloudflare Pages

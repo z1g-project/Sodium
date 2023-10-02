@@ -113,29 +113,7 @@
             document.removeEventListener('keydown', arguments.callee);
           });
         });
-      }
-
-      const dynamicEncoderSelect = document.getElementById('dynamic-encoder-select');
-      if (dynamicEncoderSelect) {
-        const proxyOption = localStorage.getItem('proxyOption');
-        if (proxyOption && proxyOption.toLowerCase() === 'dynamic') {
-          dynamicEncoderSelect.style.display = 'warp';
-          const dynamicEncoder = localStorage.getItem('dynamicEncoder');
-          if (dynamicEncoder) {
-            dynamicEncoderSelect.value = dynamicEncoder;
-          }
-          
-          document.getElementById('dynamic-encoder-label').style.display = 'warp';
-          document.getElementById('dynamic-encoder-br1').style.display = 'block';
-          document.getElementById('dynamic-encoder-br2').style.display = 'block';
-        } else {
-          dynamicEncoderSelect.style.display = 'none';
-          
-          document.getElementById('dynamic-encoder-label').style.display = 'none';
-          document.getElementById('dynamic-encoder-br1').style.display = 'none';
-          document.getElementById('dynamic-encoder-br2').style.display = 'none';
-        }
-      }    
+      }   
 
       const emergencyURL = localStorage.getItem('emergencyURL');
       const emergencyURLInput = document.getElementById('emergency-url-input');
@@ -147,6 +125,12 @@
       const toggleAboutBlank = document.getElementById('open-new-window');
       if (toggleAboutBlank) {
         toggleAboutBlank.checked = openNewWindow === 'true';
+      }
+
+      const openblobWindow = localStorage.getItem('openblobwindow');
+      const toggleblobBlank = document.getElementById('open-blob-window');
+      if (toggleblobBlank) {
+        toggleblobBlank.checked = openblobWindow === 'true';
       }
 
       const debugging = localStorage.getItem('debugging');
@@ -208,6 +192,25 @@
       const useSeconds = localStorage.getItem('useSeconds');
       useSecondsCheckbox.checked = useSeconds === 'true';
     }
+
+    if (window.location.pathname.includes('/settings/')) {
+      const metaThemeColor = localStorage.getItem('metaThemeColor');
+      if (metaThemeColor) {
+        document.getElementById('meta-theme-color').value = metaThemeColor;
+        const metaThemeColorTag = document.querySelector('meta[name="theme-color"]');
+        if (metaThemeColorTag) {
+          metaThemeColorTag.setAttribute('content', metaThemeColor);
+        }
+      }
+    }
+
+    const metaThemeColor = localStorage.getItem('metaThemeColor');
+    if (metaThemeColor) {
+      const metaThemeColorTag = document.querySelector('meta[name="theme-color"]');
+      if (metaThemeColorTag) {
+        metaThemeColorTag.setAttribute('content', metaThemeColor);
+      }
+    }
   }
 
   function applyCSS(selectedCSS) {
@@ -261,6 +264,7 @@
     console.log('Default Proxy Saved:', selectedOption);
 
     handleToggleBeta();
+    handleblob();
 
     const emergencyHotkeyInput = document.getElementById('emergency-switch-hotkey');
     if (emergencyHotkeyInput) {
@@ -307,18 +311,6 @@
       }
     }
 
-    const proxyOption = localStorage.getItem('proxyOption');
-    const dynamicEncoderSelect = document.getElementById('dynamic-encoder-select');
-    if (proxyOption && proxyOption.toLowerCase() === 'dynamic' && dynamicEncoderSelect) {
-      const dynamicEncoder = dynamicEncoderSelect.value;
-      localStorage.setItem('dynamicEncoder', dynamicEncoder);
-      self.__dynamic$config.encoding = dynamicEncoder;
-      caches.open('settingsCache').then(cache => {
-        cache.put('dynamicEncoderKey', new Response(dynamicEncoder));
-      });
-      console.log('Dynamic Encoder Saved:', dynamicEncoder);
-    }  
-
     const bandwidthLimitInput = document.getElementById('bandwidth-limit-input');
     if (bandwidthLimitInput) {
       const bandwidthLimit = parseInt(bandwidthLimitInput.value);
@@ -345,9 +337,29 @@
       localStorage.setItem('useSeconds', useSecondsCheckbox.checked);
       console.log('Include Seconds in TimeBar:', useSecondsCheckbox.checked);
     }
+  
+    const metaThemeColor = document.getElementById('meta-theme-color').value.trim();
+    if (metaThemeColor) {
+      localStorage.setItem('metaThemeColor', metaThemeColor);
+      console.log('Meta Theme Color:', metaThemeColor);
+    }
 
     setTimeout(function () {
-      location.reload();
+      const notification = document.getElementById('notification');
+      notification.textContent = 'Settings Saved!';
+      notification.classList.remove('hidden');
+    
+      setTimeout(() => {
+        notification.style.top = '40px';
+      }, 10);
+    
+      setTimeout(() => {
+        notification.style.top = '-50px';
+        setTimeout(() => {
+          notification.classList.add('hidden');
+          //location.reload();
+        }, 500);
+      }, 3000);    
     }, 100);
   }  
 
@@ -361,13 +373,27 @@
     }
   }
 
+  function handleblob() {
+    const blobwindow = document.getElementById('open-blob-window');
+
+    if (blobwindow.checked) {
+      localStorage.setItem('openblobwindow', 'true');
+      localStorage.setItem('usingnewtab', 'true');
+    } else {
+      localStorage.removeItem('openblobwindow');
+      localStorage.removeItem('usingnewtab');
+    }
+  }
+
   function handleToggleAboutBlank() {
     const toggleAboutBlank = document.getElementById('open-new-window');
 
     if (toggleAboutBlank.checked) {
       localStorage.setItem('openNewWindow', 'true');
+      localStorage.setItem('usingnewtab', 'true');
     } else {
       localStorage.removeItem('openNewWindow');
+      localStorage.removeItem('usingnewtab');
     }
   }
 
@@ -419,36 +445,4 @@
     });
   }
 
-  if (window.location.pathname === '/' || window.location.pathname === '/index.html') {
-    const openNewWindow = localStorage.getItem('openNewWindow');
-  
-    if (openNewWindow === 'true') {
-      const newWindow = window.open('about:blank', '_blank', 'width=800,height=600');
-      const newDocument = newWindow.document.open();
-      newDocument.write(`
-        <!DOCTYPE html>
-        <html>
-          <head>
-            <style type="text/css">
-              body, html
-              {
-                margin: 0; padding: 0; height: 100%; overflow: hidden;
-              }
-           </style>
-          </head>
-          <body>
-            <iframe style="border: none; width: 100%; height: 100vh;" src="/newtab.html"></iframe>
-          </body>
-        </html>
-      `);
-      newDocument.close();
-      const fallbackUrl = localStorage.getItem('fallbackUrl');
-  
-      if (fallbackUrl) {
-        window.location.href = fallbackUrl;
-      }
-    } else {
-      
-    }
-  }
 })();

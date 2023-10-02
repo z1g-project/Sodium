@@ -2,17 +2,42 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no"/>
   <title>Sodium</title>
-
-  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#434c5e" />
+  <meta name="description" content="Sodium is a site used for evading internet censorship"/>
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#434c5e"/>
   <meta property="og:image" content="/sodium.png">
-  <meta name="googlebot" content="index, follow, snippet" />
+  <meta name="googlebot" content="index, follow, snippet"/>
   <link id="favicon" rel="icon" type="image/png" href="favicon.ico">
   <link rel="stylesheet" href="montserrat.css"/>
   <link rel="stylesheet" href="ui.css" id="custom-css"/>
   <link rel="manifest" href="manifest.webmanifest"/>
   <link rel="json" href="appx.json"></link>
+  <script src="/dynamic/dynamic.config.js"></script>
+  <script src="/dynamic/dynamic.worker.js"></script>
+  <script>
+"use strict";
+const stockSW = "/uv/sw.js";
+const swAllowedHostnames = ["localhost", "127.0.0.1"];
+
+async function registerSW() {
+  if (
+    location.protocol !== "https:" &&
+    !swAllowedHostnames.includes(location.hostname)
+  )
+    throw new Error("Service workers cannot be registered without https.");
+
+  if (!navigator.serviceWorker)
+    throw new Error("Your browser doesn't support service workers.");
+
+  await navigator.serviceWorker.register(stockSW, {
+    scope: "/uv/service/",
+  });
+}
+
+window.onload(registerSW());
+  </script>
+  <script src="dynamicsw.js"></script>
   <script src="time.js" defer></script>
   <script src="settings.js" defer></script>
   <script src="fade.js" defer></script>
@@ -180,59 +205,69 @@ body {
           <label for="bare-server-select" class="config-label">Custom Bare Server (Beta):</label>
           <input type="text" id="custom-bare-server-input" placeholder="Enter a url like so: https://bare.example.com" class="config-input">
         </div>
-    
-        <div class="config-row">
-          <label for="toggle-beta">Enable Tabs:</label>
-          <input type="checkbox" id="toggle-beta">
-        </div>
-    
-        <div class="config-row">
-          <label for="open-new-window">Open in about:blank Window:</label>
-          <input type="checkbox" id="open-new-window">
-        </div>
-
-        <div class="config-row">
-          <label for="css-select" class="config-label">CSS:</label>
-          <select id="css-select" class="config-select">
-            <option value="ui.css">Default (Dark)</option>
-            <option value="sodium.css">Sodium</option>
-            <option value="light.css">Light</option>
-            <option value="amoled.css">Amoled</option>
-          </select>
-          <button id="apply-css-button">Apply CSS</button>
-        </div>
-
-        <div class="config-row">
-          <label for="checkbox-24h">Use 24-Hour Time</label>
-          <input type="checkbox" id="checkbox-24h">
-        </div>
-
-        <div class="config-row">
-          <label for="checkbox-show-date">Include Date in Time Bar</label>
-          <input type="checkbox" id="checkbox-show-date">
-        </div>
-
-        <div class="config-row">
-          <label for="use-seconds-checkbox">Include Seconds in Time Bar</label>
-          <input type="checkbox" id="use-seconds-checkbox">
-        </div>
-
-        <div>
-          <p>Used Sodium before? Import your settings!</p>
-          <input type="file" id="importFile" style="display: none;" accept=".json">
-          <button onclick="openImportFile()">Import Cache</button>
-          <button onclick="exportCache()">Export Cache</button>
-        </div>
       </div>
-    </div>    
-    
+    </div>
+
     <div class="slide slide3">
+      <h1>Configure your Experience (Continued)</h1>
+      <p>Setup the settings you want to use! These can be changed later in the settings page.</p>
+
+      <div class="config-row">
+        <label for="css-select" class="config-label">CSS:</label>
+        <select id="css-select" class="config-select">
+          <option value="ui.css">Default (Dark)</option>
+          <option value="sodium.css">Sodium</option>
+          <option value="light.css">Light</option>
+          <option value="amoled.css">Amoled</option>
+        </select>
+        <button id="apply-css-button">Apply CSS</button>
+      </div>
+      
+      <div class="config-row">
+        <label class="config-label" for="meta-theme-color">Theme Color:</label>
+        <input class="config-input" type="text" id="meta-theme-color" name="meta-theme-color">
+      </div>
+
+      <div class="config-row">
+        <label for="toggle-beta">Enable Tabs:</label>
+        <input type="checkbox" id="toggle-beta">
+      </div>
+  
+      <div class="config-row">
+        <label for="open-new-window">Open in about:blank Window:</label>
+        <input type="checkbox" id="open-new-window">
+      </div>
+
+      <div class="config-row">
+        <label for="checkbox-24h">Use 24-Hour Time</label>
+        <input type="checkbox" id="checkbox-24h">
+      </div>
+
+      <div class="config-row">
+        <label for="checkbox-show-date">Include Date in Time Bar</label>
+        <input type="checkbox" id="checkbox-show-date">
+      </div>
+
+      <div class="config-row">
+        <label for="use-seconds-checkbox">Include Seconds in Time Bar</label>
+        <input type="checkbox" id="use-seconds-checkbox">
+      </div>
+
+      <div>
+        <p>Used Sodium before? Import your settings!</p>
+        <input type="file" id="importFile" style="display: none;" accept=".json">
+        <button onclick="openImportFile()">Import Cache</button>
+        <button onclick="exportCache()">Export Cache</button>
+      </div>
+    </div>
+    
+    <div class="slide slide4">
       <h1>Join Our Discord</h1>
       <p>If you want to find out more information about us check out our discord!</p>
       <a target="_blank" href="/discord/">Visit our Discord</a>
     </div>
 
-    <div class="slide slide4">
+    <div class="slide slide5">
       <h1>Get Started</h1>
       <p>You have compleated the Sodium FirstRun Setup!</p>
       <br>
@@ -311,7 +346,7 @@ showSlide(currentSlide);
             localStorage.setItem(key, importedData[key]);
           });
           alert('Cache data imported successfully.');
-          location.reload();
+          location.replace('/');
         } catch (error) {
           alert('Error importing cache data. Please check the file format.');
         }

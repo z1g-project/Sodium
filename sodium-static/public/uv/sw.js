@@ -31,12 +31,29 @@ self.addEventListener('fetch', async (event) => {
       credentials: 'same-origin',
     });
 
-    const res = await fetch(req);
-
-    if (self.__uv$config) {
-      self.__uv$config.bare = res.url;
-    }
+    try {
+      const res = await fetch(req);
+    
+      if (self.__uv$config) {
+        self.__uv$config.bare = res.url;
+      }
+    } catch (error) {
+      console.error('Error fetching bare server URL:', error);
+    }    
   }
 
   event.respondWith(sw.fetch(event));
 });
+
+self.addEventListener('message', async (event) => {
+  if (event.data && event.data.action === 'updateBareServerUrl') {
+    updateBareServerUrl()
+      .then(() => {
+        console.log('Bare server URL updated');
+      })
+      .catch(error => {
+        console.error('Error updating bare server URL:', error);
+      });
+  }
+});
+

@@ -11,7 +11,7 @@
   <link id="favicon" rel="icon" type="image/png" href="favicon.ico">
   <link rel="stylesheet" href="montserrat.css"/>
   <link rel="stylesheet" href="ui.css" id="custom-css"/>
-  <link rel="stylesheet" href="/settings/css-editor/css-editor.css"/>
+  <link rel="stylesheet" href="/settings/css-editor/codemirror.css">
   <script src="uv/uv.bundle.js" defer></script>
   <script src="uv/uv.config.js" defer></script>
   <script src="register-sw.js" defer></script>
@@ -22,6 +22,43 @@
   <script src="time.js" defer></script>
   <script src="settings.js" defer></script>
   <script src="fade.js" defer></script>
+  <style>
+    .config-select {
+      padding: 5px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      color: white;
+      background-color: #000000;
+      margin-top: 1vh;
+    }
+
+    .css-editor {
+      margin-top: 1vh;
+      background-color: rgba(24,24,24);
+      color: white;
+    }
+
+    .notification {
+      position: fixed;
+      top: 40px;
+      left: 0;
+      width: 100%;
+      padding: 10px;
+      background-color: #4CAF50;
+      color: white;
+      text-align: center;
+      font-size: 14px;
+      transition: top 0.5s ease-in-out;
+    }
+
+    .hidden {
+      visibility: hidden;
+    }
+
+    .settings-container {
+      margin-top: 3vh;
+    }
+  </style>
   <script>
     const customCSS = localStorage.getItem('websiteCSS');
     if (customCSS) {
@@ -37,7 +74,7 @@
       document.head.appendChild(defaultStyleSheet);
     }
   </script>
-  <script src="/settings/css-editor/monaco/loader.js"></script>
+  <script src="/settings/css-editor/codemirror.js"></script>
 </head>
 <body>
   <div class="second-bar">
@@ -58,7 +95,11 @@
         <p class="battery-text"></p>
       </div>
     </div>
-  </div>  
+  </div>
+
+  <div id="notification" class="notification hidden">
+    <p>Settings saved</p>
+  </div>
 
   <div class="settings-container">
     <h2>CSS Editor</h2>
@@ -68,16 +109,16 @@
         <button id="export-button">Export</button>
         <button id="apply-button">Apply</button>
       </div>
-      <div id="css-editor"></div>
+      <div id="css-editor" class="css-editor"></div>
     </div>
     <select id="css-select" class="config-select">
       <option value="ui.css">Default (Dark)</option>
       <option value="sodium.css">Sodium</option>
       <option value="light.css">Light</option>
       <option value="amoled.css">Amoled</option>
-      <!-- Add more options for different CSS files if needed -->
       <option value="custom">Custom CSS</option>
     </select>
+    <button onclick="loadSelectedCSS(editor)">Select</button>
   </div>
 
   <footer>
@@ -95,8 +136,7 @@
     }
 
     function applyCustomCSS() {
-      const cssEditor = monaco.editor.getModels()[0];
-      const customCSS = cssEditor.getValue();
+      const customCSS = editor.getValue();
 
       const styleSheets = document.getElementsByTagName('link');
 
@@ -107,7 +147,20 @@
         }
       }
 
-      cssEditor.setValue(escapeHTML(customCSS));
+      const notification = document.getElementById('notification');
+      notification.textContent = 'Custom Theme Applied! Refresh to see changes';
+      notification.classList.remove('hidden');
+    
+      setTimeout(() => {
+        notification.style.top = '40px';
+      }, 10);
+    
+      setTimeout(() => {
+        notification.style.top = '-50px';
+        setTimeout(() => {
+          notification.classList.add('hidden');
+        }, 500);
+      }, 3000);    
 
       localStorage.setItem('websiteCSS', customCSS);
     }
@@ -124,12 +177,11 @@
 
     const exportButton = document.getElementById('export-button');
     exportButton.addEventListener('click', function () {
-      exportCSS();
+      exportCSS(editor);
     });
 
-    function exportCSS() {
-      const cssEditor = monaco.editor.getModels()[0];
-      const cssContent = cssEditor.getValue();
+    function exportCSS(editor) {
+      const cssContent = editor.getValue();
       const blob = new Blob([cssContent], { type: 'text/css' });
       const url = URL.createObjectURL(blob);
 
@@ -155,51 +207,47 @@
 
         reader.onload = function (e) {
           const importedCSS = e.target.result;
-          const cssEditor = monaco.editor.getModels()[0];
-          cssEditor.setValue(importedCSS);
+          editor.setValue(importedCSS);
         };
 
-        reader.readAsText(file);
+      reader.readAsText(file);
       });
 
       fileInput.click();
     }
 
-    require.config({ paths: { 'vs': '/settings/css-editor/monaco' } });
-    require(['vs/editor/editor.main'], function () {
-      const editor = monaco.editor.create(document.getElementById('css-editor'), {
-        value: '',
-        language: 'css',
-        theme: 'vs-dark'
-      });
+    const cssEditorTextarea = document.createElement('textarea');
+    cssEditorTextarea.id = 'css-editor-textarea';
+    document.getElementById('css-editor').appendChild(cssEditorTextarea);
 
+    const editor = CodeMirror.fromTextArea(cssEditorTextarea, {
+      mode: 'css',
+      theme: 'moxer',
+      lineNumbers: true
+    });   
+  
+    function loadSelectedCSS(editor) {
       const cssSelect = document.getElementById('css-select');
-      cssSelect.addEventListener('change', function () {
-        loadSelectedCSS(editor);
-      });
+      const selectedCSS = cssSelect.value;
 
-      function loadSelectedCSS(editor) {
-        const selectedCSS = cssSelect.value;
-
-        if (selectedCSS === 'custom') {
-          const customCSS = localStorage.getItem('websiteCSS');
-          if (customCSS) {
-            editor.setValue(customCSS);
-          }
-        } else {
-          fetch(selectedCSS)
-            .then(response => response.text())
-            .then(css => {
-              editor.setValue(css);
-            })
-            .catch(error => {
-              console.error('Error loading CSS:', error);
-            });
+      if (selectedCSS === 'custom') {
+        const customCSS = localStorage.getItem('websiteCSS');
+        if (customCSS) {
+          editor.setValue(customCSS);
         }
+      } else {
+        fetch(selectedCSS)
+          .then(response => response.text())
+          .then(css => {
+            editor.setValue(css);
+          })
+          .catch(error => {
+            console.error('Error loading CSS:', error);
+          });
       }
+    }
 
-      loadSelectedCSS(editor);
-    });
+    loadSelectedCSS(editor);
   </script>
 </body>
 </html>

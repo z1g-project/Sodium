@@ -14,7 +14,7 @@
   width: 100%;
   height: 46px;
   padding: 8px 3px 4px 3px;
-  background: #dee1e6;
+  background: #000000;
   border-radius: 5px 5px 0 0;
   overflow: hidden;
 }
@@ -67,7 +67,7 @@
   top: 0;
   bottom: 0;
   width: 1px;
-  background: #a9adb0;
+  background: #000000;
   opacity: 1;
   transition: opacity 0.2s ease;
 }

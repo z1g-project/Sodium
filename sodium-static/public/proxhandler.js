@@ -2,7 +2,7 @@
     const proxyOption = localStorage.getItem("proxyOption");
   
     if (proxyOption && proxyOption.toLowerCase() === "dynamic") {
-      //replaceScript("proxloader", "dynamic-loader.js"); Removed for now
+      replaceScript("proxloader", "dynamic.sw.js");
       replaceScript("proxcfg", "/dynamic/dynamic.config.js");
       replaceScript("proxsw", "dynamicsw.js");
       replaceScript("proxworker", "/dynamic/dynamic.worker.js");
@@ -41,4 +41,3 @@
       uvForm.parentNode.replaceChild(uForm, uvForm);
     }
   }
-  

@@ -155,7 +155,7 @@ const customCSS = localStorage.getItem('websiteCSS');
       const openNewWindow = localStorage.getItem('openNewWindow');
     
       if (openNewWindow === 'true') {
-        const newWindow = window.open('about:blank', '_blank', 'width=800,height=600');
+        const newWindow = window.open('about:blank', '_blank');
         const newDocument = newWindow.document.open();
         newDocument.write(`
           <!DOCTYPE html>
@@ -183,6 +183,50 @@ const customCSS = localStorage.getItem('websiteCSS');
         
       }
     }
+
+    if (window.location.pathname === '/' || window.location.pathname === '/index.html') {
+      const openBlobWindow = localStorage.getItem('openblobwindow');
+    
+      if (openBlobWindow === 'true') {
+        const iframeURL = window.location.origin + '/newtab.html';
+        const htmlContent = `
+          <!DOCTYPE html>
+          <html>
+            <head>
+              <style type="text/css">
+                body, html {
+                  margin: 0;
+                  padding: 0;
+                  height: 100%;
+                  overflow: hidden;
+                }
+              </style>
+            </head>
+            <body>
+              <iframe style="border: none; width: 100%; height: 100vh;" src="${iframeURL}"></iframe>
+            </body>
+          </html>
+        `;
+    
+        const blob = new Blob([htmlContent], { type: 'text/html' });
+        const blobURL = URL.createObjectURL(blob);
+        
+        const newWindow = window.open(blobURL, '_blank');
+        
+        if (newWindow) {
+          newWindow.addEventListener('beforeunload', () => {
+            URL.revokeObjectURL(blobURL);
+          });
+        } else {
+
+        }
+
+        const fallbackUrl = localStorage.getItem('fallbackUrl');
+          if (fallbackUrl) {
+            window.location.href = fallbackUrl;
+        }
+      }
+    }       
     
     const betaMode = localStorage.getItem('betaMode');
 
@@ -225,3 +269,5 @@ getBatteryInfo();
 updateTime();
 
 setInterval(updateTime, 1000);
+
+setInterval(getBatteryInfo, 1000);

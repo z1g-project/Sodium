@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <base href="../../"></base>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+  <title>Sodium</title>
+  <meta name="description" content="Sodium is a site used for evading internet censorship"/>
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#434c5e" />
+  <meta name="googlebot" content="index, follow, snippet" />
+  <link id="favicon" rel="icon" type="image/png" href="favicon.ico">
+  <link rel="stylesheet" href="montserrat.css"/>
+  <link rel="stylesheet" href="ui.css" id="custom-css"/>
+  <link rel="manifest" href="manifest.webmanifest"/>
+  <script id="proxcfg" src="uv/uv.bundle.js" defer></script>
+  <script src="uv/uv.config.js" defer></script>
+  <script id="proxsw" src="register-sw.js" defer></script>
+  <script src="search.js" defer></script>
+  <script id="proxloader" src="index.js" defer></script>
+  <script src="time.js" defer></script>
+  <script src="settings.js" defer></script>
+  <script src="fade.js" defer></script>
+  <script src="bare.js" defer></script>
+  <style>
+    iframe {
+      position: fixed;
+      top: 40px;
+      left: 0;
+      width: 100%;
+      height: calc(100% - 85px);
+      border: none;
+      display: none;
+    }
+
+    .show-iframe iframe {
+      display: block;
+    }
+
+    #loading-overlay {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: -999;
+    }
+
+    #wave-container {
+      width: 100%;
+      height: 100px;
+      overflow: hidden;
+    }
+
+    .wave {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.3) 50%, rgba(255, 255, 255, 0) 100%);
+      animation: wave-animation 2s infinite;
+    }
+
+    @keyframes wave-animation {
+      0% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(50px);
+      }
+      100% {
+        transform: translateY(0);
+      }
+    }
+
+    .loading-content {
+      text-align: center;
+      color: #fff;
+    }
+
+    .loading-title {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    .loading-message {
+      font-size: 18px;
+    }
+
+    .info-menu {
+      display: block;
+    }
+
+    .info-menu-item {
+      font-size: 12px;
+    }
+  </style>
+  <script>
+    window.addEventListener("DOMContentLoaded", () => {
+      const apploader = document.getElementById("apploader");
+      const infoMenu = document.getElementById("info-menu");
+      const transferRateItem = document.getElementById("transferRate");
+      const latencyItem = document.getElementById("latency");
+      const fpsItem = document.getElementById("fps");
+  
+      let totalBytes = 0;
+      let totalTime = 0;
+  
+      function calculateTransferRate(url, callback) {
+        if (totalBytes > 0 && totalTime > 0) {
+          const transferRate = (totalBytes / totalTime) * 8 / 1000;
+          const transferRateFormatted = transferRate.toFixed(2);
+          callback(`${transferRateFormatted} kbps`);
+        } else {
+          callback('N/A');
+        }
+      }
+  
+      fpsItem.style.display = 'none';
+  
+      apploader.onload = () => {
+        const useProxy = localStorage.getItem('useProxy') === 'true';
+        const proxyOption = localStorage.getItem('proxyOption');
+        const pluginUrls = JSON.parse(localStorage.getItem('websitePlugins')) || [];
+  
+        pluginUrls.forEach(pluginUrl => {
+          const script = document.createElement('script');
+  
+          if (useProxy) {
+            if (proxyOption && proxyOption.toLowerCase() === "dynamic") {
+              script.src = `${window.location.origin}/service/route?url=${pluginUrl}`;
+            } else {
+              script.src = `${window.location.origin}/uv/service/${Ultraviolet.codec.xor.encode(pluginUrl)}`;
+            }
+          } else {
+            script.src = pluginUrl;
+          }
+  
+          const iframeDocument = apploader.contentWindow.document;
+          iframeDocument.head.appendChild(script);
+          console.log(`Plugin injected into the iframe: ${pluginUrl}`);
+        });
+      };
+  
+      function calculateLatency(url, callback) {
+        const timing = performance.timing;
+        const latency = timing.responseStart - timing.requestStart;
+        callback(`${latency} ms`);
+      }
+  
+      function calculateFPS() {
+        let fps = 0;
+        let frameCount = 0;
+        let lastTime = performance.now();
+  
+        function updateFPS() {
+          const currentTime = performance.now();
+          const deltaTime = currentTime - lastTime;
+          frameCount++;
+  
+          if (deltaTime >= 1000) {
+            fps = Math.round((frameCount * 1000) / deltaTime);
+            frameCount = 0;
+            lastTime = currentTime;
+          }
+  
+          fpsItem.textContent = `FPS: ${fps}`;
+          requestAnimationFrame(updateFPS);
+        }
+  
+        updateFPS();
+      }
+  
+      calculateFPS();
+  
+      function trackTransfer(bytesTransferred) {
+        totalBytes += bytesTransferred;
+        const currentTime = performance.now();
+        if (totalTime === 0) {
+          totalTime = currentTime;
+        } else {
+          totalTime = currentTime - totalTime;
+        }
+      }
+  
+      function simulateTransfer() {
+        const bytesToTransfer = 2 * 1024 * 1024;
+        const transferInterval = 5000;
+  
+        const transferChunks = Math.ceil(bytesToTransfer / 100);
+        const chunkSize = Math.ceil(bytesToTransfer / transferChunks);
+  
+        let transferredBytes = 0;
+        let chunkCount = 0;
+  
+        const transferIntervalId = setInterval(() => {
+          const remainingBytes = bytesToTransfer - transferredBytes;
+          const chunkBytes = Math.min(chunkSize, remainingBytes);
+  
+          trackTransfer(chunkBytes);
+  
+          transferredBytes += chunkBytes;
+          chunkCount++;
+  
+          if (chunkCount === transferChunks) {
+            clearInterval(transferIntervalId);
+            console.log('Transfer complete!');
+          }
+        }, transferInterval / transferChunks);
+      }
+  
+      simulateTransfer();
+  
+      apploader.addEventListener('load', () => {
+        infoMenu.style.display = 'block';
+        calculateTransferRate(apploader.src, transferRate => {
+          transferRateItem.textContent = `Transfer Rate: ${transferRate}`;
+        });
+        calculateLatency(apploader.src, latency => {
+          latencyItem.textContent = `Latency: ${latency}`;
+        });
+        const fps = calculateFPS();
+        fpsItem.textContent = `FPS: ${fps}`;
+        fpsItem.style.display = 'block';
+      });
+    });
+   </script>
+  </head>
+
+  <body>
+    <div class="second-bar">
+      <a href="/" class="second-bar-link home-link"></a>
+      <a href="/games/" class="second-bar-link games-link"></a>
+      <a href="/apps/" class="second-bar-link apps-link"></a>
+      <a href="/settings/" class="second-bar-link settings-link"></a>
+      <div class="info-menu" id="info-menu" style="margin-left: auto">
+        <div class="info-menu-item" id="transferRate"></div>
+        <div class="info-menu-item" id="latency"></div>
+        <div class="info-menu-item" id="fps"></div>
+      </div>
+      <div class="top-bar-item" id="time"></div>
+      <div class="top-bar-item">
+        <div class="battery-icon-container">
+          <div id="battery" class="battery-icon"></div>
+          <div class="battery-fill"></div>
+          <p class="battery-text"></p>
+        </div>
+      </div>
+    </div>
+  
+    <div id="loading-overlay">
+      <div class="loading-content">
+        <h1 class="loading-title">Sodium is loading your content!</h1>
+        <div id="wave-container">
+          <div class="wave"></div>
+        </div>
+        <p class="loading-message">Please wait...</p>
+      </div>
+    </div>
+  
+    <div class="show-iframe">
+      <iframe id="apploader"></iframe>
+    </div>
+  
+    <footer>
+      <img src="assets/img/z1g.png" alt="z1g Project" title="The z1g Project GitHub organization" height="30" width="30" onclick="location.href='/github/z1g-project/'" />
+      <img src="assets/img/discord.jpg" alt="Discord" title="The z1g Project Discord" height="30" width="30" onclick="location.href='/discord/'" />
+      <img src="assets/img/github.png" alt="GitHub" title="The official deployment repository for Sodium" height="30" width="30" onclick="location.href='/github/'" />
+      <img src="assets/img/credits.png" alt="Credits" title="License information" height="30" width="30" onclick="location.href='credits.html'" />
+      <div class="footer-text-container" style="margin-left: auto">
+        <span>Sodium &copy; z1g Project 2023</span>
+      </div>
+    </footer>
+    <script>
+        window.addEventListener("DOMContentLoaded", () => {
+          const apploader = document.getElementById("apploader");
+          if (!apploader) {
+            console.error("Element with ID 'apploader' not found.");
+            return;
+          }
+      
+          const encodedUrl = sessionStorage.getItem("encodedUrl");
+          if (!encodedUrl) {
+            console.error("Session storage item 'encodedUrl' not found.");
+            return;
+          }
+      
+          console.log("Loading: " + encodedUrl);
+          apploader.src = encodedUrl;
+        });
+      </script>      
+  </body>
+</html>
