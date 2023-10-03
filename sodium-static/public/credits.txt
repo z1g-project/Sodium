@@ -6,7 +6,7 @@ Here at the z1g Project we like focusing on helping the community bypass their s
 
 Thank you for supporting us since 2021!
 
-Sodium Visual Credits
+Sodium Credits
 
 - UI & Visials: XSTARS
 - Logos and General Design: XSTARS
@@ -27,8 +27,10 @@ Honorable Mentions
 - Icccy: Helping me with Logo & Some CSS Stuff
 - carter: Helping me setup UV on a static sites
 - Bluu: Motivation
+- 3kh0: Grammer lmao
+- rare1k: Beter CSS Editor and block fix
 
 Wishing the best of luck for you guys!
 
-Last Updated: 10/02/2023
+Last Updated: 10/03/2023
 Made with ❤️ by XSTARS
