@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: sodium
+    env: node
+    buildCommand: npm install
+    startCommand: node index.js
+    plan: free
