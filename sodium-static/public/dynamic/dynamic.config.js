@@ -10,7 +10,7 @@ self.__dynamic$config = {
   tab: {
     title: 'Service',
     icon: null,
-    ua: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36 Sodium/1.3.0',
+    ua: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36 Sodium/1.4.0',
   },
   assets: {
     prefix: '/dynamic/',
