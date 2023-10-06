@@ -14,5 +14,5 @@ async function registerSW() {
 
   await navigator.serviceWorker.register(stockSW, {
     scope: __uv$config.prefix,
-  });
+  });  
 }

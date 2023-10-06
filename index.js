@@ -5,6 +5,7 @@ import { publicPath } from "ultraviolet-static";
 import { uvPath } from "@titaniumnetwork-dev/ultraviolet";
 import { join } from "node:path";
 import { hostname } from "node:os";
+import fs from 'fs';
 
 const bare = createBareServer("/bare/");
 const app = express();
@@ -40,7 +41,26 @@ let port = parseInt(process.env.PORT || "");
 
 if (isNaN(port)) port = 8080;
 
-server.on("listening", () => {
+server.on("listening", async () => {
+  try {
+    const packageJson = JSON.parse(fs.readFileSync('package.json', 'utf8'));
+    const localVersion = packageJson.version;
+    const versionTxt = fs.readFileSync('./sodium-static/public/version.txt', 'utf8').trim();
+
+    if (localVersion !== versionTxt) {
+      console.log('\x1b[32m[Sodium] Update is available ' + versionTxt + '. Check the GitHub for more info.\x1b[0m');
+      startServer();
+    } else {
+      console.log('\x1b[32m[Sodium] Your up to date!\x1b[0m');
+      startServer();
+    }
+  } catch (error) {
+    console.error('\x1b[31mError checking for updates:', error, '\x1b[0m');
+    startServer();
+  }
+});
+
+function startServer() { 
   const address = server.address();
 
   console.log("Sodium is running on:");
@@ -50,7 +70,11 @@ server.on("listening", () => {
     console.log(`\thttp://${address.address}:${address.port}`);
   } else {
     console.log(`\thttp://[${address.address}]:${address.port}`);
-  }  
+  }
+}
+
+server.listen({
+  port,
 });
 
 process.on("SIGINT", shutdown);
@@ -62,7 +86,3 @@ function shutdown() {
   bare.close();
   process.exit(0);
 }
-
-server.listen({
-  port,
-});
