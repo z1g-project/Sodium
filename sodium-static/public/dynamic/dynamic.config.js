@@ -4,7 +4,7 @@ self.__dynamic$config = {
   mode: 'production',
   logLevel: 3,
   bare: {
-    version: 2,
+    version: 3,
     path: "https://tomp.app"
   },
   tab: {
