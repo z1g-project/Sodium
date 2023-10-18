@@ -63,11 +63,11 @@ const addons = [
         url: 'https://cdn.z1g-project.repl.co/sodium/plugins/gmailremove.js',
       },
       {
-        name: 'Vencord for Sodium',
+        name: 'AdBlocker',
         category: 'plugins',
-        description: 'A Discord client mod',
-        publisher: '✅ Vencord',
-        url: 'https://cdn.z1g-project.repl.co/sodium/plugins/vencord.js',
+        description: 'Block ads on webpages (Early Alpha)',
+        publisher: '✅ Sodium Addons',
+        url: 'https://cdn.z1g-project.repl.co/sodium/plugins/adblock.js',
       },
       {
         name: 'Paper.io ZOOM HACK - Paperio Hacks',
@@ -124,13 +124,6 @@ const addons = [
         description: 'Great minecraft hosting, but it has adblocker detection, this script automatically destroy antiadblock windows. I would prefer to show a donate button instead of forcing Ads.',
         publisher: 'Lukáš Kovář',              
         url: 'https://cdn.z1g-project.repl.co/sodium/plugins/aternos.js',
-      },
-      {
-        name: 'AdBlocker',
-        category: 'plugins',
-        description: 'Block ads on webpages (Early Alpha)',
-        publisher: '✅ Sodium Addons',
-        url: 'https://cdn.z1g-project.repl.co/sodium/plugins/adblock.js',
       },
       {
         name: 'Yohoho.io Cheats',

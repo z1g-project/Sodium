@@ -3,7 +3,7 @@ async function checkLatestVersion() {
       const response = await fetch('https://raw.githubusercontent.com/z1g-project/sodium/beta/sodium-static/public/version.txt');
       const latestVersion = await response.text();
   
-      const currentVersion = '1.4.0';
+      const currentVersion = '1.4.1';
   
       if (latestVersion !== currentVersion) {
         showUpdateNotification();
