@@ -12,7 +12,6 @@ self.__uv$config = {
      */
     bare: [
         "https://tomp.app",
-        "https://infrared.playingallday383.workers.dev/",
       ],
 
     /**
