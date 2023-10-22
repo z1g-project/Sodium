@@ -1,4 +1,4 @@
-# Sodium v1.4.0 (Stable) - The Customize Update
+# Sodium v1.4.0 (Stable) - The Fall Refresh
 
 ## Whats new in v1.4.0
 
