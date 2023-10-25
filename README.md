@@ -21,6 +21,7 @@ Some of the features of sodium are:
 - Custom CSS Editor **BETA** - Uses Monaco CSS Editor and is still in the works!
 - HyperTabs UI **BETA** - HyperTabs Sodium Edition!
 - Emergency Switch Feature - A functional bindable keybind with a URL that when you press the button exits the page you are on and redirects to that URL!
+- Plugins - Sodium has a ton if addons ranging from adblockers to io hacks! Vencord is built into Ultraviolet when loading discord
 - Customizable! - Sodium has tons of other customization options for you to play with!
 
 ## Setup & installation
