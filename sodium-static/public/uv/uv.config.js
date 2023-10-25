@@ -12,6 +12,7 @@ self.__uv$config = {
      */
     bare: [
         "https://tomp.app",
+        "https://flow-works.me/bare/",
       ],
 
     /**
