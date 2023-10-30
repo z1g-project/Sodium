@@ -33,6 +33,9 @@ async function registerSW() {
   await navigator.serviceWorker.register(stockSW, {
     scope: "/uv/service/",
   });
+
+  navigator.serviceWorker.register("cache.js")
+  console.log("Registered Cache")
 }
 
 window.onload(registerSW());
