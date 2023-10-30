@@ -36,7 +36,9 @@ const resourcesToCache = [
 self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(cacheName).then((cache) => {
-      return cache.addAll(resourcesToCache);
+      return cache.addAll(resourcesToCache)
+        .then(() => console.log('Resources cached successfully'))
+        .catch((error) => console.error('Cache.addAll failed:', error));
     })
   );
 });
