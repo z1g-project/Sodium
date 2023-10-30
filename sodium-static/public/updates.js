@@ -1,17 +1,20 @@
 async function checkLatestVersion() {
-    try {
-      const response = await fetch('https://raw.githubusercontent.com/z1g-project/sodium/beta/sodium-static/public/version.txt');
-      const latestVersion = await response.text();
-  
-      const currentVersion = '1.4.2';
-  
-      if (latestVersion !== currentVersion) {
-        showUpdateNotification();
-      }
-    } catch (error) {
-      console.error('Error checking for latest version:', error);
+  try {
+    const isBeta = window.location.hostname.includes('beta');
+    const branch = isBeta ? 'beta' : 'master';
+
+    const response = await fetch(`https://raw.githubusercontent.com/z1g-project/sodium/${branch}/sodium-static/public/version.txt`);
+    const latestVersion = await response.text();
+
+    const currentVersion = '1.4.5';
+
+    if (latestVersion !== currentVersion) {
+      showUpdateNotification();
     }
+  } catch (error) {
+    console.error('Error checking for latest version:', error);
   }
+}
   
   function showUpdateNotification() {
     if ('Notification' in window && Notification.permission === 'granted') {
