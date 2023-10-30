@@ -35,8 +35,17 @@ async function registerSW() {
     scope: "/uv/service/",
   });
 
-  navigator.serviceWorker.register("cache.js")
-  console.log("Registered Cache")
+  if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/cache.js', { scope: '/' })
+    .then((registration) => {
+      console.log('Service Worker registered with scope:', registration.scope);
+    })
+    .catch((error) => {
+      console.error('Service Worker registration failed:', error);
+    });
+  } else {
+    console.error('Service Worker is not supported in this browser.');
+  }
 }
 
 window.onload(registerSW());
