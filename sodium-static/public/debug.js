@@ -19,5 +19,6 @@ Debug Information:
       });
   }
   
+  alert('Welcome to Sodium Developer Preview Build: 500 (2.0.0 DEV PREV) Things WILL break and nothing is finallized hope you enjoy!');
   createDebugMessage();
   

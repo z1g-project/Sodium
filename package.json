@@ -1,6 +1,6 @@
 {
   "name": "sodium-instance",
-  "version": "1.4.5",
+  "version": "2.0.0-devprev",
   "description": "Sodium Instance",
   "type": "module",
   "engines": {
