@@ -46,5 +46,5 @@ To set up Sodium, it is simple. Below are some instructions to get you started!
 - UI & Design: XSTARS
 - README improvements: 3kh0
 - Frontend Improvements: badpinghere & rare1k
-- (C) Copyright 2021-2023 z1g Project All rights reserved
+- (C) Copyright 2021-2024 z1g Project All rights reserved
 - Licensed under [The MIT License](https://github.com/z1g-project/z1g-Project-Hub/blob/master/LICENSE.txt)
