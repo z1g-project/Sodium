@@ -26,7 +26,7 @@
   top: 0px;
   left: 0;
   width: 100%;
-  background-color: #18191D;
+  background-color: transparent;
   color: #fff;
   height: 40px;
   display: flex;
@@ -53,7 +53,7 @@
 
 body {
   background-color: #1a1a1a;
-  /*background-image: url("assets/img/hehe.png");*/
+  /*background-image: url("assets/img/wave.svg");*/
   background-repeat: no-repeat;
   background-size: cover;
   color: #ffffff;
@@ -128,25 +128,33 @@ h1 {
 }
 
 #uv-address {
-  background: #252525;
-  color: white;
-  width: 400px;
-  height: 45px;
-  font-size: 25px;
-  padding: 0 12px;
-  border: none;
-  border-radius: 7px;
+  font-size: 20px;
+  text-align: center;
+  border-style: solid!important;
+  border-width: 1px;
+  border-radius: 25px;
+  background-color: #18181821;
+  font-family: 'Montserrat', sans-serif;
+  color: #fff;
+  width: 350px;
+  height: 50px;
+  box-shadow: none!important;
+  outline: none;
 }
 
 .uv-address {
-  background: #252525;
-  color: white;
-  width: 400px;
-  height: 45px;
-  font-size: 25px;
-  padding: 0 12px;
-  border: none;
-  border-radius: 7px;
+  font-size: 20px;
+  text-align: center;
+  border-style: solid!important;
+  border-width: 1px;
+  border-radius: 25px;
+  background-color: #18181821;
+  font-family: 'Montserrat', sans-serif;
+  color: #fff;
+  width: 350px;
+  height: 50px;
+  box-shadow: none!important;
+  outline: none;
 }
 
 iframe#apploader {
@@ -441,9 +449,10 @@ textarea {
 }
 
 #footer {
-  font-family: 'Lato', sans-serif;
-  padding-top: 10vw;
-  background: url("/assets/img/layered-waves-haikei.png"), linear-gradient(180deg, transparent 0px, transparent 10vw, var(--nord1) 10vw, var(--nord1) 100%);
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
   background-repeat: no-repeat;
   background-size: 100vw auto;
 }
@@ -512,4 +521,12 @@ textarea {
 
 .footersocials img:hover {
   transform: scale(1.1);
+}
+
+.box-error {
+  margin: 18vh 0px;
+}
+
+.box-error p {
+  margin: 10px 0px;
 }
