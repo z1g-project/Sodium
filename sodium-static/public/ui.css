@@ -21,10 +21,6 @@
   }
 }
 
-footer img {
-  margin-right: 10px;
-}
-
 .second-bar {
   position: fixed;
   top: 0px;
@@ -39,22 +35,6 @@ footer img {
   font-size: 16px;
   opacity: 0;
   animation: fade-in 0.5s ease-in-out forwards;
-}
-
-footer {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  background-color: transparent;
-  color: #ffffff;
-  padding: 10px;
-  font-size: 14px;
-  margin-top: 30px;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  overflow-x: auto;
 }
 
 .second-bar a {
@@ -73,7 +53,7 @@ footer {
 
 body {
   background-color: #1a1a1a;
-  background-image: url("assets/img/hehe.png");
+  /*background-image: url("assets/img/hehe.png");*/
   background-repeat: no-repeat;
   background-size: cover;
   color: #ffffff;
@@ -107,10 +87,6 @@ body {
 }
 
 .second-bar img:hover {
-  transform: scale(1.1);
-}
-
-footer img:hover {
   transform: scale(1.1);
 }
 
@@ -462,4 +438,78 @@ textarea {
   text-shadow: 0px 0px 30px rgba(0, 0, 0, 0.5);
   padding-top: 136px;
   padding-bottom: 12px;
+}
+
+#footer {
+  font-family: 'Lato', sans-serif;
+  padding-top: 10vw;
+  background: url("/assets/img/layered-waves-haikei.png"), linear-gradient(180deg, transparent 0px, transparent 10vw, var(--nord1) 10vw, var(--nord1) 100%);
+  background-repeat: no-repeat;
+  background-size: 100vw auto;
+}
+
+.footerflex {
+  display: flex;
+  justify-content: center;
+}
+
+.footersocials {
+  text-align: center;
+}
+
+.footerflex>div {
+  margin: 25px 50px;
+}
+
+.copyright {
+  text-align: center;
+  padding: 25px 0px;
+}
+
+.footerbrand h3 a {
+  color: white !important;
+}
+
+.footerbrand h3 a:hover {
+  text-decoration: underline !important;
+}
+
+.footerbrand p {
+  margin-top: 20px;
+}
+
+.footerlist ul {
+  list-style: none;
+  padding: 0px;
+}
+
+.footerlist ul>li {
+  padding: 2px;
+}
+
+.footersocials {
+  font-size: 16px;
+}
+
+.footersocials a {
+  display: inline;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+  padding: 8px;
+  margin: 0px 5px;
+  border: 1px solid var(--nord4);
+  border-radius: 50%;
+}
+
+.footersocials a:hover {
+  transform: scale(1.1);
+}
+
+.footersocials a .fab {
+  vertical-align: top;
+}
+
+.footersocials img:hover {
+  transform: scale(1.1);
 }
