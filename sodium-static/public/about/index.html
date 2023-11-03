@@ -101,7 +101,7 @@
   
   const versionInfoElement = document.getElementById('version-info');
   
-  fetch(`https://api.github.com/repos/${owner}/${repo}/commits?sha=${branch}`, {
+  fetch(`https://api.github.com/repos/${owner}/${repo}/commits?sha=v2`, {
   method: 'GET',
   headers: {
     'Accept': 'application/vnd.github.v3+json'
@@ -133,7 +133,7 @@
 
     const releaseDayWithSuffix = formattedDay + ordinalSuffix(formattedDay);
 
-    versionInfoElement.textContent = `v1.4.5 Stable (Released: ${formattedMonth} ${releaseDayWithSuffix}, ${formattedYear} - Commit: `;
+    versionInfoElement.textContent = `v2.0.0 Developer Preview (Released: ${formattedMonth} ${releaseDayWithSuffix}, ${formattedYear} - Commit: `;
     
     const commitLink = document.createElement("a");
     commitLink.href = data[0].html_url;
