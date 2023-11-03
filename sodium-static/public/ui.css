@@ -76,7 +76,7 @@ body {
 }
 
 .second-bar a.second-bar-link:hover {
-  transform: scale(1.1);
+  transform: scale(1.2);
 }
 
 .second-bar img {
@@ -87,7 +87,7 @@ body {
 }
 
 .second-bar img:hover {
-  transform: scale(1.1);
+  transform: scale(1.2);
 }
 
 .flex-center {
@@ -526,4 +526,8 @@ textarea {
 
 .box-error p {
   margin: 10px 0px;
+}
+
+li:hover {
+  transform: scale(1.05);
 }
