@@ -509,7 +509,7 @@ textarea {
 }
 
 .footersocials a:hover {
-  transform: scale(1.1);
+  transform: scale(1.2);
 }
 
 .footersocials a .fab {
@@ -517,7 +517,7 @@ textarea {
 }
 
 .footersocials img:hover {
-  transform: scale(1.1);
+  transform: scale(1.2);
 }
 
 .box-error {
@@ -528,6 +528,12 @@ textarea {
   margin: 10px 0px;
 }
 
-li:hover {
+.sidebar li:hover {
   transform: scale(1.05);
+}
+
+.css-editor {
+  margin-top: 1vh;
+  background-color: rgba(24,24,24);
+  color: white;
 }
