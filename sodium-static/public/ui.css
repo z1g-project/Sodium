@@ -450,7 +450,7 @@ textarea {
 
 #footer {
   position: relative;
-  margin-top: -50px;
+  margin-top: 0px;
   background-repeat: no-repeat;
   background-size: 100vw auto;
 }
