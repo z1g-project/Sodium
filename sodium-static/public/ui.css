@@ -138,6 +138,7 @@ h1 {
   height: 50px;
   box-shadow: none!important;
   outline: none;
+  z-index: 999;
 }
 
 .uv-address {
@@ -153,6 +154,7 @@ h1 {
   height: 50px;
   box-shadow: none!important;
   outline: none;
+  z-index: 999;
 }
 
 iframe#apploader {
