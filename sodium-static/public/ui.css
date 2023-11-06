@@ -412,6 +412,7 @@ textarea {
   border: 1px solid #ccc;
   color: #fff;
   background-color: #0d89b2;
+  -webkit-text-fill-color: white;
   border-radius: 15px;
 }
 
