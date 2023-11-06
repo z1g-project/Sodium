@@ -343,27 +343,27 @@ textarea {
 }
 
 .battery-icon.low {
-  background-image: url('assets/img/bat-low.png');
+  background-image: url('assets/img/bat-dead.svg');
 }
 
 .battery-icon.medium {
-  background-image: url('assets/img/bat-medium.png');
+  background-image: url('assets/img/bat-med.svg');
 }
 
 .battery-icon.high {
-  background-image: url('assets/img/bat-high.png');
+  background-image: url('assets/img/bat-full.svg');
 }
 
 .battery-icon.charging.low {
-  background-image: url('assets/img/bat-charging-low.png');
+  background-image: url('assets/img/bat-dead.svg');
 }
 
 .battery-icon.charging.medium {
-  background-image: url('assets/img/bat-charging-medium.png');
+  background-image: url('assets/img/bat-med.svg');
 }
 
 .battery-icon.charging.high {
-  background-image: url('assets/img/bat-charging-high.png');
+  background-image: url('assets/img/bat-full-charge.svg');
 }
 
 .second-bar-link {
@@ -539,4 +539,23 @@ textarea {
   margin-top: 1vh;
   background-color: #0d89b2;
   color: white;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  background-color: #23a9bb;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  max-width: 900px;
 }

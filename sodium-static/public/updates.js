@@ -8,8 +8,12 @@ async function checkLatestVersion() {
 
     const currentVersion = '2.0.0-devprev';
 
-    if (latestVersion !== currentVersion) {
-      showUpdateNotification();
+    if (window.location.hostname.includes('localhost')) {
+      console.log('Update Unavalible right now');
+    } else {
+      if (latestVersion !== currentVersion) {
+        showUpdateNotification();
+      }
     }
   } catch (error) {
     console.error('Error checking for latest version:', error);
