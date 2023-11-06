@@ -131,7 +131,7 @@ h1 {
   border-style: solid!important;
   border-width: 1px;
   border-radius: 25px;
-  background-color: #18181821;
+  background-color: #0d89b2;
   font-family: 'Montserrat', sans-serif;
   color: #fff;
   width: 350px;
@@ -146,7 +146,7 @@ h1 {
   border-style: solid!important;
   border-width: 1px;
   border-radius: 25px;
-  background-color: #18181821;
+  background-color: #0d89b2;
   font-family: 'Montserrat', sans-serif;
   color: #fff;
   width: 350px;
@@ -172,7 +172,7 @@ iframe#apploader {
   padding: 0 20px;
   font-size: 16px;
   margin-left: 10px;
-  background-color: #333;
+  background-color: #0d89b2;
   color: #fff;
   border: none;
   border-radius: 25px;
@@ -180,7 +180,7 @@ iframe#apploader {
 }
 
 #searchButton:hover {
-  background-color: #333;
+  background-color: #0d89b2;
   transform: scale(1.1);
 }
 
@@ -409,7 +409,7 @@ textarea {
   padding: 5px;
   border: 1px solid #ccc;
   color: #fff;
-  background-color: #333;
+  background-color: #0d89b2;
   border-radius: 15px;
 }
 
