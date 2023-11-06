@@ -1,7 +1,7 @@
 {
   "name": "Sodium",
   "short_name": "sodium",
-  "theme_color": "#000",
+  "theme_color": "#27639f",
   "background_color": "#000",
   "display": "standalone",
   "scope": "/",
