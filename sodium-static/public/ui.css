@@ -134,6 +134,7 @@ h1 {
   background-color: #0d89b2;
   font-family: 'Montserrat', sans-serif;
   color: #fff;
+  -webkit-text-fill-color: white;
   width: 350px;
   height: 50px;
   box-shadow: none!important;
@@ -149,6 +150,7 @@ h1 {
   background-color: #0d89b2;
   font-family: 'Montserrat', sans-serif;
   color: #fff;
+  -webkit-text-fill-color: white;
   width: 350px;
   height: 50px;
   box-shadow: none!important;
