@@ -52,7 +52,7 @@
 }
 
 body {
-  background-color: #236ab2;
+  background-color: #27639f;
   background-image: url("assets/img/v2-waves.svg");
   background-repeat: no-repeat;
   background-size: cover;
@@ -237,7 +237,7 @@ button {
   padding: 0 20px;
   font-size: 16px;
   margin-left: 10px;
-  background-color: #333;
+  background-color: #0d89b2;
   color: #fff;
   border: none;
   border-radius: 25px;
@@ -272,7 +272,7 @@ textarea {
 }
 
 .grid-item {
-  background-color: #333;
+  background-color: #0d89b2;
   padding: 20px;
   border-radius: 8px;
   text-align: center;
@@ -418,14 +418,14 @@ textarea {
   border: 1px solid #ccc;
   border-radius: 15px;
   color: white;
-  background-color: #333;
+  background-color: #0d89b2;
 }
 
 .column {
   width: 145px;
   transition: all 0.2s ease;
   cursor: pointer;
-  background: #333;
+  background: #0d89b2;
   border-radius: 10px;
   padding-left: 10px;
   padding-right: 10px;
@@ -534,6 +534,6 @@ textarea {
 
 .css-editor {
   margin-top: 1vh;
-  background-color: rgba(24,24,24);
+  background-color: #0d89b2;
   color: white;
 }
