@@ -363,7 +363,7 @@ textarea {
 }
 
 .battery-icon.charging.high {
-  background-image: url('assets/img/bat-full-charge.svg');
+  background-image: url('assets/img/bat-full.svg');
 }
 
 .second-bar-link {
