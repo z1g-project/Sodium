@@ -163,7 +163,7 @@ iframe#apploader {
   top: 40px;
   left: 0;
   width: 100%;
-  height: calc(100% - 6%); 
+  height: calc(100% - 9%); 
   border: none;
   opacity: 0;
   animation: fade-in 0.5s ease-in-out forwards;
@@ -214,7 +214,7 @@ iframe {
   top: 40px;
   left: 0;
   width: 100%;
-  height: calc(100% - 6%);
+  height: calc(100% - 9%);
   border: none;
   opacity: 0;
   animation: fade-in 0.5s ease-in-out forwards;
@@ -363,7 +363,7 @@ textarea {
 }
 
 .battery-icon.charging.high {
-  background-image: url('assets/img/bat-full.svg');
+  background-image: url('assets/img/bat-full-charge.svg');
 }
 
 .second-bar-link {
