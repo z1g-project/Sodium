@@ -355,11 +355,11 @@ textarea {
 }
 
 .battery-icon.charging.low {
-  background-image: url('assets/img/bat-dead.svg');
+  background-image: url('assets/img/bat-dead-charge.svg');
 }
 
 .battery-icon.charging.medium {
-  background-image: url('assets/img/bat-med.svg');
+  background-image: url('assets/img/bat-med-charge.svg');
 }
 
 .battery-icon.charging.high {
