@@ -375,28 +375,28 @@ textarea {
 }
 
 .second-bar-link.home-link {
-  background-image: url("assets/img/house.jpg");
+  background-image: url("assets/img/home.svg");
   background-size: 67%;
   background-repeat: no-repeat;
   background-position: center;
 }
 
 .second-bar-link.games-link {
-  background-image: url("assets/img/games.jpg");
+  background-image: url("assets/img/games.svg");
   background-size: 67%;
   background-repeat: no-repeat;
   background-position: center;
 }
 
 .second-bar-link.apps-link {
-  background-image: url("assets/img/apps.jpg");
+  background-image: url("assets/img/apps.svg");
   background-size: 67%;
   background-repeat: no-repeat;
   background-position: center;
 }
 
 .second-bar-link.settings-link {
-  background-image: url("assets/img/settings.jpg");
+  background-image: url("assets/img/settings.svg");
   background-size: 67%;
   background-repeat: no-repeat;
   background-position: center;
@@ -553,7 +553,7 @@ textarea {
 }
 
 .modal-content {
-  background-color: #23a9bb;
+  background-color: #0d89b2;
   margin: 15% auto;
   padding: 20px;
   border: 1px solid #888;
