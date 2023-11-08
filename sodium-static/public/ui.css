@@ -559,7 +559,3 @@ textarea {
   border: 1px solid #888;
   max-width: 900px;
 }
-
-.license-logo {
-  background-image: url("assets/img/license.svg");
-}
