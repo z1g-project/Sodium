@@ -35,6 +35,7 @@
     font-size: 16px;
     opacity: 0;
     animation: fade-in 0.5s ease-in-out forwards;
+    z-index: 99999;
   }
   
   .second-bar a {
@@ -550,7 +551,7 @@
   }
   
   .modal-content {
-    background-color: #121212;
+    background-color: rgb(30, 27, 27);
     margin: 15% auto;
     padding: 20px;
     border: 1px solid #888;
