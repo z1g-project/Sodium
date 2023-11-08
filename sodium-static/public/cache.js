@@ -30,7 +30,7 @@ self.addEventListener('install', (event) => {
         '/sodium.png',
         '/sodium-header-img.png',
         '/montserrat.css',
-        '/assets/img/amoled.svg',
+        '/assets/img/amoled-waves.svg',
         '/assets/img/license.svg',
         '/assets/img/bat-full.svg',
         '/assets/img/bat-full-charge.svg',
