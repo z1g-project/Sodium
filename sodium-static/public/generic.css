@@ -1,4 +1,11 @@
-#time {
+/* 
+    Generic Moddable Theme
+    (C) Copyright 2024 z1g Project
+    Licensed under the MIT LIcense
+    Want to show off your work? Submit your theme!
+*/
+
+  #time {
     text-align: center;
     position: absolute;
     top: auto;
@@ -53,8 +60,8 @@
   }
   
   body {
-    background-color: #000000;
-    background-image: url("assets/img/amoled-waves.svg");
+    background-color: #27639f;
+    background-image: url("assets/img/generic-waves.svg");
     background-repeat: no-repeat;
     background-size: cover;
     color: #ffffff;
@@ -132,7 +139,7 @@
     border-style: solid!important;
     border-width: 1px;
     border-radius: 25px;
-    background-color: #121212;
+    background-color: #0d89b2;
     font-family: 'Montserrat', sans-serif;
     color: #fff;
     -webkit-text-fill-color: white;
@@ -148,7 +155,7 @@
     border-style: solid!important;
     border-width: 1px;
     border-radius: 25px;
-    background-color: #121212;
+    background-color: #0d89b2;
     font-family: 'Montserrat', sans-serif;
     color: #fff;
     -webkit-text-fill-color: white;
@@ -175,7 +182,7 @@
     padding: 0 20px;
     font-size: 16px;
     margin-left: 10px;
-    background-color: #121212;
+    background-color: #0d89b2;
     color: #fff;
     border: none;
     border-radius: 25px;
@@ -183,7 +190,7 @@
   }
   
   #searchButton:hover {
-    background-color: #121212;
+    background-color: #0d89b2;
     transform: scale(1.1);
   }
   
@@ -240,7 +247,7 @@
     padding: 0 20px;
     font-size: 16px;
     margin-left: 10px;
-    background-color: #121212;
+    background-color: #0d89b2;
     color: #fff;
     border: none;
     border-radius: 25px;
@@ -275,7 +282,7 @@
   }
   
   .grid-item {
-    background-color: #121212;
+    background-color: #0d89b2;
     padding: 20px;
     border-radius: 8px;
     text-align: center;
@@ -412,7 +419,7 @@
     padding: 5px;
     border: 1px solid #ccc;
     color: #fff;
-    background-color: #121212;
+    background-color: #0d89b2;
     -webkit-text-fill-color: white;
     border-radius: 15px;
   }
@@ -422,14 +429,14 @@
     border: 1px solid #ccc;
     border-radius: 15px;
     color: white;
-    background-color: #121212;
+    background-color: #0d89b2;
   }
   
   .column {
     width: 145px;
     transition: all 0.2s ease;
     cursor: pointer;
-    background: #121212;
+    background: #0d89b2;
     border-radius: 10px;
     padding-left: 10px;
     padding-right: 10px;
@@ -538,7 +545,7 @@
   
   .css-editor {
     margin-top: 1vh;
-    background-color: #121212;
+    background-color: #0d89b2;
     color: white;
   }
   
@@ -554,22 +561,13 @@
   }
   
   .modal-content {
-    background-color: rgb(30, 27, 27);
+    background-color: #3d8298;
     margin: 15% auto;
     padding: 20px;
     border: 1px solid #888;
     max-width: 900px;
   }
   
-  .CodeMirror {
-    position: relative;
-    overflow: hidden;
-    background: #121212;
-    color: white;
-  }
-  
-  .CodeMirror-gutters {
-    border-right: 1px solid #ddd;
-    background-color: #121212;
-    white-space: nowrap;
+  .svg-fill {
+    fill: white;
   }
