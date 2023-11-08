@@ -54,6 +54,9 @@
   
   body {
     background-color: #000000;
+    /*background-image: url("assets/img/v2-waves.svg");*/
+    background-repeat: no-repeat;
+    background-size: cover;
     color: #ffffff;
     font-family: 'Montserrat', sans-serif;
     margin: 0;
