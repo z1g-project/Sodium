@@ -49,6 +49,8 @@ self.addEventListener('install', (event) => {
         '/time.js',
         '/updates.js',
         '/version.txt',
+        '/assets/img/legacy-waves.svg',
+        '/about/',
       ]);
     })
   );
