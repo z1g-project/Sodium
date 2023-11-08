@@ -1,63 +1,63 @@
-const cacheName = 'offline-cache';
-const resourcesToCache = [
-  '/',
-  '/apps/',
-  '/games/',
-  '/settings/',
-  '/appframe.html',
-  '/iframe.html',
-  '/uv/',
-  '/dynamic/',
-  '/service/',
-  '/credits.html',
-  '/404.html',
-  '/settings.js',
-  '/addons.js',
-  '/dynamicsw.js',
-  '/registersw.js',
-  '/proxhandler.js',
-  '/search.js',
-  '/updates.js',
-  '/newtab.js',
-  '/index.js',
-  '/games.js',
-  '/credits.js',
-  '/changes.js',
-  '/ui.css',
-  '/sodium.css',
-  '/light.css',
-  '/halloween.css',
-  '/amoled.css',
-  '/immortal.css',
-  '/item-cards.css',
-  '/montserrat.css',
-];
-
 self.addEventListener('install', (event) => {
   event.waitUntil(
-    caches.open(cacheName).then((cache) => {
-      return cache.addAll(resourcesToCache)
-        .then(() => self.skipWaiting());
+    caches.open('offline-cache').then((cache) => {
+      return cache.addAll([
+        '/',
+        '/ui.css',
+        '/amoled.css',
+        '/legacy.css',
+        '/settings.js',
+        '/bare.js',
+        '/addons.js',
+        '/404.html',
+        '/appframe.html',
+        '/iframe.html',
+        '/credits.html',
+        '/appx.json',
+        '/debug.js',
+        '/credits.js',
+        '/register-sw.js',
+        '/dynamic.sw.js',
+        '/fade.js',
+        '/error.js',
+        '/favicon.ico',
+        '/faq.html',
+        '/settings/',
+        '/settings/css-editor/',
+        '/github/',
+        '/apps/',
+        '/games/',
+        '/sodium.png',
+        '/sodium-header-img.png',
+        '/monserrat.css',
+        '/assets/img/amoled.svg',
+        '/assets/img/license.svg',
+        '/assets/img/bat-full.svg',
+        '/assets/img/bat-full-charge.svg',
+        '/assets/img/bat-med.svg',
+        '/assets/img/bat-med-charge.svg',
+        '/assets/img/bat-dead.svg',
+        '/assets/img/bat-dead-charge.svg',
+        '/assets/img/home.svg',
+        '/assets/img/apps.svg',
+        '/assets/img/games.svg',
+        '/assets/img/settings.svg',
+        '/assets/img/v2-waves.svg',
+        '/assets/img/z1g.png',
+        '/assets/img/discord.png',
+        '/assets/img/github.png',
+        '/time.js',
+        '/updates.js',
+        '/version.txt',
+      ]);
     })
   );
 });
 
 self.addEventListener('fetch', (event) => {
   event.respondWith(
-    caches.match(event.request).then((cachedResponse) => {
-      return cachedResponse || fetch(event.request);
-    })
-  );
-});
-
-self.addEventListener('activate', (event) => {
-  event.waitUntil(
-    caches.keys().then((cacheNames) => {
-      return Promise.all(
-        cacheNames
-          .filter((name) => name !== cacheName)
-          .map((name) => caches.delete(name))
-      );
+    caches.match(event.request).then((response) => {
+      return response || fetch(event.request);
     })
   );
 });

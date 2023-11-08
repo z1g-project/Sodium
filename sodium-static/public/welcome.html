@@ -35,17 +35,13 @@ async function registerSW() {
     scope: "/uv/service/",
   });
 
-  if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/cache.js', { scope: '/' })
+  navigator.serviceWorker.register('cache.js')
     .then((registration) => {
-      console.log('Service Worker registered with scope:', registration.scope);
+      console.log('Cache Service Worker registered with scope:', registration.scope);
     })
     .catch((error) => {
-      console.error('Service Worker registration failed:', error);
+      console.error('Error registering Service Worker:', error);
     });
-  } else {
-    console.error('Service Worker is not supported in this browser.');
-  }
 }
 
 window.onload(registerSW());
@@ -234,8 +230,10 @@ body {
         <select id="css-select" class="config-select">
           <option value="ui.css">Refreshed (Defualt)</option>
           <option value="amoled.css">Amoled</option>
-          <option value="light.css">Light</option>
-          <option value="dark.css">Amoled</option>
+          <option value="light.css">Mochoa</option>
+          <option value="dark.css">Dark</option>
+          <option value="legacy.css">Legacy Dark</option>
+          <option value="halloween.css">Festive</option>
         </select>
         <button id="apply-css-button">Apply CSS</button>
       </div>
