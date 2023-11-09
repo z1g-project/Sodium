@@ -51,6 +51,7 @@ self.addEventListener('install', (event) => {
           '/version.txt',
           '/assets/img/legacy-waves.svg',
           '/about/',
+          '/item-cards.css',
         ]);
       })
     );
