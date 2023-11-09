@@ -7,11 +7,11 @@ const addons = [
         url: 'https://cdn.z1g-project.pages.dev/sodium/plugins/duopower.js',
       },
       {
-        name: 'Galaxy Theme',
+        name: 'Galaxy Theme v2',
         category: 'themes',
         description: 'A sleek galaxy theme for sodium!',
         publisher: 'Playingallday383',
-        url: 'https://cdn.z1g-project.pages.dev/sodium/themes/galaxy.css',
+        url: 'https://cdn.z1g-project.pages.dev/sodium/themes/galaxy-v2.css',
       },
       {
         name: 'Eruda',
@@ -46,14 +46,14 @@ const addons = [
         category: 'themes',
         description: 'Why does this exist',
         publisher: 'd8a1',
-        url: 'https://cdn.z1g-project.pages.dev/sodium/themes/weird.css',
+        url: 'https://cdn.z1g-project.pages.dev/sodium/themes/weird-new.css',
       },
       {
         name: 'The Sodium Night',
         category: 'themes',
         description: 'Sodium lights at night',
         publisher: 'rekeD',
-        url: 'https://cdn.z1g-project.pages.dev/sodium/themes/sodinight.css',
+        url: 'https://cdn.z1g-project.pages.dev/sodium/themes/sodinight-new.css',
       },
       {
         name: 'Gmail - Remove "Empty Trash Now" link',
