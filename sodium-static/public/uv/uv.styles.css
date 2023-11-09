@@ -112,6 +112,9 @@ textarea {
   border-radius: 25px;
   opacity: 0;
   animation: fade-in 0.5s ease-in-out forwards;
+  background-color: #121212;
+  color: #fff;
+  -webkit-text-fill-color: #fff;
 }
 
 .fade-out {
