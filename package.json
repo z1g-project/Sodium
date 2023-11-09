@@ -19,7 +19,7 @@
     "@titaniumnetwork-dev/ultraviolet": "^2.0.0",
     "@tomphttp/bare-server-node": "^2.0.1",
     "@types/axios": "^0.14.0",
-    "axios": "^1.6.0",
+    "axios": "^1.6.1",
     "express": "^4.18.2",
     "ultraviolet-static": "file:sodium-static"
   }
