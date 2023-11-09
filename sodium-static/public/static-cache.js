@@ -54,7 +54,9 @@ self.addEventListener('install', (event) => {
           '/item-cards.css',
           '/manifest.webmanifest',
           '/mocha.css',
-          '/mocha-waves.svg',
+          '/assets/img/mocha-waves.svg',
+          '/dark.css',
+          '/assets/img/dark-waves.svg',
         ]);
       })
     );

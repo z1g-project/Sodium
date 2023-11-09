@@ -402,12 +402,20 @@
   const applyCSSButton = document.getElementById('apply-css-button');
   if (applyCSSButton) {
     applyCSSButton.addEventListener('click', function () {
-      const cssSelect = document.getElementById('css-select');
-      const selectedCSS = cssSelect.value;
-      applyCSS(selectedCSS);
-
-      localStorage.setItem('websiteCSS', selectedCSS);
-      console.log('CSS saved:', selectedCSS);
+      document.body.classList.add('fade-out');
+      setTimeout(() => {
+        const cssSelect = document.getElementById('css-select');
+        const selectedCSS = cssSelect.value;
+        applyCSS(selectedCSS);
+  
+        localStorage.setItem('websiteCSS', selectedCSS);
+        console.log('CSS saved:', selectedCSS);
+      }, 10);
+  
+      setTimeout(() => {
+        document.body.classList.remove('fade-out');
+        document.body.classList.add('fade-in');
+      }, 10);
     });
   }
 
