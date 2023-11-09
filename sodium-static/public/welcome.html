@@ -34,18 +34,11 @@ async function registerSW() {
   await navigator.serviceWorker.register(stockSW, {
     scope: "/uv/service/",
   });
-
-  navigator.serviceWorker.register('cache.js')
-    .then((registration) => {
-      console.log('Cache Service Worker registered with scope:', registration.scope);
-    })
-    .catch((error) => {
-      console.error('Error registering Service Worker:', error);
-    });
 }
 
 window.onload(registerSW());
   </script>
+  <script src="regcache.js" defer></script>
   <script src="dynamicsw.js"></script>
   <script src="time.js" defer></script>
   <script src="settings.js" defer></script>
