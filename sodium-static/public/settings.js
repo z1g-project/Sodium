@@ -346,7 +346,7 @@
 
     const clockCheckbox = document.getElementById('disable-clock');
     if (clockCheckbox) {
-      localStorage.setItem('useSeconds', clockCheckbox.checked);
+      localStorage.setItem('noClock', clockCheckbox.checked);
       console.log('Disable Clock:', clockCheckbox.checked);
     }
   
