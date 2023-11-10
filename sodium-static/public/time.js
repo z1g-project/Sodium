@@ -86,6 +86,10 @@ function updateTime() {
     timeString = dateString + ' ' + timeString;
   }
 
+  if (localStorage.getItem('noClock') === 'true') {
+    timeElement.style.display = 'none'
+  }
+
   timeElement.textContent = timeString;
 }
 

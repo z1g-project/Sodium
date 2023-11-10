@@ -193,6 +193,12 @@
       useSecondsCheckbox.checked = useSeconds === 'true';
     }
 
+    const clockCheckbox = document.getElementById('disable-clock');
+    if (clockCheckbox) {
+      const useSeconds = localStorage.getItem('noClock');
+      clockCheckbox.checked = useSeconds === 'true';
+    }
+
     if (window.location.pathname.includes('/settings/')) {
       const metaThemeColor = localStorage.getItem('metaThemeColor');
       if (metaThemeColor) {
@@ -336,6 +342,12 @@
     if (useSecondsCheckbox) {
       localStorage.setItem('useSeconds', useSecondsCheckbox.checked);
       console.log('Include Seconds in TimeBar:', useSecondsCheckbox.checked);
+    }
+
+    const clockCheckbox = document.getElementById('disable-clock');
+    if (clockCheckbox) {
+      localStorage.setItem('useSeconds', clockCheckbox.checked);
+      console.log('Disable Clock:', clockCheckbox.checked);
     }
   
     const metaThemeColor = document.getElementById('meta-theme-color').value.trim();

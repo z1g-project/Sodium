@@ -248,6 +248,10 @@
         <label for="use-seconds-checkbox">Include Seconds in Time Bar</label>
         <br>
         <br>
+        <input type="checkbox" id="disable-clock">
+        <label for="disable-clock">Disable Clock</label>
+        <br>
+        <br>
         <button id="apply-css-button">Apply CSS</button>
         <br>
         <br>
@@ -295,7 +299,7 @@
             .catch(() => `🔴Offline - 0ms`);
           }
 
-          const bareServerUrl = localStorage.getItem('bareServer') || 'https://tomp.app';
+          const bareServerUrl = localStorage.getItem('bareServer') || 'https://phantomnetwork.cloud/bare/';
           checkServerStatus(bareServerUrl)
           .then(status => {
             const pingElement = document.getElementById('ping-status');
