@@ -57,6 +57,15 @@ self.addEventListener('install', (event) => {
           '/assets/img/mocha-waves.svg',
           '/dark.css',
           '/assets/img/dark-waves.svg',
+          '/assets/img/loader.svg',
+          '/uv/uv.config.js',
+          '/uv/uv.bundle.js',
+          '/dynamic/dynamic.config.js',
+          '/search.js',
+          '/stealth.js',
+          '/assets/font/montserrat/JTUSjIg1_i6t8kCHKm459Wlhyw.woff2',
+          '/proxhandler.js',
+          '/index.js',
         ]);
       })
     );
