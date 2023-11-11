@@ -11,8 +11,10 @@ async function checkLatestVersion() {
     if (window.location.hostname.includes('localhost')) {
       const response1 = await fetch(`https://raw.githubusercontent.com/z1g-project/sodium/v2/sodium-static/public/version.txt`);
       const latestVersion1 = await response1.text();
-      console.log('New Update is Avalible: ' + latestVersion1)
-      showUpdateNotification();
+      if (latestVersion1 !== currentVersion) {
+        console.log('New Update is Avalible: ' + latestVersion1)
+        showUpdateNotification();
+      }
     } else {
       if (latestVersion !== currentVersion) {
         showUpdateNotification();
