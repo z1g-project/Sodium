@@ -48,7 +48,12 @@ form.addEventListener("submit", async (event) => {
   iframe.src = `${window.location.origin}/uv/service/${encodedURL}`;
 });
 
+iframe.addEventListener("loadstart", () => {
+  iframe.style.display = "none";
+  loadingOverlay.style.display = "flex";
+});
+
 iframe.addEventListener("load", () => {
   loadingOverlay.style.display = "none";
-  iframe.style.display = "block";
+  iframe.style.display = "block"; 
 });

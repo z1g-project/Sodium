@@ -115,7 +115,10 @@ window.addEventListener('DOMContentLoaded', () => {
       } else {
         script.src = pluginUrl;
       }
-      
+
+      iframe.style.display = "block";
+      const loadingOverlay = document.getElementById('loading-overlay');
+      loadingOverlay.style.display = 'none';
       const iframeDocument = iframe.contentWindow.document;
       iframeDocument.head.appendChild(script);
       console.log(`Plugin injected into the iframe: ${pluginUrl}`);
