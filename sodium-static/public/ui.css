@@ -573,3 +573,11 @@ textarea {
   background-color: #0d89b2;
   white-space: nowrap;
 }
+
+.addon-item {
+  border: 1px solid #ddd;
+  padding: 20px;
+  text-align: center;
+  border-radius: 20px;
+  background-color: #3d8298;
+}

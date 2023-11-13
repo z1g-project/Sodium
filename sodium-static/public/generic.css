@@ -571,3 +571,12 @@
   .svg-fill {
     fill: white;
   }
+
+  .addon-item {
+    border: 1px solid #ddd;
+    padding: 20px;
+    text-align: center;
+    border-radius: 20px;
+    background-color: #3d8298;
+  }
+  
