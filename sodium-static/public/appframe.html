@@ -83,6 +83,7 @@
       const transferRateItem = document.getElementById("transferRate");
       const latencyItem = document.getElementById("latency");
       const fpsItem = document.getElementById("fps");
+      const loadingOverlay = document.getElementById("loading-overlay");
   
       let totalBytes = 0;
       let totalTime = 0;
@@ -120,6 +121,10 @@
           const iframeDocument = apploader.contentWindow.document;
           iframeDocument.head.appendChild(script);
           console.log(`Plugin injected into the iframe: ${pluginUrl}`);
+
+          apploader.style.display = "block";
+          const loadingOverlay = document.getElementById('loading-overlay');
+          loadingOverlay.style.display = 'none';
         });
       };
   
@@ -203,6 +208,11 @@
         const fps = calculateFPS();
         fpsItem.textContent = `FPS: ${fps}`;
         fpsItem.style.display = 'block';
+      });
+
+      apploader.addEventListener("loadstart", () => {
+        loadingOverlay.style.display = "flex";
+        apploader.style.display = "none";
       });
     });
     </script>
