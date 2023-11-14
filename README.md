@@ -16,9 +16,9 @@ Some of the features of sodium are:
 - Multiple Themes - Dark (default), Sodium, Light, and AMOLED
 - Nice UV Visual Appearance - Custom CSS for UV!
 - Performance Metrics - This is what qualifies this as Power Users, but it tells you the transfer Rate, latency between you and the bare server, and of course the FPS!
-- Battery & Time Displays ***NOTE ONLY WORKS ON CHROMIUM-BASED BROWSERS Check the compatibility checker in settings to see if it's available in your browser***
-- Wide Variety of games! - Total of 33 Games and 15 Apps!
-- Custom CSS Editor **BETA** - Uses Monaco CSS Editor and is still in the works!
+- Battery & Time Displays ***NOTE ONLY WORKS ON CHROMIUM-BASED BROWSERS***
+- Wide Variety of games! - Total of 100 Games and 15 Apps!
+- Custom CSS Editor - Uses CodeMirror CSS Editor and is still in the works!
 - HyperTabs UI **BETA** - HyperTabs Sodium Edition!
 - Emergency Switch Feature - A functional bindable keybind with a URL that when you press the button exits the page you are on and redirects to that URL!
 - Plugins - Sodium has a ton if addons ranging from adblockers to io hacks! Vencord is built into Ultraviolet when loading discord
