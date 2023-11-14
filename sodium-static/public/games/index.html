@@ -63,8 +63,8 @@
 
   function loadswf(value) {
     let url = value.trim(); 
-    sessionStorage.removeItem("encodedUrl");
-    sessionStorage.setItem(url)
+    sessionStorage.removeItem('flashswf');
+    sessionStorage.setItem('flashswf', url)
     location.href = "iframe.html";
   }
   </script>  
