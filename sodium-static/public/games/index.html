@@ -60,6 +60,13 @@
     }
     return false;
   }
+
+  function loadswf(value) {
+    let url = value.trim(); 
+    sessionStorage.removeItem("encodedUrl");
+    sessionStorage.setItem(url)
+    location.href = "iframe.html";
+  }
   </script>  
   </head>
 
@@ -163,7 +170,7 @@
             <p>Awsome Planes</p></a>
         </div>
         <div class="column" data-category="general flash">
-            <a onclick="loadgames('/games/papalouie/')">
+            <a onclick="loadswf('/games/assets/swfs/papalouie3.swf')">
             <img width="145" height="145" src="/games/assets/game14.jpg">
             <p>Papa Louie 3 - When Sundaes Attack</p></a>
         </div>
