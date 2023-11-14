@@ -66,7 +66,7 @@ self.addEventListener('install', (event) => {
           '/assets/font/montserrat/JTUSjIg1_i6t8kCHKm459Wlhyw.woff2',
           '/proxhandler.js',
           '/index.js',
-          '/uv/uv.styles.css',
+          '/assets/img/logo.svg',
         ]);
       })
     );
