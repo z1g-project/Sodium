@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no"/>
-    <title>Sodium - Error</title>
+    <title>Sodium - Faq</title>
     <meta name="description" content="Sodium is a site used for evading internet censorship." />
     <meta property="og:image" content="/sodium.png">
     <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#434c5e"/>
@@ -16,6 +16,21 @@
     <script src="fade.js" defer></script>
     <link rel="manifest" href="manifest.webmanifest"/>
     <link id="favicon" rel="icon" type="image/png" href="favicon.ico">
+    <style>
+      .faq-section {
+        text-align: center;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 20px;
+        border-radius: 8px;
+      }
+
+      .faq-item {
+        margin-bottom: 20px;
+      }
+    </style>
   </head>
 
   <body>
@@ -39,16 +54,29 @@
       </div>
     </div>
 
-    <div class="logo-wrapper left-margin">
-      <h1>Sodium | Error</h1>
-    </div>
-    <div class="desc left-margin">
-      <p>The server could not route your request.</p>
-      <p id="uv-error"></p>
-      <code id="uv-error-code"></code>
-      <button id="uv-register-sw" value="Register service worker">
-        Register ServiceWorker
-      </button>
+    <div class="faq-section">
+      <div class="logo-wrapper left-margin">
+        <h1>Sodium | Faq</h1>
+      </div>
+      <div class="desc left-margin">
+        <p>General questions on how to use Sodium</p>
+      </div>
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq-item">
+        <h3>Question 1: What is Sodium?</h3>
+        <p>Answer 1: Sodium is a site used for evading internet censorship.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Question 2: Help im Getting TypeError: Failed to Fetch</h3>
+        <p>Answer 2: So Im assuming: <a href="https://tomp.app">https://tomp.app</a>is blocked for you which is why your encountering the error
+        <br>
+        So to try and fix this you can go to Settings > General > Proxy and switch it to Dynamic and then go to the network tab and set the bare server to something unblocked like https://infrared.playingallday383.workers.dev and click "Save Settings" and then it should be fine
+        </p>
+      </div>
+      <div class="faq-item">
+        <h3>Question 3: Is this site safe?</h3>
+        <p>Answer 3: Yes, Sodium is completely safe and open source. if you want to make any modifcatations to make sodium better feel free to! The github icon at the bottom of the screen will take you to our repository!</p>
+      </div>
     </div>
 
     <footer>
@@ -70,6 +98,5 @@
     <script src="dynamicsw.js" defer></script>
     <script src="error.js"></script>
     <script src="time.js"></script>
-    <script src="debug.js" defer></script>
   </body>
 </html>
