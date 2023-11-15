@@ -28,7 +28,6 @@ self.addEventListener('install', (event) => {
           '/apps/',
           '/games/',
           '/sodium.png',
-          '/sodium-header-img.png',
           '/montserrat.css',
           '/assets/img/amoled-waves.svg',
           '/assets/img/license.svg',
