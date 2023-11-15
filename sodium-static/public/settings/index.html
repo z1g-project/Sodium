@@ -489,7 +489,6 @@ function immortalize(arg) {
       try {
         const stockSW = "/uv/sw.js";
         const dynSW = "/dynamic.sw.js";
-        const cacheSW = "/regcache.js";
         const swAllowedHostnames = ["localhost", "127.0.0.1"];
 
         async function registerSW() {
@@ -506,7 +505,23 @@ function immortalize(arg) {
           await navigator.serviceWorker.register(dynSW, {
             scope: "/service/",
           });
-          await navigator.serviceWorker.register(cacheSW)
+          if (window.location.hostname.includes('.pages.dev')) {
+            navigator.serviceWorker.register('static-cache.js')
+              .then((registration) => {
+                console.log('Static Cache Service Worker registered with scope:', registration.scope);
+              })
+              .catch((error) => {
+                console.error('Error registering Service Worker:', error);
+              });
+          } else {
+            navigator.serviceWorker.register('cache.js')
+              .then((registration) => {
+                console.log('Cache Service Worker registered with scope:', registration.scope);
+              })
+              .catch((error) => {
+                console.error('Error registering Service Worker:', error);
+              });
+          }
         }
         registerSW()
         console.log('Done! ReRegistered Service Workers')
