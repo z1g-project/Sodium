@@ -475,7 +475,7 @@ function immortalize(arg) {
           await registration.unregister();
           console.log(`Unregistered service worker: ${registration.scope}`);
         }
-        
+        console.log('Done! All service workers unregistered')        
         alert('All service workers unregistered.');
       } catch (error) {
         console.error('Error unregistering service workers:', error);
