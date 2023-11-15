@@ -14,7 +14,7 @@
     "proxy"
   ],
   "author": "z1g Project",
-  "license": "GPL-3.0-or-later",
+  "license": "MIT",
   "dependencies": {
     "@titaniumnetwork-dev/ultraviolet": "^2.0.0",
     "@tomphttp/bare-server-node": "^2.0.1",
