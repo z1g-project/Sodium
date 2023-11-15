@@ -29,7 +29,7 @@ const loadingOverlay = document.getElementById("loading-overlay");
  */
 const iframe = document.getElementById("apploader");
 
-if (window.location.pathname.includes('/') || window.location.pathname.includes('newtab')) {
+if (window.location.pathname = ('/') || window.location.pathname.includes('newtab')) {
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
   
