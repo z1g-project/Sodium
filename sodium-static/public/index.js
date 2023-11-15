@@ -29,26 +29,24 @@ const loadingOverlay = document.getElementById("loading-overlay");
  */
 const iframe = document.getElementById("apploader");
 
-if (window.location.pathname = ('/') || window.location.pathname.includes('newtab')) {
-  form.addEventListener("submit", async (event) => {
-    event.preventDefault();
-  
-    try {
-      await registerSW();
-    } catch (err) {
-      error.textContent = "Failed to register service worker.";
-      errorCode.textContent = err.toString();
-      throw err;
-    }
-  
-    const url = search(address.value, searchEngine.value);
-    const encodedURL = Ultraviolet.codec.xor.encode(url);
-  
-    loadingOverlay.style.display = "flex";
-    iframe.style.display = "none";
-    iframe.src = `${window.location.origin}/uv/service/${encodedURL}`;
-  });
-}
+form.addEventListener("submit", async (event) => {
+  event.preventDefault();
+
+  try {
+    await registerSW();
+  } catch (err) {
+    error.textContent = "Failed to register service worker.";
+    errorCode.textContent = err.toString();
+    throw err;
+  }
+
+  const url = search(address.value, searchEngine.value);
+  const encodedURL = Ultraviolet.codec.xor.encode(url);
+
+  loadingOverlay.style.display = "flex";
+  iframe.style.display = "none";
+  iframe.src = `${window.location.origin}/uv/service/${encodedURL}`;
+});
 
 iframe.addEventListener("loadstart", () => {
   iframe.style.display = "none";
