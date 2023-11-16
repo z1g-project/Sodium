@@ -62,8 +62,6 @@ server.on("listening", async () => {
 
 function startServer() { 
   const address = server.address();
-
-  console.log("WARNING: You are using a experimental build of Sodium that is not publicaly released yet if you enounter any bugs please report them to our github/discord and hope you enjoy!")
   console.log("Sodium is running on:");
   console.log(`\thttp://localhost:${address.port}`);
   console.log(`\thttp://${hostname()}:${address.port}`);

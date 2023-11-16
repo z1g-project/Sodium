@@ -6,7 +6,7 @@ async function checkLatestVersion() {
     const response = await fetch(`https://raw.githubusercontent.com/z1g-project/sodium/${branch}/sodium-static/public/version.txt`);
     const latestVersion = await response.text();
 
-    const currentVersion = '2.0.0-dev';
+    const currentVersion = '2.0.0-beta';
 
     if (window.location.hostname.includes('localhost')) {
       const response1 = await fetch(`https://raw.githubusercontent.com/z1g-project/sodium/v2/sodium-static/public/version.txt`);
