@@ -61,10 +61,10 @@
         <p class="battery-text"></p>
       </div>
     </div>
-  </div>  
+  </div>
 
   <div title="Sodium Logo" class="flex-center logo-wrapper header-center">
-    <img class="logo" src="sodium.png" alt="Sodium" />
+    <img class="logo" src="assets/img/logo.svg" alt="Sodium" />
     <h1>About Sodium</h1>
   </div>
   <div class="flex-center desc">
@@ -133,7 +133,7 @@
 
     const releaseDayWithSuffix = formattedDay + ordinalSuffix(formattedDay);
 
-    versionInfoElement.textContent = `v2.0.0 Developer Preview (Released: ${formattedMonth} ${releaseDayWithSuffix}, ${formattedYear} - Commit: `;
+    versionInfoElement.textContent = `v2.0.0 Beta (Released: ${formattedMonth} ${releaseDayWithSuffix}, ${formattedYear} - Commit: `;
     
     const commitLink = document.createElement("a");
     commitLink.href = data[0].html_url;

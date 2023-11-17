@@ -28,7 +28,6 @@ self.addEventListener('install', (event) => {
           '/apps/',
           '/games/',
           '/sodium.png',
-          '/sodium-header-img.png',
           '/montserrat.css',
           '/assets/img/amoled-waves.svg',
           '/assets/img/license.svg',
@@ -66,7 +65,7 @@ self.addEventListener('install', (event) => {
           '/assets/font/montserrat/JTUSjIg1_i6t8kCHKm459Wlhyw.woff2',
           '/proxhandler.js',
           '/index.js',
-          '/uv/uv.styles.css'
+          '/assets/img/logo.svg'
         ]);
       })
     );

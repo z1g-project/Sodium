@@ -60,6 +60,13 @@
     }
     return false;
   }
+
+  function loadswf(value) {
+    let url = value.trim(); 
+    sessionStorage.removeItem('flashswf');
+    sessionStorage.setItem('flashswf', url)
+    location.href = "ruffleframe.html";
+  }
   </script>  
   </head>
 
@@ -163,7 +170,7 @@
             <p>Awsome Planes</p></a>
         </div>
         <div class="column" data-category="general flash">
-            <a onclick="loadgames('/games/papalouie/')">
+            <a onclick="loadswf('/games/assets/swfs/papalouie3.swf')">
             <img width="145" height="145" src="/games/assets/game14.jpg">
             <p>Papa Louie 3 - When Sundaes Attack</p></a>
         </div>
@@ -266,6 +273,121 @@
         <a onclick="loadgame('https://tbg95.github.io/basketball-stars/game.html')">
         <img width="145" height="145" src="/games/assets/game34.jpg">
         <p>Basketball Stars</p></a>
+      </div>
+      <div class="column" data-category="general">
+        <a onclick="loadgame('https://raw.githack.com/3kh0/3kh0-assets/main/tunnel-rush/index.html')">
+        <img width="145" height="145" src="/games/assets/game35.jpg">
+        <p>Tunnel Rush</p></a>
+      </div>
+      <div class="column" data-category="general">
+        <a onclick="loadgame('https://raw.githack.com/3kh0/3kh0-assets/main/smashkarts/index.html')">
+        <img width="145" height="145" src="/games/assets/game36.jpg">
+        <p>Smash Karts</p></a>
+      </div>
+      <div class="column" data-category="general">
+        <a onclick="loadgame('https://raw.githack.com/3kh0/3kh0-assets/main/sm64/index.html')">
+        <img width="145" height="145" src="/games/assets/game37.jpg">
+        <p>sm64 Web</p></a>
+      </div>
+      <div class="column" data-category="general">
+        <a onclick="loadgame('https://raw.githack.com/3kh0/3kh0-assets/main/soccer-random/index.html')">
+        <img width="145" height="145" src="/games/assets/game38.jpg">
+        <p>Soccer Random</p></a>
+      </div>
+      <div class="column" data-category="general">
+        <a onclick="loadgame('https://raw.githack.com/3kh0/3kh0-assets/main/thebattle/index.html')">
+        <img width="145" height="145" src="/games/assets/game40.jpg">
+        <p>The Battle</p></a>
+      </div>
+      <div class="column" data-category="general">
+        <a onclick="loadgame('https://raw.githack.com/3kh0/3kh0-assets/main/ducklife4/index.html')">
+        <img width="145" height="145" src="/games/assets/game41.jpg">
+        <p>Duck Life 4</p></a>
+      </div>
+      <div class="column" data-category="general">
+        <a onclick="loadgame('https://raw.githack.com/3kh0/3kh0-assets/main/ducklife3/index.html')">
+        <img width="145" height="145" src="/games/assets/game42.jpg">
+        <p>Duck Life 3</p></a>
+      </div>
+      <div class="column" data-category="general flash">
+        <a onclick="loadgame('https://raw.githack.com/3kh0/3kh0-assets/main/ducklife2/index.html')">
+        <img width="145" height="145" src="/games/assets/game43.jpg">
+        <p>Duck Life 2</p></a>
+      </div>
+      <div class="column" data-category="general flash">
+        <a onclick="loadgame('https://raw.githack.com/3kh0/3kh0-assets/main/ducklife1/index.html')">
+        <img width="145" height="145" src="/games/assets/game44.jpg">
+        <p>Duck Life</p></a>
+      </div>
+      <div class="column" data-category="general">
+        <a onclick="loadgame('https://raw.githack.com/3kh0/3kh0-assets/main/drift-boss/index.html')">
+        <img width="145" height="145" src="/games/assets/game45.jpg">
+        <p>Drift Boss</p></a>
+      </div>
+      <div class="column" data-category="general">
+        <a onclick="loadgame('https://raw.githack.com/3kh0/3kh0-assets/main/cars-simulator/index.html')">
+        <img width="145" height="145" src="/games/assets/game46.jpg">
+        <p>Cars Simulator</p></a>
+      </div>
+      <div class="column" data-category="general">
+        <a onclick="loadgame('https://raw.githack.com/3kh0/3kh0-assets/main/bitlife/index.html')">
+        <img width="145" height="145" src="/games/assets/game47.jpg">
+        <p>BitLife</p></a>
+      </div>
+      <div class="column" data-category="general">
+        <a onclick="loadgame('https://raw.githack.com/3kh0/3kh0-assets/main/angry-sharks/index.html')">
+        <img width="145" height="145" src="/games/assets/game48.jpg">
+        <p>Angry Sharks</p></a>
+      </div>
+      <div class="column" data-category="general">
+        <a onclick="loadgame('https://raw.githack.com/3kh0/3kh0-assets/main/run%202/index.html')">
+        <img width="145" height="145" src="/games/assets/game49.jpg">
+        <p>Run 2</p></a>
+      </div>
+      <div class="column" data-category="general">
+        <a onclick="loadgame('https://raw.githack.com/3kh0/3kh0-assets/main/10-minutes-till-dawn/index.html')">
+        <img width="145" height="145" src="/games/assets/game50.jpg">
+        <p>10 Minutes till dawn</p></a>
+      </div>
+      <div class="column" data-category="general">
+        <a onclick="loadgame('https://raw.githack.com/3kh0/3kh0-assets/main/wallsmash/index.html')">
+        <img width="145" height="145" src="/games/assets/game51.jpg">
+        <p>Wall Smash</p></a>
+      </div>
+      <div class="column" data-category="general">
+        <a onclick="loadgame('https://raw.githack.com/3kh0/3kh0-assets/main/wordle/index.html')">
+        <img width="145" height="145" src="/games/assets/game52.jpg">
+        <p>Wordle</p></a>
+      </div>
+      <div class="column" data-category="general">
+        <a onclick="loadgame('https://raw.githack.com/3kh0/3kh0-assets/main/google-snake/index.html')">
+        <img width="145" height="145" src="/games/assets/game53.jpg">
+        <p>Google Snake</p></a>
+      </div>
+      <div class="column" data-category="general">
+        <a onclick="loadgame('https://raw.githack.com/3kh0/3kh0-assets/main/gachalife/index.html')">
+        <img width="145" height="145" src="/games/assets/game54.jpg">
+        <p>Gachalife</p></a>
+      </div>
+      <div class="column" data-category="general">
+        <a onclick="loadgame('https://raw.githack.com/3kh0/3kh0-assets/main/fnaw/index.html')">
+        <img width="145" height="145" src="/games/assets/game55.jpg">
+        <p>FNAW</p></a>
+      </div>
+      <div class="column" data-category="general">
+        <a onclick="loadgame('https://raw.githack.com/3kh0/3kh0-assets/main/flappy-plane/index.html')">
+        <img width="145" height="145" src="/games/assets/game56.jpg">
+        <p>Flappy Plane</p></a>
+      </div>
+      <div class="column" data-category="general">
+        <a onclick="loadgame('https://raw.githack.com/3kh0/3kh0-assets/main/fake-virus/index.html')">
+        <img width="145" height="145" src="/games/assets/game57.jpg">
+        <p>Fake Virus</p></a>
+      </div>
+      <div class="column" data-category="general">
+        <a onclick="loadgame('https://raw.githack.com/3kh0/3kh0-assets/main/awesometanks2/index.html')">
+        <img width="145" height="145" src="/games/assets/game58.jpg">
+        <p>Awesome Tanks 2</p></a>
       </div>
     </div>
 

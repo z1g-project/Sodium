@@ -1,11 +1,11 @@
 {
   "name": "sodium-instance",
-  "version": "2.0.0-dev",
+  "version": "2.0.0-beta",
   "description": "Sodium Instance",
   "type": "module",
   "engines": {
-    "npm": ">=7.0.0",
-    "node": ">=16.0.0"
+    "npm": ">=9.8.1",
+    "node": ">=18.0.0"
   },
   "scripts": {
     "start": "node index.js"
@@ -14,7 +14,7 @@
     "proxy"
   ],
   "author": "z1g Project",
-  "license": "GPL-3.0-or-later",
+  "license": "MIT",
   "dependencies": {
     "@titaniumnetwork-dev/ultraviolet": "^2.0.0",
     "@tomphttp/bare-server-node": "^2.0.1",

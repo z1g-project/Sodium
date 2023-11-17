@@ -83,7 +83,6 @@
 }
 
 .reset-button:hover {
-  background-color: rgb(231, 22, 22);
   transform: scale(1.2);
 }
 
@@ -143,7 +142,7 @@
   </div>
 
   <div class="sidebar">
-    <h1>Settings</h1>
+    <h1 style="text-align:left;">Settings</h1>
     <ul>
       <li data-section="general">General</li>
       <li data-section="appearance">Appearance</li>
@@ -220,7 +219,7 @@
         <select id="css-select" class="config-select">
           <option value="ui.css">Refreshed (Defualt)</option>
           <option value="amoled.css">Amoled</option>
-          <option value="mocha.css">Mochoa</option>
+          <option value="mocha.css">Mocha</option>
           <option value="dark.css">Dark</option>
           <option value="legacy.css">Legacy Dark</option>
           <option value="festive.css">Festive</option>
@@ -312,6 +311,7 @@
       <button onclick="openImportFile()">Import Cache</button>
       <button onclick="exportCache()">Export Cache</button>
       <button id="unregisterButton">Unregister Service Workers</button>
+      <button id="reregisterButton">ReRegister Service Workers</button>
       <br>
       <br>
     </div> 
@@ -475,11 +475,60 @@ function immortalize(arg) {
           await registration.unregister();
           console.log(`Unregistered service worker: ${registration.scope}`);
         }
-        
+        console.log('Done! All service workers unregistered')        
         alert('All service workers unregistered.');
       } catch (error) {
         console.error('Error unregistering service workers:', error);
         alert('Error unregistering service workers. Check the console for details.');
+      }
+    });
+
+    const reregisterButton = document.getElementById('reregisterButton');
+    
+    reregisterButton.addEventListener('click', async () => {
+      try {
+        const stockSW = "/uv/sw.js";
+        const dynSW = "/dynamic.sw.js";
+        const swAllowedHostnames = ["localhost", "127.0.0.1"];
+
+        async function registerSW() {
+          if (
+            location.protocol !== "https:" &&
+            !swAllowedHostnames.includes(location.hostname)
+          )
+          throw new Error("Service workers cannot be registered without https.");
+          if (!navigator.serviceWorker)
+            throw new Error("Your browser doesn't support service workers.");
+          await navigator.serviceWorker.register(stockSW, {
+            scope: "/uv/service/",
+          });
+          await navigator.serviceWorker.register(dynSW, {
+            scope: "/service/",
+          });
+          if (window.location.hostname.includes('.pages.dev')) {
+            navigator.serviceWorker.register('static-cache.js')
+              .then((registration) => {
+                console.log('Static Cache Service Worker registered with scope:', registration.scope);
+              })
+              .catch((error) => {
+                console.error('Error registering Service Worker:', error);
+              });
+          } else {
+            navigator.serviceWorker.register('cache.js')
+              .then((registration) => {
+                console.log('Cache Service Worker registered with scope:', registration.scope);
+              })
+              .catch((error) => {
+                console.error('Error registering Service Worker:', error);
+              });
+          }
+        }
+        registerSW()
+        console.log('Done! ReRegistered Service Workers')
+        alert('All service workers reregistered.');
+      } catch (error) {
+        console.error('Error reregistering service workers:', error);
+        alert('Error reregistering service workers. Check the console for details.');
       }
     });
   </script>
