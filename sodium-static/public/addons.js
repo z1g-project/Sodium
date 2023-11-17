@@ -132,6 +132,13 @@ const addons = [
         publisher: 'Steviegt6',
         url: 'https://greasyfork.org/scripts/391387-yohoho-io-cheats/code/Yohohoio%20Cheats.user.js',
       },
+      {
+        name: 'Snake Mod Loader',
+        category: 'plugins',
+        description: 'Allows you to select mods for Google Snake',
+        publisher: 'NullCraft',
+        url: 'https://cdn.z1g-project.dev/sodium/plugins/snake.js'
+      }
   ];
   
   function populateAddons() {
