@@ -22,6 +22,22 @@
   <script src="assets/js/fade.js" defer></script>
   <script src="assets/js/bare.js" defer></script>
   <script src="assets/js/debug.js" defer></script>
+  <script src="games/run3/ruffle/ruffle.js" defer></script>
+  <script>
+    function checkUrlForNoUI() {
+      if (window.location.pathname.includes('#noui')) {
+        const nav = document.getElementById('nav')
+        nav.style.display = 'none'
+        const footer = document.getElementById('footer')
+        footer.style.display = 'none'
+        console.log('noui: true')
+      } else {
+        console.log('noui: false')
+      }
+    }
+
+checkUrlForNoUI();
+  </script>
   <style>
   #container {
     position: absolute;
@@ -41,7 +57,7 @@
   </style>
 </head>
 <body>
-    <div class="second-bar">
+    <div class="second-bar" id="nav">
         <a href="/" class="second-bar-link home-link"></a>
         <a href="/games/" class="second-bar-link games-link"></a>
         <a href="/apps/" class="second-bar-link apps-link"></a>

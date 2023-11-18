@@ -1,7 +1,7 @@
 {
   "name": "sodium-static",
   "main": "lib/index.js",
-  "version": "1.4.1",
+  "version": "2.0.0",
   "type": "module",
   "files": [
     "public",
@@ -9,9 +9,5 @@
   ],
   "peerDependencies": {
     "@titaniumnetwork-dev/ultraviolet": "^2.0.0"
-  },
-  "devDependencies": {
-    "eslint": "^8.23.0",
-    "prettier": "^2.7.1"
   }
 }

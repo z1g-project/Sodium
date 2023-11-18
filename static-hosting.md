@@ -1,8 +1,9 @@
-# Static Hosting
-
-<p align="center">
-  <img src="./sodium-static/public/sodium.png" height="200">
-</p>
+<div>
+  <p align="center">
+    <img src="./sodium-static/public/sodium.png">
+  </p>
+  <h1 align="center">Static Hosting</h1>
+</div>
 
 Learn how to setup Sodium on a Static Host such as Cloudflare Pages
 
@@ -15,4 +16,4 @@ Learn how to setup Sodium on a Static Host such as Cloudflare Pages
 - Step 5 is to then run and enjoy your experience with Sodium!
 
 (C) Copyright 2021-2024 z1g Project All Rights Reserved
-Licenced Under the [MIT License](https://github.com/z1g-project/z1g-Project-Hub/blob/master/LICENSE.txt)
+Licenced Under the [MIT License](https://github.com/z1g-project/sodium/blob/master/LICENSE.txt)
