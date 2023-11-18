@@ -13,11 +13,23 @@ async function checkLatestVersion() {
       const latestVersion1 = await response1.text();
       if (latestVersion1 !== currentVersion) {
         console.log('New Update is Avalible: ' + latestVersion1)
-        //showUpdateNotification();
+        if ('Notification' in window) {
+          Notification.requestPermission().then(permission => {
+            if (permission === 'granted') {
+              showUpdateNotification();
+            }
+          });
+        }
       }
     } else {
       if (latestVersion !== currentVersion) {
-        //showUpdateNotification();
+        if ('Notification' in window) {
+          Notification.requestPermission().then(permission => {
+            if (permission === 'granted') {
+              showUpdateNotification();
+            }
+          });
+        }
       }
     }
   } catch (error) {
@@ -38,11 +50,4 @@ async function checkLatestVersion() {
     }
   }
 
-  if ('Notification' in window) {
-    Notification.requestPermission().then(permission => {
-      if (permission === 'granted') {
-        checkLatestVersion();
-      }
-    });
-  }
   
