@@ -15,8 +15,8 @@
   <link rel="stylesheet" href="assets/css/ui.css" id="custom-css"/>
   <link rel="json" href="appx.json"></link>
   <link rel="manifest" href="manifest.webmanifest"/>
-  <script src="uv/uv.bundle.js" defer></script>
-  <script src="uv/uv.config.js" defer></script>
+  <script src="ultra/ultra.bundle.js" defer></script>
+  <script src="ultra/ultra.config.js" defer></script>
   <script src="dynamic/dynamic.config.js" defer></script>
   <script src="assets/js/register-sw.js" defer></script>
   <script src="assets/js/search.js" defer></script>
@@ -488,7 +488,7 @@ function immortalize(arg) {
     
     reregisterButton.addEventListener('click', async () => {
       try {
-        const stockSW = "/uv/sw.js";
+        const stockSW = "/sw.js";
         const dynSW = "/dynamic.sw.js";
         const swAllowedHostnames = ["localhost", "127.0.0.1"];
 
@@ -501,7 +501,7 @@ function immortalize(arg) {
           if (!navigator.serviceWorker)
             throw new Error("Your browser doesn't support service workers.");
           await navigator.serviceWorker.register(stockSW, {
-            scope: "/uv/service/",
+            scope: "/sw/",
           });
           await navigator.serviceWorker.register(dynSW, {
             scope: "/service/",

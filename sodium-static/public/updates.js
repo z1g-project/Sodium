@@ -13,11 +13,11 @@ async function checkLatestVersion() {
       const latestVersion1 = await response1.text();
       if (latestVersion1 !== currentVersion) {
         console.log('New Update is Avalible: ' + latestVersion1)
-        showUpdateNotification();
+        //showUpdateNotification();
       }
     } else {
       if (latestVersion !== currentVersion) {
-        showUpdateNotification();
+        //showUpdateNotification();
       }
     }
   } catch (error) {

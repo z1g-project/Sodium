@@ -1,5 +1,5 @@
 "use strict";
-const stockSW = "/uv/sw.js";
+const stockSW = "/sw.js";
 const swAllowedHostnames = ["localhost", "127.0.0.1"];
 
 async function registerSW() {

@@ -1,25 +1,23 @@
-# Sodium Source Code
-
-<p align="center">
-  <img src="./sodium-static/public/sodium.png" height="200">
-</p>
-
-This is my submission to the Titanium Network Proxathon!
+<div>
+  <p align="center">
+    <img src="./sodium-static/public/sodium.png">
+  </p>
+  <h1 align="center">Sodium</h1>
+  <p align="center">Sodium is a site used for evading internet censorship</p>
+</div>
 
 ## Features
 
 Sodium has various Features that work great and were tested on some enrolled Chromebooks recently (Shoutout xN1ghtmare for testing)
 Some of the features of sodium are:
 
-- Auto-Stealth Pages (Loads the pages within the current page you are on instead of loading the page classicly with the example.com/uv/service/)
-- Tab Cloaking - Changeable Title and Icon
-- Multiple Themes - Dark (default), Sodium, Light, and AMOLED
-- Nice UV Visual Appearance - Custom CSS for UV!
-- Performance Metrics - This is what qualifies this as Power Users, but it tells you the transfer Rate, latency between you and the bare server, and of course the FPS!
+- Auto-Stealth Pages (Loads the pages within the current page you are on instead of loading the page classicly with the example.com/sw/)
+- Tab Cloaking - Changeable Title, Icon, and About:blank cloaking
+- Multiple Themes - Refreshed (default), Amoled, Mocha, Dark, Legacy Dark, and Festive
+- Performance Metrics - Tells you how much data was transfered when loading the page, the latency it took to reach the bare server and route the request, and the FPS of the page
 - Battery & Time Displays ***NOTE ONLY WORKS ON CHROMIUM-BASED BROWSERS***
-- Wide Variety of games! - Total of 100 Games and 15 Apps!
-- Custom CSS Editor - Uses CodeMirror CSS Editor and is still in the works!
-- HyperTabs UI **BETA** - HyperTabs Sodium Edition!
+- Wide Variety of games! - Total of 55 Games and 15 Apps!
+- CSS Editor - Uses CodeMirror CSS Editor and is still in the works!
 - Emergency Switch Feature - A functional bindable keybind with a URL that when you press the button exits the page you are on and redirects to that URL!
 - Plugins - Sodium has a ton if addons ranging from adblockers to io hacks! Vencord is built into Ultraviolet when loading discord
 - Customizable! - Sodium has tons of other customization options for you to play with!

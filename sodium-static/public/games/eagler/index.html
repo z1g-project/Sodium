@@ -12,8 +12,8 @@
   <link rel="stylesheet" href="assets/css/montserrat.css"/>
   <link rel="stylesheet" href="assets/css/ui.css" id="custom-css"/>
   <link rel="manifest" href="manifest.webmanifest"/>
-  <script id="proxcfg" src="uv/uv.bundle.js" defer></script>
-  <script src="uv/uv.config.js" defer></script>
+  <script id="proxcfg" src="ultra/ultra.bundle.js" defer></script>
+  <script src="ultra/ultra.config.js" defer></script>
   <script id="proxsw" src="assets/js/register-sw.js" defer></script>
   <script src="assets/js/search.js" defer></script>
   <script id="proxloader" src="assets/js/index.js" defer></script>
@@ -142,7 +142,7 @@ window.addEventListener('DOMContentLoaded', () => {
         if (proxyOption && proxyOption.toLowerCase() === "dynamic") {
           script.src = `${window.location.origin}/service/route?url=${(pluginUrl)}`;
         } else {
-          script.src = `${window.location.origin}/uv/service/${Ultraviolet.codec.xor.encode(pluginUrl)}`;
+          script.src = `${window.location.origin}/sw/${Ultraviolet.codec.xor.encode(pluginUrl)}`;
         }
       } else {
         script.src = pluginUrl;

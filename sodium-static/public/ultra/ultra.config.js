@@ -1,10 +1,10 @@
 /*global Ultraviolet*/
 self.__uv$config = {
     /**
-     * The prefix for UV (Ultraviolet) resources.
+     * The prefix for ultra (Ultraviolet) resources.
      * @type {string}
      */
-    prefix: '/uv/service/',
+    prefix: '/sw/',
 
     /**
      * The bare path.
@@ -40,31 +40,31 @@ self.__uv$config = {
      * The handler path.
      * @type {string}
      */
-    handler: '/uv/uv.handler.js',
+    handler: '/ultra/ultra.handler.js',
 
     /**
      * The client path.
      * @type {string}
      */
-    client: '/uv/uv.client.js',
+    client: '/ultra/ultra.client.js',
 
     /**
      * The bundle path.
      * @type {string}
      */
-    bundle: '/uv/uv.bundle.js',
+    bundle: '/ultra/ultra.bundle.js',
 
     /**
      * The config path.
      * @type {string}
      */
-    config: '/uv/uv.config.js',
+    config: '/ultra/ultra.config.js',
 
     /**
      * The service worker path.
      * @type {string}
      */
-    sw: '/uv/uv.sw.js',
+    sw: '/ultra/ultra.sw.js',
 
     /**
      * Function to inject scripts into the doc Head

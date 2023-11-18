@@ -14,8 +14,8 @@
     <link rel="stylesheet" href="assets/css/montserrat.css"/>
     <link rel="stylesheet" href="assets/css/item-cards.css"/>
     <link rel="stylesheet" href="assets/css/ui.css" id="custom-css"/>
-    <script src="uv/uv.bundle.js" defer></script>
-    <script src="uv/uv.config.js" defer></script>
+    <script src="ultra/ultra.bundle.js" defer></script>
+    <script src="ultra/ultra.config.js" defer></script>
     <script src="assets/js/register-sw.js" defer></script>
     <script src="assets/js/search.js" defer></script>
     <link rel="json" href="appx.json" defer></script>
@@ -43,7 +43,7 @@
   
         sessionStorage.removeItem("appUrl");
   
-        const encodedUrl = `${window.location.origin}/uv/service/${Ultraviolet.codec.xor.encode(url)}`;
+        const encodedUrl = `${window.location.origin}/sw/${Ultraviolet.codec.xor.encode(url)}`;
         sessionStorage.setItem("appUrl", encodedUrl);
       }
       

@@ -45,7 +45,7 @@ form.addEventListener("submit", async (event) => {
 
   loadingOverlay.style.display = "flex";
   iframe.style.display = "none";
-  iframe.src = `${window.location.origin}/uv/service/${encodedURL}`;
+  iframe.src = `${window.location.origin}/sw/${encodedURL}`;
 });
 
 iframe.addEventListener("loadstart", () => {

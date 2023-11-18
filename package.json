@@ -1,7 +1,7 @@
 {
   "name": "sodium-instance",
   "version": "2.0.0-beta",
-  "description": "Sodium Instance",
+  "description": "Sodium is a site used for evading internet censorship",
   "type": "module",
   "engines": {
     "npm": ">=9.8.1",
@@ -19,7 +19,7 @@
     "@titaniumnetwork-dev/ultraviolet": "^2.0.0",
     "@tomphttp/bare-server-node": "^2.0.1",
     "@types/axios": "^0.14.0",
-    "axios": "^1.6.1",
+    "axios": "^1.6.2",
     "express": "^4.18.2",
     "ultraviolet-static": "file:sodium-static"
   }

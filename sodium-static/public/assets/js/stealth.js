@@ -110,7 +110,7 @@ window.addEventListener('DOMContentLoaded', () => {
         if (proxyOption && proxyOption.toLowerCase() === "dynamic") {
           script.src = `${window.location.origin}/service/route?url=${(pluginUrl)}`;
         } else {
-          script.src = `${window.location.origin}/uv/service/${Ultraviolet.codec.xor.encode(pluginUrl)}`;
+          script.src = `${window.location.origin}/sw/${Ultraviolet.codec.xor.encode(pluginUrl)}`;
         }
       } else {
         script.src = pluginUrl;
