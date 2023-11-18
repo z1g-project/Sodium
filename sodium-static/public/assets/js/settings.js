@@ -306,9 +306,9 @@
       if ('serviceWorker' in navigator) {
         navigator.serviceWorker.getRegistrations().then(registrations => {
           for (const registration of registrations) {
-            if (registration.active && registration.active.scriptURL.includes('dynamic.sw.js')) {
+            if (registration.active && registration.active.scriptURL.includes('dyn.sw.js')) {
               registration.unregister().then(() => {
-                navigator.serviceWorker.register("/dynamic.sw.js", {
+                navigator.serviceWorker.register("/dyn.sw.js", {
                   scope: "/service",
                 });
                 console.log('Dynamic service worker re-registered.');

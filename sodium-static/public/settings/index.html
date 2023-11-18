@@ -17,7 +17,7 @@
   <link rel="manifest" href="manifest.webmanifest"/>
   <script src="ultra/ultra.bundle.js" defer></script>
   <script src="ultra/ultra.config.js" defer></script>
-  <script src="dynamic/dynamic.config.js" defer></script>
+  <script src="dyn/dyn.config.js" defer></script>
   <script src="assets/js/register-sw.js" defer></script>
   <script src="assets/js/search.js" defer></script>
   <script src="assets/js/index.js" defer></script>
@@ -489,7 +489,7 @@ function immortalize(arg) {
     reregisterButton.addEventListener('click', async () => {
       try {
         const stockSW = "/sw.js";
-        const dynSW = "/dynamic.sw.js";
+        const dynSW = "/dyn.sw.js";
         const swAllowedHostnames = ["localhost", "127.0.0.1"];
 
         async function registerSW() {

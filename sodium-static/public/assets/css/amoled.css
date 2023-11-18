@@ -1,4 +1,4 @@
-#time {
+  #time {
     text-align: center;
     position: absolute;
     top: auto;
@@ -581,3 +581,16 @@
     background-color: #121212;
   }
   
+  ::-webkit-scrollbar {
+    width: 7.5px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px transparent; 
+    border-radius: 25px;
+  }
+   
+  ::-webkit-scrollbar-thumb {
+    background: #121212; 
+    border-radius: 10px;
+  }

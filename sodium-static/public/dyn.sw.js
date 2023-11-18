@@ -1,5 +1,5 @@
-importScripts('/dynamic/dynamic.config.js');
-importScripts('/dynamic/dynamic.worker.js');
+importScripts('/dyn/dyn.config.js');
+importScripts('/dyn/dyn.worker.js');
 
 const dynamic = new Dynamic();
 

@@ -2,10 +2,10 @@
     const proxyOption = localStorage.getItem("proxyOption");
   
     if (proxyOption && proxyOption.toLowerCase() === "dynamic") {
-      replaceScript("proxloader", "dynamic.sw.js");
-      replaceScript("proxcfg", "/dynamic/dynamic.config.js");
-      replaceScript("proxsw", "dynamicsw.js");
-      replaceScript("proxworker", "/dynamic/dynamic.worker.js");
+      replaceScript("proxloader", "dyn.sw.js");
+      replaceScript("proxcfg", "/dyn/dyn.config.js");
+      replaceScript("proxsw", "dynsw.js");
+      replaceScript("proxworker", "/dyn/dyn.worker.js");
   
       replaceFormElement();
     }

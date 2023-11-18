@@ -1,7 +1,7 @@
 let workerLoaded;
 
 async function worker() {
-  return await navigator.serviceWorker.register("/dynamic.sw.js", {
+  return await navigator.serviceWorker.register("/dyn.sw.js", {
     scope: "/service",
   });
 }

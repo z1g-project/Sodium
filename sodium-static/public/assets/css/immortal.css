@@ -580,3 +580,17 @@ textarea {
   border-radius: 20px;
   background-color: #155e75;
 }
+
+::-webkit-scrollbar {
+  width: 7.5px;
+}
+
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px transparent; 
+  border-radius: 25px;
+}
+ 
+::-webkit-scrollbar-thumb {
+  background: #155e75; 
+  border-radius: 10px;
+}

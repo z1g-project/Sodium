@@ -15,8 +15,8 @@
   <link rel="stylesheet" href="assets/css/ui.css" id="custom-css"/>
   <link rel="manifest" href="manifest.webmanifest"/>
   <link rel="json" href="appx.json"></link>
-  <script src="/dynamic/dynamic.config.js"></script>
-  <script src="/dynamic/dynamic.worker.js"></script>
+  <script src="/dyn/dyn.config.js"></script>
+  <script src="/dyn/dyn.worker.js"></script>
   <script src="assets/js/debug.js" defer></script>
   <script>
 "use strict";
@@ -41,7 +41,7 @@ async function registerSW() {
 window.onload(registerSW());
   </script>
   <script src="regcache.js" defer></script>
-  <script src="dynamicsw.js"></script>
+  <script src="dynsw.js"></script>
   <script src="assets/js/time.js" defer></script>
   <script src="assets/js/settings.js" defer></script>
   <script src="assets/js/fade.js" defer></script>
@@ -470,9 +470,9 @@ showSlide(currentSlide);
       if ('serviceWorker' in navigator) {
         navigator.serviceWorker.getRegistrations().then(registrations => {
           for (const registration of registrations) {
-            if (registration.active && registration.active.scriptURL.includes('dynamic.sw.js')) {
+            if (registration.active && registration.active.scriptURL.includes('dyn.sw.js')) {
               registration.unregister().then(() => {
-                navigator.serviceWorker.register('/dynamic.sw.js');
+                navigator.serviceWorker.register('/dyn.sw.js');
                 console.log('Dynamic service worker re-registered.');
               });
             }
