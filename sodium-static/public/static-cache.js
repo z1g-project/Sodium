@@ -64,7 +64,7 @@ self.addEventListener('install', (event) => {
           '/assets/js/stealth.js',
           '/assets/font/montserrat/JTUSjIg1_i6t8kCHKm459Wlhyw.woff2',
           '/assets/js/proxhandler.js',
-          '/index.js',
+          '/assets/js/index.js',
           '/assets/img/logo.svg'
         ]);
       })
