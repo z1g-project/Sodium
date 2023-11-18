@@ -170,7 +170,7 @@
     } else {
       const defaultStyleSheet = document.createElement('link');
       defaultStyleSheet.rel = 'stylesheet';
-      defaultStyleSheet.href = 'ui.css';
+      defaultStyleSheet.href = 'assets/css/ui.css';
       defaultStyleSheet.id = 'custom-css';
       document.head.appendChild(defaultStyleSheet);
     }
@@ -308,7 +308,9 @@
           for (const registration of registrations) {
             if (registration.active && registration.active.scriptURL.includes('dynamic.sw.js')) {
               registration.unregister().then(() => {
-                navigator.serviceWorker.register('/dynamic.sw.js');
+                navigator.serviceWorker.register("/dynamic.sw.js", {
+                  scope: "/service",
+                });
                 console.log('Dynamic service worker re-registered.');
               });
             }

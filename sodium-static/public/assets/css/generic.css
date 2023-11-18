@@ -1,4 +1,11 @@
-#time {
+/* 
+    Generic Moddable Theme
+    (C) Copyright 2024 z1g Project
+    Licensed under the MIT LIcense
+    Want to show off your work? Submit your theme!
+*/
+
+  #time {
     text-align: center;
     position: absolute;
     top: auto;
@@ -53,8 +60,8 @@
   }
   
   body {
-    background-color: #343638;
-    background-image: url("assets/img/dark-waves.svg");
+    background-color: #27639f;
+    background-image: url("../img/generic-waves.svg");
     background-repeat: no-repeat;
     background-size: cover;
     color: #ffffff;
@@ -132,7 +139,7 @@
     border-style: solid!important;
     border-width: 1px;
     border-radius: 25px;
-    background-color: #3b3b3b;
+    background-color: #0d89b2;
     font-family: 'Montserrat', sans-serif;
     color: #fff;
     -webkit-text-fill-color: white;
@@ -148,7 +155,7 @@
     border-style: solid!important;
     border-width: 1px;
     border-radius: 25px;
-    background-color: #3b3b3b;
+    background-color: #0d89b2;
     font-family: 'Montserrat', sans-serif;
     color: #fff;
     -webkit-text-fill-color: white;
@@ -174,7 +181,7 @@
     padding: 0 20px;
     font-size: 16px;
     margin-left: 10px;
-    background-color: #3b3b3b;
+    background-color: #0d89b2;
     color: #fff;
     border: none;
     border-radius: 25px;
@@ -182,7 +189,7 @@
   }
   
   #searchButton:hover {
-    background-color: #3b3b3b;
+    background-color: #0d89b2;
     transform: scale(1.1);
   }
   
@@ -239,7 +246,7 @@
     padding: 0 20px;
     font-size: 16px;
     margin-left: 10px;
-    background-color: #3b3b3b;
+    background-color: #0d89b2;
     color: #fff;
     border: none;
     border-radius: 25px;
@@ -274,7 +281,7 @@
   }
   
   .grid-item {
-    background-color: #3b3b3b;
+    background-color: #0d89b2;
     padding: 20px;
     border-radius: 8px;
     text-align: center;
@@ -343,27 +350,27 @@
   }
   
   .battery-icon.low {
-    background-image: url('assets/img/bat-dead.svg');
+    background-image: url('../img/bat-dead.svg');
   }
   
   .battery-icon.medium {
-    background-image: url('assets/img/bat-med.svg');
+    background-image: url('../img/bat-med.svg');
   }
   
   .battery-icon.high {
-    background-image: url('assets/img/bat-full.svg');
+    background-image: url('../img/bat-full.svg');
   }
   
   .battery-icon.charging.low {
-    background-image: url('assets/img/bat-dead-charge.svg');
+    background-image: url('../img/bat-dead-charge.svg');
   }
   
   .battery-icon.charging.medium {
-    background-image: url('assets/img/bat-med-charge.svg');
+    background-image: url('../img/bat-med-charge.svg');
   }
   
   .battery-icon.charging.high {
-    background-image: url('assets/img/bat-full-charge.svg');
+    background-image: url('../img/bat-full-charge.svg');
   }
   
   .second-bar-link {
@@ -375,28 +382,28 @@
   }
   
   .second-bar-link.home-link {
-    background-image: url("assets/img/home.svg");
+    background-image: url("../img/home.svg");
     background-size: 67%;
     background-repeat: no-repeat;
     background-position: center;
   }
   
   .second-bar-link.games-link {
-    background-image: url("assets/img/games.svg");
+    background-image: url("../img/games.svg");
     background-size: 67%;
     background-repeat: no-repeat;
     background-position: center;
   }
   
   .second-bar-link.apps-link {
-    background-image: url("assets/img/apps.svg");
+    background-image: url("../img/apps.svg");
     background-size: 67%;
     background-repeat: no-repeat;
     background-position: center;
   }
   
   .second-bar-link.settings-link {
-    background-image: url("assets/img/settings.svg");
+    background-image: url("../img/settings.svg");
     background-size: 67%;
     background-repeat: no-repeat;
     background-position: center;
@@ -411,7 +418,7 @@
     padding: 5px;
     border: 1px solid #ccc;
     color: #fff;
-    background-color: #3b3b3b;
+    background-color: #0d89b2;
     -webkit-text-fill-color: white;
     border-radius: 15px;
   }
@@ -421,14 +428,14 @@
     border: 1px solid #ccc;
     border-radius: 15px;
     color: white;
-    background-color: #3b3b3b;
+    background-color: #0d89b2;
   }
   
   .column {
     width: 145px;
     transition: all 0.2s ease;
     cursor: pointer;
-    background: #3b3b3b;
+    background: #0d89b2;
     border-radius: 10px;
     padding-left: 10px;
     padding-right: 10px;
@@ -537,7 +544,7 @@
   
   .css-editor {
     margin-top: 1vh;
-    background-color: #3b3b3b;
+    background-color: #0d89b2;
     color: white;
   }
   
@@ -553,30 +560,22 @@
   }
   
   .modal-content {
-    background-color: #464646;
+    background-color: #3d8298;
     margin: 15% auto;
     padding: 20px;
     border: 1px solid #888;
     max-width: 900px;
   }
   
-  .CodeMirror {
-    position: relative;
-    overflow: hidden;
-    background: #3b3b3b;
-    color: white;
+  .svg-fill {
+    fill: white;
   }
-  
-  .CodeMirror-gutters {
-    border-right: 1px solid #ddd;
-    background-color: #3b3b3b;
-    white-space: nowrap;
-  }
-  
+
   .addon-item {
     border: 1px solid #ddd;
     padding: 20px;
     text-align: center;
     border-radius: 20px;
-    background-color: #3b3b3b;
+    background-color: #3d8298;
   }
+  

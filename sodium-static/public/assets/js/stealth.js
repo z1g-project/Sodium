@@ -123,5 +123,11 @@ window.addEventListener('DOMContentLoaded', () => {
       iframeDocument.head.appendChild(script);
       console.log(`Plugin injected into the iframe: ${pluginUrl}`);
     });
+
+    iframe.addEventListener('unload', () => {
+      iframe.style.display = 'none';
+      const loadingOverlay = document.getElementById('loading-overlay');
+      loadingOverlay.style.display = 'flex';
+    });
   });
 });

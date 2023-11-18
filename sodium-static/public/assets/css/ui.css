@@ -54,7 +54,7 @@
 
 body {
   background-color: #27639f;
-  background-image: url("assets/img/v2-waves.svg");
+  background-image: url("../img/v2-waves.svg");
   background-repeat: no-repeat;
   background-size: cover;
   color: #ffffff;
@@ -343,27 +343,27 @@ textarea {
 }
 
 .battery-icon.low {
-  background-image: url('assets/img/bat-dead.svg');
+  background-image: url('../img/bat-dead.svg');
 }
 
 .battery-icon.medium {
-  background-image: url('assets/img/bat-med.svg');
+  background-image: url('../img/bat-med.svg');
 }
 
 .battery-icon.high {
-  background-image: url('assets/img/bat-full.svg');
+  background-image: url('../img/bat-full.svg');
 }
 
 .battery-icon.charging.low {
-  background-image: url('assets/img/bat-dead-charge.svg');
+  background-image: url('../img/bat-dead-charge.svg');
 }
 
 .battery-icon.charging.medium {
-  background-image: url('assets/img/bat-med-charge.svg');
+  background-image: url('../img/bat-med-charge.svg');
 }
 
 .battery-icon.charging.high {
-  background-image: url('assets/img/bat-full-charge.svg');
+  background-image: url('../img/bat-full-charge.svg');
 }
 
 .second-bar-link {
@@ -375,28 +375,28 @@ textarea {
 }
 
 .second-bar-link.home-link {
-  background-image: url("assets/img/home.svg");
+  background-image: url("../img/home.svg");
   background-size: 67%;
   background-repeat: no-repeat;
   background-position: center;
 }
 
 .second-bar-link.games-link {
-  background-image: url("assets/img/games.svg");
+  background-image: url("../img/games.svg");
   background-size: 67%;
   background-repeat: no-repeat;
   background-position: center;
 }
 
 .second-bar-link.apps-link {
-  background-image: url("assets/img/apps.svg");
+  background-image: url("../img/apps.svg");
   background-size: 67%;
   background-repeat: no-repeat;
   background-position: center;
 }
 
 .second-bar-link.settings-link {
-  background-image: url("assets/img/settings.svg");
+  background-image: url("../img/settings.svg");
   background-size: 67%;
   background-repeat: no-repeat;
   background-position: center;

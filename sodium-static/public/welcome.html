@@ -11,13 +11,13 @@
   <meta name="googlebot" content="all"/>
   <meta name="robots" content="all">
   <link id="favicon" rel="icon" type="image/png" href="favicon.ico">
-  <link rel="stylesheet" href="montserrat.css"/>
-  <link rel="stylesheet" href="ui.css" id="custom-css"/>
+  <link rel="stylesheet" href="assets/css/montserrat.css"/>
+  <link rel="stylesheet" href="assets/css/ui.css" id="custom-css"/>
   <link rel="manifest" href="manifest.webmanifest"/>
   <link rel="json" href="appx.json"></link>
   <script src="/dynamic/dynamic.config.js"></script>
   <script src="/dynamic/dynamic.worker.js"></script>
-  <script src="debug.js" defer></script>
+  <script src="assets/js/debug.js" defer></script>
   <script>
 "use strict";
 const stockSW = "/uv/sw.js";
@@ -42,9 +42,9 @@ window.onload(registerSW());
   </script>
   <script src="regcache.js" defer></script>
   <script src="dynamicsw.js"></script>
-  <script src="time.js" defer></script>
-  <script src="settings.js" defer></script>
-  <script src="fade.js" defer></script>
+  <script src="assets/js/time.js" defer></script>
+  <script src="assets/js/settings.js" defer></script>
+  <script src="assets/js/fade.js" defer></script>
   <style>
 body {
   margin: 0;
@@ -223,12 +223,12 @@ body {
       <div class="config-row">
         <label for="css-select" class="config-label">CSS:</label>
         <select id="css-select" class="config-select">
-          <option value="ui.css">Refreshed (Defualt)</option>
-          <option value="amoled.css">Amoled</option>
-          <option value="mocha.css">Mocha</option>
-          <option value="dark.css">Dark</option>
-          <option value="legacy.css">Legacy Dark</option>
-          <option value="festive.css">Festive</option>
+          <option value="assets/css/ui.css">Refreshed (Defualt)</option>
+          <option value="assets/css/amoled.css">Amoled</option>
+          <option value="assets/css/mocha.css">Mocha</option>
+          <option value="assets/css/dark.css">Dark</option>
+          <option value="assets/css/legacy.css">Legacy Dark</option>
+          <option value="assets/css/festive.css">Festive</option>
         </select>
         <button id="apply-css-button">Apply CSS</button>
       </div>
@@ -507,7 +507,7 @@ showSlide(currentSlide);
 <script>
   function immortalize(arg) {
       if (arg === 'sodium') {
-        localStorage.setItem('websiteCSS', 'immortal.css');
+        localStorage.setItem('websiteCSS', 'assets/css/immortal.css');
   
         console.log('Immortal Requested');
         console.log('Initializing 3MB Tailwind Package...');

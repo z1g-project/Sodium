@@ -150,7 +150,7 @@ const customCSS = localStorage.getItem('websiteCSS');
     } else {
       const defaultStyleSheet = document.createElement('link');
       defaultStyleSheet.rel = 'stylesheet';
-      defaultStyleSheet.href = 'ui.css';
+      defaultStyleSheet.href = 'assets/css/ui.css';
       defaultStyleSheet.id = 'custom-css';
       document.head.appendChild(defaultStyleSheet);
     }

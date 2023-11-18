@@ -9,19 +9,19 @@
   <meta name="keywords" content="css, editor, custom, ui, sodium" />
   <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#434c5e" />
   <link id="favicon" rel="icon" type="image/png" href="favicon.ico">
-  <link rel="stylesheet" href="montserrat.css"/>
-  <link rel="stylesheet" href="ui.css" id="custom-css"/>
+  <link rel="stylesheet" href="assets/css/montserrat.css"/>
+  <link rel="stylesheet" href="assets/css/ui.css" id="custom-css"/>
   <link rel="stylesheet" href="/settings/css-editor/codemirror.css">
   <script src="uv/uv.bundle.js" defer></script>
   <script src="uv/uv.config.js" defer></script>
-  <script src="register-sw.js" defer></script>
-  <script src="search.js" defer></script>
+  <script src="assets/js/register-sw.js" defer></script>
+  <script src="assets/js/search.js" defer></script>
   <script src="index.js" defer></script>
   <link rel="json" href="appx.json"></link>
   <link rel="manifest" href="manifest.webmanifest"/>
-  <script src="time.js" defer></script>
-  <script src="settings.js" defer></script>
-  <script src="fade.js" defer></script>
+  <script src="assets/js/time.js" defer></script>
+  <script src="assets/js/settings.js" defer></script>
+  <script src="assets/js/fade.js" defer></script>
   <style>
     .config-select {
       margin-top: 1vh;
@@ -58,7 +58,7 @@
     } else {
       const defaultStyleSheet = document.createElement('link');
       defaultStyleSheet.rel = 'stylesheet';
-      defaultStyleSheet.href = 'ui.css';
+      defaultStyleSheet.href = 'assets/css/ui.css';
       defaultStyleSheet.id = 'custom-css';
       document.head.appendChild(defaultStyleSheet);
     }
@@ -101,13 +101,13 @@
       <div id="css-editor" class="css-editor"></div>
     </div>
     <select id="css-select" class="config-select">
-      <option value="ui.css">Refreshed (Defualt)</option>
-      <option value="generic.css">Generic Moddable Theme</option>
-      <option value="amoled.css">Amoled</option>
-      <option value="mocha.css">Mochoa</option>
-      <option value="dark.css">Dark</option>
-      <option value="legacy.css">Legacy Dark</option>
-      <option value="festive.css">Festive</option>
+      <option value="assets/css/ui.css">Refreshed (Defualt)</option>
+      <option value="assets/css/generic.css">Generic Moddable Theme</option>
+      <option value="assets/css/amoled.css">Amoled</option>
+      <option value="assets/css/mocha.css">Mochoa</option>
+      <option value="assets/css/dark.css">Dark</option>
+      <option value="assets/css/legacy.css">Legacy Dark</option>
+      <option value="assets/css/festive.css">Festive</option>
       <option value="custom">Custom CSS</option>
     </select>
     <button style="margin-top: 1vh;" onclick="loadSelectedCSS(editor)">Select</button>

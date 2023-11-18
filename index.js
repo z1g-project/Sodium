@@ -7,7 +7,9 @@ import { join } from "node:path";
 import { hostname } from "node:os";
 import fs from 'fs';
 
-const bare = createBareServer("/bare/");
+const barePaths = ["/bare1/", "/bare2/", "/bare3/"];
+const bareServers = barePaths.map((path) => createBareServer(path));
+
 const app = express();
 
 app.use(express.static(publicPath));
@@ -22,16 +24,18 @@ app.use((req, res) => {
 const server = createServer();
 
 server.on("request", (req, res) => {
-  if (bare.shouldRoute(req)) {
-    bare.routeRequest(req, res);
+  const matchedBare = bareServers.find((bare) => bare.shouldRoute(req));
+  if (matchedBare) {
+    matchedBare.routeRequest(req, res);
   } else {
     app(req, res);
   }
 });
 
 server.on("upgrade", (req, socket, head) => {
-  if (bare.shouldRoute(req)) {
-    bare.routeUpgrade(req, socket, head);
+  const matchedBare = bareServers.find((bare) => bare.shouldRoute(req));
+  if (matchedBare) {
+    matchedBare.routeUpgrade(req, socket, head);
   } else {
     socket.end();
   }
@@ -82,6 +86,6 @@ process.on("SIGTERM", shutdown);
 function shutdown() {
   console.log("SIGTERM signal received: closing HTTP server");
   server.close();
-  bare.close();
+  bareServers.forEach((bare) => bare.close());
   process.exit(0);
 }

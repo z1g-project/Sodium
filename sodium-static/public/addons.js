@@ -102,7 +102,7 @@ const addons = [
         category: 'plugins',
         description: 'Adds a Search that uses chatGPT to pages',
         publisher: 'Zheng Bang-Bo',              
-        url: 'https://cdn.z1g-project.pages.dev/sodium/plugins/gptsearch.js',
+        url: 'https://cdn.z1g-project.pages.dev/sodium/plugins/gptassets/js/search.js',
       },
       {
         name: 'Powerline.io infinite score and length',

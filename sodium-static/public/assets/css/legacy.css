@@ -26,7 +26,7 @@
     top: 0px;
     left: 0;
     width: 100%;
-    background-color: transparent;
+    background-color: #18191D;
     color: #fff;
     height: 40px;
     display: flex;
@@ -53,8 +53,8 @@
   }
   
   body {
-    background-color: #000000;
-    background-image: url("assets/img/amoled-waves.svg");
+    background-color: #8b8b93;
+    background-image: url("../img/legacy-waves.svg");
     background-repeat: no-repeat;
     background-size: cover;
     color: #ffffff;
@@ -132,7 +132,7 @@
     border-style: solid!important;
     border-width: 1px;
     border-radius: 25px;
-    background-color: #121212;
+    background-color: #333;
     font-family: 'Montserrat', sans-serif;
     color: #fff;
     -webkit-text-fill-color: white;
@@ -148,7 +148,7 @@
     border-style: solid!important;
     border-width: 1px;
     border-radius: 25px;
-    background-color: #121212;
+    background-color: #333;
     font-family: 'Montserrat', sans-serif;
     color: #fff;
     -webkit-text-fill-color: white;
@@ -174,7 +174,7 @@
     padding: 0 20px;
     font-size: 16px;
     margin-left: 10px;
-    background-color: #121212;
+    background-color: #333;
     color: #fff;
     border: none;
     border-radius: 25px;
@@ -182,7 +182,7 @@
   }
   
   #searchButton:hover {
-    background-color: #121212;
+    background-color: #333;
     transform: scale(1.1);
   }
   
@@ -239,7 +239,7 @@
     padding: 0 20px;
     font-size: 16px;
     margin-left: 10px;
-    background-color: #121212;
+    background-color: #333;
     color: #fff;
     border: none;
     border-radius: 25px;
@@ -274,7 +274,7 @@
   }
   
   .grid-item {
-    background-color: #121212;
+    background-color: #333;
     padding: 20px;
     border-radius: 8px;
     text-align: center;
@@ -343,27 +343,27 @@
   }
   
   .battery-icon.low {
-    background-image: url('assets/img/bat-dead.svg');
+    background-image: url('../img/bat-dead.svg');
   }
   
   .battery-icon.medium {
-    background-image: url('assets/img/bat-med.svg');
+    background-image: url('../img/bat-med.svg');
   }
   
   .battery-icon.high {
-    background-image: url('assets/img/bat-full.svg');
+    background-image: url('../img/bat-full.svg');
   }
   
   .battery-icon.charging.low {
-    background-image: url('assets/img/bat-dead-charge.svg');
+    background-image: url('../img/bat-dead-charge.svg');
   }
   
   .battery-icon.charging.medium {
-    background-image: url('assets/img/bat-med-charge.svg');
+    background-image: url('../img/bat-med-charge.svg');
   }
   
   .battery-icon.charging.high {
-    background-image: url('assets/img/bat-full-charge.svg');
+    background-image: url('../img/bat-full-charge.svg');
   }
   
   .second-bar-link {
@@ -375,28 +375,28 @@
   }
   
   .second-bar-link.home-link {
-    background-image: url("assets/img/home.svg");
+    background-image: url("../img/home.svg");
     background-size: 67%;
     background-repeat: no-repeat;
     background-position: center;
   }
   
   .second-bar-link.games-link {
-    background-image: url("assets/img/games.svg");
+    background-image: url("../img/games.svg");
     background-size: 67%;
     background-repeat: no-repeat;
     background-position: center;
   }
   
   .second-bar-link.apps-link {
-    background-image: url("assets/img/apps.svg");
+    background-image: url("../img/apps.svg");
     background-size: 67%;
     background-repeat: no-repeat;
     background-position: center;
   }
   
   .second-bar-link.settings-link {
-    background-image: url("assets/img/settings.svg");
+    background-image: url("../img/settings.svg");
     background-size: 67%;
     background-repeat: no-repeat;
     background-position: center;
@@ -411,7 +411,7 @@
     padding: 5px;
     border: 1px solid #ccc;
     color: #fff;
-    background-color: #121212;
+    background-color: #333;
     -webkit-text-fill-color: white;
     border-radius: 15px;
   }
@@ -421,14 +421,14 @@
     border: 1px solid #ccc;
     border-radius: 15px;
     color: white;
-    background-color: #121212;
+    background-color: #333;
   }
   
   .column {
     width: 145px;
     transition: all 0.2s ease;
     cursor: pointer;
-    background: #121212;
+    background: #333;
     border-radius: 10px;
     padding-left: 10px;
     padding-right: 10px;
@@ -537,7 +537,7 @@
   
   .css-editor {
     margin-top: 1vh;
-    background-color: #121212;
+    background-color: #333;
     color: white;
   }
   
@@ -553,7 +553,7 @@
   }
   
   .modal-content {
-    background-color: rgb(30, 27, 27);
+    background-color: #232323;
     margin: 15% auto;
     padding: 20px;
     border: 1px solid #888;
@@ -563,21 +563,18 @@
   .CodeMirror {
     position: relative;
     overflow: hidden;
-    background: #121212;
+    background: #333;
     color: white;
   }
   
   .CodeMirror-gutters {
     border-right: 1px solid #ddd;
-    background-color: #121212;
+    background-color: #333;
     white-space: nowrap;
   }
-
+  
   .addon-item {
     border: 1px solid #ddd;
     padding: 20px;
     text-align: center;
-    border-radius: 20px;
-    background-color: #121212;
   }
-  
