@@ -16,11 +16,15 @@ async function updateBareServerUrl() {
     const transaction = db.transaction(['bareServerStore'], 'readonly');
     const objectStore = transaction.objectStore('bareServerStore');
     const request = objectStore.get('bareServerKey');
+    console.log('Fetching Cache...');
 
     request.onsuccess = () => {
       const bareServerUrl = request.result;
       if (bareServerUrl) {
-        fetchAndSetBareServer(bareServerUrl);
+        self.__uv$config.bare = bareServerUrl
+        console.log('Updated Bare URL!');
+      } else {
+        console.log('No Custom Bare URL Specified: Using Normal')
       }
     };
 
@@ -29,24 +33,6 @@ async function updateBareServerUrl() {
     };
   } catch (error) {
     console.error('Error updating bare server URL:', error);
-  }
-}
-
-async function fetchAndSetBareServer(bareServerUrl) {
-  const req = new Request(bareServerUrl, {
-    method: 'GET',
-    mode: 'cors',
-    credentials: 'same-origin',
-  });
-
-  try {
-    const res = await fetch(req);
-
-    if (self.__uv$config) {
-      self.__uv$config.bare = res.url;
-    }
-  } catch (error) {
-    console.error('Error fetching bare server URL:', error);
   }
 }
 
