@@ -138,7 +138,42 @@ const addons = [
         description: 'Allows you to select mods for Google Snake',
         publisher: 'NullCraft',
         url: 'https://cdn.z1g-project.dev/sodium/plugins/snake.js'
-      }
+      },
+      {
+        name: 'Duopro Beta',
+        category: 'plugins',
+        description: 'anonymoushackerIV',
+        publisher: 'NullCraft',
+        url: 'https://cdn.z1g-project.pages.dev/sodium/plugins/duopro.js'
+      },
+      {
+        name: 'Percury Workshop',
+        category: 'themes',
+        description: 'The Official MW Theme for Sodium :trolley:',
+        publisher: 'Playingallday383',
+        url: 'https://cdn.z1g-project.pages.dev/sodium/themes/mw.css',
+      },
+      {
+        name: 'Noctura',
+        category: 'themes',
+        description: 'yes',
+        publisher: 'Playingallday383',
+        url: 'https://cdn.z1g-project.pages.dev/sodium/themes/noctura.css',
+      },
+      {
+        name: 'Cobalt',
+        category: 'themes',
+        description: 'Nebulung is overrated but whatever heres cobalt',
+        publisher: 'Playingallday383',
+        url: 'https://cdn.z1g-project.pages.dev/sodium/themes/cobalt.css',
+      },
+      {
+        name: 'Nebula',
+        category: 'themes',
+        description: 'Nebula theme fr',
+        publisher: 'Playingallday383',
+        url: 'https://cdn.z1g-project.pages.dev/sodium/themes/nebula.css',
+      },
   ];
   
   function populateAddons() {
