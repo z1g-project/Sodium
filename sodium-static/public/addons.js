@@ -142,8 +142,8 @@ const addons = [
       {
         name: 'Duopro Beta',
         category: 'plugins',
-        description: 'anonymoushackerIV',
-        publisher: 'NullCraft',
+        description: 'Another Duolingo Autosolver',
+        publisher: 'anonymoushackerIV',
         url: 'https://cdn.z1g-project.pages.dev/sodium/plugins/duopro.js'
       },
       {
@@ -170,10 +170,10 @@ const addons = [
       {
         name: 'Nebula',
         category: 'themes',
-        description: 'Nebula theme fr',
+        description: 'Weve Disabled Nebulaservicesss',
         publisher: 'Playingallday383',
         url: 'https://cdn.z1g-project.pages.dev/sodium/themes/nebula.css',
-      },
+      }
   ];
   
   function populateAddons() {
