@@ -266,22 +266,42 @@
 
     const bareServerInput = document.getElementById('custom-bare-server-input');
     if (bareServerInput) {
-      const bareServer = bareServerInput.value.trim();     
-      caches.open('bareServerCache').then(cache => {
-        cache.put('bareServerKey', new Response(bareServer));
-      });
+      const bareServer = bareServerInput.value.trim();
+
+      async function savebareDB() {
+        try {
+          const db = await Ultraviolet.openDB('bareServerDB', 1);
+          const transaction = db.transaction('bareServerStore', 'readwrite');
+          const store = transaction.objectStore('bareServerStore');
+          store.put(bareServer, 'bareServerKey');
+          await transaction.complete;
+          db.close();
+    
+          if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.controller.postMessage({
+              action: 'updateBareServerUrl',
+            });
+          }
+    
+          console.log('BareServer URL saved:', bareServer);
+        } catch (error) {
+          console.error('Error saving to bare server DB:', error);
+        }
+      }
+    
+      savebareDB();
+
       localStorage.setItem('bareServer', bareServer);
-      self.__uv$config.bare = bareServer;
-      self.__dynamic$config.bare.path = bareServer;
       console.log('BareServer URL saved:', bareServer);
+
       if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.getRegistrations().then(registrations => {
+        navigator.serviceWorker.getRegistrations().then((registrations) => {
           for (const registration of registrations) {
-            if (registration.active && registration.active.scriptURL.includes('dyn.sw.js')) {
-              registration.unregister().then(() => {
-                navigator.serviceWorker.register("/dyn.sw.js", {
-                  scope: "/service",
-                });
+           if (registration.active && registration.active.scriptURL.includes('dyn.sw.js')) {
+            registration.unregister().then(() => {
+              navigator.serviceWorker.register('/dyn.sw.js', {
+                scope: '/service',
+              });
                 console.log('Dynamic service worker re-registered.');
               });
             }
