@@ -105,7 +105,6 @@
       }
 
       const titlerandomizerls = localStorage.getItem('useRandomizer');
-      const titlerandomizer = document.getElementById('title-randomizer');
       if (titlerandomizerls) {
         const titles = ['Google', 'Google Classroom', 'SchoolTube', 'Kahoot', 'Bing Images', 'Microsoft Word', 'Google Docs', 'Microsoft Excel', 'Google Account', 'about:blank', 'Google Maps', 'Google Drive', 'gmail', 'Outlook Web'];
         const favicons = ['https://www.google.com/favicon.ico', 'https://cdn.z1g-project.pages.dev/', 'https://www.microsoft.com/favicon.ico', 'https://ssl.gstatic.com/images/branding/product/1x/drive_2020q4_32dp.png', 'https://kahoot.it/favicon.ico', 'https://www.outlook.com/owa/favicon.ico'];
@@ -118,9 +117,11 @@
         faviconLink.href = favicons[randomFaviconIndex];
         const head = document.head || document.getElementsByTagName('head')[0];
         head.appendChild(faviconLink);
-      }
-      if (titlerandomizer) {
-        titlerandomizer.checked = titlerandomizerls === 'true';
+        console.log('Randomized!')
+        const titlerandomizer = document.getElementById('title-randomizer');
+        if (titlerandomizer) {
+          titlerandomizer.checked = titlerandomizerls === 'true';
+        }
       }
 
       const debugging = localStorage.getItem('debugging');
