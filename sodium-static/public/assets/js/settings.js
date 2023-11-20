@@ -18,6 +18,22 @@
       }
     }
 
+    const useRandomize = localStorage.getItem('useRandomizer')
+    if (useRAndomize === true) {
+      const titles = ['Google', 'Google Classroom', 'SchoolTube', 'Kahoot', 'Bing Images', 'Microsoft Word', 'Google Docs', 'Microsoft Excel', 'Google Account', 'about:blank', 'Google Maps', 'Google Drive', 'gmail', 'Outlook Web'];
+      const favicons = ['https://www.google.com/favicon.ico', 'https://cdn.z1g-project.pages.dev/', 'https://www.microsoft.com/favicon.ico', 'https://ssl.gstatic.com/images/branding/product/1x/drive_2020q4_32dp.png', 'https://kahoot.it/favicon.ico', 'https://www.outlook.com/owa/favicon.ico'];
+      const randomTitleIndex = Math.floor(Math.random() * titles.length);
+      const randomFaviconIndex = Math.floor(Math.random() * favicons.length);
+      document.title = titles[randomTitleIndex];
+      const faviconLink = document.querySelector("link[rel*='icon']") || document.createElement('link');
+      faviconLink.type = 'image/x-icon';
+      faviconLink.rel = 'icon';
+      faviconLink.href = favicons[randomFaviconIndex];
+      const head = document.head || document.getElementsByTagName('head')[0];
+      head.appendChild(faviconLink);
+      console.log('Randomized!')
+    }
+
     const css = localStorage.getItem('websiteCSS');
     if (css) {
       applyCSS(css);
@@ -105,23 +121,9 @@
       }
 
       const titlerandomizerls = localStorage.getItem('useRandomizer');
-      if (titlerandomizerls) {
-        const titles = ['Google', 'Google Classroom', 'SchoolTube', 'Kahoot', 'Bing Images', 'Microsoft Word', 'Google Docs', 'Microsoft Excel', 'Google Account', 'about:blank', 'Google Maps', 'Google Drive', 'gmail', 'Outlook Web'];
-        const favicons = ['https://www.google.com/favicon.ico', 'https://cdn.z1g-project.pages.dev/', 'https://www.microsoft.com/favicon.ico', 'https://ssl.gstatic.com/images/branding/product/1x/drive_2020q4_32dp.png', 'https://kahoot.it/favicon.ico', 'https://www.outlook.com/owa/favicon.ico'];
-        const randomTitleIndex = Math.floor(Math.random() * titles.length);
-        const randomFaviconIndex = Math.floor(Math.random() * favicons.length);
-        document.title = titles[randomTitleIndex];
-        const faviconLink = document.querySelector("link[rel*='icon']") || document.createElement('link');
-        faviconLink.type = 'image/x-icon';
-        faviconLink.rel = 'icon';
-        faviconLink.href = favicons[randomFaviconIndex];
-        const head = document.head || document.getElementsByTagName('head')[0];
-        head.appendChild(faviconLink);
-        console.log('Randomized!')
-        const titlerandomizer = document.getElementById('title-randomizer');
-        if (titlerandomizer) {
-          titlerandomizer.checked = titlerandomizerls === 'true';
-        }
+      const titlerandomizer = document.getElementById('title-randomizer');
+      if (titlerandomizer) {
+        titlerandomizer.checked = titlerandomizerls === 'true';
       }
 
       const debugging = localStorage.getItem('debugging');
