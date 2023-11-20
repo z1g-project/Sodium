@@ -29,6 +29,12 @@ const loadingOverlay = document.getElementById("loading-overlay");
  */
 const iframe = document.getElementById("apploader");
 
+if (form) {
+  console.log('form exist')
+} else {
+  console.log('no')
+}
+
 form.addEventListener("submit", async (event) => {
   event.preventDefault();
 
