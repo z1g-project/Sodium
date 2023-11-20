@@ -281,7 +281,7 @@
 
     const titlerandomizer = document.getElementById('title-randomizer');
     if (titlerandomizer.checked) {
-      localStorage.setItem('useRandomizer', 'true');
+      localStorage.setItem('useRandomizer', true);
       console.log('Use Tab Randomizer: true')
     } else {
       localStorage.removeItem('useRandomizer');
