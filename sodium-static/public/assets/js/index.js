@@ -50,12 +50,14 @@ if (form) {
   });
 }
 
-iframe.addEventListener("loadstart", () => {
-  iframe.style.display = "none";
-  loadingOverlay.style.display = "flex";
-});
-
-iframe.addEventListener("load", () => {
-  loadingOverlay.style.display = "none";
-  iframe.style.display = "block"; 
-});
+if (iframe) {
+  iframe.addEventListener("loadstart", () => {
+    iframe.style.display = "none";
+    loadingOverlay.style.display = "flex";
+  });
+  
+  iframe.addEventListener("load", () => {
+    loadingOverlay.style.display = "none";
+    iframe.style.display = "block"; 
+  });
+}
