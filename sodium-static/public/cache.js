@@ -13,7 +13,7 @@ self.addEventListener('install', (event) => {
           '/appframe.html',
           '/iframe.html',
           '/credits.html',
-          '/appx.json',
+          '/assets/json/appx.json',
           '/assets/js/debug.js',
           '/assets/js/credits.js',
           '/assets/js/register-sw.js',

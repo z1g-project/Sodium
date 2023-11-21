@@ -20,6 +20,7 @@ async function updateBareServerUrl() {
 
     request.onsuccess = () => {
       const bareServerUrl = request.result;
+      console.log('Reading Cache Please Wait...');
       if (bareServerUrl) {
         self.__uv$config.bare = bareServerUrl
         console.log('Updated Bare URL!');
