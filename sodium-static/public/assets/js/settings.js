@@ -312,6 +312,9 @@
     const bareServerInput = document.getElementById('custom-bare-server-input');
     if (bareServerInput) {
       const bareServer = bareServerInput.value.trim();
+      caches.open('bareServerCache').then(cache => {
+        cache.put('bareServerKey', new Response(bareServer));
+      });
 
       async function savebareDB() {
         try {
