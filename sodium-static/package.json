@@ -6,8 +6,5 @@
   "files": [
     "public",
     "lib"
-  ],
-  "peerDependencies": {
-    "@titaniumnetwork-dev/ultraviolet": "^2.0.0"
-  }
+  ]
 }
