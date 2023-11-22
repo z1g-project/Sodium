@@ -26,48 +26,42 @@
     <script src="assets/js/games.js" defer></script>
     <script src="regcache.js" defer></script>
     <script>
-      function loadgames(url) {
-        window.location.href = url;
-      }
-    </script>
-<script>
-  function loadgame(value) {
-      let url = value.trim();
+      function loadgame(value) {
+        let url = value.trim();
       
-      const proxyOption = localStorage.getItem("proxyOption");
+        const proxyOption = localStorage.getItem("proxyOption");
   
-      if (proxyOption && proxyOption.toLowerCase() === "dynamic") {
-        const dynamicURL = `${window.location.origin}/service/route?url=${url}`;
-        sessionStorage.setItem("encodedUrl", dynamicURL);
-      } else {
-        if (!checkUrl(url)) {
-          url = "https://www.google.com/search?q=" + url;
-        } else if (!(url.startsWith("https://") || url.startsWith("http://"))) {
-          url = "https://" + url;
+        if (proxyOption && proxyOption.toLowerCase() === "dynamic") {
+          const dynamicURL = `${window.location.origin}/service/route?url=${url}`;
+          sessionStorage.setItem("encodedUrl", dynamicURL);
+        } else {
+          if (!checkUrl(url)) {
+            url = "https://www.google.com/search?q=" + url;
+          } else if (!(url.startsWith("https://") || url.startsWith("http://"))) {
+            url = "https://" + url;
+          }
+  
+          sessionStorage.removeItem("encodedUrl");
+          const encodedUrl = `${window.location.origin}/sw/${Ultraviolet.codec.xor.encode(url)}`;
+          sessionStorage.setItem("encodedUrl", encodedUrl);
         }
-  
-        sessionStorage.removeItem("encodedUrl");
-  
-        const encodedUrl = `${window.location.origin}/sw/${Ultraviolet.codec.xor.encode(url)}`;
-        sessionStorage.setItem("encodedUrl", encodedUrl);
-      }
       
-      location.href = "iframe.html";
-    };
+        location.href = "iframe.html";
+      };
   
-  function checkUrl(val = "") {
-    if (/^http(s?):\/\//.test(val) || (val.includes(".") && val.substr(0, 1) !== " ")) {
-      return true;
-    }
-    return false;
-  }
+      function checkUrl(val = "") {
+        if (/^http(s?):\/\//.test(val) || (val.includes(".") && val.substr(0, 1) !== " ")) {
+          return true;
+        }
+       return false;
+      }
 
-  function loadswf(value) {
-    let url = value.trim(); 
-    sessionStorage.removeItem('flashswf');
-    sessionStorage.setItem('flashswf', url)
-    location.href = "ruffleframe.html";
-  }
+      function loadswf(value) {
+        let url = value.trim(); 
+        sessionStorage.removeItem('flashswf');
+        sessionStorage.setItem('flashswf', url)
+        location.href = "ruffleframe.html";
+      }
   </script>  
   </head>
 
@@ -106,7 +100,7 @@
 
     <div class="container-apps">
         <div class="column" data-category="general online">
-            <a onclick="loadgames('/games/eagler/')">
+            <a onclick="window.location.href = '/games/eagler/'">
             <img width="145" height="145" src="/games/assets/game1.jpg">
             <p>EaglerCraft</p></a>
         </div>
@@ -136,7 +130,7 @@
             <p>Retrobowl</p></a>
         </div>
         <div class="column" data-category="general flash">
-            <a onclick="loadgames('/games/run3/')">
+            <a onclick="window.location.href = '/games/run3/'">
             <img width="145" height="145" src="/games/assets/game7.jpg">
             <p>Run 3</p></a>
         </div>
@@ -166,12 +160,12 @@
             <p>Cookie Clicker</p></a>
         </div>
         <div class="column" data-category="general flash">
-            <a onclick="loadswf('/games/assets/swfs/awsomeplanes.swf')">
+            <a onclick="loadswf('https://cdn.z1g-project.pages.dev/sodium/awsomeplanes.swf')">
             <img width="145" height="145" src="/games/assets/game13.jpg">
             <p>Awsome Planes</p></a>
         </div>
         <div class="column" data-category="general flash">
-            <a onclick="loadswf('/games/assets/swfs/papalouie3.swf')">
+            <a onclick="loadswf('https://cdn.z1g-project.pages.dev/sodium/swfs/papalouie3.swf')">
             <img width="145" height="145" src="/games/assets/game14.jpg">
             <p>Papa Louie 3 - When Sundaes Attack</p></a>
         </div>

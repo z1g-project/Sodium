@@ -5,6 +5,7 @@ import { publicPath } from "ultraviolet-static";
 import { join } from "node:path";
 import { hostname } from "node:os";
 import fs from 'fs';
+import ip from 'ip';
 
 const barePaths = ["/bare1/", "/bare2/", "/bare3/"];
 const bareServers = barePaths.map((path) => createBareServer(path));
@@ -63,13 +64,14 @@ server.on("listening", async () => {
 
 function startServer() { 
   const address = server.address();
+  const ipAddress = ip.address();
   console.log("Sodium is running on:");
   console.log(`\thttp://localhost:${address.port}`);
   console.log(`\thttp://${hostname()}:${address.port}`);
   if (address.family === "IPv4") {
-    console.log(`\thttp://${address.address}:${address.port}`);
+    console.log(`\thttp://${ipAddress}:${address.port}`);
   } else {
-    console.log(`\thttp://[${address.address}]:${address.port}`);
+    console.log(`\thttp://${ipAddress}:${address.port}`);
   }
 }
 

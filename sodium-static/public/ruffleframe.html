@@ -106,7 +106,7 @@ checkUrlForNoUI();
             container.appendChild(player);
             const flashgame = sessionStorage.getItem('flashswf')
             player.load({
-                url: window.location.origin + flashgame,
+                url: flashgame,
             });
         });
     </script>
