@@ -29,31 +29,35 @@ const loadingOverlay = document.getElementById("loading-overlay");
  */
 const iframe = document.getElementById("apploader");
 
-form.addEventListener("submit", async (event) => {
-  event.preventDefault();
+if (form) {
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+  
+    try {
+      await registerSW();
+    } catch (err) {
+      error.textContent = "Failed to register service worker.";
+      errorCode.textContent = err.toString();
+      throw err;
+    }
+  
+    const url = search(address.value, searchEngine.value);
+    const encodedURL = Ultraviolet.codec.xor.encode(url);
+  
+    loadingOverlay.style.display = "flex";
+    iframe.style.display = "none";
+    iframe.src = `${window.location.origin}/sw/${encodedURL}`;
+  });
+}
 
-  try {
-    await registerSW();
-  } catch (err) {
-    error.textContent = "Failed to register service worker.";
-    errorCode.textContent = err.toString();
-    throw err;
-  }
-
-  const url = search(address.value, searchEngine.value);
-  const encodedURL = Ultraviolet.codec.xor.encode(url);
-
-  loadingOverlay.style.display = "flex";
-  iframe.style.display = "none";
-  iframe.src = `${window.location.origin}/sw/${encodedURL}`;
-});
-
-iframe.addEventListener("loadstart", () => {
-  iframe.style.display = "none";
-  loadingOverlay.style.display = "flex";
-});
-
-iframe.addEventListener("load", () => {
-  loadingOverlay.style.display = "none";
-  iframe.style.display = "block"; 
-});
+if (iframe) {
+  iframe.addEventListener("loadstart", () => {
+    iframe.style.display = "none";
+    loadingOverlay.style.display = "flex";
+  });
+  
+  iframe.addEventListener("load", () => {
+    loadingOverlay.style.display = "none";
+    iframe.style.display = "block"; 
+  });
+}
