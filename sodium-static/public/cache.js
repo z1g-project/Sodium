@@ -66,6 +66,9 @@ self.addEventListener('install', (event) => {
           '/assets/js/proxhandler.js',
           '/assets/js/index.js',
           '/assets/img/logo.svg',
+          '/assets/js/games.js',
+          '/ruffle.html',
+          '/ruffleframe.html',
         ]);
       })
     );

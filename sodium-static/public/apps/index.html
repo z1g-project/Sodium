@@ -26,36 +26,43 @@
     <script src="assets/js/games.js" defer></script>
     <script src="regcache.js" defer></script>
     <script>
-    function loadapp(value) {
-      let url = value.trim();
+      function loadapp(value) {
+        let url = value.trim();
       
-      const proxyOption = localStorage.getItem("proxyOption");
+        const proxyOption = localStorage.getItem("proxyOption");
   
-      if (proxyOption && proxyOption.toLowerCase() === "dynamic") {
-        const dynamicURL = `${window.location.origin}/service/route?url=${url}`;
-        sessionStorage.setItem("appUrl", dynamicURL);
-      } else {
-        if (!checkUrl(url)) {
-          url = "https://www.google.com/search?q=" + url;
-        } else if (!(url.startsWith("https://") || url.startsWith("http://"))) {
-          url = "https://" + url;
+        if (proxyOption && proxyOption.toLowerCase() === "dynamic") {
+          const dynamicURL = `${window.location.origin}/service/route?url=${url}`;
+          sessionStorage.setItem("appUrl", dynamicURL);
+        } else {
+          if (!checkUrl(url)) {
+            url = "https://www.google.com/search?q=" + url;
+          } else if (!(url.startsWith("https://") || url.startsWith("http://"))) {
+            url = "https://" + url;
+          }
+  
+          sessionStorage.removeItem("appUrl");
+  
+          const encodedUrl = `${window.location.origin}/sw/${Ultraviolet.codec.xor.encode(url)}`;
+          sessionStorage.setItem("appUrl", encodedUrl);
         }
-  
-        sessionStorage.removeItem("appUrl");
-  
-        const encodedUrl = `${window.location.origin}/sw/${Ultraviolet.codec.xor.encode(url)}`;
-        sessionStorage.setItem("appUrl", encodedUrl);
-      }
       
-      location.href = "appframe.html";
-    };
+        location.href = "appframe.html";
+      };
   
-  function checkUrl(val = "") {
-    if (/^http(s?):\/\//.test(val) || (val.includes(".") && val.substr(0, 1) !== " ")) {
-      return true;
-    }
-    return false;
-  }
+      function checkUrl(val = "") {
+        if (/^http(s?):\/\//.test(val) || (val.includes(".") && val.substr(0, 1) !== " ")) {
+          return true;
+        }
+       return false;
+      }
+      navigator.serviceWorker.register('acache.js')
+        .then((registration) => {
+          console.log('Game/Asset Cache Service Worker registered with scope:', registration.scope);
+        })
+        .catch((error) => {
+          console.error('Error registering Service Worker:', error);
+        });
   </script>  
   </head>
 

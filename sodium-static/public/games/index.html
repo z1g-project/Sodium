@@ -62,6 +62,14 @@
         sessionStorage.setItem('flashswf', url)
         location.href = "ruffleframe.html";
       }
+
+      navigator.serviceWorker.register('acache.js')
+      .then((registration) => {
+        console.log('Game/Asset Cache Service Worker registered with scope:', registration.scope);
+      })
+      .catch((error) => {
+        console.error('Error registering Service Worker:', error);
+      });
   </script>  
   </head>
 
@@ -160,7 +168,7 @@
             <p>Cookie Clicker</p></a>
         </div>
         <div class="column" data-category="general flash">
-            <a onclick="loadswf('https://cdn.z1g-project.pages.dev/sodium/awsomeplanes.swf')">
+            <a onclick="loadswf('https://cdn.z1g-project.pages.dev/sodium/swfs/awsomeplanes.swf')">
             <img width="145" height="145" src="/games/assets/game13.jpg">
             <p>Awsome Planes</p></a>
         </div>
@@ -335,7 +343,7 @@
         <p>Angry Sharks</p></a>
       </div>
       <div class="column" data-category="general">
-        <a onclick="loadgame('https://raw.githack.com/3kh0/3kh0-assets/main/run%202/index.html')">
+        <a onclick="loadswf('https://cdn.z1g-project.pages.dev/sodium/swfs/run2.swf')">
         <img width="145" height="145" src="/games/assets/game49.jpg">
         <p>Run 2</p></a>
       </div>
