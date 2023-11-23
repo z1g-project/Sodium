@@ -8,11 +8,7 @@
         for (let i = 1; i <= 23; i++) {
           cachePaths.push(`/apps/assets/app${i}.jpg`);
         }
-        cachePaths.push('/games/assets/precision.png');
-        cachePaths.push('/games/eagler/');
-        cachePaths.push('/games/eagler/versionselect.html');
         cachePaths.push('/games/run3/');
-        cachePaths.push('/games/run3/versionselect.html');
         cachePaths.push('/games/run3/ruffle/core.ruffle.9319559a195fae019006.js');
         cachePaths.push('/games/run3/ruffle/core.ruffle.9319559a195fae019006.js.map');
         cachePaths.push('/games/run3/ruffle/core.ruffle.f0662c3f97bfa45134e9.js');

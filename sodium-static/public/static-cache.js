@@ -69,6 +69,7 @@ self.addEventListener('install', (event) => {
           '/assets/js/games.js',
           '/ruffle',
           '/ruffleframe',
+          '/games/run3/versionselect',
         ]);
       })
     );
