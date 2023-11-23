@@ -1,0 +1,14 @@
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is Sodium (Web Proxy)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sodium is a site used for evading internet censorship"
+        }
+      }
+    ]
+  }

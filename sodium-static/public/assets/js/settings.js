@@ -18,6 +18,22 @@
       }
     }
 
+    const useRandomize = localStorage.getItem('useRandomizer')
+    if (useRandomize) {
+      const titles = ['Google', 'Google Classroom', 'SchoolTube', 'Kahoot', 'Bing Images', 'Microsoft Word', 'Google Docs', 'Microsoft Excel', 'Google Account', 'about:blank', 'Google Maps', 'Google Drive', 'gmail', 'Outlook Web'];
+      const favicons = ['https://www.google.com/favicon.ico', 'https://cdn.z1g-project.pages.dev/', 'https://www.microsoft.com/favicon.ico', 'https://ssl.gstatic.com/images/branding/product/1x/drive_2020q4_32dp.png', 'https://kahoot.it/favicon.ico', 'https://www.outlook.com/owa/favicon.ico'];
+      const randomTitleIndex = Math.floor(Math.random() * titles.length);
+      const randomFaviconIndex = Math.floor(Math.random() * favicons.length);
+      document.title = titles[randomTitleIndex];
+      const faviconLink = document.querySelector("link[rel*='icon']") || document.createElement('link');
+      faviconLink.type = 'image/x-icon';
+      faviconLink.rel = 'icon';
+      faviconLink.href = favicons[randomFaviconIndex];
+      const head = document.head || document.getElementsByTagName('head')[0];
+      head.appendChild(faviconLink);
+      console.log('Randomized!')
+    }
+
     const css = localStorage.getItem('websiteCSS');
     if (css) {
       applyCSS(css);
@@ -102,6 +118,12 @@
       const toggleblobBlank = document.getElementById('open-blob-window');
       if (toggleblobBlank) {
         toggleblobBlank.checked = openblobWindow === 'true';
+      }
+
+      const titlerandomizerls = localStorage.getItem('useRandomizer');
+      const titlerandomizer = document.getElementById('title-randomizer');
+      if (titlerandomizer) {
+        titlerandomizer.checked = titlerandomizerls === 'true';
       }
 
       const debugging = localStorage.getItem('debugging');
@@ -240,8 +262,31 @@
     localStorage.setItem('proxyOption', selectedOption);
     console.log('Default Proxy Saved:', selectedOption);
 
-    handleToggleBeta();
-    handleblob();
+    const toggleBeta = document.getElementById('toggle-beta');
+
+    if (toggleBeta.checked) {
+      localStorage.setItem('betaMode', 'true');
+    } else {
+      localStorage.removeItem('betaMode');
+    }
+    
+    const blobwindow = document.getElementById('open-blob-window');
+    if (blobwindow.checked) {
+      localStorage.setItem('openblobwindow', 'true');
+      localStorage.setItem('usingnewtab', 'true');
+    } else {
+      localStorage.removeItem('openblobwindow');
+      localStorage.removeItem('usingnewtab');
+    }
+
+    const titlerandomizer = document.getElementById('title-randomizer');
+    if (titlerandomizer.checked) {
+      localStorage.setItem('useRandomizer', true);
+      console.log('Use Tab Randomizer: true')
+    } else {
+      localStorage.removeItem('useRandomizer');
+      console.log('Use Tab Randomizer: false')
+    }
 
     const emergencyHotkeyInput = document.getElementById('emergency-switch-hotkey');
     if (emergencyHotkeyInput) {
@@ -266,22 +311,45 @@
 
     const bareServerInput = document.getElementById('custom-bare-server-input');
     if (bareServerInput) {
-      const bareServer = bareServerInput.value.trim();     
+      const bareServer = bareServerInput.value.trim();
       caches.open('bareServerCache').then(cache => {
         cache.put('bareServerKey', new Response(bareServer));
       });
+
+      async function savebareDB() {
+        try {
+          const db = await Ultraviolet.openDB('bareServerDB', 1);
+          const transaction = db.transaction('bareServerStore', 'readwrite');
+          const store = transaction.objectStore('bareServerStore');
+          store.put(bareServer, 'bareServerKey');
+          await transaction.complete;
+          db.close();
+    
+          if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.controller.postMessage({
+              action: 'updateBareServerUrl',
+            });
+          }
+    
+          console.log('BareServer URL saved:', bareServer);
+        } catch (error) {
+          console.error('Error saving to bare server DB:', error);
+        }
+      }
+    
+      savebareDB();
+
       localStorage.setItem('bareServer', bareServer);
-      self.__uv$config.bare = bareServer;
-      self.__dynamic$config.bare.path = bareServer;
       console.log('BareServer URL saved:', bareServer);
+
       if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.getRegistrations().then(registrations => {
+        navigator.serviceWorker.getRegistrations().then((registrations) => {
           for (const registration of registrations) {
-            if (registration.active && registration.active.scriptURL.includes('dyn.sw.js')) {
-              registration.unregister().then(() => {
-                navigator.serviceWorker.register("/dyn.sw.js", {
-                  scope: "/service",
-                });
+           if (registration.active && registration.active.scriptURL.includes('dyn.sw.js')) {
+            registration.unregister().then(() => {
+              navigator.serviceWorker.register('/dyn.sw.js', {
+                scope: '/service',
+              });
                 console.log('Dynamic service worker re-registered.');
               });
             }
@@ -338,28 +406,6 @@
       }, 3000);    
     }, 100);
   }  
-
-  function handleToggleBeta() {
-    const toggleBeta = document.getElementById('toggle-beta');
-
-    if (toggleBeta.checked) {
-      localStorage.setItem('betaMode', 'true');
-    } else {
-      localStorage.removeItem('betaMode');
-    }
-  }
-
-  function handleblob() {
-    const blobwindow = document.getElementById('open-blob-window');
-
-    if (blobwindow.checked) {
-      localStorage.setItem('openblobwindow', 'true');
-      localStorage.setItem('usingnewtab', 'true');
-    } else {
-      localStorage.removeItem('openblobwindow');
-      localStorage.removeItem('usingnewtab');
-    }
-  }
 
   function handleToggleAboutBlank() {
     const toggleAboutBlank = document.getElementById('open-new-window');

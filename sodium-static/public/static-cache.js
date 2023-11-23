@@ -13,7 +13,7 @@ self.addEventListener('install', (event) => {
           '/appframe',
           '/iframe',
           '/credits',
-          '/appx.json',
+          '/assets/json/appx.json',
           '/assets/js/debug.js',
           '/assets/js/credits.js',
           '/assets/js/register-sw.js',
@@ -74,7 +74,10 @@ self.addEventListener('install', (event) => {
   self.addEventListener('fetch', (event) => {
     event.respondWith(
       caches.match(event.request).then((response) => {
-        return response || fetch(event.request);
+        return response || fetch(event.request).catch((error) => {
+          console.error(`Error: Couldn't fetch ${event.request.url} | ${error}`);
+        });
       })
     );
   });
+  

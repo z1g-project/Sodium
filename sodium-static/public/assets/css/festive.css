@@ -584,6 +584,7 @@ textarea {
 
 ::-webkit-scrollbar {
   width: 7.5px;
+  background: transparent;
 }
 
 ::-webkit-scrollbar-track {

@@ -2,10 +2,10 @@ import { createBareServer } from "@tomphttp/bare-server-node";
 import express from "express";
 import { createServer } from "node:http";
 import { publicPath } from "ultraviolet-static";
-import { uvPath } from "@titaniumnetwork-dev/ultraviolet";
 import { join } from "node:path";
 import { hostname } from "node:os";
 import fs from 'fs';
+import ip from 'ip';
 
 const barePaths = ["/bare1/", "/bare2/", "/bare3/"];
 const bareServers = barePaths.map((path) => createBareServer(path));
@@ -13,8 +13,6 @@ const bareServers = barePaths.map((path) => createBareServer(path));
 const app = express();
 
 app.use(express.static(publicPath));
-
-app.use("/uv/", express.static(uvPath));
 
 app.use((req, res) => {
   res.status(404);
@@ -66,13 +64,14 @@ server.on("listening", async () => {
 
 function startServer() { 
   const address = server.address();
+  const ipAddress = ip.address();
   console.log("Sodium is running on:");
   console.log(`\thttp://localhost:${address.port}`);
   console.log(`\thttp://${hostname()}:${address.port}`);
   if (address.family === "IPv4") {
-    console.log(`\thttp://${address.address}:${address.port}`);
+    console.log(`\thttp://${ipAddress}:${address.port}`);
   } else {
-    console.log(`\thttp://[${address.address}]:${address.port}`);
+    console.log(`\thttp://${ipAddress}:${address.port}`);
   }
 }
 
