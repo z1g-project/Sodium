@@ -32,7 +32,7 @@
         const proxyOption = localStorage.getItem("proxyOption");
   
         if (proxyOption && proxyOption.toLowerCase() === "dynamic") {
-          const dynamicURL = `${window.location.origin}/service/route?url=${url}`;
+          const dynamicURL = `${window.location.origin}/service/${Ultraviolet.codec.xor.encode(url)}`;
           sessionStorage.setItem("appUrl", dynamicURL);
         } else {
           if (!checkUrl(url)) {
@@ -56,13 +56,17 @@
         }
        return false;
       }
-      navigator.serviceWorker.register('acache.js')
+      if (navigator.onLine) {
+        navigator.serviceWorker.register('acache.js')
         .then((registration) => {
           console.log('Game/Asset Cache Service Worker registered with scope:', registration.scope);
         })
         .catch((error) => {
           console.error('Error registering Service Worker:', error);
         });
+      } else {
+        console.warn('Your Offline: Using existing Cache')
+      }
   </script>  
   </head>
 

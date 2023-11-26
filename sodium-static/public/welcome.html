@@ -36,6 +36,18 @@ async function registerSW() {
   await navigator.serviceWorker.register(stockSW, {
     scope: "/sw/",
   });
+
+  if (navigator.onLine) {
+    navigator.serviceWorker.register('acache.js')
+    .then((registration) => {
+      console.log('Game/Asset Cache Service Worker registered with scope:', registration.scope);
+    })
+    .catch((error) => {
+      console.error('Error registering Service Worker:', error);
+    });
+  } else {
+    console.warn('Your Offline: Using existing Cache')
+  }
 }
 
 registerSW()
