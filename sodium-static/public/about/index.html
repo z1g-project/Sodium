@@ -15,13 +15,11 @@
   <script src="ultra/ultra.bundle.js" defer></script>
   <script src="ultra/ultra.config.js" defer></script>
   <script src="assets/js/register-sw.js" defer></script>
-  <script src="assets/js/search.js" defer></script>
   <script src="assets/js/index.js" defer></script>
   <link rel="manifest" href="manifest.webmanifest"/>
   <link rel="json" href="assets/json/appx.json"></link>
   <script src="assets/js/time.js" defer></script>
   <script src="assets/js/settings.js" defer></script>
-  <script src="assets/js/stealth.js" defer></script>
   <script src="assets/js/fade.js" defer></script>
   <script src="regcache.js" defer></script>
   <style>
@@ -139,6 +137,7 @@
     const commitLink = document.createElement("a");
     commitLink.href = data[0].html_url;
     commitLink.textContent = commitId;
+    commitLink.style.marginRight = '0'
     
     versionInfoElement.appendChild(commitLink);
     versionInfoElement.appendChild(document.createTextNode(')'));
