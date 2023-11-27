@@ -97,7 +97,6 @@
   const owner = 'z1g-project';
   const repo = 'sodium';
   const branch = window.location.hostname.includes('v2.') ? 'v2' : 'master';
-  
   const versionInfoElement = document.getElementById('version-info');
   
   fetch(`https://api.github.com/repos/${owner}/${repo}/commits?sha=v2`, {
@@ -111,7 +110,6 @@
   if (data && data.length > 0) {
     const commitCount = data.length;
     const commitId = data[0].sha.substring(0, 7);
-
     const releaseDateFormatted = new Date(data[0].commit.author.date);
     const options = { month: 'long', day: 'numeric', year: 'numeric' };
     const formattedMonth = new Intl.DateTimeFormat('en-US', { month: 'long' }).format(releaseDateFormatted);
@@ -131,14 +129,11 @@
     };
 
     const releaseDayWithSuffix = formattedDay + ordinalSuffix(formattedDay);
-
     versionInfoElement.textContent = `v2.0.0 Release Preview (Released: ${formattedMonth} ${releaseDayWithSuffix}, ${formattedYear} - Commit: `;
-    
     const commitLink = document.createElement("a");
     commitLink.href = data[0].html_url;
     commitLink.textContent = commitId;
     commitLink.style.marginRight = '0'
-    
     versionInfoElement.appendChild(commitLink);
     versionInfoElement.appendChild(document.createTextNode(')'));
   } else {

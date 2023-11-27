@@ -1,6 +1,6 @@
 <div>
   <p align="center">
-    <img src="./sodium-static/public/sodium.png">
+    <img src="./sodium-static/public/sodium.png" height="135" width="135">
   </p>
   <h1 align="center">Sodium</h1>
   <p align="center">Sodium is a site used for evading internet censorship</p>
