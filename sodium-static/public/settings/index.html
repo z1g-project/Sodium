@@ -293,7 +293,7 @@
             .catch(() => `🔴Offline - 0ms`);
           }
 
-          const bareServerUrl = localStorage.getItem('bareServer') || 'https://phantomnetwork.cloud/bare/';
+          const bareServerUrl = localStorage.getItem('bareServer') || 'https://server.flow-works.me/bare/';
           checkServerStatus(bareServerUrl)
           .then(status => {
             const pingElement = document.getElementById('ping-status');
@@ -521,6 +521,17 @@ function immortalize(arg) {
               .catch((error) => {
                 console.error('Error registering Service Worker:', error);
               });
+          }
+          if (navigator.onLine) {
+            navigator.serviceWorker.register('acache.js')
+            .then((registration) => {
+              console.log('Game/Asset Cache Service Worker registered with scope:', registration.scope);
+            })
+            .catch((error) => {
+              console.error('Error registering Service Worker:', error);
+            });
+          } else {
+            console.warn('Your Offline: Using existing Cache')
           }
         }
         registerSW()
