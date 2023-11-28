@@ -20,6 +20,7 @@
         cachePaths.push('https://cdn.z1g-project.pages.dev/sodium/swfs/awsomeplanes.swf');
         cachePaths.push('https://cdn.z1g-project.pages.dev/sodium/swfs/papalouie3.swf');
         cachePaths.push('https://cdn.z1g-project.pages.dev/sodium/swfs/run3.swf');
+        cachePaths.push('https://cdn.z1g-project.pages.dev/sodium/swfs/run2.swf');
         cachePaths.push('https://cdn.z1g-project.pages.dev/sodium/swfs/run3-kong.swf');
         return cache.addAll(cachePaths);
       })
