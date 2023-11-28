@@ -53,8 +53,8 @@
 }
 
 body {
-  background-color: #27639f;
-  background-image: url("https://cdn.z1g-project.repl.co/sodium/../img/christmas.gif");
+  background-color: #000000;
+  background-image: url("https://cdn.z1g-project.repl.co/sodium/assets/img/christmas.gif");
   background-repeat: no-repeat;
   background-size: cover;
   color: #ffffff;
