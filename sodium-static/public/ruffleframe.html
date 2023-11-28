@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <base href="../../"></base>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+  <title>Sodium</title>
+  <meta name="description" content="Sodium is a site used for evading internet censorship"/>
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#27639f" />
+  <meta name="googlebot" content="index, follow, snippet" />
+  <link id="favicon" rel="icon" type="image/png" href="favicon.ico">
+  <link rel="stylesheet" href="assets/css/montserrat.css"/>
+  <link rel="stylesheet" href="assets/css/ui.css" id="custom-css"/>
+  <link rel="manifest" href="manifest.webmanifest"/>
+  <script id="proxcfg" src="ultra/ultra.bundle.js" defer></script>
+  <script src="ultra/ultra.config.js" defer></script>
+  <script id="proxsw" src="assets/js/register-sw.js" defer></script>
+  <script src="assets/js/search.js" defer></script>
+  <script id="proxloader" src="assets/js/index.js" defer></script>
+  <script src="assets/js/time.js" defer></script>
+  <script src="assets/js/settings.js" defer></script>
+  <script src="assets/js/fade.js" defer></script>
+  <script src="assets/js/bare.js" defer></script>
+  <script src="assets/js/debug.js" defer></script>
+  <script src="games/run3/ruffle/ruffle.js" defer></script>
+  <script>
+    function checkUrlForNoUI() {
+      if (window.location.pathname.includes('#noui')) {
+        const nav = document.getElementById('nav')
+        nav.style.display = 'none'
+        const footer = document.getElementById('footer')
+        footer.style.display = 'none'
+        console.log('noui: true')
+      } else {
+        console.log('noui: false')
+      }
+    }
+
+checkUrlForNoUI();
+  </script>
+  <style>
+  #container {
+    position: absolute;
+    top: 50px;
+    bottom: 50px;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #container object {
+    width: 100%;
+    height: 100%;
+  }
+  </style>
+</head>
+<body>
+    <div class="second-bar" id="nav">
+        <a href="/" class="second-bar-link home-link"></a>
+        <a href="/games/" class="second-bar-link games-link"></a>
+        <a href="/apps/" class="second-bar-link apps-link"></a>
+        <a href="/settings/" class="second-bar-link settings-link"></a>
+      <div class="info-menu" id="info-menu" style="margin-left: auto">
+        <div class="info-menu-item" id="transferRate"></div>
+        <div class="info-menu-item" id="latency"></div>
+        <div class="info-menu-item" id="fps"></div>
+      </div>
+      <div class="top-bar-item" id="time"></div>
+      <div class="top-bar-item">
+        <div class="battery-icon-container">
+          <div id="battery" class="battery-icon"></div>
+          <div class="battery-fill"></div>
+          <p class="battery-text"></p>
+        </div>
+      </div>
+    </div>  
+  
+    <div id="container"></div>
+
+    <div id="footer" class="fullwidth" style="margin-top: 50%;">
+        <div class="footerflex">
+            <div class="footerbrand">
+                <h3><a href="/">Sodium</a></h3>
+                <p>Evading Internet Censorship for over 6 Months!</p>
+            </div>
+            <div class="footerlist">
+              <p style="margin-top: 58px;">Sodium © z1g Project 2024</hp>
+            </div>
+        </div>
+        <div class="footersocials">
+          <img src="assets/img/z1g.png" alt="z1g Project" title="The z1g Project GitHub organization" height="30" width="30" onclick="location.href='/github/z1g-project/'">
+          <img src="assets/img/discord.jpg" alt="Discord" title="The z1g Project Discord" height="30" width="30" onclick="location.href='/discord/'">
+          <img src="assets/img/github.png" alt="GitHub" title="The official deployment repository for Sodium" height="30" width="30" onclick="location.href='/github/'">
+          <img src="assets/img/license.svg" alt="Credits" title="License information" height="30" width="30" onclick="location.href='/credits/'">   
+        </div>
+    </div>
+    <script>
+        window.RufflePlayer = window.RufflePlayer || {};
+        window.addEventListener("load", (event) => {
+            const ruffle = window.RufflePlayer.newest();
+            const player = ruffle.createPlayer();
+            player.style.width = "100%"; player.style.height = "100%";
+            const container = document.getElementById("container");
+            container.appendChild(player);
+            const flashgame = sessionStorage.getItem('flashswf')
+            player.load({
+                url: flashgame,
+            });
+        });
+    </script>
+</body>

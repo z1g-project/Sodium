@@ -6,54 +6,67 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
     <title>Sodium</title>
     <meta name="description" content="Sodium is a site used for evading internet censorship" />
+    <meta name="keywords" content="Sodium, z1g-project, internet-censorship, evade-internet-censorship">
     <meta property="og:image" content="/sodium.png">
-    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#434c5e" />
-    <meta name="googlebot" content="index, follow, snippet" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#27639f" />
+    <meta name="googlebot" content="all" />
     <link id="favicon" rel="icon" type="image/png" href="favicon.ico">
-    <link rel="stylesheet" href="montserrat.css"/>
-    <link rel="stylesheet" href="item-cards.css"/>
-    <link rel="stylesheet" href="ui.css" id="custom-css"/>
-    <script src="uv/uv.bundle.js" defer></script>
-    <script src="uv/uv.config.js" defer></script>
-    <script src="register-sw.js" defer></script>
-    <script src="search.js" defer></script>
-    <link rel="json" href="appx.json" defer></script>
+    <link rel="stylesheet" href="assets/css/montserrat.css"/>
+    <link rel="stylesheet" href="assets/css/item-cards.css"/>
+    <link rel="stylesheet" href="assets/css/ui.css" id="custom-css"/>
+    <script src="ultra/ultra.bundle.js" defer></script>
+    <script src="ultra/ultra.config.js" defer></script>
+    <script src="assets/js/register-sw.js" defer></script>
+    <script src="assets/js/search.js" defer></script>
+    <link rel="json" href="assets/json/appx.json" defer></script>
     <link rel="manifest" href="manifest.webmanifest"/>
-    <script src="time.js" defer></script>
-    <script src="settings.js" defer></script>
-    <script src="fade.js" defer></script>
-    <script src="games.js" defer></script>
+    <script src="assets/js/time.js" defer></script>
+    <script src="assets/js/settings.js" defer></script>
+    <script src="assets/js/fade.js" defer></script>
+    <script src="assets/js/games.js" defer></script>
+    <script src="regcache.js" defer></script>
     <script>
-    function loadapp(value) {
-      let url = value.trim();
+      function loadapp(value) {
+        let url = value.trim();
       
-      const proxyOption = localStorage.getItem("proxyOption");
+        const proxyOption = localStorage.getItem("proxyOption");
   
-      if (proxyOption && proxyOption.toLowerCase() === "dynamic") {
-        const dynamicURL = `${window.location.origin}/service/route?url=${url}`;
-        sessionStorage.setItem("appUrl", dynamicURL);
-      } else {
-        if (!checkUrl(url)) {
-          url = "https://www.google.com/search?q=" + url;
-        } else if (!(url.startsWith("https://") || url.startsWith("http://"))) {
-          url = "https://" + url;
+        if (proxyOption && proxyOption.toLowerCase() === "dynamic") {
+          const dynamicURL = `${window.location.origin}/service/${Ultraviolet.codec.xor.encode(url)}`;
+          sessionStorage.setItem("appUrl", dynamicURL);
+        } else {
+          if (!checkUrl(url)) {
+            url = "https://www.google.com/search?q=" + url;
+          } else if (!(url.startsWith("https://") || url.startsWith("http://"))) {
+            url = "https://" + url;
+          }
+  
+          sessionStorage.removeItem("appUrl");
+  
+          const encodedUrl = `${window.location.origin}/sw/${Ultraviolet.codec.xor.encode(url)}`;
+          sessionStorage.setItem("appUrl", encodedUrl);
         }
-  
-        sessionStorage.removeItem("appUrl");
-  
-        const encodedUrl = `${window.location.origin}/uv/service/${Ultraviolet.codec.xor.encode(url)}`;
-        sessionStorage.setItem("appUrl", encodedUrl);
-      }
       
-      location.href = "appframe.html";
-    };
+        location.href = "appframe.html";
+      };
   
-  function checkUrl(val = "") {
-    if (/^http(s?):\/\//.test(val) || (val.includes(".") && val.substr(0, 1) !== " ")) {
-      return true;
-    }
-    return false;
-  }
+      function checkUrl(val = "") {
+        if (/^http(s?):\/\//.test(val) || (val.includes(".") && val.substr(0, 1) !== " ")) {
+          return true;
+        }
+       return false;
+      }
+      if (navigator.onLine) {
+        navigator.serviceWorker.register('acache.js')
+        .then((registration) => {
+          console.log('Game/Asset Cache Service Worker registered with scope:', registration.scope);
+        })
+        .catch((error) => {
+          console.error('Error registering Service Worker:', error);
+        });
+      } else {
+        console.warn('Your Offline: Using existing Cache')
+      }
   </script>  
   </head>
 
@@ -82,8 +95,8 @@
     <h3 style="text-align: center;">Official Apps that are working and ready for use!</h3>
 
     <div class="input-container">
-        <input class="config-input" type="text" id="gamesearch" onkeyup="searchgames()" placeholder="Search">
-        <select class="config-select" id="category" name="category" onchange="showImages()">
+        <input class="config-input" type="text" id="gamesearch" onkeyup="searchgames()" placeholder="Search" style="text-align: center;font-size: 16px;">
+        <select class="config-select" id="category" name="category" onchange="showImages()" style="font-size: 16px;">
           <option value="general">General</option>
           <option value="media">Media</option>
           <option value="social">Social</option>
@@ -143,7 +156,7 @@
           <p>Reddit</p></a>
         </div>
         <div class="column" data-category="general media">
-          <a onclick="loadapp('https://movie-web.app')">
+          <a onclick="loadapp('https://fmovies.llc/')">
           <img width="145" height="145" src="/apps/assets/app8.jpg">
           <p>fmovies</p></a>
         </div>
@@ -202,19 +215,37 @@
           <img width="145" height="145" src="/apps/assets/app21.jpg">
           <p>Amazon</p></a>
         </div>
+        <div class="column" data-category="general media">
+          <a onclick="loadapp('https://web.parsec.app')">
+          <img width="145" height="145" src="/apps/assets/app22.jpg">
+          <p>Parsec</p></a>
+        </div>
+        <div class="column" data-category="general media">
+          <a onclick="loadapp('https://movie-web.app')">
+          <img width="145" height="145" src="/apps/assets/app23.jpg">
+          <p>Movie Web</p></a>
+        </div>
     </div>
 
     <br>
     <br>
     <br>
-    <footer>
-      <img src="assets/img/z1g.png" alt="z1g Project" title="The z1g Project GitHub organization" height="30" width="30" onclick="location.href='/github/z1g-project/'" />
-      <img src="assets/img/discord.jpg" alt="Discord" title="The z1g Project Discord" height="30" width="30" onclick="location.href='/discord/'" />
-      <img src="assets/img/github.png" alt="GitHub" title="The official deployment repository for Sodium" height="30" width="30" onclick="location.href='/github/'" />
-      <img src="assets/img/credits.png" alt="Credits" title="License information" height="30" width="30" onclick="location.href='credits.html'" />   
-      <div class="footer-text-container" style="margin-left: auto">
-        <span>Sodium &copy; z1g Project 2023</span>
-      </div> 
-  </footer>
+    <div id="footer" class="fullwidth">
+      <div class="footerflex">
+          <div class="footerbrand">
+              <h3><a href="/">Sodium</a></h3>
+              <p>Evading Internet Censorship for over 6 Months!</p>
+          </div>
+          <div class="footerlist">
+            <p style="margin-top: 58px;">Sodium © z1g Project 2024</hp>
+          </div>
+      </div>
+      <div class="footersocials">
+        <img src="assets/img/z1g.png" alt="z1g Project" title="The z1g Project GitHub organization" height="30" width="30" onclick="location.href='/github/z1g-project/'">
+        <img src="assets/img/discord.jpg" alt="Discord" title="The z1g Project Discord" height="30" width="30" onclick="location.href='/discord/'">
+        <img src="assets/img/github.png" alt="GitHub" title="The official deployment repository for Sodium" height="30" width="30" onclick="location.href='/github/'">
+        <img src="assets/img/license.svg" alt="Credits" title="License information" height="30" width="30" onclick="location.href='/credits/'">   
+      </div>
+    </div>
   </body>
 </html>

@@ -1,11 +1,11 @@
 {
   "name": "sodium-instance",
-  "version": "1.4.5-LTS",
-  "description": "Sodium Instance",
+  "version": "2.0.0",
+  "description": "Sodium is a site used for evading internet censorship",
   "type": "module",
   "engines": {
-    "npm": ">=7.0.0",
-    "node": ">=16.0.0"
+    "npm": ">=9.8.1",
+    "node": ">=18.0.0 <24.0.0"
   },
   "scripts": {
     "start": "node index.js"
@@ -14,13 +14,13 @@
     "proxy"
   ],
   "author": "z1g Project",
-  "license": "GPL-3.0-or-later",
+  "license": "MIT",
   "dependencies": {
-    "@titaniumnetwork-dev/ultraviolet": "^2.0.0",
     "@tomphttp/bare-server-node": "^2.0.1",
     "@types/axios": "^0.14.0",
     "axios": "^1.6.2",
     "express": "^4.18.2",
+    "ip": "^1.1.8",
     "ultraviolet-static": "file:sodium-static"
   }
 }

@@ -7,11 +7,11 @@ const addons = [
         url: 'https://cdn.z1g-project.pages.dev/sodium/plugins/duopower.js',
       },
       {
-        name: 'Galaxy Theme',
+        name: 'Galaxy Theme v2',
         category: 'themes',
         description: 'A sleek galaxy theme for sodium!',
         publisher: 'Playingallday383',
-        url: 'https://cdn.z1g-project.pages.dev/sodium/themes/galaxy.css',
+        url: 'https://cdn.z1g-project.pages.dev/sodium/themes/galaxy-v2.css',
       },
       {
         name: 'Eruda',
@@ -46,14 +46,14 @@ const addons = [
         category: 'themes',
         description: 'Why does this exist',
         publisher: 'd8a1',
-        url: 'https://cdn.z1g-project.pages.dev/sodium/themes/weird.css',
+        url: 'https://cdn.z1g-project.pages.dev/sodium/themes/weird-new.css',
       },
       {
         name: 'The Sodium Night',
         category: 'themes',
         description: 'Sodium lights at night',
         publisher: 'rekeD',
-        url: 'https://cdn.z1g-project.pages.dev/sodium/themes/sodinight.css',
+        url: 'https://cdn.z1g-project.pages.dev/sodium/themes/sodinight-new.css',
       },
       {
         name: 'Gmail - Remove "Empty Trash Now" link',
@@ -102,7 +102,7 @@ const addons = [
         category: 'plugins',
         description: 'Adds a Search that uses chatGPT to pages',
         publisher: 'Zheng Bang-Bo',              
-        url: 'https://cdn.z1g-project.pages.dev/sodium/plugins/gptsearch.js',
+        url: 'https://cdn.z1g-project.pages.dev/sodium/plugins/gptassets/js/search.js',
       },
       {
         name: 'Powerline.io infinite score and length',
@@ -132,6 +132,48 @@ const addons = [
         publisher: 'Steviegt6',
         url: 'https://greasyfork.org/scripts/391387-yohoho-io-cheats/code/Yohohoio%20Cheats.user.js',
       },
+      {
+        name: 'Snake Mod Loader',
+        category: 'plugins',
+        description: 'Allows you to select mods for Google Snake',
+        publisher: 'NullCraft',
+        url: 'https://cdn.z1g-project.dev/sodium/plugins/snake.js'
+      },
+      {
+        name: 'Duopro Beta',
+        category: 'plugins',
+        description: 'Another Duolingo Autosolver',
+        publisher: 'anonymoushackerIV',
+        url: 'https://cdn.z1g-project.pages.dev/sodium/plugins/duopro.js'
+      },
+      {
+        name: 'Percury Workshop',
+        category: 'themes',
+        description: 'The Official MW Theme for Sodium :trolley:',
+        publisher: 'Playingallday383',
+        url: 'https://cdn.z1g-project.pages.dev/sodium/themes/mw.css',
+      },
+      {
+        name: 'Noctura',
+        category: 'themes',
+        description: 'yes',
+        publisher: 'Playingallday383',
+        url: 'https://cdn.z1g-project.pages.dev/sodium/themes/noctura.css',
+      },
+      {
+        name: 'Cobalt',
+        category: 'themes',
+        description: 'Nebulung is overrated but whatever heres cobalt',
+        publisher: 'Playingallday383',
+        url: 'https://cdn.z1g-project.pages.dev/sodium/themes/cobalt.css',
+      },
+      {
+        name: 'Nebula',
+        category: 'themes',
+        description: 'Weve Disabled Nebulaservicesss',
+        publisher: 'Playingallday383',
+        url: 'https://cdn.z1g-project.pages.dev/sodium/themes/nebula.css',
+      }
   ];
   
   function populateAddons() {

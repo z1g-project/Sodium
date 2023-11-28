@@ -6,59 +6,74 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
     <title>Sodium</title>
     <meta name="description" content="Sodium is a site used for evading internet censorship" />
+    <meta name="keywords" content="Sodium, z1g-project, internet-censorship, evade-internet-censorship">
     <meta property="og:image" content="/sodium.png">
-    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#434c5e" />
-    <meta name="googlebot" content="index, follow, snippet" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#27639f" />
+    <meta name="googlebot" content="all" />
     <link id="favicon" rel="icon" type="image/png" href="favicon.ico">
-    <link rel="stylesheet" href="montserrat.css"/>
-    <link rel="stylesheet" href="item-cards.css"/>
-    <link rel="stylesheet" href="ui.css" id="custom-css"/>
-    <script src="uv/uv.bundle.js" defer></script>
-    <script src="uv/uv.config.js" defer></script>
-    <script src="register-sw.js" defer></script>
-    <script src="search.js" defer></script>
-    <link rel="json" href="appx.json" defer></script>
+    <link rel="stylesheet" href="assets/css/montserrat.css"/>
+    <link rel="stylesheet" href="assets/css/item-cards.css"/>
+    <link rel="stylesheet" href="assets/css/ui.css" id="custom-css"/>
+    <script src="ultra/ultra.bundle.js" defer></script>
+    <script src="ultra/ultra.config.js" defer></script>
+    <script src="assets/js/register-sw.js" defer></script>
+    <script src="assets/js/search.js" defer></script>
+    <link rel="json" href="assets/json/appx.json" defer></script>
     <link rel="manifest" href="manifest.webmanifest"/>
-    <script src="time.js" defer></script>
-    <script src="settings.js" defer></script>
-    <script src="fade.js" defer></script>
-    <script src="games.js" defer></script>
+    <script src="assets/js/time.js" defer></script>
+    <script src="assets/js/settings.js" defer></script>
+    <script src="assets/js/fade.js" defer></script>
+    <script src="assets/js/games.js" defer></script>
+    <script src="regcache.js" defer></script>
     <script>
-      function loadgames(url) {
-        window.location.href = url;
-      }
-    </script>
-<script>
-  function loadgame(value) {
-      let url = value.trim();
+      function loadgame(value) {
+        let url = value.trim();
       
-      const proxyOption = localStorage.getItem("proxyOption");
+        const proxyOption = localStorage.getItem("proxyOption");
   
-      if (proxyOption && proxyOption.toLowerCase() === "dynamic") {
-        const dynamicURL = `${window.location.origin}/service/route?url=${url}`;
-        sessionStorage.setItem("encodedUrl", dynamicURL);
-      } else {
-        if (!checkUrl(url)) {
-          url = "https://www.google.com/search?q=" + url;
-        } else if (!(url.startsWith("https://") || url.startsWith("http://"))) {
-          url = "https://" + url;
+        if (proxyOption && proxyOption.toLowerCase() === "dynamic") {
+          const dynamicURL = `${window.location.origin}/service/${Ultraviolet.codec.xor.encode(url)}`;
+          sessionStorage.setItem("encodedUrl", dynamicURL);
+        } else {
+          if (!checkUrl(url)) {
+            url = "https://www.google.com/search?q=" + url;
+          } else if (!(url.startsWith("https://") || url.startsWith("http://"))) {
+            url = "https://" + url;
+          }
+  
+          sessionStorage.removeItem("encodedUrl");
+          const encodedUrl = `${window.location.origin}/sw/${Ultraviolet.codec.xor.encode(url)}`;
+          sessionStorage.setItem("encodedUrl", encodedUrl);
         }
-  
-        sessionStorage.removeItem("encodedUrl");
-  
-        const encodedUrl = `${window.location.origin}/uv/service/${Ultraviolet.codec.xor.encode(url)}`;
-        sessionStorage.setItem("encodedUrl", encodedUrl);
-      }
       
-      location.href = "iframe.html";
-    };
+        location.href = "iframe.html";
+      };
   
-  function checkUrl(val = "") {
-    if (/^http(s?):\/\//.test(val) || (val.includes(".") && val.substr(0, 1) !== " ")) {
-      return true;
-    }
-    return false;
-  }
+      function checkUrl(val = "") {
+        if (/^http(s?):\/\//.test(val) || (val.includes(".") && val.substr(0, 1) !== " ")) {
+          return true;
+        }
+       return false;
+      }
+
+      function loadswf(value) {
+        let url = value.trim(); 
+        sessionStorage.removeItem('flashswf');
+        sessionStorage.setItem('flashswf', url)
+        location.href = "ruffleframe.html";
+      }
+
+      if (navigator.onLine) {
+        navigator.serviceWorker.register('acache.js')
+        .then((registration) => {
+          console.log('Game/Asset Cache Service Worker registered with scope:', registration.scope);
+        })
+        .catch((error) => {
+          console.error('Error registering Service Worker:', error);
+        });
+      } else {
+        console.warn('Your Offline: Using existing Cache')
+      }
   </script>  
   </head>
 
@@ -87,8 +102,8 @@
     <h3 style="text-align: center;">Official Games that are working and ready for use!</h3>
 
     <div class="input-container">
-        <input class="config-input" type="text" id="gamesearch" onkeyup="searchgames()" placeholder="Search">
-        <select class="config-select" id="category" name="category" onchange="showImages()">
+        <input class="config-input" type="text" id="gamesearch" onkeyup="searchgames()" placeholder="Search" style="text-align: center;font-size: 16px;">
+        <select class="config-select" id="category" name="category" onchange="showImages()" style="font-size: 16px;">
           <option value="general">General</option>
           <option value="online">Online</option>
           <option value="flash">Flash</option>
@@ -97,12 +112,12 @@
 
     <div class="container-apps">
         <div class="column" data-category="general online">
-            <a onclick="loadgames('/games/eagler/')">
+            <a onclick="window.location.href = '/games/eagler/'">
             <img width="145" height="145" src="/games/assets/game1.jpg">
             <p>EaglerCraft</p></a>
         </div>
         <div class="column" data-category="general online">
-            <a onclick="loadgame('https://nowgg.nl/play/roblox-corporation/5349/roblox')">
+            <a onclick="loadgame('https://now.gg/play/roblox-corporation/5349/roblox')">
             <img width="145" height="145" src="/games/assets/game2.jpg">
             <p>Roblox</p></a>
         </div>
@@ -127,7 +142,7 @@
             <p>Retrobowl</p></a>
         </div>
         <div class="column" data-category="general flash">
-            <a onclick="loadgames('/games/run3/')">
+            <a onclick="window.location.href = '/games/run3/'">
             <img width="145" height="145" src="/games/assets/game7.jpg">
             <p>Run 3</p></a>
         </div>
@@ -157,12 +172,12 @@
             <p>Cookie Clicker</p></a>
         </div>
         <div class="column" data-category="general flash">
-            <a onclick="loadgames('/games/awsomeplanes/')">
+            <a onclick="loadswf('https://cdn.z1g-project.pages.dev/sodium/swfs/awsomeplanes.swf')">
             <img width="145" height="145" src="/games/assets/game13.jpg">
             <p>Awsome Planes</p></a>
         </div>
         <div class="column" data-category="general flash">
-            <a onclick="loadgames('/games/papalouie/')">
+            <a onclick="loadswf('https://cdn.z1g-project.pages.dev/sodium/swfs/papalouie3.swf')">
             <img width="145" height="145" src="/games/assets/game14.jpg">
             <p>Papa Louie 3 - When Sundaes Attack</p></a>
         </div>
@@ -266,19 +281,142 @@
         <img width="145" height="145" src="/games/assets/game34.jpg">
         <p>Basketball Stars</p></a>
       </div>
+      <div class="column" data-category="general">
+        <a onclick="loadgame('https://raw.githack.com/3kh0/3kh0-assets/main/tunnel-rush/index.html')">
+        <img width="145" height="145" src="/games/assets/game35.jpg">
+        <p>Tunnel Rush</p></a>
+      </div>
+      <div class="column" data-category="general">
+        <a onclick="loadgame('https://raw.githack.com/3kh0/3kh0-assets/main/smashkarts/index.html')">
+        <img width="145" height="145" src="/games/assets/game36.jpg">
+        <p>Smash Karts</p></a>
+      </div>
+      <div class="column" data-category="general">
+        <a onclick="loadgame('https://raw.githack.com/3kh0/3kh0-assets/main/sm64/index.html')">
+        <img width="145" height="145" src="/games/assets/game37.jpg">
+        <p>sm64 Web</p></a>
+      </div>
+      <div class="column" data-category="general online">
+        <a onclick="loadgame('https://raw.githack.com/3kh0/3kh0-assets/main/soccer-random/index.html')">
+        <img width="145" height="145" src="/games/assets/game38.jpg">
+        <p>Soccer Random</p></a>
+      </div>
+      <div class="column" data-category="general">
+        <a onclick="loadgame('https://raw.githack.com/3kh0/3kh0-assets/main/thebattle/index.html')">
+        <img width="145" height="145" src="/games/assets/game40.jpg">
+        <p>The Battle</p></a>
+      </div>
+      <div class="column" data-category="general">
+        <a onclick="loadgame('https://raw.githack.com/3kh0/3kh0-assets/main/ducklife4/index.html')">
+        <img width="145" height="145" src="/games/assets/game41.jpg">
+        <p>Duck Life 4</p></a>
+      </div>
+      <div class="column" data-category="general">
+        <a onclick="loadgame('https://raw.githack.com/3kh0/3kh0-assets/main/ducklife3/index.html')">
+        <img width="145" height="145" src="/games/assets/game42.jpg">
+        <p>Duck Life 3</p></a>
+      </div>
+      <div class="column" data-category="general flash">
+        <a onclick="loadgame('https://raw.githack.com/3kh0/3kh0-assets/main/ducklife2/index.html')">
+        <img width="145" height="145" src="/games/assets/game43.jpg">
+        <p>Duck Life 2</p></a>
+      </div>
+      <div class="column" data-category="general flash">
+        <a onclick="loadgame('https://raw.githack.com/3kh0/3kh0-assets/main/ducklife1/index.html')">
+        <img width="145" height="145" src="/games/assets/game44.jpg">
+        <p>Duck Life</p></a>
+      </div>
+      <div class="column" data-category="general">
+        <a onclick="loadgame('https://raw.githack.com/3kh0/3kh0-assets/main/drift-boss/index.html')">
+        <img width="145" height="145" src="/games/assets/game45.jpg">
+        <p>Drift Boss</p></a>
+      </div>
+      <div class="column" data-category="general">
+        <a onclick="loadgame('https://raw.githack.com/3kh0/3kh0-assets/main/cars-simulator/index.html')">
+        <img width="145" height="145" src="/games/assets/game46.jpg">
+        <p>Cars Simulator</p></a>
+      </div>
+      <div class="column" data-category="general">
+        <a onclick="loadgame('https://raw.githack.com/3kh0/3kh0-assets/main/bitlife/index.html')">
+        <img width="145" height="145" src="/games/assets/game47.jpg">
+        <p>BitLife</p></a>
+      </div>
+      <div class="column" data-category="general">
+        <a onclick="loadgame('https://raw.githack.com/3kh0/3kh0-assets/main/angry-sharks/index.html')">
+        <img width="145" height="145" src="/games/assets/game48.jpg">
+        <p>Angry Sharks</p></a>
+      </div>
+      <div class="column" data-category="general flash">
+        <a onclick="loadswf('https://cdn.z1g-project.pages.dev/sodium/swfs/run2.swf')">
+        <img width="145" height="145" src="/games/assets/game49.jpg">
+        <p>Run 2</p></a>
+      </div>
+      <div class="column" data-category="general">
+        <a onclick="loadgame('https://raw.githack.com/3kh0/3kh0-assets/main/10-minutes-till-dawn/index.html')">
+        <img width="145" height="145" src="/games/assets/game50.jpg">
+        <p>10 Minutes till dawn</p></a>
+      </div>
+      <div class="column" data-category="general">
+        <a onclick="loadgame('https://raw.githack.com/3kh0/3kh0-assets/main/wallsmash/index.html')">
+        <img width="145" height="145" src="/games/assets/game51.jpg">
+        <p>Wall Smash</p></a>
+      </div>
+      <div class="column" data-category="general">
+        <a onclick="loadgame('https://raw.githack.com/3kh0/3kh0-assets/main/wordle/index.html')">
+        <img width="145" height="145" src="/games/assets/game52.jpg">
+        <p>Wordle</p></a>
+      </div>
+      <div class="column" data-category="general">
+        <a onclick="loadgame('https://raw.githack.com/3kh0/3kh0-assets/main/google-snake/index.html')">
+        <img width="145" height="145" src="/games/assets/game53.jpg">
+        <p>Google Snake</p></a>
+      </div>
+      <div class="column" data-category="general">
+        <a onclick="loadgame('https://raw.githack.com/3kh0/3kh0-assets/main/gachalife/index.html')">
+        <img width="145" height="145" src="/games/assets/game54.jpg">
+        <p>Gachalife</p></a>
+      </div>
+      <div class="column" data-category="general">
+        <a onclick="loadgame('https://raw.githack.com/3kh0/3kh0-assets/main/fnaw/index.html')">
+        <img width="145" height="145" src="/games/assets/game55.jpg">
+        <p>FNAW</p></a>
+      </div>
+      <div class="column" data-category="general">
+        <a onclick="loadgame('https://raw.githack.com/3kh0/3kh0-assets/main/flappy-plane/index.html')">
+        <img width="145" height="145" src="/games/assets/game56.jpg">
+        <p>Flappy Plane</p></a>
+      </div>
+      <div class="column" data-category="general">
+        <a onclick="loadgame('https://raw.githack.com/3kh0/3kh0-assets/main/fake-virus/index.html')">
+        <img width="145" height="145" src="/games/assets/game57.jpg">
+        <p>Fake Virus</p></a>
+      </div>
+      <div class="column" data-category="general">
+        <a onclick="loadgame('https://raw.githack.com/3kh0/3kh0-assets/main/awesometanks2/index.html')">
+        <img width="145" height="145" src="/games/assets/game58.jpg">
+        <p>Awesome Tanks 2</p></a>
+      </div>
     </div>
 
     <br>
     <br>
     <br>
-    <footer>
-      <img src="assets/img/z1g.png" alt="z1g Project" title="The z1g Project GitHub organization" height="30" width="30" onclick="location.href='/github/z1g-project/'" />
-      <img src="assets/img/discord.jpg" alt="Discord" title="The z1g Project Discord" height="30" width="30" onclick="location.href='/discord/'" />
-      <img src="assets/img/github.png" alt="GitHub" title="The official deployment repository for Sodium" height="30" width="30" onclick="location.href='/github/'" />
-      <img src="assets/img/credits.png" alt="Credits" title="License information" height="30" width="30" onclick="location.href='credits.html'" />   
-      <div class="footer-text-container" style="margin-left: auto">
-        <span>Sodium &copy; z1g Project 2023</span>
-      </div> 
-  </footer>
+    <div id="footer" class="fullwidth">
+      <div class="footerflex">
+          <div class="footerbrand">
+              <h3><a href="/">Sodium</a></h3>
+              <p>Evading Internet Censorship for over 6 Months!</p>
+          </div>
+          <div class="footerlist">
+            <p style="margin-top: 58px;">Sodium © z1g Project 2024</hp>
+          </div>
+      </div>
+      <div class="footersocials">
+        <img src="assets/img/z1g.png" alt="z1g Project" title="The z1g Project GitHub organization" height="30" width="30" onclick="location.href='/github/z1g-project/'">
+        <img src="assets/img/discord.jpg" alt="Discord" title="The z1g Project Discord" height="30" width="30" onclick="location.href='/discord/'">
+        <img src="assets/img/github.png" alt="GitHub" title="The official deployment repository for Sodium" height="30" width="30" onclick="location.href='/github/'">
+        <img src="assets/img/license.svg" alt="Credits" title="License information" height="30" width="30" onclick="location.href='/credits/'">   
+      </div>
+    </div>
   </body>
 </html>

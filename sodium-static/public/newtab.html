@@ -2,33 +2,36 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no"/>
   <title>Sodium</title>
-  <meta name="description" content="Sodium is a site used for evading internet censorship." />
-  <meta name="keywords" content="proxy, web proxy, ultraviolet, service workers, unblock websites, unblock chromebook, free web proxy, proxy list, z1g project, proxy sites, un block chromebook, online proxy, proxy server, proxysite, proxy youtube, bypass securly, bypass iboss, bypass lightspeed filter, sodium, titanium network, unblock youtube, youtube proxy, unblocked youtube, youtube unblocked" />
-  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#434c5e" />
+  <meta name="description" content="Sodium is a site used for evading internet censorship"/>
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#27639f"/>
+  <meta name="keywords" content="Sodium, z1g-project, internet-censorship, evade-internet-censorship">
   <meta property="og:image" content="/sodium.png">
   <meta name="googlebot" content="index, follow, snippet" />
+  <meta name="google-site-verification" content="NcXduIMZjFJogp0L7XN8Qx1W1BVAS3XyuZyUbSBhfW8" />
+  <meta name="msvalidate.01" content="3E09A94679BB473624DF98D5B7E61565" />
   <link id="favicon" rel="icon" type="image/png" href="favicon.ico">
-  <link rel="stylesheet" href="montserrat.css"/>
-  <link rel="stylesheet" href="ui.css" id="custom-css"/>
-  <script id="proxcfg" src="uv/uv.bundle.js" defer></script>
-  <script src="uv/uv.config.js" defer></script>
-  <script id="proxsw" src="register-sw.js" defer></script>
-  <script src="search.js" defer></script>
-  <script id="proxloader" src="index.js" defer></script>
+  <link rel="stylesheet" href="assets/css/montserrat.css"/>
+  <link rel="stylesheet" href="assets/css/ui.css" id="custom-css"/>
+  <script id="proxcfg" src="ultra/ultra.bundle.js" defer></script>
+  <script src="ultra/ultra.config.js" defer></script>
+  <script id="proxsw" src="assets/js/register-sw.js" defer></script>
+  <script src="assets/js/search.js" defer></script>
+  <script id="proxloader" src="assets/js/index.js" defer></script>
   <link rel="manifest" href="manifest.webmanifest"/>
-  <link rel="json" href="appx.json"></link>
-  <script src="time.js" defer></script>
-  <script src="settings.js" defer></script>
-  <script src="stealth.js" defer></script>
-  <script src="fade.js" defer></script>
-  <script src="changes.js" defer></script>
+  <link rel="json" href="assets/json/appx.json"></link>
+  <script src="assets/js/time.js" defer></script>
+  <script src="assets/js/settings.js" defer></script>
+  <script src="assets/js/stealth.js" defer></script>
+  <script src="assets/js/fade.js" defer></script>
+  <script src="assets/js/changes.js" defer></script>
   <script id="proxworker" defer></script>
-  <script src="proxhandler.js" defer></script>
+  <script src="assets/js/proxhandler.js" defer></script>
   <script src="updates.js" defer></script>
-  <script src="bare.js" defer></script>
-  <script src="debug.js" defer></script>
+  <script src="assets/js/bare.js" defer></script>
+  <script src="assets/js/debug.js" defer></script>
+  <script src="regcache.js" defer></script>
   <style>
 #apploader {
   display: none;
@@ -50,35 +53,9 @@
   top: 40px;
   left: 0;
   width: 100%;
-  height: calc(100% - 85px);
+  height: calc(100% - 6.5%);
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 999;
-}
-
-#wave-container {
-  width: 100%;
-  height: 100px;
-  overflow: hidden;
-}
-
-.wave {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.3) 50%, rgba(255, 255, 255, 0) 100%);
-  animation: wave-animation 2s infinite;
-}
-
-@keyframes wave-animation {
-  0% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(50px);
-  }
-  100% {
-    transform: translateY(0);
-  }
 }
 
 .loading-content {
@@ -101,25 +78,6 @@
 
 .info-menu-item {
   font-size: 12px;
-}
-
-.modal {
-  display: none;
-  position: fixed;
-  z-index: 1;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-}
-
-.modal-content {
-  background-color: #242424;
-  margin: 15% auto;
-  padding: 20px;
-  border: 1px solid #888;
-  max-width: 900px;
 }
 
 .close {
@@ -156,27 +114,24 @@
   <div id="changelogModal" class="modal">
     <div class="modal-content">
       <span class="close">&times;</span>
-      <h2>What's New</h2>
-      <p class="release-date">Release Date: October 3rd, 2023</p>
+      <h2 style="font-weight: 700;">What's New</h2>
+      <p class="release-date">Release Date: December 1st, 2023</p>
       <ul class="changes-list">
-        <li>Fixed Z-Index on Loading Overlays</li>
-        <li>Updated Ruffle nightly 8/29/23 > nightly 10/02/23</li>
-        <li>Made Tabbed UI dark mode</li>
-        <li>Added more Addons!</li>
-        <li>Made Service Workers auto register!</li>
-        <li>Made Sodium 37% more Efficient than v1.3.7 (LTS)</li>
-        <li>Redesigned Apps/Games Page ui</li>
-        <li>Added PWA Theme Changing</li>
-        <li>New CSS Editor</li>
-        <li>Added Blob Windowing</li>
-        <li>Other minor/major Fixes!</li>
+        <li>Switched to SVG's</li>
+        <li>Redo the UI</li>
+        <li>Remove old themes and replace it with 6 new stock themes</li>
+        <li>Redesigned several pages</li>
+        <li>Made Sodium 50% more Efficient than v1.4.5 (LTS)</li>
+        <li>Added More Games</li>
+        <li>Many More changes & Bug Fixes view <a style="color:white;" href="https://github.com/z1g-project/sodium">here</a></li>
       </ul>
+      <p>Version 2.0.0 - The 2024 Refresh</p>
       <button class="ok-button">OK</button>
     </div>
   </div>
 
   <div title="Sodium Logo" class="flex-center logo-wrapper header-center">
-    <img class="logo" src="sodium-header-img.png" alt="Sodium" />
+    <img class="logo" src="assets/img/logo.svg" alt="Sodium" />
     <h1>Sodium</h1>
   </div>
   <div class="flex-center desc">
@@ -185,7 +140,6 @@
   <form id="uv-form" class="flex-center">
     <input id="uv-search-engine" value="https://www.google.com/search?q=%s" type="hidden" />
     <input id="uv-address" type="text" placeholder="Search the web freely" />
-    <button id="searchButton">Search</button>
   </form>
 
   <div class="desc left-margin">
@@ -195,24 +149,31 @@
 
   <div id="loading-overlay">
     <div class="loading-content">
+      <img src="sodium.png" alt="Logo" width="125" height="125">
       <h1 class="loading-title">Sodium is loading your content!</h1>
-      <div id="wave-container">
-        <div class="wave"></div>
-      </div>
+      <img src="assets/img/loader.svg" alt="Loading Animation" width="50" height="50">
       <p class="loading-message">Please wait...</p>
     </div>
   </div>
 
   <iframe id="apploader"></iframe>
 
-  <footer>
-    <img src="assets/img/z1g.png" alt="z1g Project" title="The z1g Project GitHub organization" height="30" width="30" onclick="location.href='/github/z1g-project/'" />
-    <img src="assets/img/discord.jpg" alt="Discord" title="The z1g Project Discord" height="30" width="30" onclick="location.href='/discord/'" />
-    <img src="assets/img/github.png" alt="GitHub" title="The official deployment repository for Sodium" height="30" width="30" onclick="location.href='/github/'" />
-    <img src="assets/img/credits.png" alt="Credits" title="License information" height="30" width="30" onclick="location.href='credits.html'" />   
-    <div class="footer-text-container" style="margin-left: auto">
-      <span>Sodium &copy; z1g Project 2023</span>
-    </div> 
-</footer>
+  <div id="footer" class="fullwidth" style="margin-top: 20%;">
+      <div class="footerflex">
+          <div class="footerbrand">
+              <h3><a href="/">Sodium</a></h3>
+              <p>Evading Internet Censorship for over 6 Months!</p>
+          </div>
+          <div class="footerlist">
+            <p style="margin-top: 58px;">Sodium © z1g Project 2024</hp>
+          </div>
+      </div>
+      <div class="footersocials">
+        <img src="assets/img/z1g.png" alt="z1g Project" title="The z1g Project GitHub organization" height="30" width="30" onclick="location.href='/github/z1g-project/'">
+        <img src="assets/img/discord.jpg" alt="Discord" title="The z1g Project Discord" height="30" width="30" onclick="location.href='/discord/'">
+        <img src="assets/img/github.png" alt="GitHub" title="The official deployment repository for Sodium" height="30" width="30" onclick="location.href='/github/'">
+        <img src="assets/img/license.svg" alt="Credits" title="License information" height="30" width="30" onclick="location.href='/credits/'">   
+      </div>
+  </div>  
 </body>
 </html>

@@ -1,0 +1,11 @@
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 23 25.5" width="23" height="22">
+	<title>bat-full-svg</title>
+	<defs>
+		<image  width="8" height="10" id="img1" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAKAQMAAACzCY3DAAAAAXNSR0IB2cksfwAAAAZQTFRFAAAAAAAApWe5zwAAAAJ0Uk5TAP9bkSK1AAAAG0lEQVR4nGOQYJBgsGCoZ/jP8I9BhsEGyDYAACPaA6WWR02SAAAAAElFTkSuQmCC"/>
+	</defs>
+	<style>
+		.s0 { fill: #ffffff } 
+	</style>
+	<path id="Layer" fill-rule="evenodd" class="s0" d="m18.8 6.8q0.5 0 1.1 0.2 0.5 0.2 1 0.6 0.4 0.5 0.6 1 0.2 0.6 0.2 1.2c0.9 0.2 1.5 0.9 1.5 1.8v2.3c0 0.9-0.6 1.6-1.5 1.8v0.1q0 0.5-0.2 1.1-0.2 0.5-0.6 1-0.5 0.4-1 0.6-0.6 0.2-1.2 0.3h-15q-0.5-0.1-1.1-0.3-0.5-0.2-1-0.6-0.4-0.5-0.6-1-0.2-0.6-0.3-1.1l0.1-6q0-0.6 0.2-1.2 0.2-0.5 0.6-1 0.5-0.4 1-0.6 0.6-0.2 1.1-0.2zm-15 1.4q-0.2 0.1-0.5 0.2-0.3 0.1-0.5 0.3-0.2 0.2-0.3 0.5-0.1 0.3-0.2 0.5l0.1 6q0 0.3 0.1 0.6 0.1 0.3 0.3 0.5 0.2 0.2 0.5 0.3 0.3 0.1 0.5 0.1h15q0.3 0 0.6-0.1 0.3-0.1 0.5-0.3 0.2-0.2 0.3-0.5 0.1-0.3 0.1-0.6v-6q0-0.2-0.1-0.5-0.1-0.3-0.3-0.5-0.2-0.2-0.5-0.3-0.3-0.1-0.6-0.2zm14.3 1.5q0.1 0.1 0.3 0.1 0.1 0.1 0.2 0.2 0.1 0.1 0.2 0.2 0 0.2 0 0.3v4.5q0 0.1 0 0.3-0.1 0.1-0.2 0.2-0.1 0.1-0.2 0.2-0.2 0-0.3 0h-13.5c-0.4 0-0.8-0.3-0.8-0.7v-4.5q0.1-0.1 0.1-0.3 0.1-0.1 0.2-0.2 0.1-0.1 0.2-0.2 0.2 0 0.3-0.1z"/>
+	<use id="charge" href="#img1" x="8" y="8"/>
+</svg>

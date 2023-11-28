@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <base href="../../"></base>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+  <title>Sodium</title>
+  <meta name="description" content="Sodium is a site used for evading internet censorship"/>
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#27639f" />
+  <meta name="googlebot" content="index, follow, snippet" />
+  <link id="favicon" rel="icon" type="image/png" href="favicon.ico">
+  <link rel="stylesheet" href="assets/css/montserrat.css"/>
+  <link rel="stylesheet" href="assets/css/ui.css" id="custom-css"/>
+  <link rel="manifest" href="manifest.webmanifest"/>
+  <script id="proxcfg" src="ultra/ultra.bundle.js" defer></script>
+  <script src="ultra/ultra.config.js" defer></script>
+  <script id="proxsw" src="assets/js/register-sw.js" defer></script>
+  <script src="assets/js/search.js" defer></script>
+  <script id="proxloader" src="assets/js/index.js" defer></script>
+  <script src="assets/js/settings.js" defer></script>
+  <script src="assets/js/fade.js" defer></script>
+  <script src="assets/js/bare.js" defer></script>
+  <script src="assets/js/debug.js" defer></script>
+  <script src="games/run3/ruffle/ruffle.js" defer></script>
+  <style>
+  #container {
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #container object {
+    width: 100%;
+    height: 100%;
+  }
+  </style>
+</head>
+<body>  
+    <div id="container"></div>
+    <script>
+        window.RufflePlayer = window.RufflePlayer || {};
+        window.addEventListener("load", (event) => {
+            const ruffle = window.RufflePlayer.newest();
+            const player = ruffle.createPlayer();
+            player.style.width = "100%"; player.style.height = "100%";
+            const container = document.getElementById("container");
+            container.appendChild(player);
+            const flashgame = sessionStorage.getItem('flashswf')
+            player.load({
+                url: flashgame,
+            });
+        });
+    </script>
+</body>
