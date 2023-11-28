@@ -2,7 +2,7 @@
   <p align="center">
     <img src="./sodium-static/public/sodium.png" height="135" width="135">
   </p>
-  <h1 align="center">Sodium</h1>
+  <h1 align="center">Sodium Source</h1>
   <p align="center">Sodium is a site used for evading internet censorship</p>
 </div>
 
@@ -25,10 +25,6 @@ Some of the features of sodium are:
 ## Setup & installation
 
 To set up Sodium, it is simple. Below are some instructions to get you started!
-
-**NOTE that as of right now we don't have quick deployments set up, but I plan on adding support for this at some point in the future.
-
-### Steps
 
 - Fork This Repository, Clone into the repository by using: `git clone https://github.com/z1g-project/sodium.git`, or download the [Latest Release](https://github.com/z1g-project/sodium/releases) and extract it to your deployments directory.
 - Make sure that you have NodeJS 18.x installed to check this in your operating system of choice command line or terminal type: `Node --Version` and if it says 18.0.0 or anything later than that you are fine. If you need to install or update NodeJS Please Refer to [This Page](https://nodejs.org/en/download)

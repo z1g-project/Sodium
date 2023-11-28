@@ -8,6 +8,13 @@
       replaceScript("proxworker", "/dyn/dyn.worker.js");
   
       replaceFormElement();
+    } else {
+      if (window.location.hostname.includes('.pages.dev')) {
+        replaceScript("proxcfg", "/ultra/ultra.static-cfg.js");
+        console.log('Using Static UV Config');
+      } else {
+        replaceScript("proxcfg", "/ultra/ultra.config.js");
+      }
     }
   })();
   
