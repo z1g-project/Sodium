@@ -57,7 +57,7 @@ self.addEventListener('install', (event) => {
           '/assets/css/dark.css',
           '/assets/img/dark-waves.svg',
           '/assets/img/loader.svg',
-          '/ultra/ultra.static-cfg.js',
+          '/ultra/ultra.config.js',
           '/ultra/ultra.bundle.js',
           '/dyn/dyn.config.js',
           '/assets/js/search.js',
