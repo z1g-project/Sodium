@@ -105,6 +105,7 @@ a {
 textarea {
   width: 400px;
   height: 40px;
+  font-family: 'Montserrat', sans-serif;
   font-size: 16px;
   padding: 0 10px;
   border: none;
