@@ -2,10 +2,8 @@ async function checkLatestVersion() {
   try {
     const isBeta = window.location.hostname.includes('v2');
     const branch = isBeta ? 'v2' : 'master';
-
     const response = await fetch(`https://raw.githubusercontent.com/z1g-project/sodium/${branch}/sodium-static/public/version.txt`);
     const latestVersion = await response.text();
-
     const currentVersion = '2.0.0';
 
     if (window.location.hostname.includes('localhost')) {

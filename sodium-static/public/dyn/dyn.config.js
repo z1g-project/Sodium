@@ -5,7 +5,7 @@ self.__dynamic$config = {
   logLevel: 3,
   bare: {
     version: 3,
-    path: "https://server.flow-works.me/bare/"
+    path: "https://phantomnetwork.cloud/bare/"
   },
   tab: {
     title: 'Service',
