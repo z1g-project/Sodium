@@ -111,6 +111,7 @@ textarea {
   padding: 0 10px;
   border: none;
   border-radius: 25px;
+  margin-top: 10px;
   opacity: 0;
   animation: fade-in 0.5s ease-in-out forwards;
   background-color: #121212;
