@@ -12,7 +12,7 @@ self.addEventListener('install', (event) => {
           '/404.html',
           '/appframe.html',
           '/iframe.html',
-          '/credits.html',
+          '/credits/',
           '/assets/json/appx.json',
           '/assets/js/debug.js',
           '/assets/js/credits.js',
