@@ -24,7 +24,14 @@ Some of the features of sodium are:
 
 ## Setup & installation
 
-To set up Sodium, it is simple. Below are some instructions to get you started!
+To set up Sodium, it is super simple. Below are some instructions to get you started or you may select a quick deploy button below!
+
+[![Run on Replit](https://raw.githubusercontent.com/BinBashBanana/deploy-buttons/master/buttons/remade/replit.svg)](https://replit.com/github/z1g-project/Sodium)
+[![Run on Cyclic](https://raw.githubusercontent.com/BinBashBanana/deploy-buttons/master/buttons/official/cyclic.svg)](https://app.cyclic.sh/api/app/deploy/z1g-project/Sodium)
+[![Deploy to Cloudflare](https://raw.githubusercontent.com/z1g-project/terbium/main/static/resources/cflogo.png)](https://github.com/z1g-project/Terbium/wiki/Deploy-to-Cloudflare-Pages)
+[![Run on Glitch](https://raw.githubusercontent.com/BinBashBanana/deploy-buttons/master/buttons/official/glitch.svg)](https://glitch.com/edit/#!/import/github/z1g-project/Sodium)
+
+> **NOTE** If you wish to use a site such as Cloudflare pages or any other static hosts, it is possible you need to follow [This guide](static-hosting.md)
 
 - Fork This Repository, Clone into the repository by using: `git clone https://github.com/z1g-project/sodium.git`, or download the [Latest Release](https://github.com/z1g-project/sodium/releases) and extract it to your deployments directory.
 - Make sure that you have NodeJS 18.x installed to check this in your operating system of choice command line or terminal type: `Node --Version` and if it says 18.0.0 or anything later than that you are fine. If you need to install or update NodeJS Please Refer to [This Page](https://nodejs.org/en/download)
@@ -32,7 +39,7 @@ To set up Sodium, it is simple. Below are some instructions to get you started!
 
 > ⚠️ Note if you are on Replit, Glitch, Heroku (or any other host that doesn't allow proxies), This Repository will probably automatically flag your repository. Check out how to Bypass these Restrictions here: [Bypassing Restrictions](https://github.com/holy-unblocker/website-aio/wiki/Circumventing-deployment-restrictions)
 
-- Once all dependencies are installed you may run `npm start` to start the HTTP Server. If you wish to use a site such as Cloudflare pages or any other static hosts, it is possible you need to follow [This guide](static-hosting.md)
+- Once all dependencies are installed you may run `npm start` to start the HTTP Server.
 
 ## Credits
 
