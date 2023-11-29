@@ -9,33 +9,22 @@
   <meta name="keywords" content="css, editor, custom, ui, sodium" />
   <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#434c5e" />
   <link id="favicon" rel="icon" type="image/png" href="favicon.ico">
-  <link rel="stylesheet" href="montserrat.css"/>
-  <link rel="stylesheet" href="ui.css" id="custom-css"/>
+  <link rel="stylesheet" href="assets/css/montserrat.css"/>
+  <link rel="stylesheet" href="assets/css/ui.css" id="custom-css"/>
   <link rel="stylesheet" href="/settings/css-editor/codemirror.css">
-  <script src="uv/uv.bundle.js" defer></script>
-  <script src="uv/uv.config.js" defer></script>
-  <script src="register-sw.js" defer></script>
-  <script src="search.js" defer></script>
-  <script src="index.js" defer></script>
-  <link rel="json" href="appx.json"></link>
+  <script src="ultra/ultra.bundle.js" defer></script>
+  <script src="ultra/ultra.config.js" defer></script>
+  <script src="assets/js/register-sw.js" defer></script>
+  <script src="assets/js/search.js" defer></script>
+  <script src="assets/js/index.js" defer></script>
+  <link rel="json" href="assets/json/appx.json"></link>
   <link rel="manifest" href="manifest.webmanifest"/>
-  <script src="time.js" defer></script>
-  <script src="settings.js" defer></script>
-  <script src="fade.js" defer></script>
+  <script src="assets/js/time.js" defer></script>
+  <script src="assets/js/settings.js" defer></script>
+  <script src="assets/js/fade.js" defer></script>
   <style>
     .config-select {
-      padding: 5px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      color: white;
-      background-color: #000000;
       margin-top: 1vh;
-    }
-
-    .css-editor {
-      margin-top: 1vh;
-      background-color: rgba(24,24,24);
-      color: white;
     }
 
     .notification {
@@ -69,7 +58,7 @@
     } else {
       const defaultStyleSheet = document.createElement('link');
       defaultStyleSheet.rel = 'stylesheet';
-      defaultStyleSheet.href = 'ui.css';
+      defaultStyleSheet.href = 'assets/css/ui.css';
       defaultStyleSheet.id = 'custom-css';
       document.head.appendChild(defaultStyleSheet);
     }
@@ -78,10 +67,10 @@
 </head>
 <body>
   <div class="second-bar">
-    <a href="/" class="second-bar-link home-link"></a>
-    <a href="/games/" class="second-bar-link games-link"></a>
-    <a href="/apps/" class="second-bar-link apps-link"></a>
-    <a href="/settings/" class="second-bar-link settings-link"></a>
+    <a href="/" title="Home" class="second-bar-link home-link"></a>
+    <a href="/games/" title="Games" class="second-bar-link games-link"></a>
+    <a href="/apps/" title="Apps" class="second-bar-link apps-link"></a>
+    <a href="/settings/" title="Settings" class="second-bar-link settings-link"></a>
     <div class="info-menu" id="info-menu" style="margin-left: auto">
       <div class="info-menu-item" id="transferRate"></div>
       <div class="info-menu-item" id="latency"></div>
@@ -112,24 +101,35 @@
       <div id="css-editor" class="css-editor"></div>
     </div>
     <select id="css-select" class="config-select">
-      <option value="ui.css">Default (Dark)</option>
-      <option value="sodium.css">Sodium</option>
-      <option value="light.css">Light</option>
-      <option value="amoled.css">Amoled</option>
+      <option value="assets/css/ui.css">Refreshed (Defualt)</option>
+      <option value="assets/css/generic.css">Generic Moddable Theme</option>
+      <option value="assets/css/amoled.css">Amoled</option>
+      <option value="assets/css/mocha.css">Mochoa</option>
+      <option value="assets/css/dark.css">Dark</option>
+      <option value="assets/css/legacy.css">Legacy Dark</option>
+      <option value="assets/css/festive.css">Festive</option>
       <option value="custom">Custom CSS</option>
     </select>
-    <button onclick="loadSelectedCSS(editor)">Select</button>
+    <button style="margin-top: 1vh;" onclick="loadSelectedCSS(editor)">Select</button>
   </div>
 
-  <footer>
-    <img src="assets/img/z1g.png" alt="z1g Project" title="The z1g Project GitHub organization" height="30" width="30" onclick="location.href='/github/z1g-project/'" />
-    <img src="assets/img/discord.jpg" alt="Discord" title="The z1g Project Discord" height="30" width="30" onclick="location.href='/discord/'" />
-    <img src="assets/img/github.png" alt="GitHub" title="The official deployment repository for Sodium" height="30" width="30" onclick="location.href='/github/'" />
-    <img src="assets/img/credits.png" alt="Credits" title="License information" height="30" width="30" onclick="location.href='credits.html'" />   
-    <div class="footer-text-container" style="margin-left: auto">
-      <span>Sodium &copy; z1g Project 2023</span>
-    </div> 
-  </footer>
+  <div id="footer" class="fullwidth">
+    <div class="footerflex">
+        <div class="footerbrand">
+            <h3><a href="/">Sodium</a></h3>
+            <p>Evading Internet Censorship for over 6 Months!</p>
+        </div>
+        <div class="footerlist">
+          <p style="margin-top: 58px;">Sodium © z1g Project 2024</hp>
+        </div>
+    </div>
+    <div class="footersocials">
+      <img src="assets/img/z1g.png" alt="z1g Project" title="The z1g Project GitHub organization" height="30" width="30" onclick="location.href='/github/z1g-project/'">
+      <img src="assets/img/discord.jpg" alt="Discord" title="The z1g Project Discord" height="30" width="30" onclick="location.href='/discord/'">
+      <img src="assets/img/github.png" alt="GitHub" title="The official deployment repository for Sodium" height="30" width="30" onclick="location.href='/github/'">
+      <img src="assets/img/license.svg" alt="Credits" title="License information" height="30" width="30" onclick="location.href='/credits/'">   
+    </div>
+  </div>
   <script>
     function escapeHTML(css) {
       return css.replace(/</g, '&lt;').replace(/>/g, '&gt;');

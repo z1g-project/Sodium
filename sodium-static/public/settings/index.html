@@ -6,23 +6,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no"/>
   <title>Sodium</title>
   <meta name="description" content="Sodium is a site used for evading internet censorship"/>
+  <meta name="keywords" content="Sodium, z1g-project, internet-censorship, evade-internet-censorship">
   <meta property="og:image" content="/sodium.png">
   <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#434c5e"/>
-  <meta name="googlebot" content="index, follow, snippet"/>
+  <meta name="googlebot" content="all"/>
   <link id="favicon" rel="icon" type="image/png" href="favicon.ico">
-  <link rel="stylesheet" href="montserrat.css"/>
-  <link rel="stylesheet" href="ui.css" id="custom-css"/>
-  <link rel="json" href="appx.json"></link>
+  <link rel="stylesheet" href="assets/css/montserrat.css"/>
+  <link rel="stylesheet" href="assets/css/ui.css" id="custom-css"/>
+  <link rel="json" href="assets/json/appx.json"></link>
   <link rel="manifest" href="manifest.webmanifest"/>
-  <script src="uv/uv.bundle.js" defer></script>
-  <script src="uv/uv.config.js" defer></script>
-  <script src="dynamic/dynamic.config.js" defer></script>
-  <script src="register-sw.js" defer></script>
-  <script src="search.js" defer></script>
-  <script src="index.js" defer></script>
-  <script src="time.js" defer></script>
-  <script src="settings.js" defer></script>
-  <script src="fade.js" defer></script>
+  <script src="ultra/ultra.bundle.js" defer></script>
+  <script src="ultra/ultra.config.js" defer></script>
+  <script src="dyn/dyn.config.js" defer></script>
+  <script src="assets/js/register-sw.js" defer></script>
+  <script src="assets/js/search.js" defer></script>
+  <script src="assets/js/index.js" defer></script>
+  <script src="assets/js/time.js" defer></script>
+  <script src="assets/js/settings.js" defer></script>
+  <script src="assets/js/fade.js" defer></script>
+  <script src="regcache.js" defer></script>
   <style>
 .sidebar {
   background-color: transparent;
@@ -64,6 +66,7 @@
 .section.active {
   display: block;
   opacity: 1;
+  animation: fade-in 0.5s ease-in-out forwards
 }
 
 .reset-button {
@@ -71,18 +74,18 @@
   padding: 0 20px;
   font-size: 16px;
   margin-left: 10px;
+  margin-bottom: 25px;
   background-color: red;
   color: #fff;
   border: none;
-  border-radius: 4px;
+  border-radius: 25px;
   cursor: pointer;
   opacity: 0;
   animation: fade-in 0.5s ease-in-out forwards;
 }
 
 .reset-button:hover {
-  background-color: darkred;
-  transform: scale(1.1);
+  transform: scale(1.2);
 }
 
 .sidebar-buttons {
@@ -96,12 +99,6 @@
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
   padding: 20px;
-}
-
-.addon-item {
-  border: 1px solid #ddd;
-  padding: 20px;
-  text-align: center;
 }
 
 .notification {
@@ -147,7 +144,7 @@
   </div>
 
   <div class="sidebar">
-    <h1>Settings</h1>
+    <h1 style="text-align:left;">Settings</h1>
     <ul>
       <li data-section="general">General</li>
       <li data-section="appearance">Appearance</li>
@@ -216,17 +213,22 @@
     <input type="checkbox" id="open-blob-window">
     <br>
     <br>
+    <label for="title-randomizer">Cloak Name Randomizer:</label>
+    <input type="checkbox" id="title-randomizer">
+    <br>
+    <br>
     </div>
 
     <div class="section" data-section="appearance">
         <h2>Appearance Settings</h2>
         <label for="css-select" class="config-label">CSS:</label>
         <select id="css-select" class="config-select">
-          <option value="ui.css">Default (Dark)</option>
-          <option value="sodium.css">Sodium</option>
-          <option value="light.css">Light</option>
-          <option value="amoled.css">Amoled</option>
-          <option value="halloween.css">Halloween</option>
+          <option value="assets/css/ui.css">Refreshed (Defualt)</option>
+          <option value="assets/css/amoled.css">Amoled</option>
+          <option value="assets/css/mocha.css">Mocha</option>
+          <option value="assets/css/dark.css">Dark</option>
+          <option value="assets/css/legacy.css">Legacy Dark</option>
+          <option value="assets/css/festive.css">Festive</option>
         </select>
         <br>
         <br>
@@ -246,6 +248,10 @@
         <label for="use-seconds-checkbox">Include Seconds in Time Bar</label>
         <br>
         <br>
+        <input type="checkbox" id="disable-clock">
+        <label for="disable-clock">Disable Clock</label>
+        <br>
+        <br>
         <button id="apply-css-button">Apply CSS</button>
         <br>
         <br>
@@ -253,14 +259,9 @@
       </div>
 
       <div class="section" data-section="network">
-        <h3>Network</h3>
+        <h2>Network</h2>
         <label for="connection-status" class="config-label">Connection Status:</label>
         <p id="connection-status">Detecting...</p>
-      
-        <label for="bandwidth-limit" class="config-label">Bandwidth Limit (Mbps):</label>
-        <input type="number" id="bandwidth-limit-input" class="config-input" min="1" step="1" />
-        <br>
-        <br>
         <label for="bare-server-select" class="config-label">Custom Bare Server (Beta):</label>
         <input type="text" id="custom-bare-server-input" placeholder="Enter a url like so: https://bare.example.com" class="config-input">
         <div id="ping-status">Checking server status...</div>
@@ -293,7 +294,7 @@
             .catch(() => `🔴Offline - 0ms`);
           }
 
-          const bareServerUrl = localStorage.getItem('bareServer') || 'https://tomp.app';
+          const bareServerUrl = localStorage.getItem('bareServer') || 'https://server.flow-works.me/bare/';
           checkServerStatus(bareServerUrl)
           .then(status => {
             const pingElement = document.getElementById('ping-status');
@@ -311,6 +312,7 @@
       <button onclick="openImportFile()">Import Cache</button>
       <button onclick="exportCache()">Export Cache</button>
       <button id="unregisterButton">Unregister Service Workers</button>
+      <button id="reregisterButton">ReRegister Service Workers</button>
       <br>
       <br>
     </div> 
@@ -422,7 +424,7 @@ function showSection(sectionName) {
 <script>
 function immortalize(arg) {
   if (arg === 'sodium') {
-    localStorage.setItem('websiteCSS', 'immortal.css');
+    localStorage.setItem('websiteCSS', 'assets/css/immortal.css');
 
     console.log('Immortal Requested');
     console.log('Initializing 3MB Tailwind Package...');
@@ -474,11 +476,71 @@ function immortalize(arg) {
           await registration.unregister();
           console.log(`Unregistered service worker: ${registration.scope}`);
         }
-        
+        console.log('Done! All service workers unregistered')        
         alert('All service workers unregistered.');
       } catch (error) {
         console.error('Error unregistering service workers:', error);
         alert('Error unregistering service workers. Check the console for details.');
+      }
+    });
+
+    const reregisterButton = document.getElementById('reregisterButton');
+    
+    reregisterButton.addEventListener('click', async () => {
+      try {
+        const stockSW = "/sw.js";
+        const dynSW = "/dyn.sw.js";
+        const swAllowedHostnames = ["localhost", "127.0.0.1"];
+
+        async function registerSW() {
+          if (
+            location.protocol !== "https:" &&
+            !swAllowedHostnames.includes(location.hostname)
+          )
+          throw new Error("Service workers cannot be registered without https.");
+          if (!navigator.serviceWorker)
+            throw new Error("Your browser doesn't support service workers.");
+          await navigator.serviceWorker.register(stockSW, {
+            scope: "/sw/",
+          });
+          await navigator.serviceWorker.register(dynSW, {
+            scope: "/service/",
+          });
+          if (window.location.hostname.includes('.pages.dev')) {
+            navigator.serviceWorker.register('static-cache.js')
+              .then((registration) => {
+                console.log('Static Cache Service Worker registered with scope:', registration.scope);
+              })
+              .catch((error) => {
+                console.error('Error registering Service Worker:', error);
+              });
+          } else {
+            navigator.serviceWorker.register('cache.js')
+              .then((registration) => {
+                console.log('Cache Service Worker registered with scope:', registration.scope);
+              })
+              .catch((error) => {
+                console.error('Error registering Service Worker:', error);
+              });
+          }
+          if (navigator.onLine) {
+            navigator.serviceWorker.register('acache.js')
+            .then((registration) => {
+              console.log('Game/Asset Cache Service Worker registered with scope:', registration.scope);
+            })
+            .catch((error) => {
+              console.error('Error registering Service Worker:', error);
+            });
+          } else {
+            console.warn('Your Offline: Using existing Cache')
+          }
+        }
+        registerSW()
+        console.log('Done! ReRegistered Service Workers')
+        alert('All service workers reregistered.');
+      } catch (error) {
+        console.error('Error reregistering service workers:', error);
+        alert('Error reregistering service workers. Check the console for details.');
       }
     });
   </script>

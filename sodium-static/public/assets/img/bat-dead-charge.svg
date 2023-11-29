@@ -1,0 +1,11 @@
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 23 25.5" width="23" height="22">
+	<title>bat-dead-svg</title>
+	<defs>
+		<image  width="10" height="12" id="img1" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAMAQMAAABhpb7jAAAAAXNSR0IB2cksfwAAAAZQTFRFAAAAAAAApWe5zwAAAAJ0Uk5TAP9bkSK1AAAAI0lEQVR4nGNgY2DgY2CQY2CQYWCwP8BQf4DhfwPDfyRBCQYAYHAFa7dFTiEAAAAASUVORK5CYII="/>
+	</defs>
+	<style>
+		.s0 { fill: #ffffff } 
+	</style>
+	<path id="Layer" fill-rule="evenodd" class="s0" d="m0.8 9.8q0-0.6 0.2-1.2 0.2-0.5 0.6-1 0.5-0.4 1-0.6 0.6-0.2 1.1-0.2l15-0.1q0.6 0.1 1.2 0.3 0.5 0.2 1 0.6 0.4 0.5 0.6 1 0.2 0.6 0.2 1.1v0.1c0.9 0.2 1.5 0.9 1.5 1.8v2.3c0 0.9-0.6 1.6-1.5 1.8v0.1q0 0.5-0.2 1.1-0.2 0.5-0.6 1-0.5 0.4-1 0.6-0.6 0.2-1.2 0.2h-15q-0.5 0-1.1-0.2-0.5-0.2-1-0.6-0.4-0.5-0.6-1-0.2-0.6-0.2-1.2zm19.4 0q0-0.2-0.1-0.5-0.1-0.3-0.3-0.5-0.2-0.2-0.5-0.3-0.3-0.1-0.5-0.2h-15q-0.3 0.1-0.6 0.2-0.3 0.1-0.5 0.3-0.2 0.2-0.3 0.5-0.1 0.3-0.1 0.5v6q0 0.3 0.1 0.6 0.1 0.3 0.3 0.5 0.2 0.2 0.5 0.3 0.3 0.1 0.6 0.1h15q0.2 0 0.5-0.1 0.3-0.1 0.5-0.3 0.2-0.2 0.3-0.5 0.1-0.3 0.2-0.6z"/>
+	<use id="charge" href="#img1" x="6" y="7"/>
+</svg>

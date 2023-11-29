@@ -9,18 +9,18 @@
   <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#434c5e" />
   <meta name="googlebot" content="index, follow, snippet" />
   <link id="favicon" rel="icon" type="image/png" href="favicon.ico">
-  <link rel="stylesheet" href="montserrat.css"/>
-  <link rel="stylesheet" href="ui.css" id="custom-css"/>
+  <link rel="stylesheet" href="assets/css/montserrat.css"/>
+  <link rel="stylesheet" href="assets/css/ui.css" id="custom-css"/>
   <link rel="manifest" href="manifest.webmanifest"/>
-  <script id="proxcfg" src="uv/uv.bundle.js" defer></script>
-  <script src="uv/uv.config.js" defer></script>
-  <script id="proxsw" src="register-sw.js" defer></script>
-  <script src="search.js" defer></script>
-  <script id="proxloader" src="index.js" defer></script>
-  <script src="time.js" defer></script>
-  <script src="settings.js" defer></script>
-  <script src="fade.js" defer></script>
-  <script src="bare.js" defer></script>
+  <script id="proxcfg" src="ultra/ultra.bundle.js" defer></script>
+  <script src="ultra/ultra.config.js" defer></script>
+  <script id="proxsw" src="assets/js/register-sw.js" defer></script>
+  <script src="assets/js/search.js" defer></script>
+  <script id="proxloader" src="assets/js/index.js" defer></script>
+  <script src="assets/js/time.js" defer></script>
+  <script src="assets/js/settings.js" defer></script>
+  <script src="assets/js/fade.js" defer></script>
+  <script src="assets/js/bare.js" defer></script>
   <style>
     iframe {
       position: fixed;
@@ -142,7 +142,7 @@ window.addEventListener('DOMContentLoaded', () => {
         if (proxyOption && proxyOption.toLowerCase() === "dynamic") {
           script.src = `${window.location.origin}/service/route?url=${(pluginUrl)}`;
         } else {
-          script.src = `${window.location.origin}/uv/service/${Ultraviolet.codec.xor.encode(pluginUrl)}`;
+          script.src = `${window.location.origin}/sw/${Ultraviolet.codec.xor.encode(pluginUrl)}`;
         }
       } else {
         script.src = pluginUrl;
@@ -265,10 +265,9 @@ window.addEventListener('DOMContentLoaded', () => {
 
   <div id="loading-overlay">
     <div class="loading-content">
+      <img src="sodium.png" alt="Logo" width="125" height="125">
       <h1 class="loading-title">Sodium is loading your content!</h1>
-      <div id="wave-container">
-        <div class="wave"></div>
-      </div>
+      <img src="assets/img/loader.svg" alt="Loading Animation" width="50" height="50">
       <p class="loading-message">Please wait...</p>
     </div>
   </div>
@@ -277,14 +276,22 @@ window.addEventListener('DOMContentLoaded', () => {
     <iframe id="apploader"></iframe>
   </div>
 
-  <footer>
-    <img src="assets/img/z1g.png" alt="z1g Project" title="The z1g Project GitHub organization" height="30" width="30" onclick="location.href='/github/z1g-project/'" />
-    <img src="assets/img/discord.jpg" alt="Discord" title="The z1g Project Discord" height="30" width="30" onclick="location.href='/discord/'" />
-    <img src="assets/img/github.png" alt="GitHub" title="The official deployment repository for Sodium" height="30" width="30" onclick="location.href='/github/'" />
-    <img src="assets/img/credits.png" alt="Credits" title="License information" height="30" width="30" onclick="location.href='credits.html'" />
-    <div class="footer-text-container" style="margin-left: auto">
-      <span>Sodium &copy; z1g Project 2023</span>
+  <div id="footer" class="fullwidth" style="margin-top: 50%;">
+    <div class="footerflex">
+        <div class="footerbrand">
+            <h3><a href="/">Sodium</a></h3>
+            <p>Evading Internet Censorship for over 6 Months!</p>
+        </div>
+        <div class="footerlist">
+          <p style="margin-top: 58px;">Sodium © z1g Project 2024</hp>
+        </div>
     </div>
-  </footer>
+    <div class="footersocials">
+      <img src="assets/img/z1g.png" alt="z1g Project" title="The z1g Project GitHub organization" height="30" width="30" onclick="location.href='/github/z1g-project/'">
+      <img src="assets/img/discord.jpg" alt="Discord" title="The z1g Project Discord" height="30" width="30" onclick="location.href='/discord/'">
+      <img src="assets/img/github.png" alt="GitHub" title="The official deployment repository for Sodium" height="30" width="30" onclick="location.href='/github/'">
+      <img src="assets/img/license.svg" alt="Credits" title="License information" height="30" width="30" onclick="location.href='/credits/'">   
+    </div>
+  </div>
 </body>
 </html>

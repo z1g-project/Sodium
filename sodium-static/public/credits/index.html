@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <base href="../"></base>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
+    />
+    <title>Sodium Licenses & Credits</title>
+    <meta name="description" content="Sodium is a site used for evading internet censorship." />
+    <meta name="keywords" content="Sodium, z1g-project, internet-censorship, evade-internet-censorship">
+    <meta property="og:image" content="/sodium.png">
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#27639f"/>
+    <meta name="keywords" content="Sodium, z1g-project, internet-censorship, evade-internet-censorship">
+    <meta name="googlebot" content="index, follow, snippet" />
+    <link id="favicon" rel="icon" type="image/png" href="favicon.ico">
+    <link rel="stylesheet" href="assets/css/ui.css" id="custom-css"/>
+    <link rel="manifest" href="manifest.webmanifest"/>
+    <link rel="stylesheet" href="assets/css/montserrat.css"/>
+    <script src="assets/js/time.js" defer></script>
+    <script src="assets/js/settings.js" defer></script>
+    <script src="assets/js/fade.js" defer></script>
+    <script src="assets/js/credits.js" defer></script>
+    <script src="regcache.js" defer></script>
+    <style>
+.license {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.license-header {
+  cursor: pointer;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.license-content {
+  display: none;
+  text-align: left;
+  margin: 0 auto;
+  max-width: 800px;
+}
+
+.centered-heading {
+  text-align: center;
+}
+
+h1 {
+  margin-top: 2px;
+}
+
+a {
+  z-index: 999;
+}
+    </style>
+  </head>
+
+  <body>
+    <div class="second-bar">
+      <a href="/" title="Home" class="second-bar-link home-link"></a>
+      <a href="/games/" title="Games" class="second-bar-link games-link"></a>
+      <a href="/apps/" title="Apps" class="second-bar-link apps-link"></a>
+      <a href="/settings/" title="Settings" class="second-bar-link settings-link"></a>
+      <div class="info-menu" id="info-menu" style="margin-left: auto">
+        <div class="info-menu-item" id="transferRate"></div>
+        <div class="info-menu-item" id="latency"></div>
+        <div class="info-menu-item" id="fps"></div>
+      </div>
+      <div class="top-bar-item" id="time"></div>
+      <div class="top-bar-item">
+        <div class="battery-icon-container">
+          <div id="battery" class="battery-icon"></div>
+          <div class="battery-fill"></div>
+          <p class="battery-text"></p>
+        </div>
+      </div>
+    </div>  
+    
+    <div class="flex-center logo-wrapper header-center">
+      <h1>Sodium Credits</h1>
+    </div>
+    <div>
+    <h1 class="centered-heading">Licenses</h1>
+      <div class="license">
+        <div class="license-header" onclick="toggleLicense('mit')">MIT License</div>
+        <div class="license-content" id="mit-license"></div>
+      </div>
+
+      <div class="license">
+        <div class="license-header" onclick="toggleLicense('gnu')">GNU AFFERO General Public License version 3</div>
+        <div class="license-content" id="gnu-license"></div>
+      </div>
+    </div>
+
+    <div>
+      <h1 class="centered-heading">Credits</h1>
+    <div class="license">
+      <div class="license-header" onclick="toggleLicense('credits')">Credits</div>
+      <div class="license-content" id="credits-license"></div>
+    </div>
+    <div style="display: flex; justify-content: center;">
+      <a href="/faq.html">View the Sodium FAQ</a>
+    </div>
+    <br>
+    <div style="display: flex; justify-content: center;">
+      <a href="/about/">View Sodium Version Info</a>
+    </div>
+    </div>
+
+    <div id="footer" class="fullwidth" style="margin-top: 10%;">
+      <div class="footerflex">
+          <div class="footerbrand">
+              <h3><a href="/">Sodium</a></h3>
+              <p>Evading Internet Censorship for over 6 Months!</p>
+          </div>
+          <div class="footerlist">
+            <p style="margin-top: 58px;">Sodium © z1g Project 2024</hp>
+          </div>
+      </div>
+      <div class="footersocials">
+        <img src="assets/img/z1g.png" alt="z1g Project" title="The z1g Project GitHub organization" height="30" width="30" onclick="location.href='/github/z1g-project/'">
+        <img src="assets/img/discord.jpg" alt="Discord" title="The z1g Project Discord" height="30" width="30" onclick="location.href='/discord/'">
+        <img src="assets/img/github.png" alt="GitHub" title="The official deployment repository for Sodium" height="30" width="30" onclick="location.href='/github/'">
+        <img src="assets/img/license.svg" alt="Credits" title="License information" height="30" width="30" onclick="location.href='/credits/'">   
+      </div>
+    </div>
+  </body>
+</html>

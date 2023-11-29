@@ -20,4 +20,4 @@ class xor {
       .join("");
   }
 }
-path = "/uv/service/";
+path = "/sw/";

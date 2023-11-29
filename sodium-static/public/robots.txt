@@ -1,3 +1,9 @@
+User-agent: *
+Allow: /
+Allow: /games
+Allow: /apps
+Allow: /settings
+
 User-agent: Googlebot
 Allow: /
 Allow: /games
