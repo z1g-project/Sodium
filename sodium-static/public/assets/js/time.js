@@ -103,7 +103,8 @@ function getBatteryInfo() {
       updateBatteryText(batteryPercentage, isCharging);
     });
   } else if ('battery' in navigator) {
-    const battery = navigator.battery || navigator.webkitBattery || navigator.mozBattery;
+    const batteryState = UIDevice.BatteryState;
+    const battery = navigator.battery || batteryState.level || navigator.mozBattery;
     const batteryPercentage = Math.floor(battery.level * 100);
     const isCharging = battery.charging;
 

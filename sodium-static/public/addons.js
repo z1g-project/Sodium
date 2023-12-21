@@ -228,6 +228,7 @@ const addons = [
         if (addonType === 'themes') {
           localStorage.setItem('websiteCSS', addonUrl);
           console.log('Theme downloaded:', addonUrl);
+          addCache(addonUrl)
           const notification = document.getElementById('notification');
             notification.textContent = 'Theme Downloaded! Refresh to see Changes';
             notification.classList.remove('hidden');
@@ -282,6 +283,33 @@ const addons = [
         }
       });
     });   
+  }
+
+  function addCache(addonUrl) {
+    navigator.serviceWorker.register(swscript)
+  }
+
+  function swscript() {
+    self.addEventListener('install', (event) => {
+      event.waitUntil(
+        caches.open('ext-cache').then((cache) => {
+          const cachePaths = [];
+          cachePaths.push(addonUrl);
+          return cache.addAll(cachePaths);
+        })
+      );
+    });
+  
+    
+    self.addEventListener('fetch', (event) => {
+      event.respondWith(
+        caches.match(event.request).then((response) => {
+          return response || fetch(event.request).catch((error) => {
+            console.error(`Error: Couldn't fetch ${event.request.url} | ${error}`);
+          });
+        })
+      );
+    }); 
   }
    
   document.getElementById('addon-category').addEventListener('change', populateAddons);
