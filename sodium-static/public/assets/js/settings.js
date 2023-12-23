@@ -403,7 +403,7 @@
           notification.classList.add('hidden');
           //location.reload();
         }, 500);
-      }, 3000);    
+      }, 3000); 
     }, 100);
   }  
 

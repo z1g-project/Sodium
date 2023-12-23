@@ -23,7 +23,7 @@
     <script src="assets/js/time.js" defer></script>
     <script src="assets/js/settings.js" defer></script>
     <script src="assets/js/fade.js" defer></script>
-    <script src="assets/js/games.js" defer></script>
+    <script src="assets/js/apps.js" defer></script>
     <script src="regcache.js" defer></script>
     <script>
       function loadapp(value) {
@@ -56,6 +56,7 @@
         }
        return false;
       }
+      
       if (navigator.onLine) {
         navigator.serviceWorker.register('acache.js')
         .then((registration) => {
