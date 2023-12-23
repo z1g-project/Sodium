@@ -275,11 +275,39 @@ const addons = [
         if (addonType === 'themes') {
           localStorage.removeItem('websiteCSS');
           console.log('Theme uninstalled:', addonUrl);
+          const notification = document.getElementById('notification');
+            notification.textContent = 'Theme Removed';
+            notification.classList.remove('hidden');
+
+            setTimeout(() => {
+              notification.style.top = '40px';
+            }, 10);
+
+            setTimeout(() => {
+              notification.style.top = '-50px';
+              setTimeout(() => {
+                notification.classList.add('hidden');
+              }, 500);
+            }, 3000);
         } else if (addonType === 'plugins') {
           let websitePlugins = JSON.parse(localStorage.getItem('websitePlugins')) || [];
           websitePlugins = websitePlugins.filter(pluginUrl => pluginUrl !== addonUrl);
           localStorage.setItem('websitePlugins', JSON.stringify(websitePlugins));
           console.log('Plugin uninstalled:', addonUrl);
+          const notification = document.getElementById('notification');
+            notification.textContent = 'Plugin removed Successfully!';
+            notification.classList.remove('hidden');
+
+            setTimeout(() => {
+              notification.style.top = '40px';
+            }, 10);
+
+            setTimeout(() => {
+              notification.style.top = '-50px';
+              setTimeout(() => {
+                notification.classList.add('hidden');
+              }, 500);
+            }, 3000);
         }
       });
     });   

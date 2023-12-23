@@ -51,7 +51,7 @@ if (form) {
 }
 
 if (iframe) {
-  iframe.addEventListener("loadstart", () => {
+  iframe.addEventListener("unload", () => {
     iframe.style.display = "none";
     loadingOverlay.style.display = "flex";
   });
