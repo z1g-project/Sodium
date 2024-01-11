@@ -70,6 +70,7 @@ self.addEventListener('install', (event) => {
           '/ruffle',
           '/ruffleframe',
           '/games/run3/versionselect',
+          '/assets/js/localforge.js',
         ]);
       })
     );

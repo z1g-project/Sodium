@@ -1,57 +1,30 @@
 importScripts('ultra/ultra.bundle.js');
 importScripts('ultra/ultra.config.js');
 importScripts(__uv$config.sw || 'ultra/ultra.sw.js');
+importScripts('/assets/js/localforge.js');
+localforage.config({
+  driver: localforage.INDEXEDDB,
+  name: 'Sodium',
+  version: 1.0,
+  storeName: 'sodium_config',
+  description: 'Sodiums Config for IndexedDB'
+})
 
 const sw = new UVServiceWorker();
 
-const dbPromise = Ultraviolet.openDB('bareServerDB', 1, {
-  upgrade(db) {
-    db.createObjectStore('bareServerStore');
-  },
-});
-
-async function updateBareServerUrl() {
+const uvPromise = new Promise(async (resolve) => {
   try {
-    const db = await dbPromise;
-    const transaction = db.transaction(['bareServerStore'], 'readonly');
-    const objectStore = transaction.objectStore('bareServerStore');
-    const request = objectStore.get('bareServerKey');
-    console.log('Fetching Cache...');
-
-    request.onsuccess = () => {
-      const bareServerUrl = request.result;
-      console.log('Reading Cache Please Wait...');
-      if (bareServerUrl) {
-        self.__uv$config.bare = bareServerUrl
-        console.log('Updated Bare URL!');
-      } else {
-        console.log('No Custom Bare URL Specified: Using Normal')
-      }
-    };
-
-    request.onerror = (error) => {
-      console.error('Error fetching bare server URL:', error);
-    };
-  } catch (error) {
-    console.error('Error updating bare server URL:', error);
+      const bare = await localforage.getItem('bare') || __uv$config.bare
+      console.log(bare)
+      self.__uv$config.bare = bare;
+      self.uv = new UVServiceWorker(self.__uv$config);
   }
-}
+  catch (error) { console.log(error); }
+  resolve();
+});
 
 self.addEventListener('fetch', (event) => {
-  updateBareServerUrl();
   event.respondWith(sw.fetch(event));
-});
-
-self.addEventListener('message', async (event) => {
-  if (event.data && event.data.action === 'updateBareServerUrl') {
-    updateBareServerUrl()
-      .then(() => {
-        console.log('Bare server URL updated');
-      })
-      .catch((error) => {
-        console.error('Error updating bare server URL:', error);
-      });
-  }
 });
 
 sw.on('request', (event) => {
