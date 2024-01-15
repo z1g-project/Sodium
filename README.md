@@ -2,7 +2,7 @@
   <p align="center">
     <img src="./sodium-static/public/sodium.png" height="135" width="135">
   </p>
-  <h1 align="center">Sodium (Production)</h1>
+  <h1 align="center">Sodium Source</h1>
   <p align="center">Sodium is a site used for evading internet censorship</p>
 </div>
 
