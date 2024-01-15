@@ -173,6 +173,20 @@ const addons = [
         description: 'Weve Disabled Nebulaservicesss',
         publisher: 'Playingallday383',
         url: 'https://cdn.z1g-project.pages.dev/sodium/themes/nebula.css',
+      },
+      {
+        name: 'Material',
+        category: 'themes',
+        description: 'M3 moment',
+        publisher: 'Playingallday383',
+        url: 'https://cdn.z1g-project.pages.dev/sodium/themes/material.css',
+      },
+      {
+        name: 'HU',
+        category: 'themes',
+        description: 'Old HU Theme (your welcome emerald)',
+        publisher: 'Playingallday383',
+        url: 'https://cdn.z1g-project.pages.dev/sodium/themes/hu.css',
       }
   ];
   
@@ -188,8 +202,7 @@ const addons = [
   
     const filteredAddons = addons.filter(addon => {
       const matchCategory = selectedCategory === 'all' || addon.category === selectedCategory;
-      const matchSearch = addon.name.toLowerCase().includes(searchQuery) ||
-                         addon.description.toLowerCase().includes(searchQuery);
+      const matchSearch = addon.name.toLowerCase().includes(searchQuery) || addon.description.toLowerCase().includes(searchQuery);
       return matchCategory && matchSearch;
     });
   
