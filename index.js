@@ -1,5 +1,6 @@
 import { createBareServer } from "@tomphttp/bare-server-node";
 import express from "express";
+import cors from "cors";
 import { createServer } from "node:http";
 import { publicPath } from "ultraviolet-static";
 import { join } from "node:path";
@@ -7,10 +8,18 @@ import { hostname } from "node:os";
 import fs from 'fs';
 import ip from 'ip';
 
+let port = parseInt(process.env.PORT || "");
+if (isNaN(port)) port = 8080;
+
 const barePaths = ["/bare1/", "/bare2/", "/bare3/"];
 const bareServers = barePaths.map((path) => createBareServer(path));
-
 const app = express();
+
+app.use(cors({
+  origin: `https://localhost:${port}`,
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true,
+}));
 
 app.use(express.static(publicPath));
 
@@ -38,10 +47,6 @@ server.on("upgrade", (req, socket, head) => {
     socket.end();
   }
 });
-
-let port = parseInt(process.env.PORT || "");
-
-if (isNaN(port)) port = 8080;
 
 server.on("listening", async () => {
   try {
