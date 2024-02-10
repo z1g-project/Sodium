@@ -65,7 +65,7 @@
           console.error('Error registering Service Worker:', error);
         });
       } else {
-        console.warn('Your Offline: Using existing Cache')
+        console.warn("You're offline: Using existing cache")
       }
   </script>  
   </head>
@@ -103,7 +103,11 @@
           <option value="cloud">Cloud</option>
         </select>
     </div>
-
+    <!--
+      SUGGESTION:
+      I'd reccommend not putting these in plain text as a measure against autoblocking. Base64 is good enough.
+      - rare1k
+    -->
     <div class="container-apps">
         <div class="column" data-category="general social">
             <a onclick="loadapp('https://discord.com/app')">
