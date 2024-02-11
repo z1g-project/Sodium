@@ -100,14 +100,15 @@
   
       fpsItem.style.display = 'none';
     
-      apploader.onload = () => {
+      const injectPlugins = () => {
+        console.log(`%c Sodium Plugin Manager `,`background: #1a80e0; color: white; font-weight: bold; border-radius: 5px;`, '' + `Injecting Plugins...`)
         const useProxy = localStorage.getItem('useProxy') === 'true';
         const proxyOption = localStorage.getItem('proxyOption');
         const pluginUrls = JSON.parse(localStorage.getItem('websitePlugins')) || [];
-  
+
         pluginUrls.forEach(pluginUrl => {
           const script = document.createElement('script');
-  
+
           if (useProxy) {
             if (proxyOption && proxyOption.toLowerCase() === "dynamic") {
               script.src = `${window.location.origin}/service/route?url=${pluginUrl}`;
@@ -117,12 +118,21 @@
           } else {
             script.src = pluginUrl;
           }
-  
-          const iframeDocument = apploader.contentWindow.document;
-          iframeDocument.head.appendChild(script);
-          console.log(`Plugin injected into the iframe: ${pluginUrl}`);
-        });
+
+        const iframeDocument = apploader.contentWindow.document;
+        iframeDocument.head.appendChild(script);
+        console.log(`%c Sodium Plugin Manager `,`background: #1a80e0; color: white; font-weight: bold; border-radius: 5px;`, '' + `Plugin injected into the iframe: ${pluginUrl}`);
+       });
       };
+      
+      setInterval(() => {
+        const iframeDocument = apploader.contentWindow.document;
+        const scripts = iframeDocument.head.querySelectorAll('script');
+        if (scripts.length === 0) {
+          injectPlugins();
+          console.log(`%c Sodium Plugin Manager `,`background: #1a80e0; color: white; font-weight: bold; border-radius: 5px;`, '' + 'Re-Injecting...')
+        }
+      }, 500);
   
       function calculateLatency(url, callback) {
         const timing = performance.timing;
