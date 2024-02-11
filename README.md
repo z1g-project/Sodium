@@ -19,7 +19,7 @@ Some of the features of sodium are:
 - Wide Variety of games! - Total of 55 Games and 15 Apps!
 - CSS Editor - Uses CodeMirror CSS Editor and is still in the works!
 - Emergency Switch Feature - A functional bindable keybind with a URL that when you press the button exits the page you are on and redirects to that URL!
-- Plugins - Sodium has a ton if addons ranging from adblockers to io hacks! Vencord is built into Ultraviolet when loading discord
+- Plugins - Sodium has a ton of addons ranging from adblockers to io hacks! Vencord is built into Ultraviolet when loading discord
 - Customizable! - Sodium has tons of other customization options for you to play with!
 
 ## Setup & installation
@@ -43,9 +43,9 @@ To set up Sodium, it is super simple. Below are some instructions to get you sta
 
 ## Credits
 
-- Original UI & Deisgn: XSTARS
-- UI & Design: XSTARS
-- README improvements: 3kh0
-- Frontend Improvements: badpinghere & rare1k
-- (C) Copyright 2021-2024 z1g Project All rights reserved
+- Original UI & Deisgn: [xstars](https://github.com/notplayingallday383)
+- UI & Design: [xstars](https://github.com/notplayingallday383)
+- README improvements: [3kh0](https://github.com/3kh0) & [rare1k](https://github.com/uhidontkno)
+- Frontend Improvements: badpinghere & [rare1k](https://github.com/uhidontkno)
+- (C) Copyright 2021-2024 [z1g Project](https://github.com/z1g-project/) All rights reserved
 - Licensed under [The MIT License](https://github.com/z1g-project/sodium/blob/master/LICENSE.txt)
