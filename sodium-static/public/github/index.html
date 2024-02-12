@@ -1,99 +1,135 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-  <head>
-    <base href="../">
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
-    />
-    <title>Sodium</title>
-    <meta
-      name="description"
-      content="Sodium is a site used for evading internet censorship"
-    />
-    <meta
-      name="theme-color"
-      media="(prefers-color-scheme: dark)"
-      content="#434c5e"
-    />
-    <meta name="googlebot" content="index, follow, snippet" />
-    <link id="favicon" rel="icon" type="image/png" href="favicon.ico">
-    <link rel="stylesheet" href="assets/css/ui.css" id="custom-css"/>
-    <link rel="manifest" href="manifest.webmanifest"/>
-    <link rel="stylesheet" href="assets/css/montserrat.css"/>
-    <script src="assets/js/time.js" defer></script>
-    <script src="assets/js/settings.js" defer></script>
-    <script src="assets/js/fade.js" defer></script>
-    <style>
-.license {
-  margin-top: 20px;
-  text-align: center;
-}
+    <head>
+        <base href="../" />
+        <meta charset="utf-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
+        />
+        <title>Sodium</title>
+        <meta
+            name="description"
+            content="Sodium is a site used for evading internet censorship"
+        />
+        <meta
+            name="theme-color"
+            media="(prefers-color-scheme: dark)"
+            content="#434c5e"
+        />
+        <meta name="googlebot" content="index, follow, snippet" />
+        <link id="favicon" rel="icon" type="image/png" href="favicon.ico" />
+        <link rel="stylesheet" href="assets/css/ui.css" id="custom-css" />
+        <link rel="manifest" href="manifest.webmanifest" />
+        <link rel="stylesheet" href="assets/css/montserrat.css" />
+        <script src="assets/js/time.js" defer></script>
+        <script src="assets/js/settings.js" defer></script>
+        <script src="assets/js/fade.js" defer></script>
+        <style>
+            .license {
+                margin-top: 20px;
+                text-align: center;
+            }
 
-.license-header {
-  cursor: pointer;
-  font-weight: bold;
-  margin-bottom: 10px;
-}
+            .license-header {
+                cursor: pointer;
+                font-weight: bold;
+                margin-bottom: 10px;
+            }
 
-.license-content {
-  display: none;
-  text-align: left;
-  margin: 0 auto;
-  max-width: 800px;
-}
+            .license-content {
+                display: none;
+                text-align: left;
+                margin: 0 auto;
+                max-width: 800px;
+            }
 
-.centered-heading {
-  text-align: center;
-}
-    </style>
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-  </head>
+            .centered-heading {
+                text-align: center;
+            }
+        </style>
+        <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    </head>
 
-  <body>
-    <div class="second-bar">
-      <a href="/" class="second-bar-link home-link"></a>
-      <a href="/games/" class="second-bar-link games-link"></a>
-      <a href="/apps/" class="second-bar-link apps-link"></a>
-      <a href="/settings/" class="second-bar-link settings-link"></a>
-      <div class="info-menu" id="info-menu" style="margin-left: auto">
-        <div class="info-menu-item" id="transferRate"></div>
-        <div class="info-menu-item" id="latency"></div>
-        <div class="info-menu-item" id="fps"></div>
-      </div>
-      <div class="top-bar-item" id="time"></div>
-      <div class="top-bar-item">
-        <div class="battery-icon-container">
-          <div id="battery" class="battery-icon"></div>
-          <div class="battery-fill"></div>
-          <p class="battery-text"></p>
-        </div>
-      </div>
-    </div>  
-
-    <div class="flex-center logo-wrapper header-center">
-      <h1>Sodium Github</h1>
-
-      <a title="Runs this page inside of a stealth page" href="/github/stealth/">Open in Stealth</a>
-      <a title="Runs this page normally" href="https://github.com/z1g-project/sodium">Open Normally (Not Proxied)</a>
-    </div>
-      <div id="footer" class="fullwidth" style="margin-top: 20%;">
-        <div class="footerflex">
-            <div class="footerbrand">
-                <h3><a href="/">Sodium</a></h3>
-                <p>Evading Internet Censorship for over 6 Months!</p>
+    <body>
+        <div class="second-bar">
+            <a href="/" class="second-bar-link home-link"></a>
+            <a href="/games/" class="second-bar-link games-link"></a>
+            <a href="/apps/" class="second-bar-link apps-link"></a>
+            <a href="/settings/" class="second-bar-link settings-link"></a>
+            <div class="info-menu" id="info-menu" style="margin-left: auto">
+                <div class="info-menu-item" id="transferRate"></div>
+                <div class="info-menu-item" id="latency"></div>
+                <div class="info-menu-item" id="fps"></div>
             </div>
-            <div class="footerlist">
-              <p style="margin-top: 58px;">Sodium © z1g Project 2024</hp>
+            <div class="top-bar-item" id="time"></div>
+            <div class="top-bar-item">
+                <div class="battery-icon-container">
+                    <div id="battery" class="battery-icon"></div>
+                    <div class="battery-fill"></div>
+                    <p class="battery-text"></p>
+                </div>
             </div>
         </div>
-        <div class="footersocials">
-          <img src="assets/img/z1g.png" alt="z1g Project" title="The z1g Project GitHub organization" height="30" width="30" onclick="location.href='/github/z1g-project/'">
-          <img src="assets/img/discord.jpg" alt="Discord" title="The z1g Project Discord" height="30" width="30" onclick="location.href='/discord/'">
-          <img src="assets/img/github.png" alt="GitHub" title="The official deployment repository for Sodium" height="30" width="30" onclick="location.href='/github/'">
-          <img src="assets/img/license.svg" alt="Credits" title="License information" height="30" width="30" onclick="location.href='/credits/'">   
+
+        <div class="flex-center logo-wrapper header-center">
+            <h1>Sodium Github</h1>
+
+            <a
+                title="Runs this page inside of a stealth page"
+                href="/github/stealth/"
+                >Open in Stealth</a
+            >
+            <a
+                title="Runs this page normally"
+                href="https://github.com/z1g-project/sodium"
+                >Open Normally (Not Proxied)</a
+            >
         </div>
-    </div> 
-  </body>
+        <div id="footer" class="fullwidth" style="margin-top: 20%">
+            <div class="footerflex">
+                <div class="footerbrand">
+                    <h3><a href="/">Sodium</a></h3>
+                    <p>Evading Internet Censorship for over 6 Months!</p>
+                </div>
+                <div class="footerlist">
+                    <p style="margin-top: 58px">Sodium © z1g Project 2024</p>
+                </div>
+            </div>
+            <div class="footersocials">
+                <img
+                    src="assets/img/z1g.png"
+                    alt="z1g Project"
+                    title="The z1g Project GitHub organization"
+                    height="30"
+                    width="30"
+                    onclick="location.href='/github/z1g-project/'"
+                />
+                <img
+                    src="assets/img/discord.jpg"
+                    alt="Discord"
+                    title="The z1g Project Discord"
+                    height="30"
+                    width="30"
+                    onclick="location.href='/discord/'"
+                />
+                <img
+                    src="assets/img/github.png"
+                    alt="GitHub"
+                    title="The official deployment repository for Sodium"
+                    height="30"
+                    width="30"
+                    onclick="location.href='/github/'"
+                />
+                <img
+                    src="assets/img/license.svg"
+                    alt="Credits"
+                    title="License information"
+                    height="30"
+                    width="30"
+                    onclick="location.href='/credits/'"
+                />
+            </div>
+        </div>
+    </body>
 </html>

@@ -1,149 +1,214 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<base href="../">
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
-  <title>Sodium</title>
-  <meta name="description" content="Sodium is a site used for evading internet censorship"/>
-  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#434c5e" />
-  <meta property="og:image" content="/sodium.png">
-  <meta name="googlebot" content="index, follow, snippet" />
-  <link id="favicon" rel="icon" type="image/png" href="favicon.ico">
-  <link rel="stylesheet" href="assets/css/montserrat.css"/>
-  <link rel="stylesheet" href="assets/css/ui.css" id="custom-css"/>
-  <script src="ultra/ultra.bundle.js" defer></script>
-  <script src="ultra/ultra.config.js" defer></script>
-  <script src="assets/js/register-sw.js" defer></script>
-  <script src="assets/js/index.js" defer></script>
-  <link rel="manifest" href="manifest.webmanifest"/>
-  <link rel="json" href="assets/json/appx.json"></link>
-  <script src="assets/js/time.js" defer></script>
-  <script src="assets/js/settings.js" defer></script>
-  <script src="assets/js/fade.js" defer></script>
-  <script src="regcache.js" defer></script>
-  <style>
-    #apploader {
-      display: none;
-    }
-    
-    .show-iframe #apploader {
-      display: block;
-    }
+    <head>
+        <base href="../" />
+        <meta charset="utf-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
+        />
+        <title>Sodium</title>
+        <meta
+            name="description"
+            content="Sodium is a site used for evading internet censorship"
+        />
+        <meta
+            name="theme-color"
+            media="(prefers-color-scheme: dark)"
+            content="#434c5e"
+        />
+        <meta property="og:image" content="/sodium.png" />
+        <meta name="googlebot" content="index, follow, snippet" />
+        <link id="favicon" rel="icon" type="image/png" href="favicon.ico" />
+        <link rel="stylesheet" href="assets/css/montserrat.css" />
+        <link rel="stylesheet" href="assets/css/ui.css" id="custom-css" />
+        <script src="ultra/ultra.bundle.js" defer></script>
+        <script src="ultra/ultra.config.js" defer></script>
+        <script src="assets/js/register-sw.js" defer></script>
+        <script src="assets/js/index.js" defer></script>
+        <link rel="manifest" href="manifest.webmanifest" />
+        <link rel="json" href="assets/json/appx.json" />
+        <script src="assets/js/time.js" defer></script>
+        <script src="assets/js/settings.js" defer></script>
+        <script src="assets/js/fade.js" defer></script>
+        <script src="regcache.js" defer></script>
+        <style>
+            #apploader {
+                display: none;
+            }
 
-    .info-menu {
-      display: block;
-    }
+            .show-iframe #apploader {
+                display: block;
+            }
 
-    .info-menu-item {
-      font-size: 12px;
-    }
-  </style>
-</head>
+            .info-menu {
+                display: block;
+            }
 
-<body>
-  <div class="second-bar">
-    <a href="/" class="second-bar-link home-link"></a>
-    <a href="/games/" class="second-bar-link games-link"></a>
-    <a href="/apps/" class="second-bar-link apps-link"></a>
-    <a href="/settings/" class="second-bar-link settings-link"></a>
-    <div class="info-menu" id="info-menu" style="margin-left: auto">
-      <div class="info-menu-item" id="transferRate"></div>
-      <div class="info-menu-item" id="latency"></div>
-      <div class="info-menu-item" id="fps"></div>
-    </div>
-    <div class="top-bar-item" id="time"></div>
-    <div class="top-bar-item">
-      <div class="battery-icon-container">
-        <div id="battery" class="battery-icon"></div>
-        <div class="battery-fill"></div>
-        <p class="battery-text"></p>
-      </div>
-    </div>
-  </div>
+            .info-menu-item {
+                font-size: 12px;
+            }
+        </style>
+    </head>
 
-  <div title="Sodium Logo" class="flex-center logo-wrapper header-center">
-    <img class="logo" src="assets/img/logo.svg" alt="Sodium" />
-    <h1>About Sodium</h1>
-  </div>
-  <div class="flex-center desc">
-    <p>Sodium is a site used for evading internet censorship</p>
-  </div>
-  <div class="flex-center desc">
-    <p id="version-info">Loading version information...</p>
-  </div>
-  <div class="flex-center desc">
-    <p>Made with ❤️ by XSTARS!</p>
-  </div>
-
-  <div id="footer" class="fullwidth" style="margin-top: 7%;">
-    <div class="footerflex">
-        <div class="footerbrand">
-            <h3><a href="/">Sodium</a></h3>
-            <p>Evading Internet Censorship for over 6 Months!</p>
+    <body>
+        <div class="second-bar">
+            <a href="/" class="second-bar-link home-link"></a>
+            <a href="/games/" class="second-bar-link games-link"></a>
+            <a href="/apps/" class="second-bar-link apps-link"></a>
+            <a href="/settings/" class="second-bar-link settings-link"></a>
+            <div class="info-menu" id="info-menu" style="margin-left: auto">
+                <div class="info-menu-item" id="transferRate"></div>
+                <div class="info-menu-item" id="latency"></div>
+                <div class="info-menu-item" id="fps"></div>
+            </div>
+            <div class="top-bar-item" id="time"></div>
+            <div class="top-bar-item">
+                <div class="battery-icon-container">
+                    <div id="battery" class="battery-icon"></div>
+                    <div class="battery-fill"></div>
+                    <p class="battery-text"></p>
+                </div>
+            </div>
         </div>
-        <div class="footerlist">
-          <p style="margin-top: 58px;">Sodium © z1g Project 2024</hp>
+
+        <div title="Sodium Logo" class="flex-center logo-wrapper header-center">
+            <img class="logo" src="assets/img/logo.svg" alt="Sodium" />
+            <h1>About Sodium</h1>
         </div>
-    </div>
-    <div class="footersocials">
-      <img src="assets/img/z1g.png" alt="z1g Project" title="The z1g Project GitHub organization" height="30" width="30" onclick="location.href='/github/z1g-project/'">
-      <img src="assets/img/discord.jpg" alt="Discord" title="The z1g Project Discord" height="30" width="30" onclick="location.href='/discord/'">
-      <img src="assets/img/github.png" alt="GitHub" title="The official deployment repository for Sodium" height="30" width="30" onclick="location.href='/github/'">
-      <img src="assets/img/license.svg" alt="Credits" title="License information" height="30" width="30" onclick="location.href='/credits/'">   
-    </div>
-  </div>
-<script>
-  const owner = 'z1g-project';
-  const repo = 'sodium';
-  const branch = window.location.hostname.includes('v2.') ? 'v2' : 'master';
-  const versionInfoElement = document.getElementById('version-info');
-  
-  fetch(`https://api.github.com/repos/${owner}/${repo}/commits?sha=v2`, {
-  method: 'GET',
-  headers: {
-    'Accept': 'application/vnd.github.v3+json'
-  }
-})
-.then(response => response.json())
-.then(data => {
-  if (data && data.length > 0) {
-    const commitCount = data.length;
-    const commitId = data[0].sha.substring(0, 7);
-    const releaseDateFormatted = new Date(data[0].commit.author.date);
-    const options = { month: 'long', day: 'numeric', year: 'numeric' };
-    const formattedMonth = new Intl.DateTimeFormat('en-US', { month: 'long' }).format(releaseDateFormatted);
-    const formattedDay = new Intl.DateTimeFormat('en-US', { day: 'numeric' }).format(releaseDateFormatted);
-    const formattedYear = new Intl.DateTimeFormat('en-US', { year: 'numeric' }).format(releaseDateFormatted);
+        <div class="flex-center desc">
+            <p>Sodium is a site used for evading internet censorship</p>
+        </div>
+        <div class="flex-center desc">
+            <p id="version-info">Loading version information...</p>
+        </div>
+        <div class="flex-center desc">
+            <p>Made with ❤️ by XSTARS!</p>
+        </div>
 
-    const ordinalSuffix = (day) => {
-      if (day >= 11 && day <= 13) {
-        return 'th';
-      }
-      switch (day % 10) {
-        case 1: return 'st';
-        case 2: return 'nd';
-        case 3: return 'rd';
-        default: return 'th';
-      }
-    };
+        <div id="footer" class="fullwidth" style="margin-top: 7%">
+            <div class="footerflex">
+                <div class="footerbrand">
+                    <h3><a href="/">Sodium</a></h3>
+                    <p>Evading Internet Censorship for over 6 Months!</p>
+                </div>
+                <div class="footerlist">
+                    <p style="margin-top: 58px">Sodium © z1g Project 2024</p>
+                </div>
+            </div>
+            <div class="footersocials">
+                <img
+                    src="assets/img/z1g.png"
+                    alt="z1g Project"
+                    title="The z1g Project GitHub organization"
+                    height="30"
+                    width="30"
+                    onclick="location.href='/github/z1g-project/'"
+                />
+                <img
+                    src="assets/img/discord.jpg"
+                    alt="Discord"
+                    title="The z1g Project Discord"
+                    height="30"
+                    width="30"
+                    onclick="location.href='/discord/'"
+                />
+                <img
+                    src="assets/img/github.png"
+                    alt="GitHub"
+                    title="The official deployment repository for Sodium"
+                    height="30"
+                    width="30"
+                    onclick="location.href='/github/'"
+                />
+                <img
+                    src="assets/img/license.svg"
+                    alt="Credits"
+                    title="License information"
+                    height="30"
+                    width="30"
+                    onclick="location.href='/credits/'"
+                />
+            </div>
+        </div>
+        <script>
+            const owner = 'z1g-project'
+            const repo = 'sodium'
+            const branch = window.location.hostname.includes('v2.')
+                ? 'v2'
+                : 'master'
+            const versionInfoElement = document.getElementById('version-info')
 
-    const releaseDayWithSuffix = formattedDay + ordinalSuffix(formattedDay);
-    versionInfoElement.textContent = `v2.0.0 Stable (Released: ${formattedMonth} ${releaseDayWithSuffix}, ${formattedYear} - Commit: `;
-    const commitLink = document.createElement("a");
-    commitLink.href = data[0].html_url;
-    commitLink.textContent = commitId;
-    commitLink.style.marginRight = '0'
-    versionInfoElement.appendChild(commitLink);
-    versionInfoElement.appendChild(document.createTextNode(')'));
-  } else {
-    versionInfoElement.textContent = 'Version information not available.';
-  }
-})
-.catch(error => {
-  versionInfoElement.textContent = 'Error fetching version information.';
-  console.error('Error fetching data:', error);
-});
-</script>
-</body>
+            fetch(
+                `https://api.github.com/repos/${owner}/${repo}/commits?sha=v2`,
+                {
+                    method: 'GET',
+                    headers: {
+                        Accept: 'application/vnd.github.v3+json',
+                    },
+                },
+            )
+                .then((response) => response.json())
+                .then((data) => {
+                    if (data && data.length > 0) {
+                        const commitCount = data.length
+                        const commitId = data[0].sha.substring(0, 7)
+                        const releaseDateFormatted = new Date(
+                            data[0].commit.author.date,
+                        )
+                        const options = {
+                            month: 'long',
+                            day: 'numeric',
+                            year: 'numeric',
+                        }
+                        const formattedMonth = new Intl.DateTimeFormat(
+                            'en-US',
+                            { month: 'long' },
+                        ).format(releaseDateFormatted)
+                        const formattedDay = new Intl.DateTimeFormat('en-US', {
+                            day: 'numeric',
+                        }).format(releaseDateFormatted)
+                        const formattedYear = new Intl.DateTimeFormat('en-US', {
+                            year: 'numeric',
+                        }).format(releaseDateFormatted)
+
+                        const ordinalSuffix = (day) => {
+                            if (day >= 11 && day <= 13) {
+                                return 'th'
+                            }
+                            switch (day % 10) {
+                                case 1:
+                                    return 'st'
+                                case 2:
+                                    return 'nd'
+                                case 3:
+                                    return 'rd'
+                                default:
+                                    return 'th'
+                            }
+                        }
+
+                        const releaseDayWithSuffix =
+                            formattedDay + ordinalSuffix(formattedDay)
+                        versionInfoElement.textContent = `v2.0.0 Stable (Released: ${formattedMonth} ${releaseDayWithSuffix}, ${formattedYear} - Commit: `
+                        const commitLink = document.createElement('a')
+                        commitLink.href = data[0].html_url
+                        commitLink.textContent = commitId
+                        commitLink.style.marginRight = '0'
+                        versionInfoElement.appendChild(commitLink)
+                        versionInfoElement.appendChild(
+                            document.createTextNode(')'),
+                        )
+                    } else {
+                        versionInfoElement.textContent =
+                            'Version information not available.'
+                    }
+                })
+                .catch((error) => {
+                    versionInfoElement.textContent =
+                        'Error fetching version information.'
+                    console.error('Error fetching data:', error)
+                })
+        </script>
+    </body>
 </html>

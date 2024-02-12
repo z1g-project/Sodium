@@ -1,1 +1,1 @@
-export const publicPath: string;
+export const publicPath: string

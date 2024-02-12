@@ -21,7 +21,7 @@
     display: none;
 }
 
-[collapsed="true"] {
+[collapsed='true'] {
     display: none;
 }
 
@@ -51,7 +51,7 @@
     z-index: 2147483647;
     position: fixed;
     padding: 2px 3px;
-    border: 1px solid #CBE087;
+    border: 1px solid #cbe087;
     background: LightYellow;
     font-family: Monaco, monospace;
     color: #000000;
@@ -60,7 +60,7 @@
     pointer-events: none;
 }
 
-.infoTip[active="true"] {
+.infoTip[active='true'] {
     display: block;
 }
 
@@ -71,13 +71,13 @@
 }
 
 .infoTipImageBox {
-	font-size: 11px;
+    font-size: 11px;
     min-width: 100px;
     text-align: center;
 }
 
 .infoTipCaption {
-	font-size: 11px;
+    font-size: 11px;
     font: Monaco, monospace;
 }
 
@@ -91,8 +91,8 @@
 h1.groupHeader {
     padding: 2px 4px;
     margin: 0 0 4px 0;
-    border-top: 1px solid #CCCCCC;
-    border-bottom: 1px solid #CCCCCC;
+    border-top: 1px solid #cccccc;
+    border-bottom: 1px solid #cccccc;
     background: #eee url(group.gif) repeat-x;
     font-size: 11px;
     font-weight: bold;
@@ -124,7 +124,7 @@ h1.groupHeader {
     border: none !important;
     font: inherit;
     text-decoration: inherit;
-    background-color: #FFFFFF;
+    background-color: #ffffff;
 }
 
 .fixedWidthEditor {
@@ -195,7 +195,6 @@ h1.groupHeader {
     background: url(textEditorCorners.png) no-repeat 0 100%;
     _background: url(textEditorCorners.gif) no-repeat 0 100%;
 }
-
 
 /*************************************************************************************************/
 /*************************************************************************************************/
@@ -278,12 +277,12 @@ h1.groupHeader {
     background: url(disableHover.png) no-repeat 2px 1px;
     _background: url(disableHover.gif) no-repeat 2px 1px;
     opacity: 1;
-    color: #CCCCCC;
+    color: #cccccc;
 }
 
 .disabledStyle .cssPropName,
 .disabledStyle .cssPropValue {
-    color: #CCCCCC;
+    color: #cccccc;
 }
 
 .cssPropValue.editing + .cssSemi,
@@ -327,7 +326,6 @@ h1.groupHeader {
  }
 /**/
 
-
 /*************************************************************************************************/
 /*************************************************************************************************/
 /*************************************************************************************************/
@@ -364,11 +362,11 @@ h1.groupHeader {
 /************************************************************************************************/
 
 .netHeadRow {
-    background: url(chrome://firebug/skin/group.gif) repeat-x #FFFFFF;
+    background: url(chrome://firebug/skin/group.gif) repeat-x #ffffff;
 }
 
 .netHeadCol {
-    border-bottom: 1px solid #CCCCCC;
+    border-bottom: 1px solid #cccccc;
     padding: 2px 4px 2px 18px;
     font-weight: bold;
 }
@@ -388,10 +386,10 @@ h1.groupHeader {
 .netHeaderCell {
     cursor: pointer;
     -moz-user-select: none;
-    border-bottom: 1px solid #9C9C9C;
+    border-bottom: 1px solid #9c9c9c;
     padding: 0 !important;
     font-weight: bold;
-    background: #BBBBBB url(chrome://firebug/skin/tableHeader.gif) repeat-x;
+    background: #bbbbbb url(chrome://firebug/skin/tableHeader.gif) repeat-x;
     white-space: nowrap;
 }
 
@@ -401,20 +399,22 @@ h1.groupHeader {
 
 .netHeaderCellBox {
     padding: 2px 14px 2px 10px;
-    border-left: 1px solid #D9D9D9;
-    border-right: 1px solid #9C9C9C;
+    border-left: 1px solid #d9d9d9;
+    border-right: 1px solid #9c9c9c;
 }
 
 .netHeaderCell:hover:active {
-    background: #959595 url(chrome://firebug/skin/tableHeaderActive.gif) repeat-x;
+    background: #959595 url(chrome://firebug/skin/tableHeaderActive.gif)
+        repeat-x;
 }
 
 .netHeaderSorted {
-    background: #7D93B2 url(chrome://firebug/skin/tableHeaderSorted.gif) repeat-x;
+    background: #7d93b2 url(chrome://firebug/skin/tableHeaderSorted.gif)
+        repeat-x;
 }
 
 .netHeaderSorted > .netHeaderCellBox {
-    border-right-color: #6B7C93;
+    border-right-color: #6b7c93;
     background: url(chrome://firebug/skin/arrowDown.png) no-repeat right;
 }
 
@@ -423,7 +423,8 @@ h1.groupHeader {
 }
 
 .netHeaderSorted:hover:active {
-    background: #536B90 url(chrome://firebug/skin/tableHeaderSortedActive.gif) repeat-x;
+    background: #536b90 url(chrome://firebug/skin/tableHeaderSortedActive.gif)
+        repeat-x;
 }
 
 /************************************************************************************************/
@@ -445,16 +446,16 @@ h1.groupHeader {
     background-position: 5px 1px;
 }
 
-.netRow[breakpoint="true"] .netRowHeader {
+.netRow[breakpoint='true'] .netRowHeader {
     background-image: url(chrome://firebug/skin/breakpoint.png);
 }
 
-.netRow[breakpoint="true"][disabledBreakpoint="true"] .netRowHeader {
+.netRow[breakpoint='true'][disabledBreakpoint='true'] .netRowHeader {
     background-image: url(chrome://firebug/skin/breakpointDisabled.png);
 }
 
 .netRow.category-xhr:hover .netRowHeader {
-    background-color: #F6F6F6;
+    background-color: #f6f6f6;
 }
 
 #netBreakpointBar {
@@ -476,16 +477,16 @@ h1.groupHeader {
 /************************************************************************************************/
 /* Column visibility */
 
-.netTable[hiddenCols~=netHrefCol] TD[id="netHrefCol"],
-.netTable[hiddenCols~=netHrefCol] TD.netHrefCol,
-.netTable[hiddenCols~=netStatusCol] TD[id="netStatusCol"],
-.netTable[hiddenCols~=netStatusCol] TD.netStatusCol,
-.netTable[hiddenCols~=netDomainCol] TD[id="netDomainCol"],
-.netTable[hiddenCols~=netDomainCol] TD.netDomainCol,
-.netTable[hiddenCols~=netSizeCol] TD[id="netSizeCol"],
-.netTable[hiddenCols~=netSizeCol] TD.netSizeCol,
-.netTable[hiddenCols~=netTimeCol] TD[id="netTimeCol"],
-.netTable[hiddenCols~=netTimeCol] TD.netTimeCol {
+.netTable[hiddenCols~='netHrefCol'] TD[id='netHrefCol'],
+.netTable[hiddenCols~='netHrefCol'] TD.netHrefCol,
+.netTable[hiddenCols~='netStatusCol'] TD[id='netStatusCol'],
+.netTable[hiddenCols~='netStatusCol'] TD.netStatusCol,
+.netTable[hiddenCols~='netDomainCol'] TD[id='netDomainCol'],
+.netTable[hiddenCols~='netDomainCol'] TD.netDomainCol,
+.netTable[hiddenCols~='netSizeCol'] TD[id='netSizeCol'],
+.netTable[hiddenCols~='netSizeCol'] TD.netSizeCol,
+.netTable[hiddenCols~='netTimeCol'] TD[id='netTimeCol'],
+.netTable[hiddenCols~='netTimeCol'] TD.netTimeCol {
     display: none;
 }
 
@@ -496,17 +497,17 @@ h1.groupHeader {
 }
 
 .netRow.loaded {
-    background: #FFFFFF;
+    background: #ffffff;
 }
 
 .netRow.loaded:hover {
-    background: #EFEFEF;
+    background: #efefef;
 }
 
 .netCol {
     padding: 0;
     vertical-align: top;
-    border-bottom: 1px solid #EFEFEF;
+    border-bottom: 1px solid #efefef;
     white-space: nowrap;
     height: 17px;
 }
@@ -550,7 +551,7 @@ h1.groupHeader {
     padding-right: 10px;
     padding-bottom: 3px;
     max-width: 100%;
-    background: #FFFFFF;
+    background: #ffffff;
     z-index: 200;
 }
 
@@ -559,13 +560,13 @@ h1.groupHeader {
 }
 
 .netRow.loaded:hover .netCol > .netFullHrefLabel {
-    background-color: #EFEFEF;
+    background-color: #efefef;
 }
 
 .useA11y .a11yShowFullLabel {
     display: block;
     background-image: none !important;
-    border: 1px solid #CBE087;
+    border: 1px solid #cbe087;
     background-color: LightYellow;
     font-family: Monaco, monospace;
     color: #000000;
@@ -606,7 +607,7 @@ h1.groupHeader {
     height: 16px;
     background: transparent no-repeat 0 0;
     background-image: url(chrome://firebug/skin/loading_16.gif);
-    display:inline-block;
+    display: inline-block;
 }
 
 .loaded .netLoadingIcon {
@@ -615,7 +616,8 @@ h1.groupHeader {
 
 /************************************************************************************************/
 
-.netBar, .netSummaryBar {
+.netBar,
+.netSummaryBar {
     position: relative;
     border-right: 50px solid transparent;
 }
@@ -625,8 +627,8 @@ h1.groupHeader {
     left: 0;
     top: 0;
     bottom: 0;
-    background: #FFFFFF url(chrome://firebug/skin/netBarResolving.gif) repeat-x;
-    z-index:60;
+    background: #ffffff url(chrome://firebug/skin/netBarResolving.gif) repeat-x;
+    z-index: 60;
 }
 
 .netConnectingBar {
@@ -634,8 +636,8 @@ h1.groupHeader {
     left: 0;
     top: 0;
     bottom: 0;
-    background: #FFFFFF url(chrome://firebug/skin/netBarConnecting.gif) repeat-x;
-    z-index:50;
+    background: #ffffff url(chrome://firebug/skin/netBarConnecting.gif) repeat-x;
+    z-index: 50;
 }
 
 .netBlockingBar {
@@ -643,8 +645,8 @@ h1.groupHeader {
     left: 0;
     top: 0;
     bottom: 0;
-    background: #FFFFFF url(chrome://firebug/skin/netBarWaiting.gif) repeat-x;
-    z-index:40;
+    background: #ffffff url(chrome://firebug/skin/netBarWaiting.gif) repeat-x;
+    z-index: 40;
 }
 
 .netSendingBar {
@@ -652,8 +654,8 @@ h1.groupHeader {
     left: 0;
     top: 0;
     bottom: 0;
-    background: #FFFFFF url(chrome://firebug/skin/netBarSending.gif) repeat-x;
-    z-index:30;
+    background: #ffffff url(chrome://firebug/skin/netBarSending.gif) repeat-x;
+    z-index: 30;
 }
 
 .netWaitingBar {
@@ -661,8 +663,8 @@ h1.groupHeader {
     left: 0;
     top: 0;
     bottom: 0;
-    background: #FFFFFF url(chrome://firebug/skin/netBarResponded.gif) repeat-x;
-    z-index:20;
+    background: #ffffff url(chrome://firebug/skin/netBarResponded.gif) repeat-x;
+    z-index: 20;
     min-width: 1px;
 }
 
@@ -671,8 +673,8 @@ h1.groupHeader {
     left: 0;
     top: 0;
     bottom: 0;
-    background: #38D63B url(chrome://firebug/skin/netBarLoading.gif) repeat-x;
-    z-index:10;
+    background: #38d63b url(chrome://firebug/skin/netBarLoading.gif) repeat-x;
+    z-index: 10;
 }
 
 .netWindowLoadBar,
@@ -686,7 +688,7 @@ h1.groupHeader {
     z-index: 70;
     opacity: 0.5;
     display: none;
-    margin-bottom:-1px;
+    margin-bottom: -1px;
 }
 
 .netContentLoadBar {
@@ -712,14 +714,14 @@ h1.groupHeader {
  */
 .loaded .netReceivingBar,
 .loaded.netReceivingBar {
-    background: #B6B6B6 url(chrome://firebug/skin/netBarLoaded.gif) repeat-x;
-    border-color: #B6B6B6;
+    background: #b6b6b6 url(chrome://firebug/skin/netBarLoaded.gif) repeat-x;
+    border-color: #b6b6b6;
 }
 
 .fromCache .netReceivingBar,
 .fromCache.netReceivingBar {
-    background: #D6D6D6 url(chrome://firebug/skin/netBarCached.gif) repeat-x;
-    border-color: #D6D6D6;
+    background: #d6d6d6 url(chrome://firebug/skin/netBarCached.gif) repeat-x;
+    border-color: #d6d6d6;
 }
 
 .netSummaryRow .netTimeLabel,
@@ -732,7 +734,7 @@ h1.groupHeader {
 
 .timeInfoTip {
     width: 150px;
-    height: 40px
+    height: 40px;
 }
 
 .timeInfoTipBar,
@@ -764,7 +766,10 @@ h1.groupHeader {
 .sizeInfoLabelCol {
     font-weight: bold;
     padding-right: 10px;
-    font-family: Lucida Grande, Tahoma, sans-serif;
+    font-family:
+        Lucida Grande,
+        Tahoma,
+        sans-serif;
     font-size: 11px;
 }
 
@@ -785,7 +790,7 @@ h1.groupHeader {
 /* Summary */
 
 .netSummaryRow .netReceivingBar {
-    background: #BBBBBB;
+    background: #bbbbbb;
     border: none;
 }
 
@@ -794,18 +799,18 @@ h1.groupHeader {
 }
 
 .netSummaryRow {
-    background: #BBBBBB !important;
+    background: #bbbbbb !important;
     font-weight: bold;
 }
 
 .netSummaryRow .netBar {
-    border-right-color: #BBBBBB;
+    border-right-color: #bbbbbb;
 }
 
 .netSummaryRow > .netCol {
     border-top: 1px solid #999999;
     border-bottom: 2px solid;
-    -moz-border-bottom-colors: #EFEFEF #999999;
+    -moz-border-bottom-colors: #efefef #999999;
     padding-top: 1px;
     padding-bottom: 2px;
 }
@@ -838,9 +843,9 @@ h1.groupHeader {
 
 .netLimitRow {
     background: rgb(255, 255, 225) !important;
-    font-weight:normal;
+    font-weight: normal;
     color: black;
-    font-weight:normal;
+    font-weight: normal;
 }
 
 .netLimitLabel {
@@ -849,7 +854,7 @@ h1.groupHeader {
 
 .netLimitRow > .netCol {
     border-bottom: 2px solid;
-    -moz-border-bottom-colors: #EFEFEF #999999;
+    -moz-border-bottom-colors: #efefef #999999;
     vertical-align: middle !important;
     padding-top: 2px;
     padding-bottom: 2px;
@@ -864,8 +869,8 @@ h1.groupHeader {
 /************************************************************************************************/
 
 .netInfoCol {
-    border-top: 1px solid #EEEEEE;
-    background: url(chrome://firebug/skin/group.gif) repeat-x #FFFFFF;
+    border-top: 1px solid #eeeeee;
+    background: url(chrome://firebug/skin/group.gif) repeat-x #ffffff;
 }
 
 .netInfoBody {
@@ -905,12 +910,12 @@ h1.groupHeader {
 /**/
 .netInfoTabSelected {
     cursor: default !important;
-    border: 1px solid #D7D7D7 !important;
+    border: 1px solid #d7d7d7 !important;
     border-bottom: none !important;
     -moz-border-radius: 4px 4px 0 0;
     -webkit-border-radius: 4px 4px 0 0;
     border-radius: 4px 4px 0 0;
-    background-color: #FFFFFF;
+    background-color: #ffffff;
 }
 
 .logRow-netInfo.error .netInfoTitle {
@@ -927,7 +932,10 @@ h1.groupHeader {
 }
 
 .netInfoResponseSizeLimit {
-    font-family: Lucida Grande, Tahoma, sans-serif;
+    font-family:
+        Lucida Grande,
+        Tahoma,
+        sans-serif;
     padding-top: 10px;
     font-size: 11px;
 }
@@ -935,10 +943,10 @@ h1.groupHeader {
 .netInfoText {
     display: none;
     margin: 0;
-    border: 1px solid #D7D7D7;
+    border: 1px solid #d7d7d7;
     border-right: none;
     padding: 8px;
-    background-color: #FFFFFF;
+    background-color: #ffffff;
     font-family: Monaco, monospace;
     white-space: pre-wrap;
     /*overflow-x: auto; HTML is damaged in case of big (2-3MB) responses */
@@ -955,7 +963,10 @@ h1.groupHeader {
 
 .netInfoParamName {
     padding-right: 10px;
-    font-family: Lucida Grande, Tahoma, sans-serif;
+    font-family:
+        Lucida Grande,
+        Tahoma,
+        sans-serif;
     font-weight: bold;
     vertical-align: top;
     text-align: right;
@@ -981,10 +992,13 @@ h1.groupHeader {
 .netInfoPostParams,
 .netInfoPostSource {
     margin-bottom: 4px;
-    border-bottom: 1px solid #D7D7D7;
+    border-bottom: 1px solid #d7d7d7;
     padding-top: 8px;
     padding-bottom: 2px;
-    font-family: Lucida Grande, Tahoma, sans-serif;
+    font-family:
+        Lucida Grande,
+        Tahoma,
+        sans-serif;
     font-weight: bold;
     color: #565656;
 }
@@ -1007,7 +1021,7 @@ h1.groupHeader {
 .netInfoHtmlPreview {
     border: 0;
     width: 100%;
-    height:100%;
+    height: 100%;
 }
 
 /************************************************************************************************/
@@ -1054,7 +1068,7 @@ h1.groupHeader {
 }
 
 .netPageRow:hover {
-    background: #EFEFEF;
+    background: #efefef;
 }
 
 .netPageLabel {
@@ -1066,7 +1080,7 @@ h1.groupHeader {
 
 .netActivationRow > .netCol {
     border-bottom: 2px solid;
-    -moz-border-bottom-colors: #EFEFEF #999999;
+    -moz-border-bottom-colors: #efefef #999999;
     padding-top: 2px;
     padding-bottom: 3px;
 }
@@ -1096,7 +1110,6 @@ h1.groupHeader {
 /*************************************************************************************************/
 /*************************************************************************************************/
 /*************************************************************************************************/
-
 
 /************************************************************************************************/
 /* Twisties */
@@ -1131,8 +1144,6 @@ h1.groupHeader {
     background-position: 4px 4px;
 }
 
-
-
 /************************************************************************************************/
 /* Twisties IE6 */
 
@@ -1155,8 +1166,6 @@ h1.groupHeader {
     background-position: 2px 2px;
 }
 
-
-
 /*************************************************************************************************/
 /*************************************************************************************************/
 /*************************************************************************************************/
@@ -1165,7 +1174,6 @@ h1.groupHeader {
 /*************************************************************************************************/
 /*************************************************************************************************/
 /*************************************************************************************************/
-
 
 /* See license.txt for terms of usage */
 
@@ -1185,28 +1193,30 @@ h1.groupHeader {
 .logRow {
     position: relative;
     margin: 0;
-    border-bottom: 1px solid #D7D7D7;
+    border-bottom: 1px solid #d7d7d7;
     padding: 2px 4px 1px 6px;
-    background-color: #FFFFFF;
+    background-color: #ffffff;
     overflow: hidden !important; /* IE need this to avoid disappearing bug with collapsed logs */
 }
 
 .useA11y .logRow:focus {
     border-bottom: 1px solid #000000 !important;
     outline: none !important;
-    background-color: #FFFFAD !important;
+    background-color: #ffffad !important;
 }
 
 .useA11y .logRow:focus a.objectLink-sourceLink {
-    background-color: #FFFFAD;
+    background-color: #ffffad;
 }
 
-.useA11y .a11yFocus:focus, .useA11y .objectBox:focus {
-    outline: 2px solid #FF9933;
-    background-color: #FFFFAD;
+.useA11y .a11yFocus:focus,
+.useA11y .objectBox:focus {
+    outline: 2px solid #ff9933;
+    background-color: #ffffad;
 }
 
-.useA11y .objectBox-null:focus, .useA11y .objectBox-undefined:focus{
+.useA11y .objectBox-null:focus,
+.useA11y .objectBox-undefined:focus {
     background-color: #888888 !important;
 }
 
@@ -1215,7 +1225,7 @@ h1.groupHeader {
 }
 
 .logGroup {
-    background: url(group.gif) repeat-x #FFFFFF;
+    background: url(group.gif) repeat-x #ffffff;
     padding: 0 !important;
     border: none !important;
 }
@@ -1223,9 +1233,9 @@ h1.groupHeader {
 .logGroupBody {
     display: none;
     margin-left: 16px;
-    border-left: 1px solid #D7D7D7;
-    border-top: 1px solid #D7D7D7;
-    background: #FFFFFF;
+    border-left: 1px solid #d7d7d7;
+    border-top: 1px solid #d7d7d7;
+    background: #ffffff;
 }
 
 .logGroup > .logRow {
@@ -1245,7 +1255,7 @@ h1.groupHeader {
 
 .logRow-command > .objectBox-text {
     font-family: Monaco, monospace;
-    color: #0000FF;
+    color: #0000ff;
     white-space: pre-wrap;
 }
 
@@ -1269,7 +1279,7 @@ h1.groupHeader {
 
 .logRow-info,
 .logRow-info .objectLink-sourceLink {
-    background-color: #FFFFFF;
+    background-color: #ffffff;
 }
 
 .logRow-warn,
@@ -1290,7 +1300,7 @@ h1.groupHeader {
 .logRow-error,
 .logRow-assert,
 .logRow-errorMessage {
-    color: #FF0000;
+    color: #ff0000;
 }
 
 .logRow-info {
@@ -1335,12 +1345,12 @@ h1.groupHeader {
 }
 
 .objectBox-string {
-    color: #FF0000;
+    color: #ff0000;
 }
 
 .objectLink-function,
 .objectBox-stackTrace,
-.objectLink-profile  {
+.objectLink-profile {
     color: DarkGreen;
 }
 
@@ -1349,7 +1359,7 @@ h1.groupHeader {
     padding: 0 2px;
     border: 1px solid #666666;
     background-color: #888888;
-    color: #FFFFFF;
+    color: #ffffff;
 }
 
 .objectBox-exception {
@@ -1363,9 +1373,11 @@ h1.groupHeader {
     right: 4px;
     top: 2px;
     padding-left: 8px;
-    font-family: Lucida Grande, sans-serif;
+    font-family:
+        Lucida Grande,
+        sans-serif;
     font-weight: bold;
-    color: #0000FF;
+    color: #0000ff;
 }
 
 /************************************************************************************************/
@@ -1429,7 +1441,10 @@ h1.groupHeader {
 /************************************************************************************************/
 
 .logRow-profile > .logRow > .objectBox-text {
-    font-family: Lucida Grande, Tahoma, sans-serif;
+    font-family:
+        Lucida Grande,
+        Tahoma,
+        sans-serif;
     color: #000000;
 }
 
@@ -1450,23 +1465,23 @@ h1.groupHeader {
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 .profileSizer {
-    width:100%;
-    overflow-x:auto;
+    width: 100%;
+    overflow-x: auto;
     overflow-y: scroll;
 }
 
 .profileTable {
-    border-bottom: 1px solid #D7D7D7;
+    border-bottom: 1px solid #d7d7d7;
     padding: 0 0 4px 0;
 }
 
-.profileTable tr[odd="1"] {
-    background-color: #F5F5F5;
-    vertical-align:middle;
+.profileTable tr[odd='1'] {
+    background-color: #f5f5f5;
+    vertical-align: middle;
 }
 
 .profileTable a {
-    vertical-align:middle;
+    vertical-align: middle;
 }
 
 .profileTable td {
@@ -1476,7 +1491,7 @@ h1.groupHeader {
 .headerCell {
     cursor: pointer;
     -moz-user-select: none;
-    border-bottom: 1px solid #9C9C9C;
+    border-bottom: 1px solid #9c9c9c;
     padding: 0 !important;
     font-weight: bold;
     /*background: #BBBBBB url(chrome://firebug/skin/tableHeader.gif) repeat-x;*/
@@ -1484,8 +1499,8 @@ h1.groupHeader {
 
 .headerCellBox {
     padding: 2px 4px;
-    border-left: 1px solid #D9D9D9;
-    border-right: 1px solid #9C9C9C;
+    border-left: 1px solid #d9d9d9;
+    border-right: 1px solid #9c9c9c;
 }
 
 .headerCell:hover:active {
@@ -1497,7 +1512,7 @@ h1.groupHeader {
 }
 
 .headerSorted > .headerCellBox {
-    border-right-color: #6B7C93;
+    border-right-color: #6b7c93;
     /*background: url(chrome://firebug/skin/arrowDown.png) no-repeat right;*/
 }
 
@@ -1532,7 +1547,9 @@ h1.groupHeader {
 /************************************************************************************************/
 
 .objectLink-object {
-    font-family: Lucida Grande, sans-serif;
+    font-family:
+        Lucida Grande,
+        sans-serif;
     font-weight: bold;
     color: DarkGreen;
     white-space: pre-wrap;
@@ -1562,18 +1579,15 @@ h1.groupHeader {
 }
 /**/
 
-.objectProps .objectProp-string
-{
+.objectProps .objectProp-string {
     /*font-family: Monaco, monospace;*/
     color: #f55;
 }
-.objectProps .objectProp-number
-{
+.objectProps .objectProp-number {
     /*font-family: Monaco, monospace;*/
     color: #55a;
 }
-.objectProps .objectProp-object
-{
+.objectProps .objectProp-object {
     /*font-family: Lucida Grande,sans-serif;*/
     color: #585;
 }
@@ -1589,7 +1603,7 @@ h1.groupHeader {
 }
 
 .selectorTag {
-    color: #0000FF;
+    color: #0000ff;
 }
 
 .selectorId {
@@ -1601,7 +1615,7 @@ h1.groupHeader {
 }
 
 .selectorHidden > .selectorTag {
-    color: #5F82D9;
+    color: #5f82d9;
 }
 
 .selectorHidden > .selectorId {
@@ -1609,11 +1623,13 @@ h1.groupHeader {
 }
 
 .selectorHidden > .selectorClass {
-    color: #D86060;
+    color: #d86060;
 }
 
 .selectorValue {
-    font-family: Lucida Grande, sans-serif;
+    font-family:
+        Lucida Grande,
+        sans-serif;
     font-style: italic;
     color: #555555;
 }
@@ -1706,7 +1722,7 @@ h1.groupHeader {
 
 .logRow-spy,
 .logRow-spy .objectLink-sourceLink {
-    background: url(group.gif) repeat-x #FFFFFF;
+    background: url(group.gif) repeat-x #ffffff;
     padding-right: 4px;
     right: 0;
 }
@@ -1755,8 +1771,8 @@ h1.groupHeader {
 }
 
 .spyTime {
-    margin-left:4px;
-    margin-right:4px;
+    margin-left: 4px;
+    margin-right: 4px;
     color: rgb(128, 128, 128);
 }
 
@@ -1810,20 +1826,23 @@ h1.groupHeader {
 /************************************************************************************************/
 
 .caption {
-    font-family: Lucida Grande, Tahoma, sans-serif;
+    font-family:
+        Lucida Grande,
+        Tahoma,
+        sans-serif;
     font-weight: bold;
-    color:  #444444;
+    color: #444444;
 }
 
 .warning {
     padding: 10px;
-    font-family: Lucida Grande, Tahoma, sans-serif;
+    font-family:
+        Lucida Grande,
+        Tahoma,
+        sans-serif;
     font-weight: bold;
-    color:  #888888;
+    color: #888888;
 }
-
-
-
 
 /*************************************************************************************************/
 /*************************************************************************************************/
@@ -1833,7 +1852,6 @@ h1.groupHeader {
 /*************************************************************************************************/
 /*************************************************************************************************/
 /*************************************************************************************************/
-
 
 /* See license.txt for terms of usage */
 
@@ -1866,13 +1884,13 @@ h1.groupHeader {
 .memberLabel {
     display: block;
     cursor: default;
-    -moz-user-select:  none;
+    -moz-user-select: none;
     overflow: hidden;
     /*position: absolute;*/
     padding-left: 18px;
     /*max-width: 30%;*/
     /*white-space: nowrap;*/
-    background-color: #FFFFFF;
+    background-color: #ffffff;
     text-decoration: none;
 }
 
@@ -1892,12 +1910,12 @@ h1.groupHeader {
 }
 
 .userClassLabel {
-    color: #E90000;
+    color: #e90000;
     font-weight: bold;
 }
 
 .userFunctionLabel {
-    color: #025E2A;
+    color: #025e2a;
     font-weight: bold;
 }
 
@@ -1906,7 +1924,7 @@ h1.groupHeader {
 }
 
 .domFunctionLabel {
-    color: #025E2A;
+    color: #025e2a;
 }
 
 .ordinalLabel {
@@ -1918,11 +1936,11 @@ h1.groupHeader {
 .scopesRow {
     padding: 2px 18px;
     background-color: LightYellow;
-    border-bottom: 5px solid #BEBEBE;
+    border-bottom: 5px solid #bebebe;
     color: #666666;
 }
 .scopesLabel {
-    background-color:  LightYellow;
+    background-color: LightYellow;
 }
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
@@ -1930,7 +1948,7 @@ h1.groupHeader {
 .watchEditCell {
     padding: 2px 18px;
     background-color: LightYellow;
-    border-bottom: 1px solid #BEBEBE;
+    border-bottom: 1px solid #bebebe;
     color: #666666;
 }
 
@@ -1964,8 +1982,8 @@ h1.groupHeader {
 
 .watchRow > .memberLabelCell,
 .watchRow > .memberValueCell {
-    background-color: #F5F5F5;
-    border-bottom: 1px solid #BEBEBE;
+    background-color: #f5f5f5;
+    border-bottom: 1px solid #bebebe;
 }
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
@@ -1977,7 +1995,6 @@ h1.groupHeader {
     padding: 1px 2px;
 }
 
-
 /*************************************************************************************************/
 /*************************************************************************************************/
 /*************************************************************************************************/
@@ -1987,9 +2004,6 @@ h1.groupHeader {
 /*************************************************************************************************/
 /* FROM ORIGINAL FIREBUG */
 
-
-
-
 /************************************************************************************************
  CSS Not organized
 *************************************************************************************************/
@@ -1998,12 +2012,18 @@ h1.groupHeader {
 }
 
 #fbCSS {
-    font: 1em Monaco, monospace;
+    font:
+        1em Monaco,
+        monospace;
     padding: 0 7px;
 }
 
-#fbstylesheetButtons select, #fbScriptButtons select {
-    font: 11px Lucida Grande, Tahoma, sans-serif;
+#fbstylesheetButtons select,
+#fbScriptButtons select {
+    font:
+        11px Lucida Grande,
+        Tahoma,
+        sans-serif;
     margin-top: 1px;
     padding-left: 3px;
     background: #fafafa;
@@ -2012,12 +2032,22 @@ h1.groupHeader {
     outline: none;
 }
 
-.Selector { margin-top:10px }
-.CSSItem {margin-left: 4% }
-.CSSText { padding-left:20px; }
-.CSSProperty { color:#005500; }
-.CSSValue { padding-left:5px; color:#000088; }
-
+.Selector {
+    margin-top: 10px;
+}
+.CSSItem {
+    margin-left: 4%;
+}
+.CSSText {
+    padding-left: 20px;
+}
+.CSSProperty {
+    color: #005500;
+}
+.CSSValue {
+    padding-left: 5px;
+    color: #000088;
+}
 
 /************************************************************************************************
  Not organized
@@ -2031,7 +2061,7 @@ h1.groupHeader {
     display: none;
 }
 
-.fbStatusSeparator{
+.fbStatusSeparator {
     display: block;
     float: left;
     padding-top: 4px;
@@ -2101,12 +2131,11 @@ h1.groupHeader {
     text-decoration: none;
     color: #000;
     cursor: default;
-    background: #ACA899;
+    background: #aca899;
     margin: 4px 0;
 }
 
-.fbMenuOption
-{
+.fbMenuOption {
     display: block;
     position: relative;
     padding: 2px 18px;
@@ -2115,10 +2144,9 @@ h1.groupHeader {
     cursor: default;
 }
 
-.fbMenuOption:hover
-{
+.fbMenuOption:hover {
     color: #fff;
-    background: #316AC5;
+    background: #316ac5;
 }
 
 .fbMenuGroup {
@@ -2127,24 +2155,24 @@ h1.groupHeader {
 }
 
 .fbMenuGroup:hover {
-    background: #316AC5 url(tabMenuPin.png) no-repeat right -17px;
-    _background: #316AC5 url(tabMenuPin.gif) no-repeat right -17px;
+    background: #316ac5 url(tabMenuPin.png) no-repeat right -17px;
+    _background: #316ac5 url(tabMenuPin.gif) no-repeat right -17px;
 }
 
 .fbMenuGroupSelected {
     color: #fff;
-    background: #316AC5 url(tabMenuPin.png) no-repeat right -17px;
-    _background: #316AC5 url(tabMenuPin.gif) no-repeat right -17px;
+    background: #316ac5 url(tabMenuPin.png) no-repeat right -17px;
+    _background: #316ac5 url(tabMenuPin.gif) no-repeat right -17px;
 }
 
-.fbMenuChecked  {
+.fbMenuChecked {
     background: transparent url(tabMenuCheckbox.png) no-repeat 4px 0;
     _background: transparent url(tabMenuCheckbox.gif) no-repeat 4px 0;
 }
 
 .fbMenuChecked:hover {
-    background: #316AC5 url(tabMenuCheckbox.png) no-repeat 4px -17px;
-    _background: #316AC5 url(tabMenuCheckbox.gif) no-repeat 4px -17px;
+    background: #316ac5 url(tabMenuCheckbox.png) no-repeat 4px -17px;
+    _background: #316ac5 url(tabMenuCheckbox.gif) no-repeat 4px -17px;
 }
 
 .fbMenuRadioSelected {
@@ -2153,8 +2181,8 @@ h1.groupHeader {
 }
 
 .fbMenuRadioSelected:hover {
-    background: #316AC5 url(tabMenuRadio.png) no-repeat 4px -17px;
-    _background: #316AC5 url(tabMenuRadio.gif) no-repeat 4px -17px;
+    background: #316ac5 url(tabMenuRadio.png) no-repeat 4px -17px;
+    _background: #316ac5 url(tabMenuRadio.gif) no-repeat 4px -17px;
 }
 
 .fbMenuShortcut {
@@ -2174,7 +2202,7 @@ h1.groupHeader {
 }
 
 .fbMenuDisabled {
-    color: #ACA899 !important;
+    color: #aca899 !important;
 }
 
 #fbFirebugSettingsMenu {
@@ -2231,8 +2259,6 @@ h1.groupHeader {
     border-right: 1px solid #ddd !important;
 }
 
-
-
 /************************************************************************************************
  Error Popup
 *************************************************************************************************/
@@ -2263,15 +2289,6 @@ h1.groupHeader {
     right: 5px;
 }
 
-
-
-
-
-
-
-
-
-
 .fbBtnInspectActive {
     background: #aaa;
     color: #fff !important;
@@ -2285,7 +2302,10 @@ h1.groupHeader {
     padding: 0;
     overflow: hidden;
 
-    font-family: Lucida Grande, Tahoma, sans-serif;
+    font-family:
+        Lucida Grande,
+        Tahoma,
+        sans-serif;
     font-size: 11px;
     background: #fff;
 }
@@ -2365,12 +2385,14 @@ h1.groupHeader {
     cursor: pointer;
 }
 
-
 /************************************************************************************************
  Master Layout
 *************************************************************************************************/
 #fbChrome {
-    font-family: Lucida Grande, Tahoma, sans-serif;
+    font-family:
+        Lucida Grande,
+        Tahoma,
+        sans-serif;
     font-size: 11px;
     position: absolute;
     _position: static;
@@ -2482,8 +2504,8 @@ h1.groupHeader {
     _background: #e3e3db url(buttonBgHover.gif) !important;
     padding: 3px 4px 2px 6px !important;
     margin: 1px 0 0 1px !important;
-    border: 1px solid #ACA899 !important;
-    border-color: #ACA899 #ECEBE3 #ECEBE3 #ACA899 !important;
+    border: 1px solid #aca899 !important;
+    border-color: #aca899 #ecebe3 #ecebe3 #aca899 !important;
 }
 
 #fbStatusBarBox {
@@ -2518,7 +2540,6 @@ h1.groupHeader {
     color: blue;
     cursor: pointer;
 }
-
 
 #fbWindowButtons {
     position: absolute;
@@ -2570,7 +2591,8 @@ h1.groupHeader {
     display: none;
 }
 
-#fbPanelBox1, #fbPanelBox2 {
+#fbPanelBox1,
+#fbPanelBox2 {
     max-height: inherit;
     height: 100%;
     font-size: 1em;
@@ -2605,21 +2627,21 @@ h1.groupHeader {
     outline: none;
     font-size: 11px;
     overflow: auto;
-    border-top: 1px solid #B9B7AF;
+    border-top: 1px solid #b9b7af;
     _right: -1px;
     _border-left: 1px solid #fff;
 }
 
 #fbLargeCommandButtons {
     display: none;
-    background: #ECE9D8;
+    background: #ece9d8;
     bottom: 0;
     right: 0;
     width: 294px;
     height: 21px;
     padding-top: 1px;
     position: fixed;
-    border-top: 1px solid #ACA899;
+    border-top: 1px solid #aca899;
     z-index: 9;
 }
 
@@ -2671,7 +2693,9 @@ h1.groupHeader {
     top: 2px;
     left: 6px;
     display: inline;
-    font: 11px Monaco, monospace;
+    font:
+        11px Monaco,
+        monospace;
     z-index: 10;
 }
 
@@ -2683,7 +2707,9 @@ h1.groupHeader {
     border: 0;
     margin: 0;
     padding: 2px 0 2px 32px;
-    font: 11px Monaco, monospace;
+    font:
+        11px Monaco,
+        monospace;
     z-index: 9;
     outline: none;
 }
@@ -2706,7 +2732,6 @@ div.fbFitHeight {
     overflow: auto;
     position: relative;
 }
-
 
 /************************************************************************************************
  Layout Controls
@@ -2757,7 +2782,6 @@ div.fbFitHeight {
     _background: url(offHover.gif);
 }
 
-
 /* fbPanelBarBox tabs
 *************************************************************************************************/
 .fbTab {
@@ -2767,7 +2791,10 @@ div.fbFitHeight {
     width: auto;
     float: left;
     cursor: default;
-    font-family: Lucida Grande, Tahoma, sans-serif;
+    font-family:
+        Lucida Grande,
+        Tahoma,
+        sans-serif;
     font-size: 11px;
     font-weight: bold;
     height: 22px;
@@ -2779,7 +2806,8 @@ div.fbFitHeight {
     float: left;
 }
 
-.fbPanelBar .fbTabL,.fbPanelBar .fbTabR {
+.fbPanelBar .fbTabL,
+.fbPanelBar .fbTabR {
     height: 22px;
     width: 8px;
 }
@@ -2858,7 +2886,9 @@ a.fbTab:hover .fbTabR {
 
 /************************************************************************************************/
 div.lineNo {
-    font: 1em Monaco, monospace;
+    font:
+        1em Monaco,
+        monospace;
     position: relative;
     float: left;
     top: 0;
@@ -2876,7 +2906,9 @@ div.lineNo {
 }
 
 .sourceCode {
-    font: 1em Monaco, monospace;
+    font:
+        1em Monaco,
+        monospace;
     overflow: hidden;
     white-space: pre;
     display: inline;
@@ -2904,16 +2936,16 @@ div.nodeMaximized {
 div.objectBox-element {
     padding: 1px 3px;
 }
-.objectBox-selector{
+.objectBox-selector {
     cursor: default;
 }
 
-.selectedElement{
+.selectedElement {
     background: highlight;
     /* background: url(roundCorner.svg); Opera */
     color: #fff !important;
 }
-.selectedElement span{
+.selectedElement span {
     color: #fff !important;
 }
 
@@ -2923,10 +2955,10 @@ div.objectBox-element {
 }
 
 /* Webkit CSS Hack - bug in "highlight" named color */
-@media screen and (-webkit-min-device-pixel-ratio:0) {
-    .selectedElement{
-      background: #316AC5;
-      color: #fff !important;
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+    .selectedElement {
+        background: #316ac5;
+        color: #fff !important;
     }
 }
 
@@ -2941,9 +2973,9 @@ div.objectBox-element {
 position. if so, override it at chrome.js initialization when creating the div */
 .logRow {
     position: relative;
-    border-bottom: 1px solid #D7D7D7;
+    border-bottom: 1px solid #d7d7d7;
     padding: 2px 4px 1px 6px;
-    zbackground-color: #FFFFFF;
+    zbackground-color: #ffffff;
 }
 /**/
 
@@ -2968,7 +3000,7 @@ position. if so, override it at chrome.js initialization when creating the div *
     padding: 0 2px;
     border: 1px solid #666666;
     background-color: #888888;
-    color: #FFFFFF;
+    color: #ffffff;
 }
 
 .objectBox-string {
@@ -2989,7 +3021,9 @@ position. if so, override it at chrome.js initialization when creating the div *
 .objectBox-object {
     color: DarkGreen;
     font-weight: bold;
-    font-family: Lucida Grande, sans-serif;
+    font-family:
+        Lucida Grande,
+        sans-serif;
 }
 
 .objectBox-array {
@@ -2997,7 +3031,9 @@ position. if so, override it at chrome.js initialization when creating the div *
 }
 
 /************************************************************************************************/
-.logRow-info,.logRow-error,.logRow-warn {
+.logRow-info,
+.logRow-error,
+.logRow-warn {
     background: #fff no-repeat 2px 2px;
     padding-left: 20px;
     padding-bottom: 3px;
@@ -3031,9 +3067,11 @@ position. if so, override it at chrome.js initialization when creating the div *
     right: 4px;
     top: 2px;
     padding-left: 8px;
-    font-family: Lucida Grande, sans-serif;
+    font-family:
+        Lucida Grande,
+        sans-serif;
     font-weight: bold;
-    color: #0000FF;
+    color: #0000ff;
 }
 
 /************************************************************************************************/
@@ -3057,13 +3095,15 @@ position. if so, override it at chrome.js initialization when creating the div *
 }/**/
 
 /************************************************************************************************/
-.selectorTag,.selectorId,.selectorClass {
+.selectorTag,
+.selectorId,
+.selectorClass {
     font-family: Monaco, monospace;
     font-weight: normal;
 }
 
 .selectorTag {
-    color: #0000FF;
+    color: #0000ff;
 }
 
 .selectorId {
@@ -3090,11 +3130,12 @@ position. if so, override it at chrome.js initialization when creating the div *
 }
 
 .nodeValue {
-    color: #FF0000;
+    color: #ff0000;
     font-weight: normal;
 }
 
-.nodeText,.nodeComment {
+.nodeText,
+.nodeComment {
     margin: 0 2px;
     vertical-align: top;
 }
@@ -3110,22 +3151,23 @@ position. if so, override it at chrome.js initialization when creating the div *
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-.nodeHidden, .nodeHidden * {
+.nodeHidden,
+.nodeHidden * {
     color: #888888;
 }
 
 .nodeHidden .nodeTag {
-    color: #5F82D9;
+    color: #5f82d9;
 }
 
 .nodeHidden .nodeValue {
-    color: #D86060;
+    color: #d86060;
 }
 
-.selectedElement .nodeHidden, .selectedElement .nodeHidden * {
+.selectedElement .nodeHidden,
+.selectedElement .nodeHidden * {
     color: SkyBlue !important;
 }
-
 
 /************************************************************************************************/
 .log-object {

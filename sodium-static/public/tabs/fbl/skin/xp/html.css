@@ -46,7 +46,7 @@
 }
 
 .nodeValue {
-    color: #FF0000;
+    color: #ff0000;
     font-weight: normal;
 }
 
@@ -67,7 +67,6 @@
     color: gray;
 }
 
-
 .nodeWhiteSpace_Space {
     border: 1px solid #ddd;
 }
@@ -85,7 +84,7 @@
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 .nodeBox.highlightOpen > .nodeLabel {
-    background-color: #EEEEEE;
+    background-color: #eeeeee;
 }
 
 .nodeBox.highlightOpen > .nodeCloseLabel,
@@ -137,16 +136,20 @@
 
 .nodeBox.nodeHidden .nodeLabel > .nodeLabelBox > .nodeTag,
 .nodeBox.nodeHidden .nodeCloseLabel > .nodeCloseLabelBox > .nodeTag {
-    color: #5F82D9;
+    color: #5f82d9;
 }
 
 .nodeBox.nodeHidden .nodeLabel > .nodeLabelBox > .nodeAttr > .nodeValue {
-    color: #D86060;
+    color: #d86060;
 }
 
 .nodeBox.nodeHidden.selected > .nodeLabel > .nodeLabelBox,
 .nodeBox.nodeHidden.selected > .nodeLabel > .nodeLabelBox > .nodeTag,
-.nodeBox.nodeHidden.selected > .nodeLabel > .nodeLabelBox > .nodeAttr > .nodeValue,
+.nodeBox.nodeHidden.selected
+    > .nodeLabel
+    > .nodeLabelBox
+    > .nodeAttr
+    > .nodeValue,
 .nodeBox.nodeHidden.selected > .nodeLabel > .nodeLabelBox > .nodeText {
     color: SkyBlue !important;
 }
@@ -158,8 +161,8 @@
 .nodeValue.mutated,
 .nodeText.mutated,
 .nodeBox.mutated > .nodeText {
-    background-color: #EFFF79;
-    color: #FF0000 !important;
+    background-color: #efff79;
+    color: #ff0000 !important;
 }
 
 .nodeBox.selected.mutated > .nodeLabel,
@@ -167,9 +170,9 @@
 .nodeBox.selected > .nodeLabel > .nodeLabelBox > .nodeAttr.mutated > .nodeValue,
 .nodeBox.selected > .nodeLabel > .nodeLabelBox > .nodeAttr > .nodeValue.mutated,
 .nodeBox.selected > .nodeLabel > .nodeLabelBox > .nodeText.mutated {
-    background-color: #EFFF79;
-    border-color: #EFFF79;
-    color: #FF0000 !important;
+    background-color: #efff79;
+    border-color: #efff79;
+    color: #ff0000 !important;
 }
 
 /************************************************************************************************/
@@ -178,12 +181,12 @@
     padding-left: 0;
 }
 
-.soloElement > .nodeBox  {
+.soloElement > .nodeBox {
     padding-left: 0;
 }
 
 .useA11y .nodeLabel.focused {
-    outline: 2px solid #FF9933;
+    outline: 2px solid #ff9933;
     -moz-outline-radius: 3px;
     outline-offset: -2px;
 }
@@ -220,11 +223,6 @@
     color: gray;
 }
 
-
-
-
-
-
 /************************************************************************************************/
 /************************************************************************************************/
 /************************************************************************************************/
@@ -235,8 +233,6 @@
 /************************************************************************************************/
 /************************************************************************************************/
 /************************************************************************************************/
-
-
 
 /************************************************************************************************/
 /* Twisties */
@@ -252,7 +248,7 @@
     background-image: url(twistyClosed.png);
     background-repeat: no-repeat;
     background-position: 2px 2px;
-	min-height: 12px;
+    min-height: 12px;
 }
 
 .logRow-errorMessage > .hasTwisty.opened > .errorTitle,

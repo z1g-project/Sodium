@@ -1,540 +1,727 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no"/>
-  <title>Sodium</title>
-  <meta name="description" content="Sodium is a site used for evading internet censorship"/>
-  <meta name="keywords" content="Sodium, z1g-project, internet-censorship, evade-internet-censorship">
-  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#27639f"/>
-  <meta property="og:image" content="/sodium.png">
-  <meta name="googlebot" content="all"/>
-  <meta name="robots" content="all">
-  <link id="favicon" rel="icon" type="image/png" href="favicon.ico">
-  <link rel="stylesheet" href="assets/css/montserrat.css"/>
-  <link rel="stylesheet" href="assets/css/ui.css" id="custom-css"/>
-  <link rel="manifest" href="manifest.webmanifest"/>
-  <link rel="json" href="assets/json/appx.json"></link>
-  <script src="/dyn/dyn.config.js"></script>
-  <script src="/dyn/dyn.worker.js"></script>
-  <script src="assets/js/debug.js" defer></script>
-  <script>
-"use strict";
-const stockSW = "/sw.js";
-const swAllowedHostnames = ["localhost", "127.0.0.1"];
+    <head>
+        <meta charset="utf-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
+        />
+        <title>Sodium</title>
+        <meta
+            name="description"
+            content="Sodium is a site used for evading internet censorship"
+        />
+        <meta
+            name="keywords"
+            content="Sodium, z1g-project, internet-censorship, evade-internet-censorship"
+        />
+        <meta
+            name="theme-color"
+            media="(prefers-color-scheme: dark)"
+            content="#27639f"
+        />
+        <meta property="og:image" content="/sodium.png" />
+        <meta name="googlebot" content="all" />
+        <meta name="robots" content="all" />
+        <link id="favicon" rel="icon" type="image/png" href="favicon.ico" />
+        <link rel="stylesheet" href="assets/css/montserrat.css" />
+        <link rel="stylesheet" href="assets/css/ui.css" id="custom-css" />
+        <link rel="manifest" href="manifest.webmanifest" />
+        <link rel="json" href="assets/json/appx.json" />
+        <script src="/dyn/dyn.config.js"></script>
+        <script src="/dyn/dyn.worker.js"></script>
+        <script src="assets/js/debug.js" defer></script>
+        <script>
+            'use strict'
+            const stockSW = '/sw.js'
+            const swAllowedHostnames = ['localhost', '127.0.0.1']
 
-async function registerSW() {
-  if (
-    location.protocol !== "https:" &&
-    !swAllowedHostnames.includes(location.hostname)
-  )
-    throw new Error("Service workers cannot be registered without https.");
+            async function registerSW() {
+                if (
+                    location.protocol !== 'https:' &&
+                    !swAllowedHostnames.includes(location.hostname)
+                )
+                    throw new Error(
+                        'Service workers cannot be registered without https.',
+                    )
 
-  if (!navigator.serviceWorker)
-    throw new Error("Your browser doesn't support service workers.");
+                if (!navigator.serviceWorker)
+                    throw new Error(
+                        "Your browser doesn't support service workers.",
+                    )
 
-  await navigator.serviceWorker.register(stockSW, {
-    scope: "/sw/",
-  });
+                await navigator.serviceWorker.register(stockSW, {
+                    scope: '/sw/',
+                })
 
-  if (navigator.onLine) {
-    navigator.serviceWorker.register('acache.js')
-    .then((registration) => {
-      console.log('Game/Asset Cache Service Worker registered with scope:', registration.scope);
-    })
-    .catch((error) => {
-      console.error('Error registering Service Worker:', error);
-    });
-  } else {
-    console.warn('Your Offline: Using existing Cache')
-  }
-}
-
-registerSW()
-  </script>
-  <script src="regcache.js" defer></script>
-  <script src="dynsw.js"></script>
-  <script src="assets/js/time.js" defer></script>
-  <script src="assets/js/settings.js" defer></script>
-  <script src="assets/js/fade.js" defer></script>
-  <style>
-body {
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-}
-
-.slider {
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  transition: transform 0.6s ease-in-out;
-}
-
-.slide {
-  width: 100%;
-  height: 100vh;
-  flex-shrink: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  color: white;
-  text-align: center;
-}
-
-.config-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 10px;
-}
-
-.config-label {
-  font-weight: bold;
-  text-align: right;
-  margin-right: 10px;
-}
-
-.config-input {
-  width: 100%;
-  padding: 5px;
-}
-
-.welcome {
-  background-color: #3498db;
-}
-
-.services {
-  background-color: #e74c3c;
-}
-
-.community {
-  background-color: #2ecc71;
-}
-
-.controls {
-  position: absolute;
-  bottom: 6%;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.controls button {
-  padding: 10px 20px;
-  font-size: 16px;
-  margin: 0 10px;
-  cursor: pointer;
-}
-
-.slide2 h1 {
-  margin-top: -140px;
-}
-
-.slide3 h1 {
-  margin-top: -140px;
-}
-
-.slide3 h1 {
-    margin-top: -100px;
-}
-  </style>
-</head>
-
-<body>
-  <div class="second-bar">
-    <a href="/" title="Home" class="second-bar-link home-link"></a>
-    <a href="/games/" title="Games" class="second-bar-link games-link"></a>
-    <a href="/apps/" title="Apps" class="second-bar-link apps-link"></a>
-    <a href="/settings/" title="Settings" class="second-bar-link settings-link"></a>
-    <div class="info-menu" id="info-menu" style="margin-left: auto">
-      <div class="info-menu-item" id="transferRate"></div>
-      <div class="info-menu-item" id="latency"></div>
-      <div class="info-menu-item" id="fps"></div>
-    </div>
-    <div class="top-bar-item" id="time"></div>
-    <div class="top-bar-item">
-      <div class="battery-icon-container">
-        <div id="battery" class="battery-icon"></div>
-        <div class="battery-fill"></div>
-        <p class="battery-text"></p>
-      </div>
-    </div>
-  </div> 
-  
-  <div class="slider">
-    <div class="slide slide1">
-      <div title="Sodium Logo" class="flex-center logo-wrapper header-center">
-        <img class="logo" src="assets/img/logo.svg" alt="Sodium Logo"/>
-        <h1>Welcome to Sodium!</h1>
-      </div>
-      <div class="flex-center desc">
-        <p>Lets get you started!</p>
-      </div>
-    </div>
-    
-    <div class="slide slide2">
-      <h1>Configure your Experience</h1>
-      <p>Setup the settings you want to use! These can be changed later in the settings page.</p>
-    
-      <div class="config-column">
-        <div class="config-row">
-          <label for="title-input" class="config-label">Title:</label>
-          <input type="text" id="title-input" class="config-input">
-        </div>
-    
-        <div class="config-row">
-          <label for="icon-input" class="config-label">Icon:</label>
-          <input type="text" id="icon-input" class="config-input">
-        </div>
-    
-        <div class="config-row">
-          <label for="search-engine-select" class="config-label">Search Engine:</label>
-          <select id="search-engine-select" class="config-select">
-            <option value="https://www.google.com/search?q=%s">Google</option>
-            <option value="https://www.bing.com/search?q=%s">Bing</option>
-            <option value="https://duckduckgo.com/?q=%s">DuckDuckGo</option>
-            <option value="https://search.yahoo.com/search?p=%s">Yahoo</option>
-            <option value="custom">Custom</option>
-          </select>
-        </div>
-    
-        <div class="config-row">
-          <label for="custom-search-engine-input" class="config-label">Custom Search Engine URL:</label>
-          <input type="text" id="custom-search-engine-input" placeholder="Enter a URL like so: https://example.com/search?q=" class="config-input" style="display: none;">
-        </div>
-    
-        <div class="config-row">
-          <label for="emergency-switch-hotkey" class="config-label">Emergency Switch Hotkey:</label>
-          <input type="text" id="emergency-switch-hotkey" class="config-input">
-        </div>
-    
-        <div class="config-row">
-          <label for="fallback-url-input" class="config-label">about:blank Fallback URL:</label>
-          <input type="text" id="fallback-url-input" class="config-input">
-        </div>
-    
-        <div class="config-row">
-          <label for="proxySelect" class="config-label">Default Proxy:</label>
-          <select id="proxySelect" class="config-select">
-            <option value="ultraviolet">Ultraviolet (Default)</option>
-            <option value="dynamic">Dynamic (Beta)</option>
-          </select>
-        </div>
-
-        <div class="config-row">
-          <label for="bare-server-select" class="config-label">Custom Bare Server (Beta):</label>
-          <input type="text" id="custom-bare-server-input" placeholder="Enter a url like so: https://bare.example.com" class="config-input">
-        </div>
-      </div>
-    </div>
-
-    <div class="slide slide3">
-      <h1>Configure your Experience (Continued)</h1>
-      <p>Setup the settings you want to use! These can be changed later in the settings page.</p>
-
-      <div class="config-row">
-        <label for="css-select" class="config-label">CSS:</label>
-        <select id="css-select" class="config-select">
-          <option value="assets/css/ui.css">Refreshed (Defualt)</option>
-          <option value="assets/css/amoled.css">Amoled</option>
-          <option value="assets/css/mocha.css">Mocha</option>
-          <option value="assets/css/dark.css">Dark</option>
-          <option value="assets/css/legacy.css">Legacy Dark</option>
-          <option value="assets/css/festive.css">Festive</option>
-        </select>
-        <button id="apply-css-button">Apply CSS</button>
-      </div>
-      
-      <div class="config-row">
-        <label class="config-label" for="meta-theme-color">Theme Color:</label>
-        <input class="config-input" type="text" id="meta-theme-color" name="meta-theme-color">
-      </div>
-
-      <div class="config-row">
-        <label for="toggle-beta">Enable Tabs:</label>
-        <input type="checkbox" id="toggle-beta">
-      </div>
-  
-      <div class="config-row">
-        <label for="open-new-window">Open in about:blank Window:</label>
-        <input type="checkbox" id="open-new-window">
-      </div>
-
-      <div class="config-row">
-        <label for="checkbox-24h">Use 24-Hour Time</label>
-        <input type="checkbox" id="checkbox-24h">
-      </div>
-
-      <div class="config-row">
-        <label for="checkbox-show-date">Include Date in Time Bar</label>
-        <input type="checkbox" id="checkbox-show-date">
-      </div>
-
-      <div class="config-row">
-        <label for="use-seconds-checkbox">Include Seconds in Time Bar</label>
-        <input type="checkbox" id="use-seconds-checkbox">
-      </div>
-
-      <div class="config-row">
-        <label for="disable-clock">Disable Clock</label>
-        <input type="checkbox" id="disable-clock">
-      </div>
-
-      <div>
-        <p>Used Sodium before? Import your settings!</p>
-        <input type="file" id="importFile" style="display: none;" accept=".json">
-        <button onclick="openImportFile()">Import Cache</button>
-        <button onclick="exportCache()">Export Cache</button>
-      </div>
-    </div>
-    
-    <div class="slide slide4">
-      <h1>Join Our Discord</h1>
-      <p>If you want to find out more information about us check out our discord!</p>
-      <a target="_blank" href="/discord/">Visit our Discord</a>
-    </div>
-
-    <div class="slide slide5">
-      <h1>Get Started</h1>
-      <p>You have compleated the Sodium FirstRun Setup!</p>
-      <br>
-      <button id="fs-save-button" href="/">Save Settings</button>
-    </div>
-  </div>
-  <div class="controls">
-    <button class="prev-button">Previous</button>
-    <button class="skip-button">Skip</button>
-    <button class="next-button">Next</button>
-  </div>
-<script>
-const slider = document.querySelector('.slider');
-const slides = document.querySelectorAll('.slide');
-const prevButton = document.querySelector('.prev-button');
-const skipButton = document.querySelector('.skip-button');
-const nextButton = document.querySelector('.next-button');
-let currentSlide = 0;
-
-function showSlide(slideIndex) {
-  slider.style.transform = `translateX(-${slideIndex * 100}%)`;
-}
-
-function nextSlide() {
-  if (currentSlide < slides.length - 1) {
-    currentSlide++;
-    showSlide(currentSlide);
-  }
-}
-
-function prevSlide() {
-  if (currentSlide > 0) {
-    currentSlide--;
-    showSlide(currentSlide);
-  }
-}
-
-function skipSlides() {
-  const confirmSkip = confirm("Are you sure you want to skip the welcome page?");
-  if (confirmSkip) {
-    localStorage.setItem('firstRun', 'false');
-    window.location.href = '/';
-  }
-}
-
-prevButton.addEventListener('click', prevSlide);
-skipButton.addEventListener('click', skipSlides);
-nextButton.addEventListener('click', nextSlide);
-
-showSlide(currentSlide);
-</script>
-<script>
-  function openImportFile() {
-      const fileInput = document.getElementById('importFile');
-      fileInput.addEventListener('change', handleImportFile, false);
-      fileInput.click();
-    }
-  
-    function handleImportFile(event) {
-      const file = event.target.files[0];
-      const reader = new FileReader();
-      reader.onload = function (e) {
-        try {
-          const importedData = JSON.parse(e.target.result);
-          Object.keys(importedData).forEach((key) => {
-            localStorage.setItem(key, importedData[key]);
-          });
-          alert('Cache data imported successfully.');
-          location.replace('/');
-        } catch (error) {
-          alert('Error importing cache data. Please check the file format.');
-        }
-      };
-      reader.readAsText(file);
-    }
-  
-    function exportCache() {
-      const cacheData = {};
-      Object.keys(localStorage).forEach((key) => {
-        cacheData[key] = localStorage.getItem(key);
-      });
-      const exportedData = JSON.stringify(cacheData);
-  
-      const blob = new Blob([exportedData], { type: 'application/json' });
-      const url = URL.createObjectURL(blob);
-      const link = document.createElement('a');
-      link.href = url;
-      link.download = 'cache_data.json';
-      link.click();
-      URL.revokeObjectURL(url);
-    }
-</script>
-<script>
-  const saveButton = document.getElementById('fs-save-button');
-    if (saveButton) {
-      saveButton.addEventListener('click', function () {
-        fssaveSettings();
-      });
-    }
-
-  function fssaveSettings() {
-    const titleInput = document.getElementById('title-input');
-    const title = titleInput.value.trim();
-    localStorage.setItem('websiteTitle', title);
-    console.log('Title saved:', title);
-
-    const iconInput = document.getElementById('icon-input');
-    const icon = iconInput.value.trim();
-    localStorage.setItem('websiteIcon', icon);
-    console.log('Icon saved:', icon);
-
-    const searchEngineSelect = document.getElementById('search-engine-select');
-    const searchEngine = searchEngineSelect.value;
-
-    if (searchEngine === 'custom') {
-      const customSearchUrl = document.getElementById('custom-search-engine-input').value.trim();
-
-      if (customSearchUrl !== '') {
-        localStorage.setItem('searchEngine', customSearchUrl);
-        console.log('Search engine saved:', customSearchUrl);
-      }
-    } else {
-      localStorage.setItem('searchEngine', searchEngine);
-      console.log('Search engine saved:', searchEngine);
-    }
-
-    var proxySelect = document.getElementById('proxySelect');
-    var selectedOption = proxySelect.options[proxySelect.selectedIndex].value;
-
-    localStorage.setItem('proxyOption', selectedOption);
-    console.log('Default Proxy Saved:', selectedOption);
-
-    //handleToggleBeta();
-    localStorage.setItem('firstRun', 'false');
-
-    const emergencyHotkeyInput = document.getElementById('emergency-switch-hotkey');
-    if (emergencyHotkeyInput) {
-      const emergencyHotkey = emergencyHotkeyInput.value.trim().toLowerCase();
-      localStorage.setItem('emergencyHotkey', emergencyHotkey);
-      console.log('Emergency hotkey saved:', emergencyHotkey);
-    }
-
-    const emergencyURLInput = document.getElementById('emergency-url-input');
-    if (emergencyURLInput) {
-      const emergencyURL = emergencyURLInput.value.trim();
-      localStorage.setItem('emergencyURL', emergencyURL);
-      console.log('Emergency URL saved:', emergencyURL);
-    }
-
-    const fallbackUrlInput = document.getElementById('fallback-url-input');
-    if (fallbackUrlInput) {
-      const fallbackUrl = fallbackUrlInput.value.trim();
-      localStorage.setItem('fallbackUrl', fallbackUrl);
-      console.log('Fallback URL saved:', fallbackUrl);
-    }
-
-    const bareServerInput = document.getElementById('custom-bare-server-input');
-    if (bareServerInput) {
-      const bareServer = bareServerInput.value.trim();     
-      caches.open('bareServerCache').then(cache => {
-        cache.put('bareServerKey', new Response(bareServer));
-      });
-      localStorage.setItem('bareServer', bareServer);
-      //self.__uv$config.bare = bareServer;
-      //self.__dynamic$config.bare.path = bareServer;
-      console.log('BareServer URL saved:', bareServer);
-      if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.getRegistrations().then(registrations => {
-          for (const registration of registrations) {
-            if (registration.active && registration.active.scriptURL.includes('dyn.sw.js')) {
-              registration.unregister().then(() => {
-                navigator.serviceWorker.register('/dyn.sw.js');
-                console.log('Dynamic service worker re-registered.');
-              });
+                if (navigator.onLine) {
+                    navigator.serviceWorker
+                        .register('acache.js')
+                        .then((registration) => {
+                            console.log(
+                                'Game/Asset Cache Service Worker registered with scope:',
+                                registration.scope,
+                            )
+                        })
+                        .catch((error) => {
+                            console.error(
+                                'Error registering Service Worker:',
+                                error,
+                            )
+                        })
+                } else {
+                    console.warn('Your Offline: Using existing Cache')
+                }
             }
-          }
-        });
-      }
-    }
 
-    const use24HourTimeCheckbox = document.getElementById('use-24hour-checkbox');
-    if (use24HourTimeCheckbox) {
-      localStorage.setItem('use24HourTime', use24HourTimeCheckbox.checked.toString());
-      console.log('Use 24 Hour Time Saved:', use24HourTimeCheckbox.checked);
-    }
+            registerSW()
+        </script>
+        <script src="regcache.js" defer></script>
+        <script src="dynsw.js"></script>
+        <script src="assets/js/time.js" defer></script>
+        <script src="assets/js/settings.js" defer></script>
+        <script src="assets/js/fade.js" defer></script>
+        <style>
+            body {
+                margin: 0;
+                padding: 0;
+                overflow: hidden;
+            }
 
-    const includeDateCheckbox = document.getElementById('include-date-checkbox');
-    if (includeDateCheckbox) {
-      localStorage.setItem('showDate', includeDateCheckbox.checked.toString());
-      console.log('Show Date Saved:', includeDateCheckbox.checked);
-    }
+            .slider {
+                width: 100%;
+                height: 100vh;
+                display: flex;
+                transition: transform 0.6s ease-in-out;
+            }
 
-    const useSecondsCheckbox = document.getElementById('use-seconds-checkbox');
-    if (useSecondsCheckbox) {
-      localStorage.setItem('useSeconds', useSecondsCheckbox.checked);
-      console.log('Include Seconds in TimeBar:', useSecondsCheckbox.checked);
-    }
+            .slide {
+                width: 100%;
+                height: 100vh;
+                flex-shrink: 0;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                color: white;
+                text-align: center;
+            }
 
-    setTimeout(function () {
-      location.href="/";
-    }, 100);
-  }
-</script>
-<script>
-  function immortalize(arg) {
-      if (arg === 'sodium') {
-        localStorage.setItem('websiteCSS', 'assets/css/immortal.css');
-  
-        console.log('Immortal Requested');
-        console.log('Initializing 3MB Tailwind Package...');
-  
-        const tailwindCSSLink = document.createElement('link');
-        tailwindCSSLink.rel = 'stylesheet';
-        tailwindCSSLink.href = 'https://cdn.tailwindcss.com/';
-        document.head.appendChild(tailwindCSSLink);
-  
-        setTimeout(() => {
-          console.log('Done!');
-          location.reload();
-        }, 2000);
-      }
-    }
-  
-    window.addEventListener('DOMContentLoaded', () => {
-      const command = 'immortalize("sodium")';
-      const consoleStyle = 'background: #333; color: #fff; padding: 5px; font-weight: bold;';
-      //console.log('%c Enter ' + command + ' to access the Easter Egg!', consoleStyle);
-      window.addEventListener('keydown', (event) => {
-        if (event.key === 'F12') {
-          const inputCommand = prompt('Please enter the Easter Egg command:');
-          if (inputCommand === command) {
-            immortalize('sodium');
-          }
-        }
-      });
-    });
-  </script>
-</body>
+            .config-row {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 10px;
+            }
+
+            .config-label {
+                font-weight: bold;
+                text-align: right;
+                margin-right: 10px;
+            }
+
+            .config-input {
+                width: 100%;
+                padding: 5px;
+            }
+
+            .welcome {
+                background-color: #3498db;
+            }
+
+            .services {
+                background-color: #e74c3c;
+            }
+
+            .community {
+                background-color: #2ecc71;
+            }
+
+            .controls {
+                position: absolute;
+                bottom: 6%;
+                left: 50%;
+                transform: translateX(-50%);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .controls button {
+                padding: 10px 20px;
+                font-size: 16px;
+                margin: 0 10px;
+                cursor: pointer;
+            }
+
+            .slide2 h1 {
+                margin-top: -140px;
+            }
+
+            .slide3 h1 {
+                margin-top: -140px;
+            }
+
+            .slide3 h1 {
+                margin-top: -100px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="second-bar">
+            <a href="/" title="Home" class="second-bar-link home-link"></a>
+            <a
+                href="/games/"
+                title="Games"
+                class="second-bar-link games-link"
+            ></a>
+            <a href="/apps/" title="Apps" class="second-bar-link apps-link"></a>
+            <a
+                href="/settings/"
+                title="Settings"
+                class="second-bar-link settings-link"
+            ></a>
+            <div class="info-menu" id="info-menu" style="margin-left: auto">
+                <div class="info-menu-item" id="transferRate"></div>
+                <div class="info-menu-item" id="latency"></div>
+                <div class="info-menu-item" id="fps"></div>
+            </div>
+            <div class="top-bar-item" id="time"></div>
+            <div class="top-bar-item">
+                <div class="battery-icon-container">
+                    <div id="battery" class="battery-icon"></div>
+                    <div class="battery-fill"></div>
+                    <p class="battery-text"></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="slider">
+            <div class="slide slide1">
+                <div
+                    title="Sodium Logo"
+                    class="flex-center logo-wrapper header-center"
+                >
+                    <img
+                        class="logo"
+                        src="assets/img/logo.svg"
+                        alt="Sodium Logo"
+                    />
+                    <h1>Welcome to Sodium!</h1>
+                </div>
+                <div class="flex-center desc">
+                    <p>Lets get you started!</p>
+                </div>
+            </div>
+
+            <div class="slide slide2">
+                <h1>Configure your Experience</h1>
+                <p>
+                    Setup the settings you want to use! These can be changed
+                    later in the settings page.
+                </p>
+
+                <div class="config-column">
+                    <div class="config-row">
+                        <label for="title-input" class="config-label"
+                            >Title:</label
+                        >
+                        <input
+                            type="text"
+                            id="title-input"
+                            class="config-input"
+                        />
+                    </div>
+
+                    <div class="config-row">
+                        <label for="icon-input" class="config-label"
+                            >Icon:</label
+                        >
+                        <input
+                            type="text"
+                            id="icon-input"
+                            class="config-input"
+                        />
+                    </div>
+
+                    <div class="config-row">
+                        <label for="search-engine-select" class="config-label"
+                            >Search Engine:</label
+                        >
+                        <select id="search-engine-select" class="config-select">
+                            <option value="https://www.google.com/search?q=%s">
+                                Google
+                            </option>
+                            <option value="https://www.bing.com/search?q=%s">
+                                Bing
+                            </option>
+                            <option value="https://duckduckgo.com/?q=%s">
+                                DuckDuckGo
+                            </option>
+                            <option
+                                value="https://search.yahoo.com/search?p=%s"
+                            >
+                                Yahoo
+                            </option>
+                            <option value="custom">Custom</option>
+                        </select>
+                    </div>
+
+                    <div class="config-row">
+                        <label
+                            for="custom-search-engine-input"
+                            class="config-label"
+                            >Custom Search Engine URL:</label
+                        >
+                        <input
+                            type="text"
+                            id="custom-search-engine-input"
+                            placeholder="Enter a URL like so: https://example.com/search?q="
+                            class="config-input"
+                            style="display: none"
+                        />
+                    </div>
+
+                    <div class="config-row">
+                        <label
+                            for="emergency-switch-hotkey"
+                            class="config-label"
+                            >Emergency Switch Hotkey:</label
+                        >
+                        <input
+                            type="text"
+                            id="emergency-switch-hotkey"
+                            class="config-input"
+                        />
+                    </div>
+
+                    <div class="config-row">
+                        <label for="fallback-url-input" class="config-label"
+                            >about:blank Fallback URL:</label
+                        >
+                        <input
+                            type="text"
+                            id="fallback-url-input"
+                            class="config-input"
+                        />
+                    </div>
+
+                    <div class="config-row">
+                        <label for="proxySelect" class="config-label"
+                            >Default Proxy:</label
+                        >
+                        <select id="proxySelect" class="config-select">
+                            <option value="ultraviolet">
+                                Ultraviolet (Default)
+                            </option>
+                            <option value="dynamic">Dynamic (Beta)</option>
+                        </select>
+                    </div>
+
+                    <div class="config-row">
+                        <label for="bare-server-select" class="config-label"
+                            >Custom Bare Server (Beta):</label
+                        >
+                        <input
+                            type="text"
+                            id="custom-bare-server-input"
+                            placeholder="Enter a url like so: https://bare.example.com"
+                            class="config-input"
+                        />
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide slide3">
+                <h1>Configure your Experience (Continued)</h1>
+                <p>
+                    Setup the settings you want to use! These can be changed
+                    later in the settings page.
+                </p>
+
+                <div class="config-row">
+                    <label for="css-select" class="config-label">CSS:</label>
+                    <select id="css-select" class="config-select">
+                        <option value="assets/css/ui.css">
+                            Refreshed (Defualt)
+                        </option>
+                        <option value="assets/css/amoled.css">Amoled</option>
+                        <option value="assets/css/mocha.css">Mocha</option>
+                        <option value="assets/css/dark.css">Dark</option>
+                        <option value="assets/css/legacy.css">
+                            Legacy Dark
+                        </option>
+                        <option value="assets/css/festive.css">Festive</option>
+                    </select>
+                    <button id="apply-css-button">Apply CSS</button>
+                </div>
+
+                <div class="config-row">
+                    <label class="config-label" for="meta-theme-color"
+                        >Theme Color:</label
+                    >
+                    <input
+                        class="config-input"
+                        type="text"
+                        id="meta-theme-color"
+                        name="meta-theme-color"
+                    />
+                </div>
+
+                <div class="config-row">
+                    <label for="toggle-beta">Enable Tabs:</label>
+                    <input type="checkbox" id="toggle-beta" />
+                </div>
+
+                <div class="config-row">
+                    <label for="open-new-window"
+                        >Open in about:blank Window:</label
+                    >
+                    <input type="checkbox" id="open-new-window" />
+                </div>
+
+                <div class="config-row">
+                    <label for="checkbox-24h">Use 24-Hour Time</label>
+                    <input type="checkbox" id="checkbox-24h" />
+                </div>
+
+                <div class="config-row">
+                    <label for="checkbox-show-date"
+                        >Include Date in Time Bar</label
+                    >
+                    <input type="checkbox" id="checkbox-show-date" />
+                </div>
+
+                <div class="config-row">
+                    <label for="use-seconds-checkbox"
+                        >Include Seconds in Time Bar</label
+                    >
+                    <input type="checkbox" id="use-seconds-checkbox" />
+                </div>
+
+                <div class="config-row">
+                    <label for="disable-clock">Disable Clock</label>
+                    <input type="checkbox" id="disable-clock" />
+                </div>
+
+                <div>
+                    <p>Used Sodium before? Import your settings!</p>
+                    <input
+                        type="file"
+                        id="importFile"
+                        style="display: none"
+                        accept=".json"
+                    />
+                    <button onclick="openImportFile()">Import Cache</button>
+                    <button onclick="exportCache()">Export Cache</button>
+                </div>
+            </div>
+
+            <div class="slide slide4">
+                <h1>Join Our Discord</h1>
+                <p>
+                    If you want to find out more information about us check out
+                    our discord!
+                </p>
+                <a target="_blank" href="/discord/">Visit our Discord</a>
+            </div>
+
+            <div class="slide slide5">
+                <h1>Get Started</h1>
+                <p>You have compleated the Sodium FirstRun Setup!</p>
+                <br />
+                <button id="fs-save-button" href="/">Save Settings</button>
+            </div>
+        </div>
+        <div class="controls">
+            <button class="prev-button">Previous</button>
+            <button class="skip-button">Skip</button>
+            <button class="next-button">Next</button>
+        </div>
+        <script>
+            const slider = document.querySelector('.slider')
+            const slides = document.querySelectorAll('.slide')
+            const prevButton = document.querySelector('.prev-button')
+            const skipButton = document.querySelector('.skip-button')
+            const nextButton = document.querySelector('.next-button')
+            let currentSlide = 0
+
+            function showSlide(slideIndex) {
+                slider.style.transform = `translateX(-${slideIndex * 100}%)`
+            }
+
+            function nextSlide() {
+                if (currentSlide < slides.length - 1) {
+                    currentSlide++
+                    showSlide(currentSlide)
+                }
+            }
+
+            function prevSlide() {
+                if (currentSlide > 0) {
+                    currentSlide--
+                    showSlide(currentSlide)
+                }
+            }
+
+            function skipSlides() {
+                const confirmSkip = confirm(
+                    'Are you sure you want to skip the welcome page?',
+                )
+                if (confirmSkip) {
+                    localStorage.setItem('firstRun', 'false')
+                    window.location.href = '/'
+                }
+            }
+
+            prevButton.addEventListener('click', prevSlide)
+            skipButton.addEventListener('click', skipSlides)
+            nextButton.addEventListener('click', nextSlide)
+
+            showSlide(currentSlide)
+        </script>
+        <script>
+            function openImportFile() {
+                const fileInput = document.getElementById('importFile')
+                fileInput.addEventListener('change', handleImportFile, false)
+                fileInput.click()
+            }
+
+            function handleImportFile(event) {
+                const file = event.target.files[0]
+                const reader = new FileReader()
+                reader.onload = function (e) {
+                    try {
+                        const importedData = JSON.parse(e.target.result)
+                        Object.keys(importedData).forEach((key) => {
+                            localStorage.setItem(key, importedData[key])
+                        })
+                        alert('Cache data imported successfully.')
+                        location.replace('/')
+                    } catch (error) {
+                        alert(
+                            'Error importing cache data. Please check the file format.',
+                        )
+                    }
+                }
+                reader.readAsText(file)
+            }
+
+            function exportCache() {
+                const cacheData = {}
+                Object.keys(localStorage).forEach((key) => {
+                    cacheData[key] = localStorage.getItem(key)
+                })
+                const exportedData = JSON.stringify(cacheData)
+
+                const blob = new Blob([exportedData], {
+                    type: 'application/json',
+                })
+                const url = URL.createObjectURL(blob)
+                const link = document.createElement('a')
+                link.href = url
+                link.download = 'cache_data.json'
+                link.click()
+                URL.revokeObjectURL(url)
+            }
+        </script>
+        <script>
+            const saveButton = document.getElementById('fs-save-button')
+            if (saveButton) {
+                saveButton.addEventListener('click', function () {
+                    fssaveSettings()
+                })
+            }
+
+            function fssaveSettings() {
+                const titleInput = document.getElementById('title-input')
+                const title = titleInput.value.trim()
+                localStorage.setItem('websiteTitle', title)
+                console.log('Title saved:', title)
+
+                const iconInput = document.getElementById('icon-input')
+                const icon = iconInput.value.trim()
+                localStorage.setItem('websiteIcon', icon)
+                console.log('Icon saved:', icon)
+
+                const searchEngineSelect = document.getElementById(
+                    'search-engine-select',
+                )
+                const searchEngine = searchEngineSelect.value
+
+                if (searchEngine === 'custom') {
+                    const customSearchUrl = document
+                        .getElementById('custom-search-engine-input')
+                        .value.trim()
+
+                    if (customSearchUrl !== '') {
+                        localStorage.setItem('searchEngine', customSearchUrl)
+                        console.log('Search engine saved:', customSearchUrl)
+                    }
+                } else {
+                    localStorage.setItem('searchEngine', searchEngine)
+                    console.log('Search engine saved:', searchEngine)
+                }
+
+                var proxySelect = document.getElementById('proxySelect')
+                var selectedOption =
+                    proxySelect.options[proxySelect.selectedIndex].value
+
+                localStorage.setItem('proxyOption', selectedOption)
+                console.log('Default Proxy Saved:', selectedOption)
+
+                //handleToggleBeta();
+                localStorage.setItem('firstRun', 'false')
+
+                const emergencyHotkeyInput = document.getElementById(
+                    'emergency-switch-hotkey',
+                )
+                if (emergencyHotkeyInput) {
+                    const emergencyHotkey = emergencyHotkeyInput.value
+                        .trim()
+                        .toLowerCase()
+                    localStorage.setItem('emergencyHotkey', emergencyHotkey)
+                    console.log('Emergency hotkey saved:', emergencyHotkey)
+                }
+
+                const emergencyURLInput = document.getElementById(
+                    'emergency-url-input',
+                )
+                if (emergencyURLInput) {
+                    const emergencyURL = emergencyURLInput.value.trim()
+                    localStorage.setItem('emergencyURL', emergencyURL)
+                    console.log('Emergency URL saved:', emergencyURL)
+                }
+
+                const fallbackUrlInput =
+                    document.getElementById('fallback-url-input')
+                if (fallbackUrlInput) {
+                    const fallbackUrl = fallbackUrlInput.value.trim()
+                    localStorage.setItem('fallbackUrl', fallbackUrl)
+                    console.log('Fallback URL saved:', fallbackUrl)
+                }
+
+                const bareServerInput = document.getElementById(
+                    'custom-bare-server-input',
+                )
+                if (bareServerInput) {
+                    const bareServer = bareServerInput.value.trim()
+                    caches.open('bareServerCache').then((cache) => {
+                        cache.put('bareServerKey', new Response(bareServer))
+                    })
+                    localStorage.setItem('bareServer', bareServer)
+                    //self.__uv$config.bare = bareServer;
+                    //self.__dynamic$config.bare.path = bareServer;
+                    console.log('BareServer URL saved:', bareServer)
+                    if ('serviceWorker' in navigator) {
+                        navigator.serviceWorker
+                            .getRegistrations()
+                            .then((registrations) => {
+                                for (const registration of registrations) {
+                                    if (
+                                        registration.active &&
+                                        registration.active.scriptURL.includes(
+                                            'dyn.sw.js',
+                                        )
+                                    ) {
+                                        registration.unregister().then(() => {
+                                            navigator.serviceWorker.register(
+                                                '/dyn.sw.js',
+                                            )
+                                            console.log(
+                                                'Dynamic service worker re-registered.',
+                                            )
+                                        })
+                                    }
+                                }
+                            })
+                    }
+                }
+
+                const use24HourTimeCheckbox = document.getElementById(
+                    'use-24hour-checkbox',
+                )
+                if (use24HourTimeCheckbox) {
+                    localStorage.setItem(
+                        'use24HourTime',
+                        use24HourTimeCheckbox.checked.toString(),
+                    )
+                    console.log(
+                        'Use 24 Hour Time Saved:',
+                        use24HourTimeCheckbox.checked,
+                    )
+                }
+
+                const includeDateCheckbox = document.getElementById(
+                    'include-date-checkbox',
+                )
+                if (includeDateCheckbox) {
+                    localStorage.setItem(
+                        'showDate',
+                        includeDateCheckbox.checked.toString(),
+                    )
+                    console.log('Show Date Saved:', includeDateCheckbox.checked)
+                }
+
+                const useSecondsCheckbox = document.getElementById(
+                    'use-seconds-checkbox',
+                )
+                if (useSecondsCheckbox) {
+                    localStorage.setItem(
+                        'useSeconds',
+                        useSecondsCheckbox.checked,
+                    )
+                    console.log(
+                        'Include Seconds in TimeBar:',
+                        useSecondsCheckbox.checked,
+                    )
+                }
+
+                setTimeout(function () {
+                    location.href = '/'
+                }, 100)
+            }
+        </script>
+        <script>
+            function immortalize(arg) {
+                if (arg === 'sodium') {
+                    localStorage.setItem(
+                        'websiteCSS',
+                        'assets/css/immortal.css',
+                    )
+
+                    console.log('Immortal Requested')
+                    console.log('Initializing 3MB Tailwind Package...')
+
+                    const tailwindCSSLink = document.createElement('link')
+                    tailwindCSSLink.rel = 'stylesheet'
+                    tailwindCSSLink.href = 'https://cdn.tailwindcss.com/'
+                    document.head.appendChild(tailwindCSSLink)
+
+                    setTimeout(() => {
+                        console.log('Done!')
+                        location.reload()
+                    }, 2000)
+                }
+            }
+
+            window.addEventListener('DOMContentLoaded', () => {
+                const command = 'immortalize("sodium")'
+                const consoleStyle =
+                    'background: #333; color: #fff; padding: 5px; font-weight: bold;'
+                //console.log('%c Enter ' + command + ' to access the Easter Egg!', consoleStyle);
+                window.addEventListener('keydown', (event) => {
+                    if (event.key === 'F12') {
+                        const inputCommand = prompt(
+                            'Please enter the Easter Egg command:',
+                        )
+                        if (inputCommand === command) {
+                            immortalize('sodium')
+                        }
+                    }
+                })
+            })
+        </script>
+    </body>
 </html>

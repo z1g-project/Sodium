@@ -1,76 +1,109 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-  <head>
-    <base href="../../"></base>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
-    <title>Sodium</title>
-    <meta name="description" content="Sodium is a site used for evading internet censorship" />
-    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#434c5e" />
-    <meta name="googlebot" content="index, follow, snippet" />
-    <link rel="stylesheet" href="assets/css/item-cards.css"/>
-    <link id="favicon" rel="icon" type="image/png" href="favicon.ico">
-    <link rel="stylesheet" href="assets/css/montserrat.css"/>
-    <link rel="stylesheet" href="assets/css/ui.css" id="custom-css"/>
-    <link rel="manifest" href="manifest.webmanifest"/>
-    <script id="proxcfg" src="ultra/ultra.bundle.js" defer></script>
-    <script src="ultra/ultra.config.js" defer></script>
-    <script id="proxsw" src="assets/js/register-sw.js" defer></script>
-    <script src="assets/js/search.js" defer></script>
-    <script id="proxloader" src="assets/js/index.js" defer></script>
-    <script src="assets/js/time.js" defer></script>
-    <script src="assets/js/settings.js" defer></script>
-    <script src="assets/js/fade.js" defer></script>
-    <script src="assets/js/bare.js" defer></script>
-    <style>
-      body {
-        background-color: transparent;
-      }
-    </style>
-    <script>
-      function eag() {
-        const proxyOption = localStorage.getItem('proxyOption'); const urlToLoad = proxyOption && proxyOption.toLowerCase() === 'dynamic'
-        ? `${window.location.origin}/service/route?url=https://eaglercraft.com/mc/1.5.2/`
-        : `${window.location.origin}/sw/${Ultraviolet.codec.xor.encode('https://eaglercraft.com/mc/1.5.2/')}`;
-        window.location.href = urlToLoad;
-      }
+    <head>
+        <base href="../../" />
+        <meta charset="utf-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
+        />
+        <title>Sodium</title>
+        <meta
+            name="description"
+            content="Sodium is a site used for evading internet censorship"
+        />
+        <meta
+            name="theme-color"
+            media="(prefers-color-scheme: dark)"
+            content="#434c5e"
+        />
+        <meta name="googlebot" content="index, follow, snippet" />
+        <link rel="stylesheet" href="assets/css/item-cards.css" />
+        <link id="favicon" rel="icon" type="image/png" href="favicon.ico" />
+        <link rel="stylesheet" href="assets/css/montserrat.css" />
+        <link rel="stylesheet" href="assets/css/ui.css" id="custom-css" />
+        <link rel="manifest" href="manifest.webmanifest" />
+        <script id="proxcfg" src="ultra/ultra.bundle.js" defer></script>
+        <script src="ultra/ultra.config.js" defer></script>
+        <script id="proxsw" src="assets/js/register-sw.js" defer></script>
+        <script src="assets/js/search.js" defer></script>
+        <script id="proxloader" src="assets/js/index.js" defer></script>
+        <script src="assets/js/time.js" defer></script>
+        <script src="assets/js/settings.js" defer></script>
+        <script src="assets/js/fade.js" defer></script>
+        <script src="assets/js/bare.js" defer></script>
+        <style>
+            body {
+                background-color: transparent;
+            }
+        </style>
+        <script>
+            function eag() {
+                const proxyOption = localStorage.getItem('proxyOption')
+                const urlToLoad =
+                    proxyOption && proxyOption.toLowerCase() === 'dynamic'
+                        ? `${window.location.origin}/service/route?url=https://eaglercraft.com/mc/1.5.2/`
+                        : `${window.location.origin}/sw/${Ultraviolet.codec.xor.encode('https://eaglercraft.com/mc/1.5.2/')}`
+                window.location.href = urlToLoad
+            }
 
-      function pres() {
-        const proxyOption2 = localStorage.getItem('proxyOption'); const urlToLoad2 = proxyOption2 && proxyOption2.toLowerCase() === 'dynamic'
-        ? `${window.location.origin}/service/route?url=https://precisionclient-88k.pages.dev`
-        : `${window.location.origin}/sw/${Ultraviolet.codec.xor.encode('https://precisionclient-88k.pages.dev')}`;
-        window.location.href = urlToLoad2;
-      }
+            function pres() {
+                const proxyOption2 = localStorage.getItem('proxyOption')
+                const urlToLoad2 =
+                    proxyOption2 && proxyOption2.toLowerCase() === 'dynamic'
+                        ? `${window.location.origin}/service/route?url=https://precisionclient-88k.pages.dev`
+                        : `${window.location.origin}/sw/${Ultraviolet.codec.xor.encode('https://precisionclient-88k.pages.dev')}`
+                window.location.href = urlToLoad2
+            }
 
-      function x() {
-        const proxyOption3 = localStorage.getItem('proxyOption'); const urlToLoad3 = proxyOption3 && proxyOption3.toLowerCase() === 'dynamic'
-        ? `${window.location.origin}/service/route?url=https://eaglercraftx.pages.dev`
-        : `${window.location.origin}/sw/${Ultraviolet.codec.xor.encode('https://eaglercraftx.pages.dev')}`;
-        window.location.href = urlToLoad3;
-      }
-    </script>
-  </head>
+            function x() {
+                const proxyOption3 = localStorage.getItem('proxyOption')
+                const urlToLoad3 =
+                    proxyOption3 && proxyOption3.toLowerCase() === 'dynamic'
+                        ? `${window.location.origin}/service/route?url=https://eaglercraftx.pages.dev`
+                        : `${window.location.origin}/sw/${Ultraviolet.codec.xor.encode('https://eaglercraftx.pages.dev')}`
+                window.location.href = urlToLoad3
+            }
+        </script>
+    </head>
 
-  <body>    
-    <h1 style="text-align: center;">EaglerCraft</h1>
-    <h3 style="text-align: center;">Please Select a Version of Eaglercraft to play!</h3>
+    <body>
+        <h1 style="text-align: center">EaglerCraft</h1>
+        <h3 style="text-align: center">
+            Please Select a Version of Eaglercraft to play!
+        </h3>
 
-    <div class="container-apps">
-      <div class="column">
-        <a onclick="eag()">
-        <img width="145" height="145" src="/games/assets/game1.jpg">
-        <p>EaglerCraft</p></a>
-      </div>
-      <div class="column">
-        <a onclick="pres()">
-        <img width="145" height="145" src="/games/assets/precision.png">
-        <p>Precision Client</p></a>
-      </div>
-      <div class="column">
-        <a onclick="x()">
-        <img width="145" height="145" src="/games/assets/game1.jpg">
-        <p>EaglerCraft X</p></a>
-      </div>
-    </div>
-  </body>
+        <div class="container-apps">
+            <div class="column">
+                <a onclick="eag()">
+                    <img
+                        width="145"
+                        height="145"
+                        src="/games/assets/game1.jpg"
+                    />
+                    <p>EaglerCraft</p></a
+                >
+            </div>
+            <div class="column">
+                <a onclick="pres()">
+                    <img
+                        width="145"
+                        height="145"
+                        src="/games/assets/precision.png"
+                    />
+                    <p>Precision Client</p></a
+                >
+            </div>
+            <div class="column">
+                <a onclick="x()">
+                    <img
+                        width="145"
+                        height="145"
+                        src="/games/assets/game1.jpg"
+                    />
+                    <p>EaglerCraft X</p></a
+                >
+            </div>
+        </div>
+    </body>
 </html>

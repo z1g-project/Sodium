@@ -1,10 +1,10 @@
 .fbBtnPressed {
-    background: #ECEBE3;
+    background: #ecebe3;
     padding: 3px 6px 2px 7px !important;
     margin: 1px 0 0 1px;
     _margin: 1px -1px 0 1px;
-    border: 1px solid #ACA899 !important;
-    border-color: #ACA899 #ECEBE3 #ECEBE3 #ACA899 !important;
+    border: 1px solid #aca899 !important;
+    border-color: #aca899 #ecebe3 #ecebe3 #aca899 !important;
 }
 
 .fbToolbarButtons {
@@ -44,15 +44,6 @@
     right: 5px;
 }
 
-
-
-
-
-
-
-
-
-
 .fbBtnInspectActive {
     background: #aaa;
     color: #fff !important;
@@ -61,16 +52,20 @@
 /************************************************************************************************
  General
 *************************************************************************************************/
-html, body {
+html,
+body {
     margin: 0;
     padding: 0;
     overflow: hidden;
 }
 
 body {
-    font-family: Lucida Grande, Tahoma, sans-serif;
+    font-family:
+        Lucida Grande,
+        Tahoma,
+        sans-serif;
     font-size: 11px;
-    background: #fff;    
+    background: #fff;
 }
 
 .clear {
@@ -103,7 +98,7 @@ body {
     border: 1px solid #ccc;
     margin: 0 5px 0 0;
     background: #fff url(search.png) no-repeat 4px 2px;
-    padding-left: 20px;    
+    padding-left: 20px;
     font-size: 11px;
 }
 
@@ -124,7 +119,7 @@ body {
     height: 14px;
     background: url(errorIcon.png) no-repeat;
     color: #f00;
-    font-weight: bold;    
+    font-weight: bold;
 }
 
 #fbMiniErrors {
@@ -139,11 +134,10 @@ body {
     margin: 3px 4px 0;
     height: 20px;
     width: 20px;
-    float: right;    
+    float: right;
     background: url(sprite.png) 0 -135px;
     cursor: pointer;
 }
-
 
 /************************************************************************************************
  Master Layout
@@ -237,10 +231,10 @@ body {
     position: relative;
     top: 5px;
     line-height: 19px;
-    cursor: default;    
+    cursor: default;
 }
 
-.fbToolbarSeparator{
+.fbToolbarSeparator {
     overflow: hidden;
     border: 1px solid;
     border-color: transparent #fff transparent #777;
@@ -262,9 +256,8 @@ body {
 
 .fbStatusBar span a:hover {
     color: blue;
-    cursor: pointer;    
+    cursor: pointer;
 }
-
 
 #fbWindowButtons {
     position: absolute;
@@ -313,7 +306,8 @@ body {
     display: none;
 }
 
-#fbPanelBox1, #fbPanelBox2 {
+#fbPanelBox1,
+#fbPanelBox2 {
     max-height: inherit;
     height: 100%;
     font-size: 11px;
@@ -365,7 +359,9 @@ body {
     top: 2px;
     left: 7px;
     display: inline;
-    font: 11px Monaco, monospace;
+    font:
+        11px Monaco,
+        monospace;
     z-index: 10;
 }
 
@@ -377,7 +373,9 @@ body {
     border: 0;
     margin: 0;
     padding: 2px 0 2px 32px;
-    font: 11px Monaco, monospace;
+    font:
+        11px Monaco,
+        monospace;
     z-index: 9;
 }
 
@@ -385,7 +383,6 @@ div.fbFitHeight {
     overflow: auto;
     _position: absolute;
 }
-
 
 /************************************************************************************************
  Layout Controls
@@ -429,7 +426,10 @@ div.fbFitHeight {
     width: auto;
     float: left;
     cursor: default;
-    font-family: Lucida Grande, Tahoma, sans-serif;
+    font-family:
+        Lucida Grande,
+        Tahoma,
+        sans-serif;
     font-size: 11px;
     font-weight: bold;
     height: 22px;
@@ -441,7 +441,8 @@ div.fbFitHeight {
     float: left;
 }
 
-.fbPanelBar .fbTabL,.fbPanelBar .fbTabR {
+.fbPanelBar .fbTabL,
+.fbPanelBar .fbTabR {
     height: 22px;
     width: 8px;
 }
@@ -514,7 +515,9 @@ a.fbTab:hover .fbTabR {
 
 /************************************************************************************************/
 div.lineNo {
-    font: 11px Monaco, monospace;
+    font:
+        11px Monaco,
+        monospace;
     float: left;
     display: inline;
     position: relative;
@@ -527,7 +530,9 @@ div.lineNo {
 }
 
 pre.nodeCode {
-    font: 11px Monaco, monospace;
+    font:
+        11px Monaco,
+        monospace;
     margin: 0;
     padding-left: 10px;
     overflow: hidden;
@@ -558,24 +563,24 @@ div.nodeMaximized {
 div.objectBox-element {
     padding: 1px 3px;
 }
-.objectBox-selector{
+.objectBox-selector {
     cursor: default;
 }
 
-.selectedElement{
+.selectedElement {
     background: highlight;
     /* background: url(roundCorner.svg); Opera */
     color: #fff !important;
 }
-.selectedElement span{
+.selectedElement span {
     color: #fff !important;
 }
 
-/* Webkit CSS Hack - bug in "highlight" named color */ 
-@media screen and (-webkit-min-device-pixel-ratio:0) {
-    .selectedElement{
-      background: #316AC5;
-      color: #fff !important;
+/* Webkit CSS Hack - bug in "highlight" named color */
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+    .selectedElement {
+        background: #316ac5;
+        color: #fff !important;
     }
 }
 
@@ -587,9 +592,9 @@ div.objectBox-element {
 
 .logRow {
     position: relative;
-    border-bottom: 1px solid #D7D7D7;
+    border-bottom: 1px solid #d7d7d7;
     padding: 2px 4px 1px 6px;
-    background-color: #FFFFFF;
+    background-color: #ffffff;
 }
 
 .logRow-command {
@@ -613,7 +618,7 @@ div.objectBox-element {
     padding: 0 2px;
     border: 1px solid #666666;
     background-color: #888888;
-    color: #FFFFFF;
+    color: #ffffff;
 }
 
 .objectBox-string {
@@ -632,7 +637,9 @@ div.objectBox-element {
 .objectBox-object {
     color: DarkGreen;
     font-weight: bold;
-    font-family: Lucida Grande, sans-serif;
+    font-family:
+        Lucida Grande,
+        sans-serif;
 }
 
 .objectBox-array {
@@ -640,7 +647,9 @@ div.objectBox-element {
 }
 
 /************************************************************************************************/
-.logRow-info,.logRow-error,.logRow-warning {
+.logRow-info,
+.logRow-error,
+.logRow-warning {
     background: #fff no-repeat 2px 2px;
     padding-left: 20px;
     padding-bottom: 3px;
@@ -671,35 +680,39 @@ div.objectBox-element {
     right: 4px;
     top: 2px;
     padding-left: 8px;
-    font-family: Lucida Grande, sans-serif;
+    font-family:
+        Lucida Grande,
+        sans-serif;
     font-weight: bold;
-    color: #0000FF;
+    color: #0000ff;
 }
 
 /************************************************************************************************/
 .logRow-group {
-    background: #EEEEEE;
+    background: #eeeeee;
     border-bottom: none;
 }
 
 .logGroup {
-    background: #EEEEEE;
+    background: #eeeeee;
 }
 
 .logGroupBox {
     margin-left: 24px;
-    border-top: 1px solid #D7D7D7;
-    border-left: 1px solid #D7D7D7;
+    border-top: 1px solid #d7d7d7;
+    border-left: 1px solid #d7d7d7;
 }
 
 /************************************************************************************************/
-.selectorTag,.selectorId,.selectorClass {
+.selectorTag,
+.selectorId,
+.selectorClass {
     font-family: Monaco, monospace;
     font-weight: normal;
 }
 
 .selectorTag {
-    color: #0000FF;
+    color: #0000ff;
 }
 
 .selectorId {
@@ -726,11 +739,12 @@ div.objectBox-element {
 }
 
 .nodeValue {
-    color: #FF0000;
+    color: #ff0000;
     font-weight: normal;
 }
 
-.nodeText,.nodeComment {
+.nodeText,
+.nodeComment {
     margin: 0 2px;
     vertical-align: top;
 }
@@ -746,22 +760,23 @@ div.objectBox-element {
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-.nodeHidden, .nodeHidden * {
+.nodeHidden,
+.nodeHidden * {
     color: #888888;
 }
 
 .nodeHidden .nodeTag {
-    color: #5F82D9;
+    color: #5f82d9;
 }
 
 .nodeHidden .nodeValue {
-    color: #D86060;
+    color: #d86060;
 }
 
-.selectedElement .nodeHidden, .selectedElement .nodeHidden * {
+.selectedElement .nodeHidden,
+.selectedElement .nodeHidden * {
     color: SkyBlue !important;
 }
-
 
 /************************************************************************************************/
 .log-object {

@@ -2,17 +2,17 @@
 
 ## Whats new in v1.4.0
 
-- Fixed Z-Index on Loading Overlays
-- Updated Ruffle nightly 8/29/23 > nightly 10/02/23
-- Made Tabbed UI dark mode
-- Added more Addons!
-- Made Service Workers auto register!
-- Made Sodium 37% more Efficient than v1.3.7 (LTS)
-- Redesigned Apps/Games Page ui
-- Added PWA Theme Changing
-- New CSS Editor
-- Added Blob Windowing
-- Other minor/major Fixes!
+-   Fixed Z-Index on Loading Overlays
+-   Updated Ruffle nightly 8/29/23 > nightly 10/02/23
+-   Made Tabbed UI dark mode
+-   Added more Addons!
+-   Made Service Workers auto register!
+-   Made Sodium 37% more Efficient than v1.3.7 (LTS)
+-   Redesigned Apps/Games Page ui
+-   Added PWA Theme Changing
+-   New CSS Editor
+-   Added Blob Windowing
+-   Other minor/major Fixes!
 
 ### Domains
 
