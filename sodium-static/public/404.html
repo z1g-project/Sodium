@@ -1,165 +1,107 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-    <head>
-        <base href="/" />
-        <meta charset="utf-8" />
-        <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
-        />
-        <title>Sodium - Error</title>
-        <meta
-            name="description"
-            content="Sodium is a site used for evading internet censorship."
-        />
-        <meta property="og:image" content="/sodium.png" />
-        <meta
-            name="theme-color"
-            media="(prefers-color-scheme: dark)"
-            content="#27639f"
-        />
-        <meta name="googlebot" content="noindex, nofollow, nosnippet" />
-        <link rel="shortcut icon" content="favicon.ico" />
-        <link rel="stylesheet" href="assets/css/ui.css" id="custom-css" />
-        <link rel="stylesheet" href="assets/css/montserrat.css" />
-        <script src="assets/js/settings.js" defer></script>
-        <script src="assets/js/fade.js" defer></script>
-        <link rel="manifest" href="manifest.webmanifest" />
-        <link id="favicon" rel="icon" type="image/png" href="favicon.ico" />
-        <script src="regcache.js" defer></script>
-    </head>
-
-    <body>
-        <div class="second-bar">
-            <a href="/" title="Home" class="second-bar-link home-link"></a>
-            <a
-                href="/games/"
-                title="Games"
-                class="second-bar-link games-link"
-            ></a>
-            <a href="/apps/" title="Apps" class="second-bar-link apps-link"></a>
-            <a
-                href="/settings/"
-                title="Settings"
-                class="second-bar-link settings-link"
-            ></a>
-            <div class="info-menu" id="info-menu" style="margin-left: auto">
-                <div class="info-menu-item" id="transferRate"></div>
-                <div class="info-menu-item" id="latency"></div>
-                <div class="info-menu-item" id="fps"></div>
-            </div>
-            <div class="top-bar-item" id="time"></div>
-            <div class="top-bar-item">
-                <div class="battery-icon-container">
-                    <div id="battery" class="battery-icon"></div>
-                    <div class="battery-fill"></div>
-                    <p class="battery-text"></p>
-                </div>
-            </div>
+  <head>
+    <base href="/"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no"/>
+    <title>Sodium - Error</title>
+    <meta name="description" content="Sodium is a site used for evading internet censorship." />
+    <meta property="og:image" content="/sodium.png">
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#27639f"/>
+    <meta name="googlebot" content="noindex, nofollow, nosnippet" />
+    <link rel="shortcut icon" content="favicon.ico" />
+    <link rel="stylesheet" href="assets/css/ui.css" id="custom-css"/>
+    <link rel="stylesheet" href="assets/css/montserrat.css"/>
+    <script src="assets/js/settings.js" defer></script>
+    <script src="assets/js/fade.js" defer></script>
+    <link rel="manifest" href="manifest.webmanifest"/>
+    <link id="favicon" rel="icon" type="image/png" href="favicon.ico">
+    <script src="regcache.js" defer></script>
+  </head>
+  
+  <body>
+    <div class="second-bar">
+      <a href="/" title="Home" class="second-bar-link home-link"></a>
+      <a href="/games/" title="Games" class="second-bar-link games-link"></a>
+      <a href="/apps/" title="Apps" class="second-bar-link apps-link"></a>
+      <a href="/settings/" title="Settings" class="second-bar-link settings-link"></a>
+      <div class="info-menu" id="info-menu" style="margin-left: auto">
+        <div class="info-menu-item" id="transferRate"></div>
+        <div class="info-menu-item" id="latency"></div>
+        <div class="info-menu-item" id="fps"></div>
+      </div>
+      <div class="top-bar-item" id="time"></div>
+      <div class="top-bar-item">
+        <div class="battery-icon-container">
+          <div id="battery" class="battery-icon"></div>
+          <div class="battery-fill"></div>
+          <p class="battery-text"></p>
         </div>
+      </div>
+    </div>
 
-        <div class="box-error text-center">
-            <h1>404 Error</h1>
-            <p style="text-align: center">
-                The requested file was not found on this server!
-            </p>
-            <div style="text-align: center">
-                <button
-                    id="uv-register-sw"
-                    onclick="regsw()"
-                    value="Register service worker"
-                >
-                    Register Serviceworkers
-                </button>
-            </div>
-        </div>
+    <div class="box-error text-center">
+      <h1>404 Error</h1>
+      <p style="text-align: center;">The requested file was not found on this server!</p>
+      <div style="text-align: center;">
+        <button id="uv-register-sw" onclick="regsw()" value="Register service worker">Register Serviceworkers</button>
+      </div>
+    </div>
 
-        <div id="footer" class="fullwidth">
-            <div class="footerflex">
-                <div class="footerbrand">
-                    <h3><a href="/">Sodium</a></h3>
-                    <p>Evading Internet Censorship for over 6 Months!</p>
-                </div>
-                <div class="footerlist">
-                    <p style="margin-top: 58px">Sodium © z1g Project 2024</p>
-                </div>
-            </div>
-            <div class="footersocials">
-                <img
-                    src="assets/img/z1g.png"
-                    alt="z1g Project"
-                    title="The z1g Project GitHub organization"
-                    height="30"
-                    width="30"
-                    onclick="location.href='/github/z1g-project/'"
-                />
-                <img
-                    src="assets/img/discord.jpg"
-                    alt="Discord"
-                    title="The z1g Project Discord"
-                    height="30"
-                    width="30"
-                    onclick="location.href='/discord/'"
-                />
-                <img
-                    src="assets/img/github.png"
-                    alt="GitHub"
-                    title="The official deployment repository for Sodium"
-                    height="30"
-                    width="30"
-                    onclick="location.href='/github/'"
-                />
-                <img
-                    src="assets/img/license.svg"
-                    alt="Credits"
-                    title="License information"
-                    height="30"
-                    width="30"
-                    onclick="location.href='/credits/'"
-                />
-            </div>
-        </div>
+    <div id="footer" class="fullwidth">
+      <div class="footerflex">
+          <div class="footerbrand">
+              <h3><a href="/">Sodium</a></h3>
+              <p>Evading Internet Censorship for over 6 Months!</p>
+          </div>
+          <div class="footerlist">
+            <p style="margin-top: 58px;">Sodium © z1g Project 2024</hp>
+          </div>
+      </div>
+      <div class="footersocials">
+        <img src="assets/img/z1g.png" alt="z1g Project" title="The z1g Project GitHub organization" height="30" width="30" onclick="location.href='/github/z1g-project/'">
+        <img src="assets/img/discord.jpg" alt="Discord" title="The z1g Project Discord" height="30" width="30" onclick="location.href='/discord/'">
+        <img src="assets/img/github.png" alt="GitHub" title="The official deployment repository for Sodium" height="30" width="30" onclick="location.href='/github/'">
+        <img src="assets/img/license.svg" alt="Credits" title="License information" height="30" width="30" onclick="location.href='/credits/'">   
+      </div>
+    </div>
 
-        <script id="proxcfg" src="ultra/ultra.bundle.js"></script>
-        <script src="ultra/ultra.config.js"></script>
-        <script id="proxsw" src="assets/js/register-sw.js"></script>
-        <script src="assets/js/proxhandler.js" defer></script>
-        <script id="proxworker" defer></script>
-        <script src="dyn.sw.js" defer></script>
-        <script src="dynsw.js" defer></script>
-        <script src="assets/js/error.js"></script>
-        <script src="assets/js/time.js"></script>
-        <script src="assets/js/debug.js" defer></script>
-        <script>
-            async function regSW() {
-                console.log('Waiting on SW Cache to Register...')
-                const stockSW = '/sw.js'
-                const dynSW = '/dyn.sw.js'
-                const swAllowedHostnames = ['localhost', '127.0.0.1']
+    <script id="proxcfg" src="ultra/ultra.bundle.js"></script>
+    <script src="ultra/ultra.config.js"></script>
+    <script id="proxsw" src="assets/js/register-sw.js"></script>
+    <script src="assets/js/proxhandler.js" defer></script>
+    <script id="proxworker" defer></script>
+    <script src="dyn.sw.js" defer></script>
+    <script src="dynsw.js" defer></script>
+    <script src="assets/js/error.js"></script>
+    <script src="assets/js/time.js"></script>
+    <script src="assets/js/debug.js" defer></script>
+    <script>
+      async function regSW() {
+        console.log('Waiting on SW Cache to Register...');
+        const stockSW = "/sw.js";
+        const dynSW = "/dyn.sw.js"
+        const swAllowedHostnames = ["localhost", "127.0.0.1"];
 
-                if (
-                    location.protocol !== 'https:' &&
-                    !swAllowedHostnames.includes(location.hostname)
-                )
-                    throw new Error(
-                        'Service workers cannot be registered without https.',
-                    )
+        if (
+          location.protocol !== "https:" &&
+          !swAllowedHostnames.includes(location.hostname)
+        )
+        throw new Error("Service workers cannot be registered without https.");
 
-                if (!navigator.serviceWorker)
-                    throw new Error(
-                        "Your browser doesn't support service workers.",
-                    )
+        if (!navigator.serviceWorker)
+          throw new Error("Your browser doesn't support service workers.");
 
-                await navigator.serviceWorker.register(stockSW, {
-                    scope: '/sw/',
-                })
+        await navigator.serviceWorker.register(stockSW, {
+          scope: "/sw/",
+        });
 
-                await navigator.serviceWorker.register(dynSW, {
-                    scope: '/service/',
-                })
+        await navigator.serviceWorker.register(dynSW, {
+          scope: "/service/",
+        });
 
-                window.location.reload()
-            }
-        </script>
-    </body>
+        window.location.reload()
+      }
+    </script>
+  </body>
 </html>

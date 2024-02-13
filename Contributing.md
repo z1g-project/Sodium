@@ -10,16 +10,16 @@ Please note by contributing to this repository (Sodium), you must ensure that yo
 
 ### Code Quality
 
--   Write readable and clean code.
--   Follow consistent coding style within the project.
--   Minimize unnecessary complexity.
--   Comment your code where necessary to enhance understanding.
+- Write readable and clean code.
+- Follow consistent coding style within the project.
+- Minimize unnecessary complexity.
+- Comment your code where necessary to enhance understanding.
 
 ## Pull Requests
 
--   Before submitting a pull request, ensure your changes are well-tested.
--   Clearly describe the purpose and scope of your changes in the pull request description.
--   If your pull request addresses an issue, reference the issue number in your description.
+- Before submitting a pull request, ensure your changes are well-tested.
+- Clearly describe the purpose and scope of your changes in the pull request description.
+- If your pull request addresses an issue, reference the issue number in your description.
 
 ## Contact
 
@@ -27,5 +27,5 @@ If you have questions or need clarification on any contribution-related matters,
 
 Thank you for contributing to Sodium!
 
--   (C) Copyright 2021-2024 z1g Project All rights reserved
--   Licensed under [The MIT License](https://github.com/z1g-project/sodium/blob/master/LICENSE.txt)
+- (C) Copyright 2021-2024 z1g Project All rights reserved
+- Licensed under [The MIT License](https://github.com/z1g-project/sodium/blob/master/LICENSE.txt)

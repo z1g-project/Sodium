@@ -1,696 +1,548 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-    <head>
-        <base href="../" />
-        <meta charset="utf-8" />
-        <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
-        />
-        <title>Sodium</title>
-        <meta
-            name="description"
-            content="Sodium is a site used for evading internet censorship"
-        />
-        <meta
-            name="keywords"
-            content="Sodium, z1g-project, internet-censorship, evade-internet-censorship"
-        />
-        <meta property="og:image" content="/sodium.png" />
-        <meta
-            name="theme-color"
-            media="(prefers-color-scheme: dark)"
-            content="#434c5e"
-        />
-        <meta name="googlebot" content="all" />
-        <link id="favicon" rel="icon" type="image/png" href="favicon.ico" />
-        <link rel="stylesheet" href="assets/css/montserrat.css" />
-        <link rel="stylesheet" href="assets/css/ui.css" id="custom-css" />
-        <link rel="json" href="assets/json/appx.json" />
-        <link rel="manifest" href="manifest.webmanifest" />
-        <script src="ultra/ultra.bundle.js" defer></script>
-        <script src="ultra/ultra.config.js" defer></script>
-        <script src="dyn/dyn.config.js" defer></script>
-        <script src="assets/js/register-sw.js" defer></script>
-        <script src="assets/js/search.js" defer></script>
-        <script src="assets/js/index.js" defer></script>
-        <script src="assets/js/time.js" defer></script>
-        <script src="assets/js/settings.js" defer></script>
-        <script src="assets/js/fade.js" defer></script>
-        <script src="regcache.js" defer></script>
-        <style>
-            .sidebar {
-                background-color: transparent;
-                width: 250px;
-                padding: 20px;
-                height: 75vh;
-                position: fixed;
-                left: 0;
-                top: 45px;
-                overflow-y: auto;
-            }
+<head>
+  <base href="../">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no"/>
+  <title>Sodium</title>
+  <meta name="description" content="Sodium is a site used for evading internet censorship"/>
+  <meta name="keywords" content="Sodium, z1g-project, internet-censorship, evade-internet-censorship">
+  <meta property="og:image" content="/sodium.png">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#434c5e"/>
+  <meta name="googlebot" content="all"/>
+  <link id="favicon" rel="icon" type="image/png" href="favicon.ico">
+  <link rel="stylesheet" href="assets/css/montserrat.css"/>
+  <link rel="stylesheet" href="assets/css/ui.css" id="custom-css"/>
+  <link rel="json" href="assets/json/appx.json"></link>
+  <link rel="manifest" href="manifest.webmanifest"/>
+  <script src="ultra/ultra.bundle.js" defer></script>
+  <script src="ultra/ultra.config.js" defer></script>
+  <script src="dyn/dyn.config.js" defer></script>
+  <script src="assets/js/register-sw.js" defer></script>
+  <script src="assets/js/search.js" defer></script>
+  <script src="assets/js/index.js" defer></script>
+  <script src="assets/js/time.js" defer></script>
+  <script src="assets/js/settings.js" defer></script>
+  <script src="assets/js/fade.js" defer></script>
+  <script src="regcache.js" defer></script>
+  <style>
+.sidebar {
+  background-color: transparent;
+  width: 250px;
+  padding: 20px;
+  height: 75vh;
+  position: fixed;
+  left: 0;
+  top: 45px;
+  overflow-y: auto;
+}
 
-            .sidebar h1 {
-                margin-bottom: 20px;
-                text-align: center;
-            }
+.sidebar h1 {
+  margin-bottom: 20px;
+  text-align: center;
+}
 
-            .sidebar ul {
-                list-style: none;
-                padding: 0;
-            }
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
 
-            .sidebar li {
-                margin-bottom: 10px;
-                cursor: pointer;
-            }
+.sidebar li {
+  margin-bottom: 10px;
+  cursor: pointer;
+}
 
-            .content {
-                margin-left: 250px;
-                padding: 20px;
-            }
+.content {
+  margin-left: 250px;
+  padding: 20px;
+}
 
-            .section {
-                display: none;
-                transition: opacity 0.5s ease;
-                opacity: 0;
-            }
+.section {
+  display: none;
+  transition: opacity 0.5s ease;
+  opacity: 0;
+}
 
-            .section.active {
-                display: block;
-                opacity: 1;
-                animation: fade-in 0.5s ease-in-out forwards;
-            }
+.section.active {
+  display: block;
+  opacity: 1;
+  animation: fade-in 0.5s ease-in-out forwards
+}
 
-            .reset-button {
-                height: 40px;
-                padding: 0 20px;
-                font-size: 16px;
-                margin-left: 10px;
-                margin-bottom: 25px;
-                background-color: red;
-                color: #fff;
-                border: none;
-                border-radius: 25px;
-                cursor: pointer;
-                opacity: 0;
-                animation: fade-in 0.5s ease-in-out forwards;
-            }
+.reset-button {
+  height: 40px;
+  padding: 0 20px;
+  font-size: 16px;
+  margin-left: 10px;
+  margin-bottom: 25px;
+  background-color: red;
+  color: #fff;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  opacity: 0;
+  animation: fade-in 0.5s ease-in-out forwards;
+}
 
-            .reset-button:hover {
-                transform: scale(1.2);
-            }
+.reset-button:hover {
+  transform: scale(1.2);
+}
 
-            .sidebar-buttons {
-                position: absolute;
-                bottom: 0px;
-                width: 75%;
-            }
+.sidebar-buttons {
+  position: absolute;
+  bottom: 0px;
+  width: 75%;
+}
 
-            .addon-grid {
-                display: grid;
-                grid-template-columns: repeat(3, 1fr);
-                gap: 20px;
-                padding: 20px;
-            }
+.addon-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  padding: 20px;
+}
 
-            .notification {
-                position: fixed;
-                top: 40px;
-                left: 0;
-                width: 100%;
-                padding: 10px;
-                background-color: #4caf50;
-                color: white;
-                text-align: center;
-                font-size: 14px;
-                transition: top 0.5s ease-in-out;
-            }
+.notification {
+  position: fixed;
+  top: 40px;
+  left: 0;
+  width: 100%;
+  padding: 10px;
+  background-color: #4CAF50;
+  color: white;
+  text-align: center;
+  font-size: 14px;
+  transition: top 0.5s ease-in-out;
+}
 
-            .hidden {
-                visibility: hidden;
-            }
-        </style>
+.hidden {
+  visibility: hidden;
+}
+      </style>  
     </head>
     <body>
-        <div class="second-bar">
-            <a href="/" title="Home" class="second-bar-link home-link"></a>
-            <a
-                href="/games/"
-                title="Games"
-                class="second-bar-link games-link"
-            ></a>
-            <a href="/apps/" title="Apps" class="second-bar-link apps-link"></a>
-            <a
-                href="/settings/"
-                title="Settings"
-                class="second-bar-link settings-link"
-            ></a>
-            <div class="info-menu" id="info-menu" style="margin-left: auto">
-                <div class="info-menu-item" id="transferRate"></div>
-                <div class="info-menu-item" id="latency"></div>
-                <div class="info-menu-item" id="fps"></div>
-            </div>
-            <div class="top-bar-item" id="time"></div>
-            <div class="top-bar-item">
-                <div class="battery-icon-container">
-                    <div id="battery" class="battery-icon"></div>
-                    <div class="battery-fill"></div>
-                    <p class="battery-text"></p>
-                </div>
-            </div>
+      <div class="second-bar">
+        <a href="/" title="Home" class="second-bar-link home-link"></a>
+        <a href="/games/" title="Games" class="second-bar-link games-link"></a>
+        <a href="/apps/" title="Apps" class="second-bar-link apps-link"></a>
+        <a href="/settings/" title="Settings" class="second-bar-link settings-link"></a>
+        <div class="info-menu" id="info-menu" style="margin-left: auto">
+          <div class="info-menu-item" id="transferRate"></div>
+          <div class="info-menu-item" id="latency"></div>
+          <div class="info-menu-item" id="fps"></div>
         </div>
-        <div id="notification" class="notification hidden">
-            <p>Settings saved</p>
+        <div class="top-bar-item" id="time"></div>
+        <div class="top-bar-item">
+          <div class="battery-icon-container">
+          <div id="battery" class="battery-icon"></div>
+          <div class="battery-fill"></div>
+          <p class="battery-text"></p>
         </div>
+    </div>
+  </div>
+  <div id="notification" class="notification hidden">
+    <p>Settings saved</p>
+  </div>
 
-        <div class="sidebar">
-            <h1 style="text-align: left">Settings</h1>
-            <ul>
-                <li data-section="general">General</li>
-                <li data-section="appearance">Appearance</li>
-                <li data-section="network">Network</li>
-                <li data-section="account">Cache</li>
-                <li data-section="addons">Addons</li>
-            </ul>
-            <div class="sidebar-buttons">
-                <button id="save-button">Save Settings</button>
-                <br />
-                <br />
-                <button class="reset-button" onclick="resetSettings();">
-                    Reset Settings
-                </button>
-            </div>
-        </div>
+  <div class="sidebar">
+    <h1 style="text-align:left;">Settings</h1>
+    <ul>
+      <li data-section="general">General</li>
+      <li data-section="appearance">Appearance</li>
+      <li data-section="network">Network</li>
+      <li data-section="account">Cache</li>
+      <li data-section="addons">Addons</li>
+    </ul>
+    <div class="sidebar-buttons">
+      <button id="save-button">Save Settings</button>
+      <br>
+      <br>
+      <button class="reset-button" onclick="resetSettings();">Reset Settings</button>
+    </div>
+  </div>
 
-        <div class="content">
-            <div class="section active" data-section="general">
-                <h2>General Settings</h2>
-                <label for="title-input" class="config-label">Title:</label>
-                <input type="text" id="title-input" class="config-input" />
-                <br />
-                <br />
-                <label for="icon-input" class="config-label">Icon:</label>
-                <input type="text" id="icon-input" class="config-input" />
-                <br />
-                <br />
-                <label for="search-engine-select" class="config-label"
-                    >Search Engine:</label
-                >
-                <select id="search-engine-select" class="config-select">
-                    <option value="https://www.google.com/search?q=%s">
-                        Google
-                    </option>
-                    <option value="https://www.bing.com/search?q=%s">
-                        Bing
-                    </option>
-                    <option value="https://duckduckgo.com/?q=%s">
-                        DuckDuckGo
-                    </option>
-                    <option value="https://search.yahoo.com/search?p=%s">
-                        Yahoo
-                    </option>
-                    <option value="custom">Custom</option>
-                </select>
-                <input
-                    type="text"
-                    id="custom-search-engine-input"
-                    placeholder="Enter a URL like so: https://example.com/search?q="
-                    class="config-input"
-                    style="display: none"
-                />
-                <br />
-                <br />
-                <label for="emergency-switch-hotkey" class="config-label"
-                    >Emergency Switch Hotkey:</label
-                >
-                <input
-                    type="text"
-                    id="emergency-switch-hotkey"
-                    class="config-input"
-                />
-                <br />
-                <br />
-                <label for="emergency-url-input" class="config-label"
-                    >Emergency Switch URL:</label
-                >
-                <input
-                    type="text"
-                    id="emergency-url-input"
-                    placeholder="Enter emergency URL"
-                    class="config-input"
-                />
-                <br />
-                <br />
-                <label for="fallback-url-input" class="config-label"
-                    >about:blank/blob Fallback URL:</label
-                >
-                <input
-                    type="text"
-                    id="fallback-url-input"
-                    class="config-input"
-                />
-                <br />
-                <br />
-                <label for="proxySelect" class="config-label"
-                    >Default Proxy:</label
-                >
-                <select id="proxySelect" class="config-select">
-                    <option value="ultraviolet">Ultraviolet (Default)</option>
-                    <option value="dynamic">Dynamic (Beta)</option>
-                </select>
-                <br />
-                <br />
-                <label for="toggle-beta">Enable Tabs:</label>
-                <input type="checkbox" id="toggle-beta" />
-                <br />
-                <br />
-                <label for="open-new-window">Open in About:blank Tab:</label>
-                <input type="checkbox" id="open-new-window" />
-                <br />
-                <br />
-                <label for="open-blob-window">Open in blob Tab:</label>
-                <input type="checkbox" id="open-blob-window" />
-                <br />
-                <br />
-                <label for="title-randomizer">Cloak Name Randomizer:</label>
-                <input type="checkbox" id="title-randomizer" />
-                <br />
-                <br />
-            </div>
-        </div>
-        <!-- Add closing tag for the 'content' div -->
+  <div class="content">
+    <div class="section active" data-section="general">
+      <h2>General Settings</h2>
+      <label for="title-input" class="config-label">Title:</label>
+    <input type="text" id="title-input" class="config-input">
+    <br>
+    <br>
+    <label for="icon-input" class="config-label">Icon:</label>
+    <input type="text" id="icon-input" class="config-input">
+    <br>
+    <br>
+    <label for="search-engine-select" class="config-label">Search Engine:</label>
+    <select id="search-engine-select" class="config-select">
+      <option value="https://www.google.com/search?q=%s">Google</option>
+      <option value="https://www.bing.com/search?q=%s">Bing</option>
+      <option value="https://duckduckgo.com/?q=%s">DuckDuckGo</option>
+      <option value="https://search.yahoo.com/search?p=%s">Yahoo</option>
+      <option value="custom">Custom</option>
+    </select>
+    <input type="text" id="custom-search-engine-input" placeholder="Enter a URL like so: https://example.com/search?q=" class="config-input" style="display: none;">
+    <br>
+    <br>
+    <label for="emergency-switch-hotkey" class="config-label">Emergency Switch Hotkey:</label>
+    <input type="text" id="emergency-switch-hotkey" class="config-input">
+    <br>
+    <br>
+    <label for="emergency-url-input" class="config-label">Emergency Switch URL:</label>
+    <input type="text" id="emergency-url-input" placeholder="Enter emergency URL" class="config-input">
+    <br>
+    <br>
+    <label for="fallback-url-input" class="config-label">about:blank/blob Fallback URL:</label>
+    <input type="text" id="fallback-url-input" class="config-input">
+    <br>
+    <br>
+    <label for="proxySelect" class="config-label">Default Proxy:</label>
+    <select id="proxySelect" class="config-select">
+      <option value="ultraviolet">Ultraviolet (Default)</option>
+      <option value="dynamic">Dynamic (Beta)</option>
+    </select>
+    <br>
+    <br>
+    <label for="toggle-beta">Enable Tabs:</label>
+    <input type="checkbox" id="toggle-beta">
+    <br>
+    <br>
+    <label for="open-new-window">Open in About:blank Tab:</label>
+    <input type="checkbox" id="open-new-window">
+    <br>
+    <br>
+    <label for="open-blob-window">Open in blob Tab:</label>
+    <input type="checkbox" id="open-blob-window">
+    <br>
+    <br>
+    <label for="title-randomizer">Cloak Name Randomizer:</label>
+    <input type="checkbox" id="title-randomizer">
+    <br>
+    <br>
+    </div>
 
-        <div class="section" data-section="appearance">
-            <h2>Appearance Settings</h2>
-            <label for="css-select" class="config-label">CSS:</label>
-            <select id="css-select" class="config-select">
-                <option value="assets/css/ui.css">Refreshed (Defualt)</option>
-                <option value="assets/css/amoled.css">Amoled</option>
-                <option value="assets/css/mocha.css">Mocha</option>
-                <option value="assets/css/dark.css">Dark</option>
-                <option value="assets/css/legacy.css">Legacy Dark</option>
-                <option value="assets/css/festive.css">Festive</option>
-            </select>
-            <br />
-            <br />
-            <label class="config-label" for="meta-theme-color"
-                >Theme Color:</label
-            >
-            <input
-                class="config-input"
-                type="text"
-                id="meta-theme-color"
-                name="meta-theme-color"
-            />
-            <br />
-            <br />
-            <input type="checkbox" id="checkbox-24h" />
-            <label for="checkbox-24h">Use 24-Hour Time</label>
-            <br />
-            <br />
-            <input type="checkbox" id="checkbox-show-date" />
-            <label for="checkbox-show-date">Include Date in Time Bar</label>
-            <br />
-            <br />
-            <input type="checkbox" id="use-seconds-checkbox" />
-            <label for="use-seconds-checkbox"
-                >Include Seconds in Time Bar</label
-            >
-            <br />
-            <br />
-            <input type="checkbox" id="disable-clock" />
-            <label for="disable-clock">Disable Clock</label>
-            <br />
-            <br />
-            <button id="apply-css-button">Apply CSS</button>
-            <br />
-            <br />
-            <button onclick="openCSSEditor()">Open CSS Editor</button>
-        </div>
+    <div class="section" data-section="appearance">
+        <h2>Appearance Settings</h2>
+        <label for="css-select" class="config-label">CSS:</label>
+        <select id="css-select" class="config-select">
+          <option value="assets/css/ui.css">Refreshed (Defualt)</option>
+          <option value="assets/css/amoled.css">Amoled</option>
+          <option value="assets/css/mocha.css">Mocha</option>
+          <option value="assets/css/dark.css">Dark</option>
+          <option value="assets/css/legacy.css">Legacy Dark</option>
+          <option value="assets/css/festive.css">Festive</option>
+        </select>
+        <br>
+        <br>
+        <label class="config-label" for="meta-theme-color">Theme Color:</label>
+        <input class="config-input" type="text" id="meta-theme-color" name="meta-theme-color">
+        <br>
+        <br>
+        <input type="checkbox" id="checkbox-24h">
+        <label for="checkbox-24h">Use 24-Hour Time</label>
+        <br>
+        <br>
+        <input type="checkbox" id="checkbox-show-date">
+        <label for="checkbox-show-date">Include Date in Time Bar</label>
+        <br>
+        <br>
+        <input type="checkbox" id="use-seconds-checkbox">
+        <label for="use-seconds-checkbox">Include Seconds in Time Bar</label>
+        <br>
+        <br>
+        <input type="checkbox" id="disable-clock">
+        <label for="disable-clock">Disable Clock</label>
+        <br>
+        <br>
+        <button id="apply-css-button">Apply CSS</button>
+        <br>
+        <br>
+        <button onclick="openCSSEditor()">Open CSS Editor</button>
+      </div>
 
-        <div class="section" data-section="network">
-            <h2>Network</h2>
-            <label for="connection-status" class="config-label"
-                >Connection Status:</label
-            >
-            <p id="connection-status">Detecting...</p>
-            <label for="bare-server-select" class="config-label"
-                >Custom Bare Server (Beta):</label
-            >
-            <input
-                type="text"
-                id="custom-bare-server-input"
-                placeholder="Enter a url like so: https://bare.example.com"
-                class="config-input"
-            />
-            <div id="ping-status">Checking server status...</div>
-            <script>
-                const connectionStatusElem =
-                    document.getElementById('connection-status')
-
-                function updateConnectionStatus() {
-                    connectionStatusElem.textContent = navigator.onLine
-                        ? '🟢Online'
-                        : '🔴Offline'
-                }
-
-                window.addEventListener('online', updateConnectionStatus)
-                window.addEventListener('offline', updateConnectionStatus)
-
-                updateConnectionStatus()
-
-                function checkServerStatus(url) {
-                    const startTime = performance.now()
-
-                    return fetch(url, { method: 'HEAD' })
-                        .then((response) => {
-                            const endTime = performance.now()
-                            const ping = Math.round(endTime - startTime)
-
-                            if (response.status === 200) {
-                                return `🟢Online - ${ping}ms`
-                            } else {
-                                return `🔴Offline - 0ms`
-                            }
-                        })
-                        .catch(() => `🔴Offline - 0ms`)
-                }
-
-                const bareServerUrl =
-                    localStorage.getItem('bareServer') ||
-                    'https://server.flow-works.me/bare/'
-                checkServerStatus(bareServerUrl).then((status) => {
-                    const pingElement = document.getElementById('ping-status')
-                    if (pingElement) {
-                        pingElement.textContent = status
-                    }
-                })
-            </script>
-        </div>
-
-        <div class="section" data-section="account">
-            <h2>Cache Settings</h2>
-            <button onclick="clearCache()">Clear Local Storage Cache</button>
-            <input
-                type="file"
-                id="importFile"
-                style="display: none"
-                accept=".json"
-            />
-            <button onclick="openImportFile()">Import Cache</button>
-            <button onclick="exportCache()">Export Cache</button>
-            <button id="unregisterButton">Unregister Service Workers</button>
-            <button id="reregisterButton">ReRegister Service Workers</button>
-            <br />
-            <br />
-        </div>
-
-        <div class="section" data-section="addons">
-            <h2>Addons</h2>
-            <div class="addon-controls">
-                <label for="addon-category">Category:</label>
-                <select
-                    id="addon-category"
-                    name="addonCategory"
-                    class="config-select"
-                >
-                    <option value="all">All</option>
-                    <option value="plugins">Plugins</option>
-                    <option value="themes">Themes</option>
-                </select>
-                <input
-                    type="text"
-                    id="addon-search"
-                    class="config-input"
-                    placeholder="Search Addons"
-                />
-                <button
-                    onclick="window.open('https://forms.gle/QcnfUxXCc3UjChaG8', '_blank');"
-                >
-                    Submit New Addon
-                </button>
-                <div class="settings-item">
-                    <label for="use-proxy-checkbox">Use Proxy:</label>
-                    <input
-                        type="checkbox"
-                        id="use-proxy-checkbox"
-                        onchange="saveUseProxySetting(this.checked)"
-                    />
-                </div>
-            </div>
-            <div class="addon-grid"></div>
-            <script src="addons.js"></script>
-        </div>
-
+      <div class="section" data-section="network">
+        <h2>Network</h2>
+        <label for="connection-status" class="config-label">Connection Status:</label>
+        <p id="connection-status">Detecting...</p>
+        <label for="bare-server-select" class="config-label">Custom Bare Server (Beta):</label>
+        <input type="text" id="custom-bare-server-input" placeholder="Enter a url like so: https://bare.example.com" class="config-input">
+        <div id="ping-status">Checking server status...</div>
         <script>
-            const sections = document.querySelectorAll('.section')
-            const sidebarItems = document.querySelectorAll('.sidebar li')
+          const connectionStatusElem = document.getElementById('connection-status');
 
-            sidebarItems.forEach((item) => {
-                item.addEventListener('click', () => {
-                    const sectionName = item.getAttribute('data-section')
-                    showSection(sectionName)
-                })
+          function updateConnectionStatus() {
+            connectionStatusElem.textContent = navigator.onLine ? '🟢Online' : '🔴Offline';
+          }
+
+          window.addEventListener('online', updateConnectionStatus);
+          window.addEventListener('offline', updateConnectionStatus);
+
+          updateConnectionStatus();
+
+          function checkServerStatus(url) {
+            const startTime = performance.now();
+  
+            return fetch(url, { method: 'HEAD' })
+              .then(response => {
+                const endTime = performance.now();
+                const ping = Math.round(endTime - startTime);
+      
+                if (response.status === 200) {
+                  return `🟢Online - ${ping}ms`;
+                } else {
+                  return `🔴Offline - 0ms`;
+                }
+              })
+            .catch(() => `🔴Offline - 0ms`);
+          }
+
+          const bareServerUrl = localStorage.getItem('bareServer') || 'https://server.flow-works.me/bare/';
+          checkServerStatus(bareServerUrl)
+          .then(status => {
+            const pingElement = document.getElementById('ping-status');
+            if (pingElement) {
+              pingElement.textContent = status;
+            }
+          });
+        </script>
+      </div>        
+
+    <div class="section" data-section="account">
+      <h2>Cache Settings</h2>
+      <button onclick="clearCache()">Clear Local Storage Cache</button>
+      <input type="file" id="importFile" style="display: none;" accept=".json">
+      <button onclick="openImportFile()">Import Cache</button>
+      <button onclick="exportCache()">Export Cache</button>
+      <button id="unregisterButton">Unregister Service Workers</button>
+      <button id="reregisterButton">ReRegister Service Workers</button>
+      <br>
+      <br>
+    </div> 
+
+    <div class="section" data-section="addons">
+      <h2>Addons</h2>
+      <div class="addon-controls">
+        <label for="addon-category">Category:</label>
+        <select id="addon-category" name="addonCategory" class="config-select">
+          <option value="all">All</option>
+          <option value="plugins">Plugins</option>
+          <option value="themes">Themes</option>
+        </select>
+        <input type="text" id="addon-search" class="config-input" placeholder="Search Addons">
+        <button onclick="window.open('https://forms.gle/QcnfUxXCc3UjChaG8', '_blank');">Submit New Addon</button>
+        <div class="settings-item">
+          <label for="use-proxy-checkbox">Use Proxy:</label>
+          <input type="checkbox" id="use-proxy-checkbox" onchange="saveUseProxySetting(this.checked)">
+        </div>            
+      </div>
+      <div class="addon-grid">
+      </div>
+      <script src="addons.js"></script>
+    </div>
+
+  <script>
+const sections = document.querySelectorAll('.section');
+const sidebarItems = document.querySelectorAll('.sidebar li');
+
+sidebarItems.forEach(item => {
+  item.addEventListener('click', () => {
+    const sectionName = item.getAttribute('data-section');
+    showSection(sectionName);
+  });
+});
+
+function showSection(sectionName) {
+  sections.forEach(section => {
+    if (section.getAttribute('data-section') === sectionName) {
+      section.classList.add('active');
+    } else {
+      section.classList.remove('active');
+    }
+  });
+}
+  </script>
+  <script>
+    function clearCache() {
+      localStorage.clear();
+      alert('Local Storage cache has been cleared.');
+      location.reload();
+    }
+  
+    function openImportFile() {
+      const fileInput = document.getElementById('importFile');
+      fileInput.addEventListener('change', handleImportFile, false);
+      fileInput.click();
+    }
+  
+    function handleImportFile(event) {
+      const file = event.target.files[0];
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        try {
+          const importedData = JSON.parse(e.target.result);
+          Object.keys(importedData).forEach((key) => {
+            localStorage.setItem(key, importedData[key]);
+          });
+          alert('Cache data imported successfully.');
+          location.reload();
+        } catch (error) {
+          alert('Error importing cache data. Please check the file format.');
+        }
+      };
+      reader.readAsText(file);
+    }
+  
+    function exportCache() {
+      const cacheData = {};
+      Object.keys(localStorage).forEach((key) => {
+        cacheData[key] = localStorage.getItem(key);
+      });
+      const exportedData = JSON.stringify(cacheData);
+  
+      const blob = new Blob([exportedData], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = 'cache_data.json';
+      link.click();
+      URL.revokeObjectURL(url);
+    }
+
+    function saveUseProxySetting(useProxy) {
+      localStorage.setItem('useProxy', useProxy);
+      console.log(`Use Proxy setting saved: ${useProxy}`);
+    }
+
+    function setCheckboxState() {
+    const useProxyCheckbox = document.getElementById('use-proxy-checkbox');
+    if (useProxyCheckbox) {
+      const useProxy = localStorage.getItem('useProxy');
+      useProxyCheckbox.checked = useProxy === 'true';
+    }
+  }
+
+  setCheckboxState();
+  </script>
+<script>
+function immortalize(arg) {
+  if (arg === 'sodium') {
+    localStorage.setItem('websiteCSS', 'assets/css/immortal.css');
+
+    console.log('Immortal Requested');
+    console.log('Initializing 3MB Tailwind Package...');
+
+    const tailwindCSSLink = document.createElement('link');
+    tailwindCSSLink.rel = 'stylesheet';
+    tailwindCSSLink.href = 'https://cdn.tailwindcss.com/';
+    document.head.appendChild(tailwindCSSLink);
+
+    setTimeout(() => {
+      console.log('Done!');
+      location.reload();
+    }, 2000);
+  }
+}
+
+  window.addEventListener('DOMContentLoaded', () => {
+    const command = 'immortalize("sodium")';
+    const consoleStyle = 'background: #333; color: #fff; padding: 5px; font-weight: bold;';
+    //console.log('%c Enter ' + command + ' to access the Easter Egg!', consoleStyle);
+    window.addEventListener('keydown', (event) => {
+      if (event.key === 'F12') {
+        const inputCommand = prompt('Please enter the Easter Egg command:');
+        if (inputCommand === command) {
+          immortalize('sodium');
+        }
+      }
+    });
+  });
+</script>
+  <script>
+    function openCSSEditor() {
+      window.location.href = "/settings/css-editor/";
+    }
+
+    function resetSettings() {
+      localStorage.clear();
+      location.reload();
+    }
+  </script>
+  <script>
+    const unregisterButton = document.getElementById('unregisterButton');
+    
+    unregisterButton.addEventListener('click', async () => {
+      try {
+        const registrations = await navigator.serviceWorker.getRegistrations();
+        
+        for (const registration of registrations) {
+          await registration.unregister();
+          console.log(`Unregistered service worker: ${registration.scope}`);
+        }
+        console.log('Done! All service workers unregistered')        
+        alert('All service workers unregistered.');
+      } catch (error) {
+        console.error('Error unregistering service workers:', error);
+        alert('Error unregistering service workers. Check the console for details.');
+      }
+    });
+
+    const reregisterButton = document.getElementById('reregisterButton');
+    
+    reregisterButton.addEventListener('click', async () => {
+      try {
+        const stockSW = "/sw.js";
+        const dynSW = "/dyn.sw.js";
+        const swAllowedHostnames = ["localhost", "127.0.0.1"];
+
+        async function registerSW() {
+          if (
+            location.protocol !== "https:" &&
+            !swAllowedHostnames.includes(location.hostname)
+          )
+          throw new Error("Service workers cannot be registered without https.");
+          if (!navigator.serviceWorker)
+            throw new Error("Your browser doesn't support service workers.");
+          await navigator.serviceWorker.register(stockSW, {
+            scope: "/sw/",
+          });
+          await navigator.serviceWorker.register(dynSW, {
+            scope: "/service/",
+          });
+          if (window.location.hostname.includes('.pages.dev')) {
+            navigator.serviceWorker.register('static-cache.js')
+              .then((registration) => {
+                console.log('Static Cache Service Worker registered with scope:', registration.scope);
+              })
+              .catch((error) => {
+                console.error('Error registering Service Worker:', error);
+              });
+          } else {
+            navigator.serviceWorker.register('cache.js')
+              .then((registration) => {
+                console.log('Cache Service Worker registered with scope:', registration.scope);
+              })
+              .catch((error) => {
+                console.error('Error registering Service Worker:', error);
+              });
+          }
+          if (navigator.onLine) {
+            navigator.serviceWorker.register('acache.js')
+            .then((registration) => {
+              console.log('Game/Asset Cache Service Worker registered with scope:', registration.scope);
             })
-
-            function showSection(sectionName) {
-                sections.forEach((section) => {
-                    if (section.getAttribute('data-section') === sectionName) {
-                        section.classList.add('active')
-                    } else {
-                        section.classList.remove('active')
-                    }
-                })
-            }
-        </script>
-        <script>
-            function clearCache() {
-                localStorage.clear()
-                alert('Local Storage cache has been cleared.')
-                location.reload()
-            }
-
-            function openImportFile() {
-                const fileInput = document.getElementById('importFile')
-                fileInput.addEventListener('change', handleImportFile, false)
-                fileInput.click()
-            }
-
-            function handleImportFile(event) {
-                const file = event.target.files[0]
-                const reader = new FileReader()
-                reader.onload = function (e) {
-                    try {
-                        const importedData = JSON.parse(e.target.result)
-                        Object.keys(importedData).forEach((key) => {
-                            localStorage.setItem(key, importedData[key])
-                        })
-                        alert('Cache data imported successfully.')
-                        location.reload()
-                    } catch (error) {
-                        alert(
-                            'Error importing cache data. Please check the file format.',
-                        )
-                    }
-                }
-                reader.readAsText(file)
-            }
-
-            function exportCache() {
-                const cacheData = {}
-                Object.keys(localStorage).forEach((key) => {
-                    cacheData[key] = localStorage.getItem(key)
-                })
-                const exportedData = JSON.stringify(cacheData)
-
-                const blob = new Blob([exportedData], {
-                    type: 'application/json',
-                })
-                const url = URL.createObjectURL(blob)
-                const link = document.createElement('a')
-                link.href = url
-                link.download = 'cache_data.json'
-                link.click()
-                URL.revokeObjectURL(url)
-            }
-
-            function saveUseProxySetting(useProxy) {
-                localStorage.setItem('useProxy', useProxy)
-                console.log(`Use Proxy setting saved: ${useProxy}`)
-            }
-
-            function setCheckboxState() {
-                const useProxyCheckbox =
-                    document.getElementById('use-proxy-checkbox')
-                if (useProxyCheckbox) {
-                    const useProxy = localStorage.getItem('useProxy')
-                    useProxyCheckbox.checked = useProxy === 'true'
-                }
-            }
-
-            setCheckboxState()
-        </script>
-        <script>
-            function immortalize(arg) {
-                if (arg === 'sodium') {
-                    localStorage.setItem(
-                        'websiteCSS',
-                        'assets/css/immortal.css',
-                    )
-
-                    console.log('Immortal Requested')
-                    console.log('Initializing 3MB Tailwind Package...')
-
-                    const tailwindCSSLink = document.createElement('link')
-                    tailwindCSSLink.rel = 'stylesheet'
-                    tailwindCSSLink.href = 'https://cdn.tailwindcss.com/'
-                    document.head.appendChild(tailwindCSSLink)
-
-                    setTimeout(() => {
-                        console.log('Done!')
-                        location.reload()
-                    }, 2000)
-                }
-            }
-
-            window.addEventListener('DOMContentLoaded', () => {
-                const command = 'immortalize("sodium")'
-                const consoleStyle =
-                    'background: #333; color: #fff; padding: 5px; font-weight: bold;'
-                //console.log('%c Enter ' + command + ' to access the Easter Egg!', consoleStyle);
-                window.addEventListener('keydown', (event) => {
-                    if (event.key === 'F12') {
-                        const inputCommand = prompt(
-                            'Please enter the Easter Egg command:',
-                        )
-                        if (inputCommand === command) {
-                            immortalize('sodium')
-                        }
-                    }
-                })
-            })
-        </script>
-        <script>
-            function openCSSEditor() {
-                window.location.href = '/settings/css-editor/'
-            }
-
-            function resetSettings() {
-                localStorage.clear()
-                location.reload()
-            }
-        </script>
-        <script>
-            const unregisterButton = document.getElementById('unregisterButton')
-
-            unregisterButton.addEventListener('click', async () => {
-                try {
-                    const registrations =
-                        await navigator.serviceWorker.getRegistrations()
-
-                    for (const registration of registrations) {
-                        await registration.unregister()
-                        console.log(
-                            `Unregistered service worker: ${registration.scope}`,
-                        )
-                    }
-                    console.log('Done! All service workers unregistered')
-                    alert('All service workers unregistered.')
-                } catch (error) {
-                    console.error('Error unregistering service workers:', error)
-                    alert(
-                        'Error unregistering service workers. Check the console for details.',
-                    )
-                }
-            })
-
-            const reregisterButton = document.getElementById('reregisterButton')
-
-            reregisterButton.addEventListener('click', async () => {
-                try {
-                    const stockSW = '/sw.js'
-                    const dynSW = '/dyn.sw.js'
-                    const swAllowedHostnames = ['localhost', '127.0.0.1']
-
-                    async function registerSW() {
-                        if (
-                            location.protocol !== 'https:' &&
-                            !swAllowedHostnames.includes(location.hostname)
-                        )
-                            throw new Error(
-                                'Service workers cannot be registered without https.',
-                            )
-                        if (!navigator.serviceWorker)
-                            throw new Error(
-                                "Your browser doesn't support service workers.",
-                            )
-                        await navigator.serviceWorker.register(stockSW, {
-                            scope: '/sw/',
-                        })
-                        await navigator.serviceWorker.register(dynSW, {
-                            scope: '/service/',
-                        })
-                        if (window.location.hostname.includes('.pages.dev')) {
-                            navigator.serviceWorker
-                                .register('static-cache.js')
-                                .then((registration) => {
-                                    console.log(
-                                        'Static Cache Service Worker registered with scope:',
-                                        registration.scope,
-                                    )
-                                })
-                                .catch((error) => {
-                                    console.error(
-                                        'Error registering Service Worker:',
-                                        error,
-                                    )
-                                })
-                        } else {
-                            navigator.serviceWorker
-                                .register('cache.js')
-                                .then((registration) => {
-                                    console.log(
-                                        'Cache Service Worker registered with scope:',
-                                        registration.scope,
-                                    )
-                                })
-                                .catch((error) => {
-                                    console.error(
-                                        'Error registering Service Worker:',
-                                        error,
-                                    )
-                                })
-                        }
-                        if (navigator.onLine) {
-                            navigator.serviceWorker
-                                .register('acache.js')
-                                .then((registration) => {
-                                    console.log(
-                                        'Game/Asset Cache Service Worker registered with scope:',
-                                        registration.scope,
-                                    )
-                                })
-                                .catch((error) => {
-                                    console.error(
-                                        'Error registering Service Worker:',
-                                        error,
-                                    )
-                                })
-                        } else {
-                            console.warn('Your Offline: Using existing Cache')
-                        }
-                    }
-                    registerSW()
-                    console.log('Done! ReRegistered Service Workers')
-                    alert('All service workers reregistered.')
-                } catch (error) {
-                    console.error('Error reregistering service workers:', error)
-                    alert(
-                        'Error reregistering service workers. Check the console for details.',
-                    )
-                }
-            })
-        </script>
-    </body>
+            .catch((error) => {
+              console.error('Error registering Service Worker:', error);
+            });
+          } else {
+            console.warn('Your Offline: Using existing Cache')
+          }
+        }
+        registerSW()
+        console.log('Done! ReRegistered Service Workers')
+        alert('All service workers reregistered.');
+      } catch (error) {
+        console.error('Error reregistering service workers:', error);
+        alert('Error reregistering service workers. Check the console for details.');
+      }
+    });
+  </script>
+</body>
 </html>
