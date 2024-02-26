@@ -1,4 +1,4 @@
-export default function () {
+export default function Footer() {
     return (
         <div>
             <div id="footer" class="fullwidth">

@@ -1,13 +1,15 @@
 {
   "name": "sodium-instance",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "Sodium is a site used for evading internet censorship",
   "type": "module",
   "engines": {
     "npm": ">=9.8.1"
   },
   "scripts": {
-    "start": "vite build && tsx server.ts"
+    "start": "vite build && tsx server.ts",
+    "build": "vite build",
+    "dev": "vite"
   },
   "keywords": [
     "proxy"
@@ -15,6 +17,7 @@
   "author": "z1g Project",
   "license": "MIT",
   "dependencies": {
+    "@mercuryworkshop/alicejs": "^2.1.2",
     "@tomphttp/bare-server-node": "^2.0.1",
     "@types/axios": "^0.14.0",
     "@typescript-eslint/eslint-plugin": "^6.21.0",
@@ -25,6 +28,7 @@
     "eslint": "^8.56.0",
     "express": "^4.18.2",
     "ip": "^1.1.8",
+    "path": "^0.12.7",
     "tsx": "4.7.1",
     "typescript": "^5.2.2",
     "vite": "^5.0.8",

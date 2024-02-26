@@ -1,7 +1,10 @@
-import Nav from "../components/Nav"
-import Footer from "../components/Footer"
+import "@mercuryworkshop/alicejs"
+// @ts-expect-error stfu
+import Nav from "@components/nav.tsx"
+// @ts-expect-error stfu
+import Footer from "@components/footer"
 import "../public/assets/css/home.css"
-export default function home() {
+export default function Home() {
     return (
         <div>
             <Nav />
@@ -53,3 +56,7 @@ export default function home() {
         </div>
     )
 }
+
+window.addEventListener('load', () => {
+    document.body.appendChild(<Home />);
+})

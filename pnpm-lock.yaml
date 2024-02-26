@@ -5,6 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  '@mercuryworkshop/alicejs':
+    specifier: ^2.1.2
+    version: 2.1.2
   '@tomphttp/bare-server-node':
     specifier: ^2.0.1
     version: 2.0.1
@@ -35,6 +38,9 @@ dependencies:
   ip:
     specifier: ^1.1.8
     version: 1.1.9
+  path:
+    specifier: ^0.12.7
+    version: 0.12.7
   tsx:
     specifier: 4.7.1
     version: 4.7.1
@@ -317,6 +323,10 @@ packages:
 
   /@humanwhocodes/object-schema@2.0.2:
     resolution: {integrity: sha512-6EwiSjwWYP7pTckG6I5eyFANjPhmPjUX9JRLUSfNPC7FX7zK9gyZAfUEaECL6ALTpGX5AjnBq3C9XmVWPitNpw==}
+    dev: false
+
+  /@mercuryworkshop/alicejs@2.1.2:
+    resolution: {integrity: sha512-Ewt0ChDcEROufy/Ww4Jdh9qgRP9X6xV5hTpaZ1y2ex/cdw/IrCPoTvby06a7O2UU3ovYu2cWaMlhKBOF4gpsVg==}
     dev: false
 
   /@nodelib/fs.scandir@2.1.5:
@@ -1418,6 +1428,10 @@ packages:
       wrappy: 1.0.2
     dev: false
 
+  /inherits@2.0.3:
+    resolution: {integrity: sha512-x00IRNXNy63jwGkJmzPigoySHbaqpNuzKbBOmzK+g2OdZpQ9w+sxCN+VSB3ja7IAge2OP2qpfxTjeNcyjmW1uw==}
+    dev: false
+
   /inherits@2.0.4:
     resolution: {integrity: sha512-k/vGaX4/Yla3WzyMCvTQOXYeIHvqOKtnqBduzTHpzpQZzAskKMhZ2K+EnBiSM9zGSoIFeMpXKxa4dYeZIQqewQ==}
     dev: false
@@ -1691,6 +1705,13 @@ packages:
     engines: {node: '>=8'}
     dev: false
 
+  /path@0.12.7:
+    resolution: {integrity: sha512-aXXC6s+1w7otVF9UletFkFcDsJeO7lSZBPUQhtb5O0xJe8LtYhj/GxldoL09bBj9+ZmE2hNoHqQSFMN5fikh4Q==}
+    dependencies:
+      process: 0.11.10
+      util: 0.10.4
+    dev: false
+
   /picocolors@1.0.0:
     resolution: {integrity: sha512-1fygroTLlHu66zi26VoTDv8yRgm0Fccecssto+MhsZ0D/DGW2sm8E8AjW7NU5VVTRt5GxbeZ5qBuJr+HyLYkjQ==}
     dev: false
@@ -1716,6 +1737,11 @@ packages:
   /prelude-ls@1.2.1:
     resolution: {integrity: sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==}
     engines: {node: '>= 0.8.0'}
+    dev: false
+
+  /process@0.11.10:
+    resolution: {integrity: sha512-cdGef/drWFoydD1JsMzuFf8100nZl+GT+yacc2bEced5f9Rjk4z+WtFUTBu9PhOi9j/jfmBPu0mMEY4wIdAF8A==}
+    engines: {node: '>= 0.6.0'}
     dev: false
 
   /proxy-addr@2.0.7:
@@ -2026,6 +2052,12 @@ packages:
     resolution: {integrity: sha512-7rKUyy33Q1yc98pQ1DAmLtwX109F7TIfWlW1Ydo8Wl1ii1SeHieeh0HHfPeL2fMXK6z0s8ecKs9frCuLJvndBg==}
     dependencies:
       punycode: 2.3.1
+    dev: false
+
+  /util@0.10.4:
+    resolution: {integrity: sha512-0Pm9hTQ3se5ll1XihRic3FDIku70C+iHUdT/W926rSgHV5QgXsYbKZN8MSC3tJtSkhuROzvsQjAaFENRXr+19A==}
+    dependencies:
+      inherits: 2.0.3
     dev: false
 
   /utils-merge@1.0.1:
