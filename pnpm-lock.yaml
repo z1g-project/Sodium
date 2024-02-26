@@ -44,6 +44,9 @@ dependencies:
   vite:
     specifier: ^5.0.8
     version: 5.1.4
+  wisp-server-node:
+    specifier: ^1.0.1
+    version: 1.0.1
 
 packages:
 
@@ -2076,6 +2079,10 @@ packages:
     hasBin: true
     dependencies:
       isexe: 2.0.0
+    dev: false
+
+  /wisp-server-node@1.0.1:
+    resolution: {integrity: sha512-RPid1o/q8NWE0zVFmMIUBIWS7WnUeHmfzrxaNeFsWKXYKD5RO74qYnDLbXSKFDCTSrPQ+uXtRI2I/EpunXfAvw==}
     dev: false
 
   /wrappy@1.0.2:

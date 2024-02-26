@@ -7,7 +7,7 @@
     "npm": ">=9.8.1"
   },
   "scripts": {
-    "start": "tsx "
+    "start": "vite build && tsx server.ts"
   },
   "keywords": [
     "proxy"
@@ -16,17 +16,18 @@
   "license": "MIT",
   "dependencies": {
     "@tomphttp/bare-server-node": "^2.0.1",
+    "@types/axios": "^0.14.0",
     "@typescript-eslint/eslint-plugin": "^6.21.0",
     "@typescript-eslint/parser": "^6.21.0",
-    "@types/axios": "^0.14.0",
+    "autoprefixer": "10.4.2",
     "axios": "^1.6.2",
     "cors": "^2.8.5",
+    "eslint": "^8.56.0",
     "express": "^4.18.2",
     "ip": "^1.1.8",
-    "eslint": "^8.56.0",
+    "tsx": "4.7.1",
     "typescript": "^5.2.2",
     "vite": "^5.0.8",
-    "autoprefixer": "10.4.2",
-    "tsx": "4.7.1"
+    "wisp-server-node": "^1.0.1"
   }
 }
