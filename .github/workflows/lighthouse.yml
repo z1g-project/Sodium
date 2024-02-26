@@ -1,0 +1,25 @@
+name: Lighthouse CI
+on:
+  push:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [20]
+    steps:
+      - uses: actions/checkout@v3
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "pnpm"
+      - name: Install dependencies
+        run: pnpm install && pnpm install -g @lhci/cli@0.13.x tsx
+      - name: Run build
+        run: pnpm run build
+      - name: Run Lighthouse CI
+        run: lhci autorun
