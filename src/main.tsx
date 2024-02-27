@@ -3,8 +3,11 @@ import "@mercuryworkshop/alicejs"
 import Nav from "@components/nav.tsx"
 // @ts-expect-error stfu
 import Footer from "@components/footer"
+// @ts-expect-error stfu
+import { loadSettings } from "@components/modules/inject"
 import "../public/assets/css/home.css"
 export default function Home() {
+    loadSettings()
     return (
         <div>
             <Nav />
