@@ -137,44 +137,44 @@ export default function Settings() {
                 <br></br>
                 </div>
 
-    <div class="section" data-section="appearance">
-        <h2>Appearance Settings</h2>
-        <label for="css-select" class="config-label">CSS:</label>
-        <select id="css-select" class="config-select">
-          <option value="assets/css/ui.css">Refreshed (Defualt)</option>
-          <option value="assets/css/amoled.css">Amoled</option>
-          <option value="assets/css/mocha.css">Mocha</option>
-          <option value="assets/css/dark.css">Dark</option>
-          <option value="assets/css/legacy.css">Legacy Dark</option>
-          <option value="assets/css/festive.css">Festive</option>
-        </select>
-        <br></br>
-        <br></br>
-        <label class="config-label" for="meta-theme-color">Theme Color:</label>
-        <input class="config-input" type="text" id="meta-theme-color" name="meta-theme-color"></input>
-        <br></br>
-        <br></br>
-        <input type="checkbox" id="checkbox-24h"></input>
-        <label for="checkbox-24h">Use 24-Hour Time</label>
-        <br></br>
-        <br></br>
-        <input type="checkbox" id="checkbox-show-date"></input>
-        <label for="checkbox-show-date">Include Date in Time Bar</label>
-        <br></br>
-        <br></br>
-        <input type="checkbox" id="use-seconds-checkbox"></input>
-        <label for="use-seconds-checkbox">Include Seconds in Time Bar</label>
-        <br></br>
-        <br></br>
-        <input type="checkbox" id="disable-clock"></input>
-        <label for="disable-clock">Disable Clock</label>
-        <br></br>
-        <br></br>
-        <button id="apply-css-button">Apply CSS</button>
-        <br></br>
-        <br></br>
-        <button onclick="openCSSEditor()">Open CSS Editor</button>
-      </div>
+                <div class="section" data-section="appearance">
+                <h2>Appearance Settings</h2>
+                <label for="css-select" class="config-label">CSS:</label>
+                <select id="css-select" class="config-select">
+                    <option value="assets/css/ui.css">Refreshed (Defualt)</option>
+                    <option value="assets/css/amoled.css">Amoled</option>
+                    <option value="assets/css/mocha.css">Mocha</option>
+                    <option value="assets/css/dark.css">Dark</option>
+                    <option value="assets/css/legacy.css">Legacy Dark</option>
+                    <option value="assets/css/festive.css">Festive</option>
+                </select>
+                <br></br>
+                <br></br>
+                <label class="config-label" for="meta-theme-color">Theme Color:</label>
+                <input class="config-input" type="text" id="meta-theme-color" name="meta-theme-color"></input>
+                <br></br>
+                <br></br>
+                <input type="checkbox" id="checkbox-24h"></input>
+                <label for="checkbox-24h">Use 24-Hour Time</label>
+                <br></br>
+                <br></br>
+                <input type="checkbox" id="checkbox-show-date"></input>
+                <label for="checkbox-show-date">Include Date in Time Bar</label>
+                <br></br>
+                <br></br>
+                <input type="checkbox" id="use-seconds-checkbox"></input>
+                <label for="use-seconds-checkbox">Include Seconds in Time Bar</label>
+                <br></br>
+                <br></br>
+                <input type="checkbox" id="disable-clock"></input>
+                <label for="disable-clock">Disable Clock</label>
+                <br></br>
+                <br></br>
+                <button id="apply-css-button">Apply CSS</button>
+                <br></br>
+                <br></br>
+                <button onclick="openCSSEditor()">Open CSS Editor</button>
+            </div>        
 
       <div class="section" data-section="network">
         <h2>Network</h2>
@@ -216,7 +216,7 @@ export default function Settings() {
       <div class="addon-grid">
       </div>
       <script src="addons.js"></script>
-    </div>
+            </div>
             <Footer />
         </div>
     )    
