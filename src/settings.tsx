@@ -46,7 +46,7 @@ export default function Settings() {
       .catch(() => `🔴Offline - 0ms`);
     }
 
-    const bareServerUrl = localStorage.getItem('bareServer') || 'https://server.flow-works.me/bare/';
+    const bareServerUrl = localStorage.getItem('bareServer') || 'https://tomp.app';
     checkServerStatus(bareServerUrl)
     .then(status => {
       const pingElement = document.getElementById('ping-status');
@@ -174,49 +174,50 @@ export default function Settings() {
                 <br></br>
                 <br></br>
                 <button onclick="openCSSEditor()">Open CSS Editor</button>
-            </div>        
+                </div>        
 
-      <div class="section" data-section="network">
-        <h2>Network</h2>
-        <label for="connection-status" class="config-label">Connection Status:</label>
-        <p id="connection-status">Detecting...</p>
-        <label for="bare-server-select" class="config-label">Custom Bare Server (Beta):</label>
-        <input type="text" id="custom-bare-server-input" placeholder="Enter a url like so: https://bare.example.com" class="config-input"></input>
-        <div id="ping-status">Checking server status...</div>
-      </div>        
+                <div class="section" data-section="network">
+                  <h2>Network</h2>
+                <label for="connection-status" class="config-label">Connection Status:</label>
+                <p id="connection-status">Detecting...</p>
+                <label for="bare-server-select" class="config-label">Custom Bare Server (Beta):</label>
+                <input type="text" id="custom-bare-server-input" placeholder="Enter a url like so: https://bare.example.com" class="config-input"></input>
+                <div id="ping-status">Checking server status...</div>
+                </div>        
 
-    <div class="section" data-section="account">
-      <h2>Cache Settings</h2>
-      <button onclick="clearCache()">Clear Local Storage Cache</button>
-      <input type="file" id="importFile" style="display: none;" accept=".json"></input>
-      <button onclick="openImportFile()">Import Cache</button>
-      <button onclick="exportCache()">Export Cache</button>
-      <button id="unregisterButton">Unregister Service Workers</button>
-      <button id="reregisterButton">ReRegister Service Workers</button>
-      <br></br>
-      <br></br>
-    </div> 
+                <div class="section" data-section="account">
+                  <h2>Cache Settings</h2>
+                  <button onclick="clearCache()">Clear Local Storage Cache</button>
+                  <input type="file" id="importFile" style="display: none;" accept=".json"></input>
+                  <button onclick="openImportFile()">Import Cache</button>
+                  <button onclick="exportCache()">Export Cache</button>
+                  <button id="unregisterButton">Unregister Service Workers</button>
+                  <button id="reregisterButton">ReRegister Service Workers</button>
+                  <br></br>
+                  <br></br>
+                </div> 
 
-    <div class="section" data-section="addons">
-      <h2>Addons</h2>
-      <div class="addon-controls">
-        <label for="addon-category">Category:</label>
-        <select id="addon-category" name="addonCategory" class="config-select">
-          <option value="all">All</option>
-          <option value="plugins">Plugins</option>
-          <option value="themes">Themes</option>
-        </select>
-        <input type="text" id="addon-search" class="config-input" placeholder="Search Addons"></input>
-        <button onclick="window.open('https://forms.gle/QcnfUxXCc3UjChaG8', '_blank');">Submit New Addon</button>
-        <div class="settings-item">
-          <label for="use-proxy-checkbox">Use Proxy:</label>
-          <input type="checkbox" id="use-proxy-checkbox" onchange="saveUseProxySetting(this.checked)"></input>
-        </div>            
-      </div>
-      <div class="addon-grid">
-      </div>
-      <script src="addons.js"></script>
-            </div>
+                <div class="section" data-section="addons">
+                <h2>Addons</h2>
+                <div class="addon-controls">
+                  <label for="addon-category">Category:</label>
+                  <select id="addon-category" name="addonCategory" class="config-select">
+                    <option value="all">All</option>
+                    <option value="plugins">Plugins</option>
+                    <option value="themes">Themes</option>
+                  </select>
+                  <input type="text" id="addon-search" class="config-input" placeholder="Search Addons"></input>
+                  <button onclick="window.open('https://forms.gle/QcnfUxXCc3UjChaG8', '_blank');">Submit New Addon</button>
+                  <div class="settings-item">
+                    <label for="use-proxy-checkbox">Use Proxy:</label>
+                    <input type="checkbox" id="use-proxy-checkbox" onchange="saveUseProxySetting(this.checked)"></input>
+                  </div>            
+                </div>
+              <div class="addon-grid">
+              </div>
+              <script src="addons.js"></script>
+                </div>
+              </div>
             <Footer />
         </div>
     )    

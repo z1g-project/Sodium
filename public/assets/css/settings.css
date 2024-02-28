@@ -1,0 +1,91 @@
+  .sidebar {
+    background-color: transparent;
+    width: 250px;
+    padding: 20px;
+    height: 75vh;
+    position: fixed;
+    left: 0;
+    top: 45px;
+    overflow-y: auto;
+  }
+  
+  .sidebar h1 {
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .sidebar ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .sidebar li {
+    margin-bottom: 10px;
+    cursor: pointer;
+  }
+  
+  .content {
+    margin-left: 250px;
+    padding: 20px;
+  }
+  
+  .section {
+    display: none;
+    transition: opacity 0.5s ease;
+    opacity: 0;
+  }
+  
+  .section.active {
+    display: block;
+    opacity: 1;
+    animation: fade-in 0.5s ease-in-out forwards
+  }
+  
+  .reset-button {
+    height: 40px;
+    padding: 0 20px;
+    font-size: 16px;
+    margin-left: 10px;
+    margin-bottom: 25px;
+    background-color: red;
+    color: #fff;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    opacity: 0;
+    animation: fade-in 0.5s ease-in-out forwards;
+  }
+  
+  .reset-button:hover {
+    transform: scale(1.2);
+  }
+  
+  .sidebar-buttons {
+    position: absolute;
+    bottom: 0px;
+    width: 75%;
+  }
+  
+  .addon-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  .notification {
+    position: fixed;
+    top: 40px;
+    left: 0;
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    text-align: center;
+    font-size: 14px;
+    transition: top 0.5s ease-in-out;
+  }
+  
+  .hidden {
+    visibility: hidden;
+  }
