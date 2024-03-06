@@ -11,7 +11,7 @@ self.__uv$config = {
      * @type {string}
      */
     bare: [
-        "https://phantomnetwork.cloud/bare/"
+        "https://tomp.app"
         // Using a backend? Use this instead of Tomp.app:
         // "/bare1/",
         // "/bare2/",
