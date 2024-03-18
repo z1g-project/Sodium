@@ -1,4 +1,3 @@
-import "@mercuryworkshop/alicejs"
 // @ts-expect-error stfu
 import Nav from "@components/nav.tsx"
 // @ts-expect-error stfu
@@ -6,7 +5,6 @@ import Footer from "@components/footer"
 // @ts-expect-error stfu
 import loadSettings from "@components/modules/settings"
 import "../public/assets/css/home.css"
-import Notfound from "./404"
 export default function Home() {
     loadSettings()
     return (
@@ -62,15 +60,5 @@ export default function Home() {
 }
 
 window.addEventListener('load', () => {
-    if (window.location.href === '/') {
-        document.body.appendChild(<Home />);
-    } else if (window.location.href === '/games') {
-        
-    } else if (window.location.href === '/apps') {
-        
-    } else if (window.location.href === '/settings') {
-        
-    } else {
-        document.body.appendChild(<Notfound />);
-    }
+    document.body.appendChild(<Home />);
 })

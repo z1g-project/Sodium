@@ -1,4 +1,4 @@
-import Nav from "@components/nav.tsx"
+import Nav from "@components/nav"
 // @ts-expect-error stfu
 import Footer from "@components/footer"
 // @ts-expect-error stfu

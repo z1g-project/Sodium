@@ -17,21 +17,28 @@
   "author": "z1g Project",
   "license": "MIT",
   "dependencies": {
-    "@mercuryworkshop/alicejs": "^2.1.2",
+    "@mercuryworkshop/bare-mux": "^1.0.5",
+    "@mercuryworkshop/libcurl-transport": "^1.2.4",
     "@tomphttp/bare-server-node": "^2.0.1",
     "@types/axios": "^0.14.0",
     "@typescript-eslint/eslint-plugin": "^6.21.0",
     "@typescript-eslint/parser": "^6.21.0",
+    "@vitejs/plugin-vue": "^5.0.4",
     "autoprefixer": "10.4.2",
     "axios": "^1.6.2",
+    "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "dreamland": "^0.0.3",
     "eslint": "^8.56.0",
     "express": "^4.18.2",
-    "ip": "^1.1.8",
+    "fs": "0.0.1-security",
     "path": "^0.12.7",
     "tsx": "4.7.1",
     "typescript": "^5.2.2",
-    "vite": "^5.0.8",
-    "wisp-server-node": "^1.0.1"
+    "url": "^0.11.3",
+    "vite": "^5.1.6",
+    "wisp-server-node": "^1.0.1",
+    "ws": "^8.16.0"
   }
 }

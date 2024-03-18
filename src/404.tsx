@@ -42,3 +42,7 @@ export default function Notfound() {
         </div>
     )
 }
+
+window.addEventListener('load', () => {
+  document.body.appendChild(<Notfound />);
+})

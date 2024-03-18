@@ -17,7 +17,7 @@
       "jsx": "react",
       "jsxFactory": "h",
       "jsxFragmentFactory": "YOU_CANT_USE_FRAGMENTS",
-      "types": ["@mercuryworkshop/alicejs"],
+      "types": ["dreamland/dev"],
       "paths": {
         "@/*": ["./*"],
       }
