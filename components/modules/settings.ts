@@ -1,9 +1,9 @@
 export default async function loadSettings() {
   const title = localStorage.getItem('websiteTitle');
-  const icon = localStorage.getItem('websiteIcon');
+  const favicon = localStorage.getItem('websiteIcon');
   const useRandomize = localStorage.getItem('useRandomizer')
   const css = localStorage.getItem('websiteCSS');
-  const metaThemeColor = localStorage.getItem('metaThemeColor');
+  const webmetaThemeColor = localStorage.getItem('metaThemeColor');
   const iconInput = document.getElementById('icon-input');
   const customCSS = localStorage.getItem('websiteCSS');
   if (title) {
@@ -13,6 +13,7 @@ export default async function loadSettings() {
   if (icon) {
     const favicon = document.getElementById('favicon');
     if (favicon) {
+      // @ts-expect-error stfu
       favicon.href = icon;
       favicon.setAttribute('type', 'image/png');
     }
@@ -24,19 +25,26 @@ export default async function loadSettings() {
     const randomFaviconIndex = Math.floor(Math.random() * favicons.length);
     document.title = titles[randomTitleIndex];
     const faviconLink = document.querySelector("link[rel*='icon']") || document.createElement('link');
+    // @ts-expect-error stfu
     faviconLink.type = 'image/x-icon';
+    // @ts-expect-error stfu
     faviconLink.rel = 'icon';
+    // @ts-expect-error stfu
     faviconLink.href = favicons[randomFaviconIndex];
     const head = document.head || document.getElementsByTagName('head')[0];
     head.appendChild(faviconLink);
     console.log('Randomized!')
   }
   if (css) {
+    // @ts-expect-error stfu
     applyCSS(css);
     const cssSelect = document.getElementById('css-select');
     if (cssSelect) {
+      // @ts-expect-error stfu
       for (let i = 0; i < cssSelect.options.length; i++) {
+        // @ts-expect-error stfu
         if (cssSelect.options[i].value === css) {
+          // @ts-expect-error stfu
           cssSelect.selectedIndex = i;
           break;
         }
@@ -50,6 +58,7 @@ export default async function loadSettings() {
       styleSheet.textContent = customCSS;
       document.head.appendChild(styleSheet);
     } else {
+      // @ts-expect-error stfu
       applyCSS(customCSS);
     }
   } else {
@@ -61,6 +70,7 @@ export default async function loadSettings() {
   }
   const metaThemeColor = localStorage.getItem('metaThemeColor');
   if (metaThemeColor) {
+    // @ts-expect-error stfu
     document.getElementById('meta-theme-color').value = metaThemeColor;
     const metaThemeColorTag = document.querySelector('meta[name="theme-color"]');
     if (metaThemeColorTag) {
@@ -72,17 +82,22 @@ export default async function loadSettings() {
     if (metaThemeColorTag) {
       metaThemeColorTag.setAttribute('content', metaThemeColor);
     }
-  }  
+  }
+  console.log('%c Sodium Settings Loader ',`background: #16d495; color: white; font-weight: bold; border-radius: 5px;`, '' + 'Sodium Settings have been loaded!')
 }
 
 export async function saveSettings() {
   const titleInput = document.getElementById('title-input');
+  // @ts-expect-error stfu
   const title = titleInput.value.trim();
   const iconInput = document.getElementById('icon-input');
+  // @ts-expect-error stfu
   const icon = iconInput.value.trim();
   const searchEngineSelect = document.getElementById('search-engine-select');
+  // @ts-expect-error stfu
   const searchEngine = searchEngineSelect.value;
   const proxySelect = document.getElementById('proxySelect');
+  // @ts-expect-error stfu
   const selectedOption = proxySelect.options[proxySelect.selectedIndex].value;
   const use24HourTimeCheckbox = document.getElementById('use-24hour-checkbox');
   const blobwindow = document.getElementById('open-blob-window');
@@ -93,14 +108,18 @@ export async function saveSettings() {
   const fallbackUrlInput = document.getElementById('fallback-url-input');
   const useSecondsCheckbox = document.getElementById('use-seconds-checkbox');
   const clockCheckbox = document.getElementById('disable-clock');
+  // @ts-expect-error stfu
   const metaThemeColor = document.getElementById('meta-theme-color').value.trim();
   const bareServerInput = document.getElementById('custom-bare-server-input');
+  // @ts-expect-error stfu
+  const localforage = window.localforage
 
   localStorage.setItem('websiteTitle', title);
   console.log('Title saved:', title);
   localStorage.setItem('websiteIcon', icon);
   console.log('Icon saved:', icon);
   if (searchEngine === 'custom') {
+    // @ts-expect-error stfu
     const customSearchUrl = document.getElementById('custom-search-engine-input').value.trim();
     if (customSearchUrl !== '') {
       localStorage.setItem('searchEngine', customSearchUrl);
@@ -112,11 +131,13 @@ export async function saveSettings() {
   }
   localStorage.setItem('proxyOption', selectedOption);
   console.log('Default Proxy Saved:', selectedOption);
+  // @ts-expect-error stfu
   if (toggleBeta.checked) {
     localStorage.setItem('betaMode', 'true');
   } else {
     localStorage.removeItem('betaMode');
   }
+  // @ts-expect-error stfu
   if (blobwindow.checked) {
     localStorage.setItem('openblobwindow', 'true');
     localStorage.setItem('usingnewtab', 'true');
@@ -124,7 +145,9 @@ export async function saveSettings() {
     localStorage.removeItem('openblobwindow');
     localStorage.removeItem('usingnewtab');
   }
+  // @ts-expect-error stfu
   if (titlerandomizer.checked) {
+    // @ts-expect-error stfu
     localStorage.setItem('useRandomizer', true);
     console.log('Use Tab Randomizer: true')
   } else {
@@ -132,21 +155,25 @@ export async function saveSettings() {
     console.log('Use Tab Randomizer: false')
   }
   if (emergencyHotkeyInput) {
+    // @ts-expect-error stfu
     const emergencyHotkey = emergencyHotkeyInput.value.trim().toLowerCase();
     localStorage.setItem('emergencyHotkey', emergencyHotkey);
     console.log('Emergency hotkey saved:', emergencyHotkey);
   }
   if (emergencyURLInput) {
+    // @ts-expect-error stfu
     const emergencyURL = emergencyURLInput.value.trim();
     localStorage.setItem('emergencyURL', emergencyURL);
     console.log('Emergency URL saved:', emergencyURL);
   }
   if (fallbackUrlInput) {
+    // @ts-expect-error stfu
     const fallbackUrl = fallbackUrlInput.value.trim();
     localStorage.setItem('fallbackUrl', fallbackUrl);
     console.log('Fallback URL saved:', fallbackUrl);
   }
   if (bareServerInput) {
+    // @ts-expect-error stfu
     const bareServer = bareServerInput.value.trim();
     caches.open('bareServerCache').then(cache => {
       cache.put('bareServerKey', new Response(bareServer));
@@ -170,19 +197,28 @@ export async function saveSettings() {
     console.log('BareServer URL saved:', bareServer);
   }
   if (use24HourTimeCheckbox) {
+    // @ts-expect-error stfu
     localStorage.setItem('use24HourTime', use24HourTimeCheckbox.checked.toString());
+    // @ts-expect-error stfu
     console.log('Use 24 Hour Time Saved:', use24HourTimeCheckbox.checked);
   }
+  // @ts-expect-error stfu
   if (includeDateCheckbox) {
+    // @ts-expect-error stfu
     localStorage.setItem('showDate', includeDateCheckbox.checked.toString());
+    // @ts-expect-error stfu
     console.log('Show Date Saved:', includeDateCheckbox.checked);
   }
   if (useSecondsCheckbox) {
+    // @ts-expect-error stfu
     localStorage.setItem('useSeconds', useSecondsCheckbox.checked);
+    // @ts-expect-error stfu
     console.log('Include Seconds in TimeBar:', useSecondsCheckbox.checked);
   }
   if (clockCheckbox) {
+    // @ts-expect-error stfu
     localStorage.setItem('noClock', clockCheckbox.checked);
+    // @ts-expect-error stfu
     console.log('Disable Clock:', clockCheckbox.checked);
   }
   if (metaThemeColor) {
@@ -191,7 +227,8 @@ export async function saveSettings() {
   }
 
   setTimeout(function () {
-    const notification = document.getElementById('notification');
+    // @ts-expect-error stfu
+    const notification: HTMLElement = document.getElementById('notification');
     notification.textContent = 'Settings Saved!';
     notification.classList.remove('hidden');
   
@@ -226,18 +263,23 @@ export async function exportSettings() {
 
 export async function importSettings() {
   const fileInput = document.getElementById('importFile');
+  // @ts-expect-error stfu
   fileInput.addEventListener('change', impSets(), false);
+  // @ts-expect-error stfu
   fileInput.click();
   const impSets = () => {
+    // @ts-expect-error stfu
     const file = event.target.files[0];
       const reader = new FileReader();
       reader.onload = function (e) {
         try {
+          // @ts-expect-error stfu
           const importedData = JSON.parse(e.target.result);
           Object.keys(importedData).forEach((key) => {
             localStorage.setItem(key, importedData[key]);
           });
-          const notification = document.getElementById('notification');
+          // @ts-expect-error stfu
+          const notification: HTMLElement = document.getElementById('notification');
           notification.textContent = 'Settings Imported Successfully';
           notification.classList.remove('hidden');
           setTimeout(() => {
@@ -268,6 +310,7 @@ export async function getSettings() {
   const emergencyHotkeyInput = document.getElementById('emergency-switch-hotkey');
   const proxyOption = localStorage.getItem('proxyOption');
   const proxySelect = document.getElementById('proxySelect');
+  // @ts-expect-error stfu
   const options = proxySelect.options;
   const emergencyURL = localStorage.getItem('emergencyURL');
   const emergencyURLInput = document.getElementById('emergency-url-input');
@@ -289,20 +332,27 @@ export async function getSettings() {
   const useSecondsCheckbox = document.getElementById('use-seconds-checkbox');
   const clockCheckbox = document.getElementById('disable-clock');
   if (websiteTitleElem) {
+    // @ts-expect-error stfu
     websiteTitleElem.textContent = title;
   }
   if (toggleBeta) {
     const betaMode = localStorage.getItem('betaMode');
+    // @ts-expect-error stfu
     toggleBeta.checked = betaMode === 'true';
   }
   if (bareServerInput) {
+    // @ts-expect-error stfu
     bareServerInput.value = localStorage.getItem('bareServer') || '';
   }
+  // @ts-expect-error stfu
   if (titleInput && iconInput) {
+    // @ts-expect-error stfu
     titleInput.value = title || '';
+    // @ts-expect-error stfu
     iconInput.value = icon || '';
   }
   if (emergencyHotkey && emergencyHotkeyInput) {
+    // @ts-expect-error stfu
     emergencyHotkeyInput.value = emergencyHotkey;
   }
   if (emergencyHotkeyInput) {
@@ -310,27 +360,35 @@ export async function getSettings() {
       event.preventDefault();
       document.addEventListener('keydown', function (keyEvent) {
         keyEvent.preventDefault();
+        // @ts-expect-error stfu
         emergencyHotkeyInput.value = keyEvent.key.toLowerCase();
+        // @ts-expect-error stfu
         document.removeEventListener('keydown', arguments.callee);
       });
     });
   }
   if (emergencyURL && emergencyURLInput) {
+    // @ts-expect-error stfu
     emergencyURLInput.value = emergencyURL;
   }
   if (toggleAboutBlank) {
+    // @ts-expect-error stfu
     toggleAboutBlank.checked = openNewWindow === 'true';
   }
   if (toggleblobBlank) {
+    // @ts-expect-error stfu
     toggleblobBlank.checked = openblobWindow === 'true';
   }
   if (titlerandomizer) {
+    // @ts-expect-error stfu
     titlerandomizer.checked = titlerandomizerls === 'true';
   }
   if (toggleDebugging) {
+    // @ts-expect-error stfu
     toggleDebugging.checked = debugging === 'true';
   }
   if (fallbackUrl && fallbackUrlInput) {
+    // @ts-expect-error stfu
     fallbackUrlInput.value = fallbackUrl;
   }
   for (let i = 0; i < options.length; i++) {
@@ -340,28 +398,34 @@ export async function getSettings() {
     }
   }
   if (searchEngineSelect) {
+    // @ts-expect-error stfu
     searchEngineSelect.value = searchEngine;
     if (searchEngine === 'custom') {
       if (customSearchEngineInput) {
         customSearchEngineInput.style.display = 'block';
+        // @ts-expect-error stfu
         customSearchEngineInput.value = localStorage.getItem('customSearchEngineUrl') || '';
       }
     }
   }
   if (use24HourTimeCheckbox) {
     const use24HourTime = localStorage.getItem('use24HourTime');
+    // @ts-expect-error stfu
     use24HourTimeCheckbox.checked = use24HourTime === 'true';
   }
   if (includeDateCheckbox) {
     const includeDate = localStorage.getItem('showDate');
+    // @ts-expect-error stfu
     includeDateCheckbox.checked = includeDate === 'true';
   }
   if (useSecondsCheckbox) {
     const useSeconds = localStorage.getItem('useSeconds');
+    // @ts-expect-error stfu
     useSecondsCheckbox.checked = useSeconds === 'true';
   }
   if (clockCheckbox) {
     const useSeconds = localStorage.getItem('noClock');
+    // @ts-expect-error stfu
     clockCheckbox.checked = useSeconds === 'true';
   }  
 }
@@ -372,6 +436,7 @@ function applyCSS() {
     for (let i = 0; i < styleSheets.length; i++) {
       const styleSheet = styleSheets[i];
       if (styleSheet.getAttribute('id') === 'custom-css') {
+        // @ts-expect-error stfu
         styleSheet.href = selectedCSS;
       }
     }

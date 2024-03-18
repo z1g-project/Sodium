@@ -1,6 +1,8 @@
-import Nav from "../components/Nav"
-import Footer from "../components/Footer"
-export default function notfound() {
+// @ts-expect-error stfu
+import Nav from "@components/nav.tsx"
+// @ts-expect-error stfu
+import Footer from "@components/footer"
+export default function Notfound() {
     async function regSW() {
         console.log('Waiting on SW Cache to Register...');
         const stockSW = "/sw.js";
