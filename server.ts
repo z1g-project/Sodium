@@ -21,11 +21,6 @@ const __dirname = path.dirname(__filename);
 const app = express();
 app.use(cookieParser());
 
-app.use((req, res) => {
-  res.status(404);
-  res.sendFile("/", "404.html");
-});
-
 const masqrCheck = process.env.MASQR && process.env.MASQR.toLowerCase() === "true";
 if (masqrCheck) {
   console.log(`Masqr is Enabled`);

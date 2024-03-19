@@ -5,6 +5,7 @@ import Footer from "@components/footer"
 // @ts-expect-error stfu
 import loadSettings from "@components/modules/settings"
 import "../public/assets/css/home.css"
+import Apps from "./apps"
 export default function Home() {
     loadSettings()
     return (
@@ -60,5 +61,17 @@ export default function Home() {
 }
 
 window.addEventListener('load', () => {
-    document.body.appendChild(<Home />);
+    if (window.location.href.includes('apps')) {
+        document.body.innerHTML = ''
+        document.body.appendChild(<Apps />);
+    } else if (window.location.hash.includes('games')) {
+        document.body.innerHTML = ''
+        document.body.appendChild(<Home />);
+    } else if (window.location.href.includes('settings')) {
+        document.body.innerHTML = ''
+        document.body.appendChild(<Home />);
+    } else {
+        document.body.innerHTML = ''
+        document.body.appendChild(<Home />);
+    }
 })
