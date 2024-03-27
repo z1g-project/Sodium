@@ -59,6 +59,8 @@ self.addEventListener('install', (event) => {
           '/assets/img/loader.svg',
           '/ultra/ultra.config.js',
           '/ultra/ultra.bundle.js',
+          '/violet/violet.config.js',
+          '/violet/violet.bundle.js',
           '/dyn/dyn.config.js',
           '/assets/js/search.js',
           '/assets/js/stealth.js',

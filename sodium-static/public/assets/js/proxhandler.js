@@ -6,7 +6,18 @@
       replaceScript("proxcfg", "/dyn/dyn.config.js");
       replaceScript("proxsw", "dynsw.js");
       replaceScript("proxworker", "/dyn/dyn.worker.js");
-  
+      replaceFormElement();
+    } else if (proxyOption && proxyOption.toLowerCase() === "ultraviolet-bare") {
+      replaceScript("proxloader", "/ultra/sw.js");
+      replaceScript("proxcfg", "/ultra/ultra.config.js");
+      replaceScript("proxsw", "oldsw.js");
+      replaceScript("proxworker", "/ultra/ultra.handler.js");
+      replaceFormElement();
+    } else {
+      replaceScript("proxloader", "/violet/sw.js");
+      replaceScript("proxcfg", "/violet/violet.config.js");
+      replaceScript("proxsw", "sw.js");
+      replaceScript("proxworker", "/violet/violet.handler.js");
       replaceFormElement();
     }
   })();

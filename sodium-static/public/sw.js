@@ -1,33 +1,22 @@
-importScripts('ultra/ultra.bundle.js');
-importScripts('ultra/ultra.config.js');
-importScripts(__uv$config.sw || 'ultra/ultra.sw.js');
-importScripts('/assets/js/localforge.js');
-localforage.config({
-  driver: localforage.INDEXEDDB,
-  name: 'Sodium',
-  version: 1.0,
-  storeName: 'sodium_config',
-  description: 'Sodiums Config for IndexedDB'
-})
+const swAllowedHostnames = ["localhost", "127.0.0.1", "10.0.0.1"];
 
-const sw = new UVServiceWorker();
+async function registerSW() {
+  if (
+    location.protocol !== "https:" &&
+    !swAllowedHostnames.includes(location.hostname)
+  )
+    throw new Error("Service workers cannot be registered without https.");
 
-const uvPromise = new Promise(async (resolve) => {
-  try {
-      const bare = await localforage.getItem('bare') || __uv$config.bare
-      console.log(bare)
-      self.__uv$config.bare = bare;
-      self.uv = new UVServiceWorker(self.__uv$config);
-  }
-  catch (error) { console.log(error); }
-  resolve();
-});
+  if (!navigator.serviceWorker)
+    throw new Error("Your browser doesn't support service workers.");
 
-self.addEventListener('fetch', (event) => {
-  event.respondWith(sw.fetch(event));
-});
+  await navigator.serviceWorker.register("/violet/sw.js", {
+    scope: '/violet/sw/',
+  });
+  console.log("Wisp UV Service Worker registered.");
+  const CurlMod = window.CurlMod
+  BareMux.registerRemoteListener(navigator.serviceWorker.controller);
+  BareMux.SetTransport("CurlMod.LibcurlClient", { wisp: 'https://tomp.app/wisp', wasm: "https://cdn.jsdelivr.net/npm/libcurl.js@v0.5.3/libcurl.wasm" });
+}
 
-sw.on('request', (event) => {
-  event.data.headers['user-agent'] =
-    'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36 Sodium/2.0.0';
-});
+registerSW();

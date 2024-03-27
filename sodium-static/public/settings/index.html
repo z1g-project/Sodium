@@ -198,6 +198,7 @@
     <label for="proxySelect" class="config-label">Default Proxy:</label>
     <select id="proxySelect" class="config-select">
       <option value="ultraviolet">Ultraviolet (Default)</option>
+      <option value="ultravioletbare">Legacy Ultraviolet</option>
       <option value="dynamic">Dynamic (Beta)</option>
     </select>
     <br>
@@ -263,7 +264,9 @@
         <h2>Network</h2>
         <label for="connection-status" class="config-label">Connection Status:</label>
         <p id="connection-status">Detecting...</p>
-        <label for="bare-server-select" class="config-label">Custom Bare Server (Beta):</label>
+        <label for="bare-server-select" class="config-label">Custom Wisp Server:</label>
+        <input type="text" id="custom-wisp-server-input" placeholder="Enter a url like so: https://example.com/wisp" class="config-input">
+        <label for="bare-server-select" class="config-label">Custom Bare Server (Deprecated):</label>
         <input type="text" id="custom-bare-server-input" placeholder="Enter a url like so: https://bare.example.com" class="config-input">
         <div id="ping-status">Checking server status...</div>
         <script>

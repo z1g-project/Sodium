@@ -43,6 +43,8 @@ server.on("upgrade", (req, socket, head) => {
   const matchedBare = bareServers.find((bare) => bare.shouldRoute(req));
   if (matchedBare) {
     matchedBare.routeUpgrade(req, socket, head);
+  } else if (req.url.endsWith("/wisp/")) {
+    wisp.routeRequest(req, socket, head);
   } else {
     socket.end();
   }
