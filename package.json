@@ -22,6 +22,7 @@
     "cors": "^2.8.5",
     "express": "^4.18.2",
     "ip": "^1.1.8",
-    "ultraviolet-static": "file:sodium-static"
+    "ultraviolet-static": "file:sodium-static",
+    "wisp-server-node": "^1.0.4"
   }
 }
