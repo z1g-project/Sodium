@@ -33,7 +33,7 @@
 			)
       const appsContainer = document.getElementById("apps-container");
       try {
-      const { data: apps } = await libcurl.fetch("https://z1g-project.vercel.app/api/apps").then((req) => req.json()).catch((err) => {
+      const { data: apps } = await libcurl.fetch("https://z1g-backend.vercel.app/api/apps").then((req) => req.json()).catch((err) => {
         console.error(err)
         return null;
       });
@@ -137,9 +137,7 @@
     </div>
 
     <div class="container-apps" id="apps-container">
-        </div>
     </div>
-
     <br>
     <br>
     <br>
