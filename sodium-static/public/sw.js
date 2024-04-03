@@ -16,7 +16,13 @@ async function registerSW() {
   console.log("Wisp UV Service Worker registered.");
   const CurlMod = window.CurlMod
   BareMux.registerRemoteListener(navigator.serviceWorker.controller);
-  BareMux.SetTransport("CurlMod.LibcurlClient", { wisp: 'https://tomp.app/wisp', wasm: "https://cdn.jsdelivr.net/npm/libcurl.js@v0.5.3/libcurl.wasm" });
+  if (window.location.origin.includes('.pages.dev')) {
+    const wispSrv = `wss://tomp.app/wisp/`
+    BareMux.SetTransport("CurlMod.LibcurlClient", { wisp: `${wispSrv}`, wasm: "https://cdn.jsdelivr.net/npm/libcurl.js@v0.6.7/libcurl.wasm" });
+  } else {
+    const wispSrv = `${window.location.protocol.replace("http", "ws")}//${window.location.host}/wisp/`
+    BareMux.SetTransport("CurlMod.LibcurlClient", { wisp: `${wispSrv}`, wasm: "https://cdn.jsdelivr.net/npm/libcurl.js@v0.6.7/libcurl.wasm" });
+  }
 }
 
 registerSW();

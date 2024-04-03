@@ -28,9 +28,13 @@
     <script src="regcache.js" defer></script>
     <script>
     document.addEventListener("libcurl_load", async () => {
-   			libcurl.set_websocket(
-				`${window.location.protocol.replace("http", "ws")}//${window.location.host}/wisp/`,
-			)
+      if (window.location.origin.includes('.pages.dev')) {
+        const wispSrv = `wss://tomp.app/wisp/`
+        libcurl.set_websocket(`${wispSrv}`)
+      } else {
+        const wispSrv = `${window.location.protocol.replace("http", "ws")}//${window.location.host}/wisp/`
+        libcurl.set_websocket(`${wispSrv}`)
+      }
       const appsContainer = document.getElementById("apps-container");
       try {
       const { data: apps } = await libcurl.fetch("https://z1g-backend.vercel.app/api/apps").then((req) => req.json()).catch((err) => {
