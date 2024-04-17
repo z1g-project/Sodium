@@ -9,6 +9,7 @@ import { Route } from "dreamland-router";
 import Notfound from "./404";
 import Settings from "./settings";
 import Apps from "./apps";
+import NoSW from "./proxy-invalid";
 export default function Home() {
     loadSettings()
     return (
@@ -67,6 +68,8 @@ export const router = (
     <Route path="/">
         <Route path="" show={<Home />} />
         <Route path="apps" show={<Apps />} />
+        <Route path="sw" show={<NoSW />} />
+        <Route path="service" show={<NoSW />} />
         <Route regex path=".*" show={<Notfound />} />
     </Route>
 ).$
