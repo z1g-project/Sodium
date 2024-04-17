@@ -5,7 +5,10 @@ import Footer from "@components/footer"
 // @ts-expect-error stfu
 import loadSettings from "@components/modules/settings"
 import "../public/assets/css/home.css"
-import Apps from "./apps"
+import { Route } from "dreamland-router"; 
+import Notfound from "./404";
+import Settings from "./settings";
+import Apps from "./apps";
 export default function Home() {
     loadSettings()
     return (
@@ -60,18 +63,12 @@ export default function Home() {
     )
 }
 
-window.addEventListener('load', () => {
-    if (window.location.href.includes('apps')) {
-        document.body.innerHTML = ''
-        document.body.appendChild(<Apps />);
-    } else if (window.location.hash.includes('games')) {
-        document.body.innerHTML = ''
-        document.body.appendChild(<Home />);
-    } else if (window.location.href.includes('settings')) {
-        document.body.innerHTML = ''
-        document.body.appendChild(<Home />);
-    } else {
-        document.body.innerHTML = ''
-        document.body.appendChild(<Home />);
-    }
-})
+export const router = (
+    <Route path="/">
+        <Route path="" show={<Home />} />
+        <Route path="apps" show={<Apps />} />
+        <Route regex path=".*" show={<Notfound />} />
+    </Route>
+).$
+  
+router.render(document.querySelector('.app'));
