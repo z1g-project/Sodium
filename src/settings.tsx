@@ -1,3 +1,4 @@
+// @ts-expect-error stfu
 import Nav from "@components/nav"
 // @ts-expect-error stfu
 import Footer from "@components/footer"
@@ -13,7 +14,7 @@ export default function Settings() {
         showSection(sectionName);
       });
     });
-    function showSection(sectionName) {
+    function showSection(sectionName: any) {
       sections.forEach(section => {
         if (section.getAttribute('data-section') === sectionName) {
           section.classList.add('active');
@@ -22,14 +23,14 @@ export default function Settings() {
         }
       });
     }
-    const connectionStatusElem = document.getElementById('connection-status');
+    const connectionStatusElem: any = document.getElementById('connection-status');
     function updateConnectionStatus() {
       connectionStatusElem.textContent = navigator.onLine ? '🟢Online' : '🔴Offline';
     }
     window.addEventListener('online', updateConnectionStatus);
     window.addEventListener('offline', updateConnectionStatus);
     updateConnectionStatus();
-    function checkServerStatus(url) {
+    function checkServerStatus(url: any) {
       const startTime = performance.now();
 
       return fetch(url, { method: 'HEAD' })
