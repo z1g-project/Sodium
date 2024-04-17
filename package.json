@@ -32,6 +32,7 @@
     "eslint": "^8.57.0",
     "express": "^4.19.2",
     "fs": "0.0.1-security",
+    "libcurl.js": "^0.6.7",
     "path": "^0.12.7",
     "tsx": "4.7.2",
     "typescript": "^5.4.5",

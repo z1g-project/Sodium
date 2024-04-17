@@ -129,7 +129,7 @@
     };
 
     const releaseDayWithSuffix = formattedDay + ordinalSuffix(formattedDay);
-    versionInfoElement.textContent = `v2.1.0 Stable (Released: ${formattedMonth} ${releaseDayWithSuffix}, ${formattedYear} - Commit: `;
+    versionInfoElement.textContent = `v2.4.0 Stable (Released: ${formattedMonth} ${releaseDayWithSuffix}, ${formattedYear} - Commit: `;
     const commitLink = document.createElement("a");
     commitLink.href = data[0].html_url;
     commitLink.textContent = commitId;

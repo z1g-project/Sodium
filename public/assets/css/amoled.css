@@ -451,11 +451,14 @@
   }
   
   #footer {
-    position: relative;
-    margin-top: 0px;
-    background-repeat: no-repeat;
-    background-size: 100vw auto;
-  }
+  position: fixed;
+  background-repeat: no-repeat;
+  background-size: 100vw auto;
+  bottom: 0px;
+  left: 0;
+  right: 50%;
+  width: 100%;
+}
   
   .footerflex {
     display: flex;

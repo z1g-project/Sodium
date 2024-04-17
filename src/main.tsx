@@ -10,6 +10,7 @@ import Notfound from "./404";
 import Settings from "./settings";
 import Apps from "./apps";
 import NoSW from "./proxy-invalid";
+import WispBG from "./wisp";
 export default function Home() {
     loadSettings()
     return (
@@ -20,13 +21,13 @@ export default function Home() {
                 <span class="close">&times;</span>
                 <h2 style="font-weight: 700;">What's New</h2>
                 <p class="release-date">Release Date: Feburary 4th, 2023</p>
-                <ul class="changes-list">
-                    <li>Add Bare switching to UV</li>
-                    <li>Refresh some older UI Elements</li>
-                    <li>Fix weird radius color issue</li>
-                    <li>Fix slow load times</li>
-                    <li>More Minor Changes & Bug Fixes view <a style="color:white;" href="https://github.com/z1g-project/sodium">here</a></li>
-                </ul>
+                    <ul class="changes-list">
+                        <li>Add Bare switching to UV</li>
+                        <li>Refresh some older UI Elements</li>
+                        <li>Fix weird radius color issue</li>
+                        <li>Fix slow load times</li>
+                        <li>More Minor Changes & Bug Fixes view <a style="color:white;" href="https://github.com/z1g-project/sodium">here</a></li>
+                    </ul>
                     <p>Version 2.0.0 - The 2024 Refresh</p>
                     <button class="ok-button">OK</button>
                 </div>
@@ -70,6 +71,7 @@ export const router = (
         <Route path="apps" show={<Apps />} />
         <Route path="sw" show={<NoSW />} />
         <Route path="service" show={<NoSW />} />
+        <Route path="wisp" show={<WispBG />} />
         <Route regex path=".*" show={<Notfound />} />
     </Route>
 ).$
