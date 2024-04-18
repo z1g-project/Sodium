@@ -10,6 +10,11 @@ import "../public/assets/css/item-cards.css"
 import { libcurl } from "libcurl.js/bundled"
 export default function Apps() {
     loadSettings()
+    const appscss = document.createElement('link');
+    appscss.rel = 'stylesheet';
+    appscss.type = 'text/css';
+    appscss.href = 'assets/css/item-cards.css';
+    document.head.appendChild(appscss);
     const wispSrv = `${window.location.protocol.replace("http", "ws")}//${window.location.host}/wisp/`
     libcurl.set_websocket(`${wispSrv}`)
     console.log(libcurl)
@@ -19,24 +24,30 @@ export default function Apps() {
     })
 
     async function getApps() {
-        //if (window.location.origin.includes('.pages.dev')) {
-        //    const wispSrv = `wss://tomp.app/wisp/`
-        //    libcurl.set_websocket(`${wispSrv}`)
-        //} else {
-            
-        //}
+            if (window.location.origin.includes("localhost:5173") || window.location.origin.includes(".pages.dev")) {
+                console.log('The vite dev server doesnt support wisp at the moment. Use the production server for "internet access" or if your static hosting the wisp server isnt online for obvious reasons. Ignore this message')
+                const wispSrv = `wss://tomp.app/wisp/`
+                libcurl.set_websocket(`${wispSrv}`)
+            } else {
+                const wispSrv = `${window.location.protocol.replace("http", "ws")}//${window.location.host}/wisp/`
+                libcurl.set_websocket(`${wispSrv}`)
+            }
         // @ts-expect-error stfu
         const appsContainer: HTMLElement = document.getElementById("apps-container");
         try {
-            const apps = await libcurl.fetch("https://api.z1g.top/api/apps").then((req: any) => req.json()).catch((err: any) => {
-                console.error(err)
-                console.log(apps)
+            const appsResponse = await libcurl.fetch("https://api.z1g.top/api/apps")
+            .then((req: any) => req.json())
+            .catch((err: any) => {
+                console.error(err);
                 return null;
             });
-            if (!apps) {
+            console.log(appsResponse);
+            if (!appsResponse || appsResponse.status !== "success") {
                 appsContainer.innerHTML = "<p>Failed to load apps</p>";
                 return;
             }
+            const apps = appsResponse.data;
+            appsContainer.innerHTML = ``
             apps.forEach(async (app: any) => {
                 const column = document.createElement("div");
                 column.classList.add("column");
@@ -98,6 +109,24 @@ export default function Apps() {
     } else {
         console.warn('Your Offline: Using existing Cache')
     }
+
+    function searchgames() {
+        let input: any = document.getElementById("gamesearch");
+        let filter = input.value.toLowerCase();
+        let games = document.getElementsByClassName("column");
+        for (let i = 0; i < games.length; i++) {
+            let game = games[i];
+            // @ts-expect-error stfu
+            let name = game.getElementsByTagName("p")[0].textContent.toLowerCase();
+            if (name.includes(filter)) {
+                // @ts-expect-error stfu
+                game.style.display = "block";
+            } else {
+                // @ts-expect-error stfu
+                game.style.display = "none";
+            }
+        }
+    }
     return (
         <div>
             <Nav />
@@ -105,16 +134,12 @@ export default function Apps() {
             <h3 style="text-align: center;">Official Apps that are working and ready for use!</h3>
 
             <div class="input-container">
-                <input class="config-input" type="text" id="gamesearch" onkeyup="searchgames()" placeholder="Search" style="text-align: center;font-size: 16px;"></input>
-                <select class="config-select" id="category" name="category" onchange="showImages()" style="font-size: 16px;">
-                    <option value="general">General</option>
-                    <option value="media">Media</option>
-                    <option value="social">Social</option>
-                    <option value="cloud">Cloud</option>
-                </select>
+                <input class="config-input" type="text" id="gamesearch" on:input={() => {searchgames}} placeholder="Search" style="text-align: center; font-size: 16px;" />
             </div>
 
-            <div id="apps-container"></div>
+            <div id="apps-container" class="container-apps">
+                <p id="loading-thing">Loading...</p>
+            </div>
             <Footer />
         </div>
     )
