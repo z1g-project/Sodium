@@ -11,6 +11,8 @@ import Settings from "./settings";
 import Apps from "./apps";
 import NoSW from "./proxy-invalid";
 import WispBG from "./wisp";
+import CreditsPage from "./credits";
+import About from "./about";
 export default function Home() {
     loadSettings()
     return (
@@ -72,6 +74,8 @@ export const router = (
         <Route path="sw" show={<NoSW />} />
         <Route path="service" show={<NoSW />} />
         <Route path="wisp" show={<WispBG />} />
+        <Route path="credits" show={<CreditsPage />} />
+        <Route path="about" show={<About />} />
         <Route regex path=".*" show={<Notfound />} />
     </Route>
 ).$

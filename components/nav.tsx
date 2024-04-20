@@ -1,4 +1,6 @@
+import runAll from "./modules/time"
 export default function Nav() {
+    runAll()
     return (
         <div>
             <div class="second-bar">

@@ -66,7 +66,7 @@ export default function Apps() {
                 appsContainer.appendChild(column);
             });
         } catch (err) {
-            console.error(err);
+            console.warn(err);
             appsContainer.innerHTML = "<p>Failed to load apps</p>";
         }
     }

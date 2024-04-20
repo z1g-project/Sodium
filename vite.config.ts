@@ -3,6 +3,7 @@ import path from "path";
 const resolve = path.resolve
 const __dirname = path.resolve();
 import { viteStaticCopy } from "vite-plugin-static-copy";
+import { execSync } from "child_process";
 import { uvPath } from "@titaniumnetwork-dev/ultraviolet";
 import { dynamicPath } from "@nebula-services/dynamic";
 //@ts-ignore
@@ -53,4 +54,12 @@ export default defineConfig({
       "@components": path.resolve(__dirname, "./components"),
     },
   },
+  define: {
+		__BUILD_DATE__: Date.now(),
+		__GIT_COMMIT__: JSON.stringify(
+			process.env.VERCEL_GIT_COMMIT_SHA ??
+				process.env.CF_PAGES_COMMIT_SHA ??
+				execSync("git rev-parse HEAD").toString().trim(),
+		),
+	},
 });
