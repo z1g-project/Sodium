@@ -4,6 +4,8 @@ import Nav from "@components/nav.tsx"
 import Footer from "@components/footer"
 // @ts-expect-error stfu
 import loadSettings from "@components/modules/settings"
+// @ts-expect-error stfu
+import { regSW } from "@components/modules/sw"
 import "../public/assets/css/home.css"
 import { Route } from "dreamland-router"; 
 import Notfound from "./404";
@@ -13,8 +15,10 @@ import NoSW from "./proxy-invalid";
 import WispBG from "./wisp";
 import CreditsPage from "./credits";
 import About from "./about";
+import Games from "./games"
 export default function Home() {
     loadSettings()
+    regSW()
     return (
         <div>
             <Nav />
@@ -74,6 +78,8 @@ export const router = (
         <Route path="sw" show={<NoSW />} />
         <Route path="service" show={<NoSW />} />
         <Route path="wisp" show={<WispBG />} />
+        <Route path="games" show={<Games />} />
+        <Route path="settings" show={<Settings />} />
         <Route path="credits" show={<CreditsPage />} />
         <Route path="about" show={<About />} />
         <Route regex path=".*" show={<Notfound />} />

@@ -1,46 +1,3 @@
-  .sidebar {
-    background-color: transparent;
-    width: 250px;
-    padding: 20px;
-    height: 75vh;
-    position: fixed;
-    left: 0;
-    top: 45px;
-    overflow-y: auto;
-  }
-  
-  .sidebar h1 {
-    margin-bottom: 20px;
-    text-align: center;
-  }
-  
-  .sidebar ul {
-    list-style: none;
-    padding: 0;
-  }
-  
-  .sidebar li {
-    margin-bottom: 10px;
-    cursor: pointer;
-  }
-  
-  .content {
-    margin-left: 250px;
-    padding: 20px;
-  }
-  
-  .section {
-    display: none;
-    transition: opacity 0.5s ease;
-    opacity: 0;
-  }
-  
-  .section.active {
-    display: block;
-    opacity: 1;
-    animation: fade-in 0.5s ease-in-out forwards
-  }
-  
   .reset-button {
     height: 40px;
     padding: 0 20px;
@@ -58,12 +15,6 @@
   
   .reset-button:hover {
     transform: scale(1.2);
-  }
-  
-  .sidebar-buttons {
-    position: absolute;
-    bottom: 0px;
-    width: 75%;
   }
   
   .addon-grid {
@@ -88,4 +39,65 @@
   
   .hidden {
     visibility: hidden;
+  }
+
+  .topnav {
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    top: 40px;
+    left: 0;
+    right: 0;
+    gap: 7px;
+  }
+
+  .topnav .nav-header {
+    text-align: start;
+    margin-left: 10%;
+  }
+
+  .topnav .nav-item {
+    background-color: #0D89B2;
+    margin-top: 20px;
+    width: 200px;
+    height: 50px;
+    border-radius: 15px;
+  }
+
+  .topnav .nav-item p {
+    text-align: center;
+    color: white;
+    font-size: 16px;
+  }
+
+  .topnav .active {
+    background-color: #3d8298;
+  }
+
+  .slide {
+    display: none;
+  }
+
+  .loaded {
+    position: absolute;
+    top: 22%;
+    left: 0;
+    right: 0;
+    width: 60%;
+    height: 60%;
+    justify-content: center;
+    display: flex;
+    background-color: #ffffff05;
+    margin-left: 22%;
+    border-radius: 15px;
+    flex-direction: column;
+    overflow-y: scroll;
+  }
+
+  .config-select {
+    height: 27px;
+  }
+
+  option {
+    font-size: 20px
   }

@@ -8,6 +8,8 @@ import "../public/assets/css/home.css"
 import "../public/assets/css/item-cards.css"
 // @ts-expect-error stfu
 import { libcurl } from "libcurl.js/bundled"
+// @ts-expect-error stfu
+import { XOR as xor } from "@components/modules/xor"
 export default function Apps() {
     loadSettings()
     const appscss = document.createElement('link');
@@ -75,8 +77,7 @@ export default function Apps() {
         let url = value.trim();
         const proxyOption = localStorage.getItem("proxyOption");
         if (proxyOption && proxyOption.toLowerCase() === "dynamic") {
-            // @ts-expect-error stfu
-            const dynamicURL = `${window.location.origin}/service/${Ultraviolet.codec.xor.encode(url)}`;
+            const dynamicURL = `${window.location.origin}/service/${xor.encode(url)}`;
             sessionStorage.setItem("appUrl", dynamicURL);
         } else {
             if (!checkUrl(url)) {
@@ -85,8 +86,7 @@ export default function Apps() {
                 url = "https://" + url;
             }
             sessionStorage.removeItem("appUrl");
-            // @ts-expect-error stfu
-            const encodedUrl = `${window.location.origin}/sw/${Ultraviolet.codec.xor.encode(url)}`;
+            const encodedUrl = `${window.location.origin}/sw/${xor.encode(url)}`;
             sessionStorage.setItem("appUrl", encodedUrl);
         }
         location.href = "appframe";

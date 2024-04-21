@@ -34,15 +34,7 @@ export default defineConfig({
         },
         {
           src: `${dynamicPath}/dyn.*.js`.replace(/\\/g, "/"),
-          dest: "dync",
-          overwrite: false
-        },
-        {
-          src: `${__dirname}/node_modules/localforage/dist/localforage.*.js`.replace(
-            /\\/g,
-            "/"
-          ),
-          dest: "localforage",
+          dest: "dyn",
           overwrite: false
         }
       ]
