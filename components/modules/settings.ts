@@ -430,7 +430,7 @@ export async function getSettings() {
   }  
 }
 
-function applyCSS() {
+export function applyCSS() {
   console.log('applyCSS Will be deprecated soon. This is simply a placeholder for the rewrite')
   const styleSheets = document.getElementsByTagName('link');
     for (let i = 0; i < styleSheets.length; i++) {
