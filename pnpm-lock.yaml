@@ -17,6 +17,9 @@ dependencies:
   '@nebula-services/dynamic':
     specifier: 0.7.2-patch.2
     version: 0.7.2-patch.2
+  '@ruffle-rs/ruffle':
+    specifier: 0.1.0-nightly.2024.4.22
+    version: 0.1.0-nightly.2024.4.22
   '@titaniumnetwork-dev/ultraviolet':
     specifier: ^3.0.2
     version: 3.0.2
@@ -891,6 +894,10 @@ packages:
     requiresBuild: true
     dev: false
     optional: true
+
+  /@ruffle-rs/ruffle@0.1.0-nightly.2024.4.22:
+    resolution: {integrity: sha512-ZSQekydcRcCoYIYMeyH1bVwo1QtYeZRZpoRBmUwGJOQjZYsoGF47HZ3MTbHZNwPcErlb0RTijN0gf2mJLvVUcw==}
+    dev: false
 
   /@titaniumnetwork-dev/ultraviolet@3.0.2:
     resolution: {integrity: sha512-LZ5hw3c+O4MNQWObWbukwWsmXFGHK/oH21EuHqhJB4qsCqSN4GqwLPzcfY1oCrNdSSXTmCfz6WOAi5UEAQ1DMA==}

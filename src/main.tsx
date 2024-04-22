@@ -7,15 +7,6 @@ import loadSettings from "@components/modules/settings"
 // @ts-expect-error stfu
 import { regSW } from "@components/modules/sw"
 import "../public/assets/css/home.css"
-import { Route } from "dreamland-router"; 
-import Notfound from "./404";
-import Settings from "./settings";
-import Apps from "./apps";
-import NoSW from "./proxy-invalid";
-import WispBG from "./wisp";
-import CreditsPage from "./credits";
-import About from "./about";
-import Games from "./games"
 export default function Home() {
     loadSettings()
     regSW()
@@ -34,7 +25,7 @@ export default function Home() {
                         <li>Fix slow load times</li>
                         <li>More Minor Changes & Bug Fixes view <a style="color:white;" href="https://github.com/z1g-project/sodium">here</a></li>
                     </ul>
-                    <p>Version 2.0.0 - The 2024 Refresh</p>
+                    <p>Version 2.4.0 - The AliceJS Reboot</p>
                     <button class="ok-button">OK</button>
                 </div>
                 </div>
@@ -70,20 +61,3 @@ export default function Home() {
         </div>
     )
 }
-
-export const router = (
-    <Route path="/">
-        <Route path="" show={<Home />} />
-        <Route path="apps" show={<Apps />} />
-        <Route path="sw" show={<NoSW />} />
-        <Route path="service" show={<NoSW />} />
-        <Route path="wisp" show={<WispBG />} />
-        <Route path="games" show={<Games />} />
-        <Route path="settings" show={<Settings />} />
-        <Route path="credits" show={<CreditsPage />} />
-        <Route path="about" show={<About />} />
-        <Route regex path=".*" show={<Notfound />} />
-    </Route>
-).$
-  
-router.render(document.querySelector('.app'));
