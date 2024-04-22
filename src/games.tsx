@@ -31,29 +31,31 @@ export default function Games() {
         fetch(`${window.location.origin}/assets/json/games.json`)
             .then(response => response.json())
             .then(games => {
-                gamesContainer.innerHTML = ``
-                // @ts-expect-error stfu
-                games.forEach(game => {
-                    const column = document.createElement('div');
-                    column.classList.add('column');
-                    column.setAttribute('data-category', game.category);
-                    const link = document.createElement('a');
-                    if (game.category.includes('flash')) {
-                        link.onclick = () => loadswf(game.url);
-                    } else {
-                        link.onclick = () => loadapp(game.url);
-                    }
-                    const image = document.createElement('img');
-                    image.width = 145;
-                    image.height = 145;
-                    image.src = game.image;
-                    const paragraph = document.createElement('p');
-                    paragraph.textContent = game.name;
-                    link.appendChild(image);
-                    link.appendChild(paragraph);
-                    column.appendChild(link);
-                    gamesContainer.appendChild(column);
-            });
+                if (gamesContainer) {
+                    gamesContainer.innerHTML = ``
+                    // @ts-expect-error stfu
+                    games.forEach(game => {
+                        const column = document.createElement('div');
+                        column.classList.add('column');
+                        column.setAttribute('data-category', game.category);
+                        const link = document.createElement('a');
+                        if (game.category.includes('flash')) {
+                            link.onclick = () => loadswf(game.url);
+                        } else {
+                            link.onclick = () => loadapp(game.url);
+                        }
+                        const image = document.createElement('img');
+                        image.width = 145;
+                        image.height = 145;
+                        image.src = game.image;
+                        const paragraph = document.createElement('p');
+                        paragraph.textContent = game.name;
+                        link.appendChild(image);
+                        link.appendChild(paragraph);
+                        column.appendChild(link);
+                        gamesContainer.appendChild(column);
+                    });        
+                }
         })
     }
 

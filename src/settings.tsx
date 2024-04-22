@@ -11,32 +11,65 @@ export default function Settings() {
   getSettings()
 
   function switchSlide(slide: string) {
-    // @ts-expect-error stfu
-    const currentSlide: HTMLDivElement = document.querySelector('.loaded')
-    // @ts-expect-error stfu
-    const current: HTMLDivElement = document.querySelector('.active')
-    current.classList.remove('.active')
-    currentSlide.classList.remove('.loaded')
+    const currentSlide: HTMLDivElement | null = document.querySelector('.loaded');
+    const current: HTMLDivElement | null = document.querySelector('.active');
+    if (currentSlide) {
+        currentSlide.classList.remove('loaded');
+    }
+    if (current) {
+        current.classList.remove('active');
+    }
+    console.log(slide);
     if (slide === 'General') {
-      // @ts-expect-error stfu
-      const slide: HTMLDivElement = document.getElementById('general')
-      slide.classList.add('.loaded')
-      console.log('slide: general')
-    } else if (slide === 'Appearence') {
-      // @ts-expect-error stfu
-      const slide: HTMLDivElement = document.getElementById('appearence')
-      slide.classList.add('.loaded')
-      console.log('slide: appearence')
+        // @ts-expect-error stfu
+        const slideElement: HTMLDivElement | null = document.getElementById('general');
+        if (slideElement) {
+            slideElement.classList.add('loaded');
+            console.log('slide: general');
+        }
+        // @ts-expect-error stfu
+        const selected: HTMLDivElement | null = document.getElementById('general-tab');
+        if (selected) {
+          selected.classList.add('active');
+        }
+    } else if (slide === 'Appearance') {
+        // @ts-expect-error stfu
+        const slideElement: HTMLDivElement | null = document.getElementById('appearance');
+        if (slideElement) {
+            slideElement.classList.add('loaded');
+            console.log('slide: appearance');
+        }
+        // @ts-expect-error stfu
+        const selected: HTMLDivElement | null = document.getElementById('appearance-tab');
+        if (selected) {
+          selected.classList.add('active');
+        }
     } else if (slide === 'Proxy') {
-      // @ts-expect-error stfu
-      const slide: HTMLDivElement = document.getElementById('proxy')
-      slide.classList.add('.loaded')
-      console.log('slide: proxy')
+        // @ts-expect-error stfu
+        const slideElement: HTMLDivElement | null = document.getElementById('proxy');
+        if (slideElement) {
+            slideElement.classList.add('loaded');
+            console.log('slide: proxy');
+        }
+        // @ts-expect-error stfu
+        const selected: HTMLDivElement | null = document.getElementById('proxy-tab');
+        if (selected) {
+          selected.classList.add('active');
+        }
     } else if (slide === 'Addons') {
-      // @ts-expect-error stfu
-      const slide: HTMLDivElement = document.getElementById('addons')
-      slide.classList.add('.loaded')
-      console.log('slide: addons')
+        // @ts-expect-error stfu
+        const slideElement: HTMLDivElement | null = document.getElementById('addons');
+        if (slideElement) {
+            slideElement.classList.add('loaded');
+            console.log('slide: addons');
+        }
+        // @ts-expect-error stfu
+        const selected: HTMLDivElement | null = document.getElementById('addons-tab');
+        if (selected) {
+          selected.classList.add('active');
+        }
+    } else {
+        console.error("Invalid slide:", slide);
     }
   }
     return (
@@ -47,16 +80,16 @@ export default function Settings() {
             </div>
             <div class="topnav">
               <h1 class="nav-header">Settings</h1>
-              <div class="nav-item active" on:click={() => {switchSlide('General')}}>
+              <div class="nav-item active" id="general-tab" on:click={() => {switchSlide('General')}}>
                 <p>General</p>
               </div>
-              <div class="nav-item" on:click={() => {switchSlide('Appereance')}}>
-                <p>Appearence</p>
+              <div class="nav-item" id="appearance-tab" on:click={() => {switchSlide('Appearance')}}>
+                <p>Appearance</p>
               </div>
-              <div class="nav-item" on:click={() => {switchSlide('Proxy')}}>
+              <div class="nav-item" id="proxy-tab" on:click={() => {switchSlide('Proxy')}}>
                 <p>Proxy</p>
               </div>
-              <div class="nav-item" on:click={() => {switchSlide('Addons')}}>
+              <div class="nav-item" id="addons-tab" on:click={() => {switchSlide('Addons')}}>
                 <p>Addons</p>
               </div>
             </div>
@@ -107,7 +140,7 @@ export default function Settings() {
                 <input type="checkbox" id="title-randomizer" />
                 <br />
             </div>
-            <div class="slide" id="appearence">
+            <div class="slide" id="appearance">
             <h2 style="margin-top: -90px;">Appearance</h2>
             <label for="css-select" class="config-label">CSS:</label>
             <select id="css-select" class="config-select">
@@ -134,7 +167,7 @@ export default function Settings() {
             <input type="checkbox" id="disable-clock" />
             <label for="disable-clock">Disable Clock</label>
             <br />
-            <button id="apply-css-button" on:click={() => {applyCSS()}}>Apply CSS</button>
+            <button id="apply-css-button" style="width: 150px; margin-left: 41%;" on:click={() => {applyCSS()}}>Apply CSS</button>
             <br />    
             </div>
           <Footer />

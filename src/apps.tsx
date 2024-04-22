@@ -45,31 +45,37 @@ export default function Apps() {
             });
             console.log(appsResponse);
             if (!appsResponse || appsResponse.status !== "success") {
-                appsContainer.innerHTML = "<p>Failed to load apps</p>";
+                if (appsContainer) {
+                    appsContainer.innerHTML = "<p>Failed to load apps</p>";
+                }
                 return;
             }
             const apps = appsResponse.data;
-            appsContainer.innerHTML = ``
-            apps.forEach(async (app: any) => {
-                const column = document.createElement("div");
-                column.classList.add("column");
-                const a = document.createElement("a");
-                a.onclick = () => loadapp(app.url);
-                const img = document.createElement("img");
-                const image = await libcurl.fetch(app.icon).then((req: any) => req.blob()).then((blob: any) => URL.createObjectURL(blob));
-                img.src = image;
-                img.width = 150;
-                img.height = 75;
-                const p = document.createElement("p");
-                p.textContent = app.name;
-                a.appendChild(img);
-                a.appendChild(p);
-                column.appendChild(a);
-                appsContainer.appendChild(column);
-            });
+            if (appsContainer) {
+                appsContainer.innerHTML = ``
+                apps.forEach(async (app: any) => {
+                    const column = document.createElement("div");
+                    column.classList.add("column");
+                    const a = document.createElement("a");
+                    a.onclick = () => loadapp(app.url);
+                    const img = document.createElement("img");
+                    const image = await libcurl.fetch(app.icon).then((req: any) => req.blob()).then((blob: any) => URL.createObjectURL(blob));
+                    img.src = image;
+                    img.width = 150;
+                    img.height = 75;
+                    const p = document.createElement("p");
+                    p.textContent = app.name;
+                    a.appendChild(img);
+                    a.appendChild(p);
+                    column.appendChild(a);
+                    appsContainer.appendChild(column);
+                });        
+            }
         } catch (err) {
             console.warn(err);
-            appsContainer.innerHTML = "<p>Failed to load apps</p>";
+            if (appsContainer) {
+                appsContainer.innerHTML = "<p>Failed to load apps</p>";
+            }
         }
     }
 
