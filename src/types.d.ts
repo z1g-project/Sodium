@@ -23,4 +23,4 @@ export interface BareTransport {
     ) => Promise<TransferrableResponse>;
   
     meta: () => BareMeta
-  }
+}

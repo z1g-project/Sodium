@@ -7,6 +7,7 @@ import path from "path";
 import fs from "fs";
 import cookieParser from "cookie-parser";
 import wisp from "wisp-server-node";
+// @ts-expect-error stfu
 import { libcurlPath } from "@mercuryworkshop/libcurl-transport"
 // @ts-expect-error no thank you TS
 import { baremuxPath } from "@mercuryworkshop/bare-mux";
@@ -104,6 +105,9 @@ app.use(
     }
   })
 );
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+});
 app.use("/libcurl/", express.static(libcurlPath));
 app.use("/baremux/", express.static(baremuxPath));
 app.use("/ultra/", express.static(uvPath));

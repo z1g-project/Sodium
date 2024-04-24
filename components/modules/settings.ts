@@ -1,4 +1,8 @@
+import updateCache from "./cache";
+import logDebug from "./debug";
 export default async function loadSettings() {
+  await updateCache()
+  await logDebug()
   const title = localStorage.getItem('websiteTitle');
   const favicon = localStorage.getItem('websiteIcon');
   const useRandomize = localStorage.getItem('useRandomizer')

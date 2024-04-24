@@ -429,6 +429,8 @@
     border-radius: 15px;
     color: white;
     background-color: #0d89b2;
+    height: 28px;
+    font-size: 16px;
   }
   
   .column {

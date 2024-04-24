@@ -4,7 +4,6 @@ const resolve = path.resolve
 const __dirname = path.resolve();
 import { viteStaticCopy } from "vite-plugin-static-copy";
 import { execSync } from "child_process";
-import { uvPath } from "@titaniumnetwork-dev/ultraviolet";
 import { dynamicPath } from "@nebula-services/dynamic";
 //@ts-ignore
 import { epoxyPath } from "@mercuryworkshop/epoxy-transport";
@@ -17,11 +16,6 @@ export default defineConfig({
   plugins: [
     viteStaticCopy({
       targets: [
-        {
-          src: `${uvPath}/**/*`.replace(/\\/g, "/"),
-          dest: "ultra",
-          overwrite: false
-        },
         {
           src: `${epoxyPath}/**/*`.replace(/\\/g, "/"),
           dest: "epoxy",

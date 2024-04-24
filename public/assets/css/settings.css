@@ -49,11 +49,11 @@
     left: 0;
     right: 0;
     gap: 7px;
+    justify-content: center;
   }
 
   .topnav .nav-header {
     text-align: start;
-    margin-left: 10%;
   }
 
   .topnav .nav-item {
@@ -93,10 +93,6 @@
     flex-direction: column;
     overflow-y: scroll;
     overflow-x: hidden;
-  }
-
-  .config-select {
-    height: 27px;
   }
 
   option {

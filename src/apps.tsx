@@ -1,7 +1,7 @@
 // @ts-expect-error stfu
 import Nav from "@components/nav.tsx"
 // @ts-expect-error stfu
-import Footer from "@components/footer"
+import { AltFooter } from "@components/footer"
 // @ts-expect-error stfu
 import loadSettings from "@components/modules/settings"
 import "../public/assets/css/home.css"
@@ -138,15 +138,13 @@ export default function Apps() {
             <Nav />
             <h1 style="text-align: center;">Apps</h1>
             <h3 style="text-align: center;">Official Apps that are working and ready for use!</h3>
-
             <div class="input-container">
                 <input class="config-input" type="text" id="gamesearch" on:input={() => {searchgames}} placeholder="Search" style="text-align: center; font-size: 16px;" />
             </div>
-
             <div id="apps-container" class="container-apps">
                 <p id="loading-thing">Loading...</p>
             </div>
-            <Footer />
+            <AltFooter />
         </div>
     )
 }
