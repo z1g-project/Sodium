@@ -36,7 +36,7 @@ export default function About() {
         <div>
             <Nav />
             <div title="Sodium Logo" class="flex-center logo-wrapper header-center">
-                <img class="logo" src="assets/img/logo.svg" alt="Sodium" />
+                <img class="logo" src="/assets/img/logo.svg" alt="Sodium" />
                 <h1>About Sodium</h1>
             </div>
             <div class="flex-center desc">

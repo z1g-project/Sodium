@@ -4,6 +4,12 @@ import Nav from "@components/nav.tsx"
 // @ts-expect-error stfu
 import Footer from "@components/footer"
 export default function StealthLoader() {
+    if (window.location.href.includes('/stealth')) {
+        const cssthing = document.createElement("link")
+        cssthing.href = "/assets/css/frames.css"
+        cssthing.type = "stylesheet"
+        document.head.appendChild(cssthing)
+    }
     return (
         <div>
             <Nav />

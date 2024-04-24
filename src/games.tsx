@@ -19,7 +19,6 @@ export default function Games() {
     document.head.appendChild(appscss);
     const wispSrv = `${window.location.protocol.replace("http", "ws")}//${window.location.host}/wisp/`
     libcurl.set_websocket(`${wispSrv}`)
-    console.log(libcurl)
     document.addEventListener("libcurl_load", async () => {
         console.log('Libcurl is Ready')
         getApps()
@@ -90,17 +89,6 @@ export default function Games() {
             return true;
         }
         return false;
-    }
-    if (navigator.onLine) {
-        navigator.serviceWorker.register('acache.js')
-        .then((registration) => {
-            console.log('Game/Asset Cache Service Worker registered with scope:', registration.scope);
-        })
-        .catch((error) => {
-            console.error('Error registering Service Worker:', error);
-        });
-    } else {
-        console.warn('Your Offline: Using existing Cache')
     }
 
     function searchgames() {

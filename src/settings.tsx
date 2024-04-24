@@ -43,7 +43,9 @@ export function importCSS() {
 }
 export default function Settings() {
   loadSettings()
-  getSettings()
+  if (window.location.href.includes('/settings')) {
+    getSettings()   
+  }
 
   function switchSlide(slide: string) {
     const currentSlide: HTMLDivElement | null = document.querySelector('.loaded');

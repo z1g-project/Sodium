@@ -19,7 +19,6 @@ export default function Apps() {
     document.head.appendChild(appscss);
     const wispSrv = `${window.location.protocol.replace("http", "ws")}//${window.location.host}/wisp/`
     libcurl.set_websocket(`${wispSrv}`)
-    console.log(libcurl)
     document.addEventListener("libcurl_load", async () => {
         console.log('Libcurl is Ready')
         getApps()
