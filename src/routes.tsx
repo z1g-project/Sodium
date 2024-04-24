@@ -9,6 +9,7 @@ import About from "./about";
 import Games from "./games"
 import Home from "./main"
 import Appframe from "./appframe";
+import StealthLoader from "./stealth";
 
 export const router = (
     <Route path="/">
@@ -18,6 +19,7 @@ export const router = (
         <Route path="service" show={<NoSW />} />
         <Route path="wisp" show={<WispBG />} />
         <Route path="games" show={<Games />} />
+        <Route path="stealth" show={<StealthLoader />} />
         <Route path="settings" show={<Settings />} />
         <Route path="credits" show={<CreditsPage />} />
         <Route path="about" show={<About />} />

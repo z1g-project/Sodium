@@ -4,8 +4,13 @@ import Nav from "@components/nav.tsx"
 import Footer from "@components/footer"
 // @ts-expect-error stfu
 import { regSW } from "@components/modules/sw"
-//import "/public/assets/css/frames.css"
 export default function Appframe() {
+    if (window.location.href.includes('/appframe')) {
+        const cssthing = document.createElement("link")
+        cssthing.href = "/assets/css/frames.css"
+        cssthing.type = "stylesheet"
+        document.head.appendChild(cssthing)
+    }
     return (
         <div>
             <Nav />

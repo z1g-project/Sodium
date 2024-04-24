@@ -1,4 +1,3 @@
-window.addEventListener('DOMContentLoaded', () => {});
 export default async function runUtils() {
     // @ts-ignore
     const Ultraviolet = window.parent.ultraviolet
