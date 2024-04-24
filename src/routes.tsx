@@ -10,6 +10,7 @@ import Games from "./games"
 import Home from "./main"
 import Appframe from "./appframe";
 import StealthLoader from "./stealth";
+import Iframe from "./iframe";
 
 export const router = (
     <Route path="/">
@@ -24,6 +25,7 @@ export const router = (
         <Route path="credits" show={<CreditsPage />} />
         <Route path="about" show={<About />} />
         <Route path="appframe" show={<Appframe />} />
+        <Route path="iframe" show={<Iframe />} />
         <Route regex path=".*" show={<Notfound />} />
     </Route>
 ).$

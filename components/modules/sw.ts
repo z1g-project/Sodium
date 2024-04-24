@@ -3,7 +3,7 @@ import { SetTransport } from "@mercuryworkshop/bare-mux"
 
 export async function regSW() {
     navigator.serviceWorker.register('/sw.js', {scope: "/sw/"}).then(await updateTransports)
-    navigator.serviceWorker.register('/dynsw.js', {scope: "/service/"})
+    navigator.serviceWorker.register('/dyn.sw.js', {scope: "/service/"})
 }
 
 export async function updateTransports() {

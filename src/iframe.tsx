@@ -4,14 +4,14 @@ import Nav from "@components/nav.tsx"
 import Footer from "@components/footer"
 // @ts-expect-error stfu
 import runUtils from "@components/modules/utils"
-export default function Appframe() {
+export default function Iframe() {
     if (window.location.href.includes('/appframe')) {
         const cssthing = document.createElement("link")
         cssthing.href = "/assets/css/frames.css"
         cssthing.type = "stylesheet"
         document.head.appendChild(cssthing)
         window.addEventListener('DOMContentLoaded', () => {
-            runUtils('appUrl')
+            runUtils('encodedUrl')
             // @ts-expect-error stfu
             const loadingOverlay: HTMLDivElement = document.getElementById("loading-overlay");
             loadingOverlay.style.display = "flex"

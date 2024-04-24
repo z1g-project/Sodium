@@ -70,18 +70,18 @@ export default function Games() {
         const proxyOption = localStorage.getItem("proxyOption");
         if (proxyOption && proxyOption.toLowerCase() === "dynamic") {
             const dynamicURL = `${window.location.origin}/service/${xor.encode(url)}`;
-            sessionStorage.setItem("appUrl", dynamicURL);
+            sessionStorage.setItem("encodedUrl", dynamicURL);
         } else {
             if (!checkUrl(url)) {
                 url = "https://www.google.com/search?q=" + url;
             } else if (!(url.startsWith("https://") || url.startsWith("http://"))) {
                 url = "https://" + url;
             }
-            sessionStorage.removeItem("appUrl");
+            sessionStorage.removeItem("encodedUrl");
             const encodedUrl = `${window.location.origin}/sw/${xor.encode(url)}`;
-            sessionStorage.setItem("appUrl", encodedUrl);
+            sessionStorage.setItem("encodedUrl", encodedUrl);
         }
-        location.href = "appframe";
+        location.href = "iframe";
     };
     
     function checkUrl(val = "") {

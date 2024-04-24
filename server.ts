@@ -15,7 +15,6 @@ import { Socket, Head } from "ws";
 import NotFound from "./src/404"
 import config from "dotenv";
 import { dynamicPath } from "@nebula-services/dynamic";
-import { uvPath } from "@titaniumnetwork-dev/ultraviolet";
 
 config.config();
 const __filename = fileURLToPath(import.meta.url);
@@ -110,7 +109,6 @@ app.get('*', (req, res) => {
 });
 app.use("/libcurl/", express.static(libcurlPath));
 app.use("/baremux/", express.static(baremuxPath));
-app.use("/ultra/", express.static(uvPath));
 app.use("/dyn/", express.static(dynamicPath));
 const server = createServer();
 

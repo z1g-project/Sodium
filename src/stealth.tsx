@@ -3,12 +3,20 @@
 import Nav from "@components/nav.tsx"
 // @ts-expect-error stfu
 import Footer from "@components/footer"
+// @ts-expect-error stfu
+import runUtils from "@components/modules/utils"
 export default function StealthLoader() {
     if (window.location.href.includes('/stealth')) {
         const cssthing = document.createElement("link")
         cssthing.href = "/assets/css/frames.css"
         cssthing.type = "stylesheet"
         document.head.appendChild(cssthing)
+        window.addEventListener('DOMContentLoaded', () => {
+            runUtils('stealthurl')
+            // @ts-expect-error stfu
+            const loadingOverlay: HTMLDivElement = document.getElementById("loading-overlay");
+            loadingOverlay.style.display = "flex"
+        })
     }
     return (
         <div>

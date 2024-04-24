@@ -1,6 +1,5 @@
-export default async function runUtils() {
-    // @ts-ignore
-    const Ultraviolet = window.parent.ultraviolet
+import { XOR as xor } from "./xor"
+export default async function runUtils(sessionCheck: string) {
     // @ts-expect-error stfu
     const iframe: HTMLIFrameElement = document.getElementById('apploader');
     // @ts-expect-error stfu
@@ -28,10 +27,14 @@ export default async function runUtils() {
     fpsItem.style.display = 'none';
     if (iframe) {
         const proxyOption = localStorage.getItem("proxyOption");
+        const urltoencode = sessionStorage.getItem(sessionCheck);
+        console.log(sessionCheck)
+        console.log(urltoencode)
         if (proxyOption && proxyOption.toLowerCase() === "dynamic") {
-            iframe.src = `${window.location.origin}/service/route?url=https://github.com/z1g-project/sodium`;
+            iframe.src = `${window.location.origin}/service/route?url=${urltoencode}`;
         } else {
-            const encodedURL = Ultraviolet.codec.xor.encode(sessionStorage.getItem('stealthurl'));
+            // @ts-expect-error stfu
+            const encodedURL = xor.encode(urltoencode.toString);
             iframe.src = `${window.location.origin}/sw/${encodedURL}`;
         }
         iframe.onload = () => {
