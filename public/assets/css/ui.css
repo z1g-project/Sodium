@@ -367,7 +367,9 @@ textarea {
 }
 
 .second-bar-link {
-  display: inline-block;
+    display: inline-block;
+    cursor: pointer;
+    cursor: pointer;
   width: 30px;
   height: 30px;
   margin-right: 10px;
