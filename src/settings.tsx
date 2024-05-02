@@ -284,7 +284,7 @@ export default function Settings() {
             //  <option value="assets/css/festive.css">Festive</option>
             //  <option value="custom">Custom CSS</option>
             //</select>
-            // <button id="apply-css-button" style="width: 150px; margin-left: 41%;" on:click={() => {applyCSS()}}>Apply CSS</button>
+            <button id="apply-css-button" style="width: 150px; margin-left: 41%; z-index: 99999;" on:click={() => {applyCSS()}}>Apply CSS</button>
             // <br />    
             //</div>
             }

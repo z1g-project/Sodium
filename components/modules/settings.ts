@@ -435,13 +435,15 @@ export async function getSettings() {
 }
 
 export function applyCSS() {
-  console.log('applyCSS Will be deprecated soon. This is simply a placeholder for the rewrite')
+  // @ts-expect-error stfu
+  const inp: HTMLSelectElement = document.getElementById('css-select')
+  localStorage.setItem('websiteCSS', inp.value)
+  console.log(`Set CSS to: ${inp.value}`)
   const styleSheets = document.getElementsByTagName('link');
     for (let i = 0; i < styleSheets.length; i++) {
       const styleSheet = styleSheets[i];
       if (styleSheet.getAttribute('id') === 'custom-css') {
-        // @ts-expect-error stfu
-        styleSheet.href = selectedCSS;
+        styleSheet.href = inp.value;
       }
     }
     const saveButton = document.getElementById('save-button');
