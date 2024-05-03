@@ -4,7 +4,6 @@ const resolve = path.resolve
 const __dirname = path.resolve();
 import { viteStaticCopy } from "vite-plugin-static-copy";
 import { execSync } from "child_process";
-import { dynamicPath } from "@nebula-services/dynamic";
 //@ts-ignore
 import { epoxyPath } from "@mercuryworkshop/epoxy-transport";
 //@ts-ignore
@@ -24,11 +23,6 @@ export default defineConfig({
         {
           src: `${libcurlPath}/**/*`.replace(/\\/g, "/"),
           dest: "libcurl",
-          overwrite: false
-        },
-        {
-          src: `${dynamicPath}/dyn.*.js`.replace(/\\/g, "/"),
-          dest: "dyn",
           overwrite: false
         }
       ]

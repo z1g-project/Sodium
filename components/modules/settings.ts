@@ -40,8 +40,6 @@ export default async function loadSettings() {
     console.log('Randomized!')
   }
   if (css) {
-    // @ts-expect-error stfu
-    applyCSS(css);
     const cssSelect = document.getElementById('css-select');
     if (cssSelect) {
       // @ts-expect-error stfu
@@ -61,16 +59,15 @@ export default async function loadSettings() {
       styleSheet.id = 'custom-css';
       styleSheet.textContent = customCSS;
       document.head.appendChild(styleSheet);
-    } else {
-      // @ts-expect-error stfu
-      applyCSS(customCSS);
     }
-  } else {
-    const defaultStyleSheet = document.createElement('link');
-    defaultStyleSheet.rel = 'stylesheet';
-    defaultStyleSheet.href = 'assets/css/ui.css';
-    defaultStyleSheet.id = 'custom-css';
-    document.head.appendChild(defaultStyleSheet);
+  }
+  const inf = localStorage.getItem('websiteCSS') || 'assets/css/ui.css'
+  const styleSheets = document.getElementsByTagName('link');
+  for (let i = 0; i < styleSheets.length; i++) {
+    const styleSheet = styleSheets[i];
+    if (styleSheet.getAttribute('id') === 'custom-css') {
+      styleSheet.href = inf
+    }
   }
   const metaThemeColor = localStorage.getItem('metaThemeColor');
   if (metaThemeColor) {

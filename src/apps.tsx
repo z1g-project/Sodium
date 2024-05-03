@@ -12,6 +12,7 @@ import { libcurl } from "libcurl.js/bundled"
 import { XOR as xor } from "@components/modules/xor"
 export default function Apps() {
     loadSettings()
+    if (window.location.href === "/apps") {
     const appscss = document.createElement('link');
     appscss.rel = 'stylesheet';
     appscss.type = 'text/css';
@@ -131,6 +132,7 @@ export default function Apps() {
                 game.style.display = "none";
             }
         }
+    }
     }
     return (
         <div>
