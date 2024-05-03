@@ -616,3 +616,15 @@
 .a:hover {
   transform: scale(1.1);
 }
+
+.topnav .nav-item {
+  background-color: #343638;
+  margin-top: 20px;
+  width: 200px;
+  height: 50px;
+  border-radius: 15px;
+}
+
+.topnav .active {
+  background-color: #3b3b3b;
+}

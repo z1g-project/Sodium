@@ -11,8 +11,8 @@ import { libcurl } from "libcurl.js/bundled"
 // @ts-expect-error stfu
 import { XOR as xor } from "@components/modules/xor"
 export default function Apps() {
+    if (window.location.href.includes("/apps")) {
     loadSettings()
-    if (window.location.href === "/apps") {
     const appscss = document.createElement('link');
     appscss.rel = 'stylesheet';
     appscss.type = 'text/css';

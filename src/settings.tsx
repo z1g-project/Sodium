@@ -42,8 +42,8 @@ export function importCSS() {
   fileInput.click();
 }
 export default function Settings() {
-  loadSettings()
   if (window.location.href.includes('/settings')) {
+    loadSettings()
     getSettings()   
   }
 

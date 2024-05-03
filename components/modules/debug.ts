@@ -1,6 +1,6 @@
 import { version as ver } from "../../package.json"
 export default async function logDebug() {
-  const websiteURL = window.location.href;
+  const websiteURL = window.location.origin;
   const userAgent = navigator.userAgent;
   const latestVersion = ver;
   const debugMessage = `

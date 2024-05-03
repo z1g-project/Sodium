@@ -11,6 +11,7 @@ import { libcurl } from "libcurl.js/bundled"
 // @ts-expect-error stfu
 import { XOR as xor } from "@components/modules/xor"
 export default function Games() {
+    if (window.location.href.includes("/games")) {
     loadSettings()
     const appscss = document.createElement('link');
     appscss.rel = 'stylesheet';
@@ -107,6 +108,7 @@ export default function Games() {
                 game.style.display = "none";
             }
         }
+    }
     }
     return (
         <div>

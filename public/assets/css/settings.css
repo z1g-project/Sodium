@@ -54,24 +54,13 @@
 
   .topnav .nav-header {
     text-align: start;
-  }
-
-  .topnav .nav-item {
-    background-color: #0D89B2;
-    margin-top: 20px;
-    width: 200px;
-    height: 50px;
-    border-radius: 15px;
+    margin-top: -2
   }
 
   .topnav .nav-item p {
     text-align: center;
     color: white;
     font-size: 16px;
-  }
-
-  .topnav .active {
-    background-color: #3d8298;
   }
 
   .slide {

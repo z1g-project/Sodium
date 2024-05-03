@@ -4,6 +4,9 @@ import Nav from "@components/nav.tsx"
 import Footer from "@components/footer"
 import "/public/assets/css/credits.css"
 export default function CreditsPage() {
+    if (window.location.href.includes("/credits")) {
+        loadSettings()
+    }
     return (
         <div>
             <Nav />
@@ -39,3 +42,7 @@ export default function CreditsPage() {
         </div>
     )
 }
+function loadSettings() {
+    throw new Error("Function not implemented.")
+}
+
