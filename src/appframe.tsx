@@ -4,9 +4,10 @@ import Nav from "@components/nav.tsx"
 import Footer from "@components/footer"
 // @ts-expect-error stfu
 import runUtils from "@components/modules/utils"
+import { cfg as injcfg } from "@z1g-project/injectify/src/types"
 interface Window {
     __uv$config: any;
-    __injectify$cfg: any;
+    __injectify$cfg: injcfg;
 }
 export default function Appframe() {
     if (window.location.href.includes('/appframe')) {
@@ -21,7 +22,7 @@ export default function Appframe() {
         //document.head.appendChild(ingcfg)
         document.head.appendChild(cssthing)
         window.addEventListener('DOMContentLoaded', () => {
-            runUtils('encodedUrl')
+            runUtils('appUrl')
             // @ts-expect-error stfu
             const loadingOverlay: HTMLDivElement = document.getElementById("loading-overlay")
             loadingOverlay.style.display = "flex"
