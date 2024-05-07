@@ -5,16 +5,26 @@ import Footer from "@components/footer"
 // @ts-expect-error stfu
 import runUtils from "@components/modules/utils"
 export default function Iframe() {
-    if (window.location.href.includes('/appframe')) {
+    if (window.location.href.includes('/iframe')) {
         const cssthing = document.createElement("link")
         cssthing.href = "/assets/css/frames.css"
         cssthing.type = "stylesheet"
+        const ing = document.createElement("script")
+        ing.src = "/injectify/bundle.js"
+        const ingcfg = document.createElement("script")
+        ingcfg.src = "/injectify/config.js"
+        document.head.appendChild(ing)
+        document.head.appendChild(ingcfg)
         document.head.appendChild(cssthing)
         window.addEventListener('DOMContentLoaded', () => {
             runUtils('encodedUrl')
             // @ts-expect-error stfu
             const loadingOverlay: HTMLDivElement = document.getElementById("loading-overlay");
             loadingOverlay.style.display = "flex"
+            // @ts-expect-error stfu
+            const iframe: HTMLIFrameElement = document.getElementById('apploader')
+            // @ts-expect-error stfu
+            iframe.src = sessionStorage.getItem('encodedUrl')
         })
     }
     return (

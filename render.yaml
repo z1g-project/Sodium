@@ -3,5 +3,5 @@ services:
     name: sodium
     env: node
     buildCommand: npm install
-    startCommand: node index.js
+    startCommand: npm start
     plan: free
