@@ -3,9 +3,13 @@ import Nav from "@components/nav.tsx"
 // @ts-expect-error stfu
 import Footer from "@components/footer"
 import "/public/assets/css/credits.css"
+// @ts-expect-error stfu
+import toggleLicense, { run } from "@components/modules/credits"
 export default function CreditsPage() {
     if (window.location.href.includes("/credits")) {
-        loadSettings()
+        window.addEventListener("DOMContentLoaded", () => {
+            run()
+        })
     }
     return (
         <div>
@@ -16,33 +20,29 @@ export default function CreditsPage() {
             <div>
                 <h1 class="centered-heading">Licenses</h1>
                 <div class="license">
-                    <div class="license-header" onclick="toggleLicense('mit')">MIT License</div>
+                    <div class="license-header" onclick={() => toggleLicense('mit')}>MIT License</div>
                     <div class="license-content" id="mit-license"></div>
                 </div>
                 <div class="license">
-                    <div class="license-header" onclick="toggleLicense('gnu')">GNU AFFERO General Public License version 3</div>
+                    <div class="license-header" onclick={() => toggleLicense('gnu')}>GNU AFFERO General Public License version 3</div>
                     <div class="license-content" id="gnu-license"></div>
                 </div>
             </div>
             <div>
                 <h1 class="centered-heading">Credits</h1>
                 <div class="license">
-                    <div class="license-header" onclick="toggleLicense('credits')">Credits</div>
+                    <div class="license-header" onclick={() => toggleLicense('credits')}>Credits</div>
                     <div class="license-content" id="credits-license"></div>
                 </div>
                 <div style="display: flex; justify-content: center;">
-                    <a href="/faq.html">View the Sodium FAQ</a>
+                    <a href="/faq">View the Sodium FAQ</a>
                 </div>
                 <br />
                 <div style="display: flex; justify-content: center;">
-                    <a href="/about/">View Sodium Version Info</a>
+                    <a href="/about">View Sodium Version Info</a>
                 </div>
             </div>    
             <Footer />
         </div>
     )
 }
-function loadSettings() {
-    throw new Error("Function not implemented.")
-}
-

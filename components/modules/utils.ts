@@ -34,7 +34,7 @@ export default async function runUtils(sessionCheck: string) {
             iframe.src = `${window.location.origin}/service/route?url=${urltoencode}`;
         } else {
             // @ts-expect-error stfu
-            const encodedURL = xor.encode(urltoencode.toString);
+            const encodedURL = self.encoder.encode(urltoencode.toString)//xor.encode(urltoencode.toString);
             iframe.src = `${window.location.origin}/sw/${encodedURL}`;
         }
         iframe.onload = () => {

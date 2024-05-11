@@ -1,5 +1,6 @@
 export const XOR = {
     encode(input: string): string {
+        console.log('XOR will be deprecated soon')
         return input
             .toString()
             .split('')
@@ -9,7 +10,7 @@ export const XOR = {
       decode(input: string): string {
         if (!input) return input
         const [str, ...search] = input.split('?')
-      
+        console.log('XOR will be deprecated soon')
         return (
             str            
             .split('')

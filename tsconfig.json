@@ -22,7 +22,7 @@
         "@/*": ["./*"],
       }
     },
-    "include": ["src"],
+    "include": ["src", "components"],
     "exclude": ["public/", "node_modules/"]
   }
   

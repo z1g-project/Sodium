@@ -14,35 +14,39 @@ import "../public/assets/css/home.css"
 export default function Home() {
     loadSettings()
     regSW()
-    // @ts-expect-error stfu
-    const form: HTMLFormElement = document.getElementById("uv-form");
-    // @ts-expect-error stfu
-    const address: HTMLInputElement = document.getElementById("uv-address");
-    const searchEngine: any = document.getElementById("uv-search-engine");
-    // @ts-expect-error stfu
-    const loadingOverlay: HTMLDivElement = document.getElementById("loading-overlay");
-    // @ts-expect-error stfu
-    const iframe: HTMLIFrameElement = document.getElementById("apploader");
-    if (form) {
-        form.addEventListener("submit", async (event) => {
-            event.preventDefault();
-            const url = search(address.value, searchEngine.value);
-            const encodedURL = XOR.encode(url);
-            loadingOverlay.style.display = "flex";
-            iframe.style.display = "none";
-            iframe.src = `${window.location.origin}/sw/${encodedURL}`;
-        });
-    }
-    if (iframe) {
-        iframe.addEventListener("unload", () => {
-            iframe.style.display = "none";
-            loadingOverlay.style.display = "flex";
-        });
-        iframe.addEventListener("load", () => {
-            loadingOverlay.style.display = "none";
-            iframe.style.display = "block"; 
-        });
-    }
+    window.addEventListener("DOMContentLoaded", () => {
+        // @ts-expect-error stfu
+        const form: HTMLFormElement = document.getElementById("uv-form");
+        // @ts-expect-error stfu
+        const address: HTMLInputElement = document.getElementById("uv-address");
+        // @ts-expect-error stfu
+        const searchEngine: HTMLInputElement = document.getElementById("uv-search-engine");
+        // @ts-expect-error stfu
+        const loadingOverlay: HTMLDivElement = document.getElementById("loading-overlay");
+        // @ts-expect-error stfu
+        const iframe: HTMLIFrameElement = document.getElementById("apploader");
+        if (form) {
+            form.addEventListener("submit", async (event) => {
+                event.preventDefault();
+                const url = search(address.value, searchEngine.value);
+                // @ts-ignore
+                const encodedURL = self.encoder.encode(url);
+                loadingOverlay.style.display = "flex";
+                iframe.style.display = "none";
+                iframe.src = `${window.location.origin}/sw/${encodedURL}`;
+            });
+        }
+        if (iframe) {
+            iframe.addEventListener("unload", () => {
+                iframe.style.display = "none";
+                loadingOverlay.style.display = "flex";
+            });
+            iframe.addEventListener("load", () => {
+                loadingOverlay.style.display = "none";
+                iframe.style.display = "block"; 
+            });
+        }
+    })
     return (
         <div>
             <Nav />
@@ -82,7 +86,7 @@ export default function Home() {
 
                 <div id="loading-overlay">
                     <div class="loading-content">
-                    <img src="sodium.png" alt="Logo" width="125" height="125"></img>
+                    <img src="/assets/img/logo.svg" alt="Logo" width="125" height="125"></img>
                     <h1 class="loading-title">Sodium is loading your content!</h1>
                     <img src="assets/img/loader.svg" alt="Loading Animation" width="50" height="50"></img>
                     <p class="loading-message">Please wait...</p>

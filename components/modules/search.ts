@@ -1,15 +1,15 @@
-export default function search(input: string) {
-    const searchEngine = localStorage.getItem('searchEngine');
-    const template = searchEngine || 'https://www.google.com/search?q=%s';
-    try {
-      return new URL(input).toString();
-    } catch (err) {
-        console.error('Cant encode')
-    }
-    try {
-      const url = new URL(`http://${input}`);
-      if (url.hostname.includes(".")) return url.toString();
-    } catch (err) {
-    }
-    return template.replace("%s", encodeURIComponent(input));
+export default function search(input: string, searchEngine: string): string {
+  const eng = localStorage.getItem('searchEngine') || searchEngine;
+  let url: URL;
+  try {
+    url = new URL(input);
+  } catch (err) {
+      try {
+        url = new URL(`http://${input}`);
+      } catch (err) {
+        console.error('Invalid URL input');
+        return '';
+      }
+  }
+  return url.toString();
 }

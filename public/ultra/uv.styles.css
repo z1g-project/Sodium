@@ -24,6 +24,7 @@
     padding-top: 64px;
     opacity: 0;
     animation: fade-in 0.5s ease-in-out forwards;
+    text-align: center;
   }
   
   .second-bar a.second-bar-link {
