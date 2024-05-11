@@ -10,7 +10,6 @@ import "../public/assets/css/item-cards.css"
 import { libcurl } from "libcurl.js/bundled"
 // @ts-expect-error stfu
 import { XOR as xor } from "@components/modules/xor"
-import axios from "axios"
 export default function Apps() {
     if (window.location.href.includes("/apps")) {
     loadSettings()
@@ -19,21 +18,26 @@ export default function Apps() {
     appscss.type = 'text/css';
     appscss.href = 'assets/css/item-cards.css';
     document.head.appendChild(appscss);
-    getApps()
+    const wispSrv = `${window.location.protocol.replace("http", "ws")}//${window.location.host}/wisp/`
+    libcurl.set_websocket(`${wispSrv}`)
+    document.addEventListener("libcurl_load", async () => {
+        console.log('Libcurl is Ready')
+        getApps()
+    })
 
     async function getApps() {
-        if (window.location.origin.includes("localhost:5173") || window.location.origin.includes(".pages.dev")) {
-            console.log('The vite dev server doesnt support wisp at the moment. Use the production server for "internet access" or if your static hosting the wisp server isnt online for obvious reasons. Ignore this message')
-            const wispSrv = `wss://tomp.app/wisp/`
-            libcurl.set_websocket(`${wispSrv}`)
-        } else {
-            const wispSrv = `${window.location.protocol.replace("http", "ws")}//${window.location.host}/wisp/`
-            libcurl.set_websocket(`${wispSrv}`)
-        }
+            if (window.location.origin.includes("localhost:5173") || window.location.origin.includes(".pages.dev")) {
+                console.log('The vite dev server doesnt support wisp at the moment. Use the production server for "internet access" or if your static hosting the wisp server isnt online for obvious reasons. Ignore this message')
+                const wispSrv = `wss://tomp.app/wisp/`
+                libcurl.set_websocket(`${wispSrv}`)
+            } else {
+                const wispSrv = `${window.location.protocol.replace("http", "ws")}//${window.location.host}/wisp/`
+                libcurl.set_websocket(`${wispSrv}`)
+            }
         // @ts-expect-error stfu
         const appsContainer: HTMLElement = document.getElementById("apps-container");
         try {
-            const appsResponse = await axios.get("https://api.z1g.top/api/apps")
+            const appsResponse = await libcurl.fetch("https://api.z1g.top/api/apps")
             .then((req: any) => req.json())
             .catch((err: any) => {
                 console.error(err);
@@ -55,7 +59,7 @@ export default function Apps() {
                     const a = document.createElement("a");
                     a.onclick = () => loadapp(app.url);
                     const img = document.createElement("img");
-                    const image = await axios.get(app.icon).then((req: any) => req.blob()).then((blob: any) => URL.createObjectURL(blob));
+                    const image = await libcurl.fetch(app.icon).then((req: any) => req.blob()).then((blob: any) => URL.createObjectURL(blob));
                     img.src = image;
                     img.width = 150;
                     img.height = 75;
@@ -79,8 +83,7 @@ export default function Apps() {
         let url = value.trim();
         const proxyOption = localStorage.getItem("proxyOption");
         if (proxyOption && proxyOption.toLowerCase() === "dynamic") {
-            // @ts-ignore
-            const dynamicURL = `${window.location.origin}/service/${self.encoder.encode(url)}`;
+            const dynamicURL = `${window.location.origin}/service/${xor.encode(url)}`;
             sessionStorage.setItem("appUrl", dynamicURL);
         } else {
             if (!checkUrl(url)) {
@@ -89,8 +92,7 @@ export default function Apps() {
                 url = "https://" + url;
             }
             sessionStorage.removeItem("appUrl");
-            // @ts-ignore
-            const encodedUrl = `${window.location.origin}/sw/${self.encoder.encode(url)}`;
+            const encodedUrl = `${window.location.origin}/sw/${xor.encode(url)}`;
             sessionStorage.setItem("appUrl", encodedUrl);
         }
         location.href = "appframe";
