@@ -5,11 +5,44 @@ import Footer from "@components/footer"
 // @ts-expect-error stfu
 import loadSettings from "@components/modules/settings"
 // @ts-expect-error stfu
+import search from "@components/modules/search"
+// @ts-expect-error stfu
+import { XOR } from "@components/modules/xor"
+// @ts-expect-error stfu
 import { regSW } from "@components/modules/sw"
 import "../public/assets/css/home.css"
 export default function Home() {
     loadSettings()
     regSW()
+    // @ts-expect-error stfu
+    const form: HTMLFormElement = document.getElementById("uv-form");
+    // @ts-expect-error stfu
+    const address: HTMLInputElement = document.getElementById("uv-address");
+    const searchEngine: any = document.getElementById("uv-search-engine");
+    // @ts-expect-error stfu
+    const loadingOverlay: HTMLDivElement = document.getElementById("loading-overlay");
+    // @ts-expect-error stfu
+    const iframe: HTMLIFrameElement = document.getElementById("apploader");
+    if (form) {
+        form.addEventListener("submit", async (event) => {
+            event.preventDefault();
+            const url = search(address.value, searchEngine.value);
+            const encodedURL = XOR.encode(url);
+            loadingOverlay.style.display = "flex";
+            iframe.style.display = "none";
+            iframe.src = `${window.location.origin}/sw/${encodedURL}`;
+        });
+    }
+    if (iframe) {
+        iframe.addEventListener("unload", () => {
+            iframe.style.display = "none";
+            loadingOverlay.style.display = "flex";
+        });
+        iframe.addEventListener("load", () => {
+            loadingOverlay.style.display = "none";
+            iframe.style.display = "block"; 
+        });
+    }
     return (
         <div>
             <Nav />
