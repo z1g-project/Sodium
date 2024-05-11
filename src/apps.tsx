@@ -83,7 +83,8 @@ export default function Apps() {
         let url = value.trim();
         const proxyOption = localStorage.getItem("proxyOption");
         if (proxyOption && proxyOption.toLowerCase() === "dynamic") {
-            const dynamicURL = `${window.location.origin}/service/${xor.encode(url)}`;
+            // @ts-expect-error stfu
+            const dynamicURL = `${window.location.origin}/service/${self.encoder.encode(url)}`;
             sessionStorage.setItem("appUrl", dynamicURL);
         } else {
             if (!checkUrl(url)) {
@@ -92,7 +93,8 @@ export default function Apps() {
                 url = "https://" + url;
             }
             sessionStorage.removeItem("appUrl");
-            const encodedUrl = `${window.location.origin}/sw/${xor.encode(url)}`;
+            // @ts-expect-error stfu
+            const encodedUrl = `${window.location.origin}/sw/${self.encoder.encode(url)}`;
             sessionStorage.setItem("appUrl", encodedUrl);
         }
         location.href = "appframe";
