@@ -93,7 +93,7 @@ export default function Home() {
                 </div>
             </div>
 
-            <iframe id="apploader"></iframe>
+            <iframe id="apploader" style="display: none;"></iframe>
             <Footer />
         </div>
     )
