@@ -7,7 +7,7 @@ export async function regSW() {
 }
 
 export async function updateTransports() {
-    let wispUrl = (location.protocol === "https:" ? "wss" : "ws") + "://" + location.host + "/wisp/";
+    let wispUrl = import.meta.env.VITE_WISP_SERVER || (location.protocol === "https:" ? "wss" : "ws") + "://" + location.host + "/wisp/";
     let transport = localStorage.getItem('transport') || "EpxMod.EpoxyClient"
     SetTransport(transport, { wisp: wispUrl });
 }
