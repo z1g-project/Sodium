@@ -4,21 +4,17 @@ import Nav from "@components/nav.tsx"
 import Footer from "@components/footer"
 // @ts-expect-error stfu
 import runUtils from "@components/modules/utils"
+import { cfg as injcfg } from "@z1g-project/injectify/src/types"
+import injectify from "@z1g-project/injectify/src/index"
 interface Window {
     __uv$config: any;
-    __injectify$cfg: any;
+    __injectify$cfg: injcfg;
 }
 export default function Appframe() {
     if (window.location.href.includes('/appframe')) {
         const cssthing = document.createElement("link")
         cssthing.href = "/assets/css/frames.css"
         cssthing.type = "stylesheet"
-        const ing = document.createElement("script")
-        ing.src = "/injectify/bundle.js"
-        const ingcfg = document.createElement("script")
-        ingcfg.src = "/injectify/config.js"
-        document.head.appendChild(ingcfg)
-        document.head.appendChild(cssthing)
         window.addEventListener('DOMContentLoaded', () => {
             runUtils('appUrl')
             // @ts-expect-error stfu
@@ -28,7 +24,7 @@ export default function Appframe() {
             const iframe: HTMLIFrameElement = document.getElementById('apploader')
             // @ts-expect-error stfu
             iframe.src = sessionStorage.getItem('appUrl')
-            document.head.appendChild(ing)
+            injectify()
         })
     }
     return (

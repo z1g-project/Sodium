@@ -24,8 +24,8 @@ dependencies:
     specifier: ^7.9.0
     version: 7.9.0(eslint@9.2.0)(typescript@5.4.5)
   '@z1g-project/injectify':
-    specifier: 0.1.2
-    version: 0.1.2
+    specifier: 0.1.2-patch1
+    version: 0.1.2-patch1
   autoprefixer:
     specifier: 10.4.19
     version: 10.4.19(postcss@8.4.38)
@@ -717,8 +717,8 @@ packages:
       eslint-visitor-keys: 3.4.3
     dev: false
 
-  /@z1g-project/injectify@0.1.2:
-    resolution: {integrity: sha512-uDjWTSbeY/1Hfq25gxKEdBMgGqYW9THgfaas4BAYTMEq27Opav7Te88OEIH5myFbImLzCeHcMATvjvJU8idWMg==}
+  /@z1g-project/injectify@0.1.2-patch1:
+    resolution: {integrity: sha512-GpIkGX/iMvBBbQovwxQWynKzwQML0v8vjpYEp2Z7utxrxpdGn3FDU3EcUW+KhqxIXfdq06Ans7pr1y8FYS8KFw==}
     dev: false
 
   /accepts@1.3.8:
