@@ -1,4 +1,3 @@
-import { XOR as xor } from "./xor"
 export default async function runUtils(sessionCheck: string) {
     // @ts-expect-error stfu
     const iframe: HTMLIFrameElement = document.getElementById('apploader');
@@ -15,7 +14,7 @@ export default async function runUtils(sessionCheck: string) {
     const totalBytes = 0;
     const totalTime = 0;
   
-    function getTransferRate(url, callback) {
+    function getTransferRate(url: any, callback: any) {
         if (totalBytes > 0 && totalTime > 0) {
             const transferRate = (totalBytes / totalTime) * 8 / 1000;
             const transferRateFormatted = transferRate.toFixed(2);
@@ -34,7 +33,7 @@ export default async function runUtils(sessionCheck: string) {
             iframe.src = `${window.location.origin}/service/route?url=${urltoencode}`;
         } else {
             // @ts-expect-error stfu
-            const encodedURL = self.encoder.encode(urltoencode.toString)//xor.encode(urltoencode.toString);
+            const encodedURL = self.encoder.encode(urltoencode.toString)
             iframe.src = `${window.location.origin}/sw/${encodedURL}`;
         }
         iframe.onload = () => {
@@ -43,7 +42,7 @@ export default async function runUtils(sessionCheck: string) {
             iframe.parentElement.classList.add('show-iframe');
         };
     }
-    function getLatency(url, callback) {
+    function getLatency(url: any, callback: any) {
         const timing = performance.timing;
         const latency = timing.responseStart - timing.requestStart;
         callback(`${latency} ms`);
@@ -65,9 +64,11 @@ export default async function runUtils(sessionCheck: string) {
     getFPS()
     iframe.addEventListener('load', () => {
         infoMenu.style.display = 'block';
+        // @ts-expect-error
         getTransferRate(iframe.src, transferRate => {
             transferRateItem.textContent = `Transfer Rate: ${transferRate}`;
         });
+        // @ts-expect-error
         getLatency(iframe.src, latency => {
             latencyItem.textContent = `Latency: ${latency}`;
         });

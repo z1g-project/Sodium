@@ -193,9 +193,9 @@ export default function Settings() {
               </div>
             </div>
             <div class="slide loaded" id="general">
-              <h2 style="margin-top: 160px;">Settings</h2>
+              <h2 style="margin-top: 24%">Settings</h2>
               <br />
-              <label style="margin-top: -25px;" for="title-input" class="config-label">Title:</label>
+              <label for="title-input" class="config-label">Title:</label>
               <input type="text" id="title-input" class="config-input" />
               <br />
               <label for="icon-input" class="config-label">Icon:</label>
@@ -240,7 +240,7 @@ export default function Settings() {
                 <br />
             </div>
             <div class="slide" id="appearance">
-            <h2 style="margin-top: -90px;">Appearance</h2>
+            <h2 style="margin-top: -14%">Appearance</h2>
             <label for="css-select" class="config-label">CSS:</label>
             <select id="css-select" class="config-select">
               <option value="assets/css/ui.css">Refreshed (Defualt)</option>
@@ -290,7 +290,7 @@ export default function Settings() {
             }
             </div>
             <div class="slide" id="proxy">
-            <h2 style="margin-top: -90px;">Proxy</h2>
+            <h2 style="margin-top: -42%">Proxy</h2>
             <label for="connection-status" class="config-label">Connection Status:</label>
             <p id="connection-status">Detecting...</p>
             <label for="bare-server-select" class="config-label">Custom Bare Server (Dynamic Only):</label>
