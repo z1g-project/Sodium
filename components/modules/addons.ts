@@ -1,7 +1,8 @@
+// @ts-expect-error stfu
 import { libcurl } from "libcurl.js/bundled"
 
 export default async function populateAddons() {
-    const addons = await libcurl.fetch()
+    const addons = await libcurl.fetch('https://api.z1g.top/api/plugins')
     // @ts-expect-error stfu
     const addonCategory: HTMLSelectElement = document.getElementById('addon-category');
     // @ts-expect-error stfu
@@ -11,11 +12,13 @@ export default async function populateAddons() {
     addonGrid.innerHTML = '';
     const selectedCategory = addonCategory.value;
     const searchQuery = addonSearch.value.toLowerCase();
+    // @ts-expect-error stfu
     const filteredAddons = addons.filter(addon => {
     const matchCategory = selectedCategory === 'all' || addon.category === selectedCategory;
     const matchSearch = addon.name.toLowerCase().includes(searchQuery) || addon.description.toLowerCase().includes(searchQuery);
         return matchCategory && matchSearch;
     });
+    // @ts-expect-error stfu
     filteredAddons.forEach(addon => {
       const addonHtml = `
         <div class="addon-item">
@@ -37,6 +40,7 @@ export default async function populateAddons() {
             if (addonType === 'themes') {
                 localStorage.setItem('websiteCSS', addonUrl);
                 console.log('Theme downloaded:', addonUrl);
+                // @ts-expect-error stfu
                 this.addCache(addonUrl)
                 // @ts-expect-error stfu
                 const notification: HTMLDivElement = document.getElementById('notification');
@@ -98,6 +102,7 @@ export default async function populateAddons() {
             } else if (addonType === 'plugins') {
                 // @ts-ignore
                 let websitePlugins = JSON.parse(localStorage.getItem('websitePlugins')) || [];
+                // @ts-expect-error
                 websitePlugins = websitePlugins.filter(pluginUrl => pluginUrl !== addonUrl);
                 localStorage.setItem('websitePlugins', JSON.stringify(websitePlugins));
                 console.log('Plugin uninstalled:', addonUrl);
@@ -137,6 +142,7 @@ export default async function populateAddons() {
     
     function swscript() {
         self.addEventListener('install', (event) => {
+            // @ts-expect-error stfu
             event.waitUntil(
                 caches.open('ext-cache').then((cache) => {
                     const cachePaths = [];
@@ -147,9 +153,13 @@ export default async function populateAddons() {
             );
         });
         self.addEventListener('fetch', (event) => {
+            // @ts-expect-error stfu
             event.respondWith(
+                // @ts-expect-error stfu
                 caches.match(event.request).then((response) => {
+                    // @ts-expect-error stfu
                     return response || fetch(event.request).catch((error) => {
+                        // @ts-expect-error stfu
                         console.error(`Error: Couldn't fetch ${event.request.url} | ${error}`);
                     });
                 })

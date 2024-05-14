@@ -250,6 +250,7 @@ export async function saveSettings() {
 export async function exportSettings() {
   const cacheData = {};
   Object.keys(localStorage).forEach((key) => {
+    // @ts-ignore
     cacheData[key] = localStorage.getItem(key);
   });
   const exportedData = JSON.stringify(cacheData);
