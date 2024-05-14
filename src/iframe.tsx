@@ -13,7 +13,6 @@ export default function Iframe() {
         ing.src = "/injectify/bundle.js"
         const ingcfg = document.createElement("script")
         ingcfg.src = "/injectify/config.js"
-        document.head.appendChild(ing)
         document.head.appendChild(ingcfg)
         document.head.appendChild(cssthing)
         window.addEventListener('DOMContentLoaded', () => {
@@ -25,6 +24,7 @@ export default function Iframe() {
             const iframe: HTMLIFrameElement = document.getElementById('apploader')
             // @ts-expect-error stfu
             iframe.src = sessionStorage.getItem('encodedUrl')
+            document.head.appendChild(ing)
         })
     }
     return (

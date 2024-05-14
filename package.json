@@ -24,7 +24,7 @@
     "@tomphttp/bare-server-node": "^2.0.3",
     "@typescript-eslint/eslint-plugin": "^7.9.0",
     "@typescript-eslint/parser": "^7.9.0",
-    "@z1g-project/injectify": "0.1.1",
+    "@z1g-project/injectify": "0.1.2",
     "autoprefixer": "10.4.19",
     "axios": "^1.6.8",
     "cookie-parser": "^1.4.6",

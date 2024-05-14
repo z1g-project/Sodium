@@ -24,8 +24,8 @@ dependencies:
     specifier: ^7.9.0
     version: 7.9.0(eslint@9.2.0)(typescript@5.4.5)
   '@z1g-project/injectify':
-    specifier: 0.0.3
-    version: 0.0.3
+    specifier: 0.1.2
+    version: 0.1.2
   autoprefixer:
     specifier: 10.4.19
     version: 10.4.19(postcss@8.4.38)
@@ -39,8 +39,8 @@ dependencies:
     specifier: ^16.4.5
     version: 16.4.5
   dreamland:
-    specifier: ^0.0.17
-    version: 0.0.17
+    specifier: ^0.0.19
+    version: 0.0.19
   dreamland-router:
     specifier: github:Notplayingallday383/dreamland-router
     version: github.com/Notplayingallday383/dreamland-router/1468bbf62fc453f154e9ae891db9d040fe92f05a
@@ -63,8 +63,8 @@ dependencies:
     specifier: ^8.0.0
     version: 8.0.0(codemirror@5.65.16)(react@18.3.1)
   tsx:
-    specifier: 4.9.3
-    version: 4.9.3
+    specifier: 4.10.2
+    version: 4.10.2
   typescript:
     specifier: ^5.4.5
     version: 5.4.5
@@ -717,8 +717,8 @@ packages:
       eslint-visitor-keys: 3.4.3
     dev: false
 
-  /@z1g-project/injectify@0.0.3:
-    resolution: {integrity: sha512-BGgJhC7qt1kjQtLwjrxUQ4dX9oIrqpKXHaiI4HJ4T7sLcWaQs6eGAZbGMCbpxawkqAV80DhmnnJyF7n19ogu9w==}
+  /@z1g-project/injectify@0.1.2:
+    resolution: {integrity: sha512-uDjWTSbeY/1Hfq25gxKEdBMgGqYW9THgfaas4BAYTMEq27Opav7Te88OEIH5myFbImLzCeHcMATvjvJU8idWMg==}
     dev: false
 
   /accepts@1.3.8:
@@ -1086,8 +1086,8 @@ packages:
     engines: {node: '>=12'}
     dev: false
 
-  /dreamland@0.0.17:
-    resolution: {integrity: sha512-rxjjqPEgnZLauAk66Jt92M6Oz5gcN3NFlJjRhYc4OUuwm5xxantYxpsekpAy9yxifB7v5lKyvEmHKeQHucmxsw==}
+  /dreamland@0.0.19:
+    resolution: {integrity: sha512-FccIm8bUsMr1D81hHM1AoPewHzpXfCBWb/6DcIX1vE9zVgjYEbbAtOj336u9G41hFp+JqvTm8zCgfCRXd/DU1w==}
     dev: false
 
   /ee-first@1.1.1:
@@ -2319,8 +2319,8 @@ packages:
     resolution: {integrity: sha512-AEYxH93jGFPn/a2iVAwW87VuUIkR1FVUKB77NwMF7nBTDkDrrT/Hpt/IrCJ0QXhW27jTBDcf5ZY7w6RiqTMw2Q==}
     dev: false
 
-  /tsx@4.9.3:
-    resolution: {integrity: sha512-czVbetlILiyJZI5zGlj2kw9vFiSeyra9liPD4nG+Thh4pKTi0AmMEQ8zdV/L2xbIVKrIqif4sUNrsMAOksx9Zg==}
+  /tsx@4.10.2:
+    resolution: {integrity: sha512-gOfACgv1ElsIjvt7Fp0rMJKGnMGjox0JfGOfX3kmZCV/yZumaNqtHGKBXt1KgaYS9KjDOmqGeI8gHk/W7kWVZg==}
     engines: {node: '>=18.0.0'}
     hasBin: true
     dependencies:
