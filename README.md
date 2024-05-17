@@ -1,6 +1,6 @@
 <div>
   <p align="center">
-    <img src="./sodium-static/public/sodium.png" height="135" width="135">
+    <img src="./public/assets/img/logo.svg" height="135" width="135">
   </p>
   <h1 align="center">Sodium aliceJS beta</h1>
   <p align="center">Sodium is a site used for evading internet censorship</p>
