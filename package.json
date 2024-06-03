@@ -21,7 +21,7 @@
     "axios": "^1.6.8",
     "express": "^4.19.2",
     "ip": "^2.0.1",
-    "prettier": "^3.2.5",
+    "prettier": "^3.3.0",
     "ultraviolet-static": "file:sodium-static"
   }
 }
