@@ -11,6 +11,7 @@ import { XOR } from "@components/modules/xor"
 // @ts-expect-error stfu
 import { regSW } from "@components/modules/sw"
 import "../public/assets/css/home.css"
+import { version, release_channel as release } from "../package.json"
 export default function Home() {
     loadSettings()
     regSW()
@@ -36,16 +37,18 @@ export default function Home() {
                 iframe.src = `${window.location.origin}/sw/${encodedURL}`;
             });
         }
-        if (iframe) {
-            iframe.addEventListener("unload", () => {
-                iframe.style.display = "none";
-                loadingOverlay.style.display = "flex";
-            });
-            iframe.addEventListener("load", () => {
-                loadingOverlay.style.display = "none";
-                iframe.style.display = "block"; 
-            });
-        }
+        setTimeout(() => {
+            if (iframe) {
+                iframe.addEventListener("unload", () => {
+                    iframe.style.display = "none";
+                    loadingOverlay.style.display = "flex";
+                });
+                iframe.addEventListener("load", () => {
+                    loadingOverlay.style.display = "none";
+                    iframe.style.display = "block"; 
+                });
+            }
+        }, 2500)
     })
     return (
         <div>
@@ -54,15 +57,15 @@ export default function Home() {
             <div class="modal-content">
                 <span class="close">&times;</span>
                 <h2 style="font-weight: 700;">What's New</h2>
-                <p class="release-date">Release Date: Feburary 4th, 2023</p>
+                <p class="release-date">Release Date: July 1st, 2024</p>
                     <ul class="changes-list">
-                        <li>Add Bare switching to UV</li>
-                        <li>Refresh some older UI Elements</li>
-                        <li>Fix weird radius color issue</li>
-                        <li>Fix slow load times</li>
+                        <li>Switch to Wisp UV</li>
+                        <li>Switch to aliceJS</li>
+                        <li>Fix old bugs</li>
+                        <li>Add Bare Switching, etc</li>
                         <li>More Minor Changes & Bug Fixes view <a style="color:white;" href="https://github.com/z1g-project/sodium">here</a></li>
                     </ul>
-                    <p>Version 2.4.0 - The AliceJS Reboot</p>
+                    <p>Version: {version} {release} - The AliceJS Reboot</p>
                     <button class="ok-button">OK</button>
                 </div>
                 </div>

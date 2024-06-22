@@ -10,7 +10,7 @@ export default function Notfound() {
                 <h1>404 Error</h1>
                 <p style="text-align: center;">The requested file was not found on this server!</p>
                 <div style="text-align: center;">
-                    <button id="uv-register-sw" onclick={() => {window.location.href = "/"}}>Back to Home</button>
+                    <button id="uv-register-sw" on:click={() => {window.location.href = "/"}}>Back to Home</button>
                 </div>
             </div>
             <Footer />

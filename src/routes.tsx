@@ -11,6 +11,7 @@ import Home from "./main"
 import Appframe from "./appframe";
 import StealthLoader from "./stealth";
 import Iframe from "./iframe";
+import sLoad from "./load";
 
 export const router = (
     <Route path="/">
@@ -20,6 +21,7 @@ export const router = (
         <Route path="service" show={<NoSW />} />
         <Route path="wisp" show={<WispBG />} />
         <Route path="games" show={<Games />} />
+        <Route path="load" show={<sLoad />} />
         <Route path="stealth" show={<StealthLoader />} />
         <Route path="settings" show={<Settings />} />
         <Route path="credits" show={<CreditsPage />} />
