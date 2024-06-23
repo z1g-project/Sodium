@@ -36,7 +36,6 @@ self.addEventListener('install', (event) => {
           '/assets/img/z1g.png',
           '/assets/img/discord.jpg',
           '/assets/img/github.png',
-          '/assets/js/time.js',
           '/assets/img/legacy-waves.svg',
           '/about',
           '/assets/css/item-cards.css',
