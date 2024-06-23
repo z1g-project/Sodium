@@ -4,8 +4,8 @@ import Nav from "@components/nav.tsx"
 import Footer from "@components/footer"
 // @ts-expect-error stfu
 import runUtils from "@components/modules/utils"
-import { cfg as injcfg } from "@z1g-project/injectify/src/types"
-import injectify from "@z1g-project/injectify/src/index"
+import { cfg as injcfg } from "@z1g-project/injectify/types"
+import injectify from "@z1g-project/injectify/blunder"
 interface Window {
     __uv$config: any;
     __injectify$cfg: injcfg;
