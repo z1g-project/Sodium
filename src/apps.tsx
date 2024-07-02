@@ -7,7 +7,7 @@ import loadSettings from "@components/modules/settings"
 import "../public/assets/css/home.css"
 import "../public/assets/css/item-cards.css"
 // @ts-expect-error stfu
-import { libcurl } from "libcurl.js/bundled"
+import { fetch } from "@components/modules/fetch";
 // @ts-expect-error stfu
 import { XOR as xor } from "@components/modules/xor"
 export default function Apps() {
@@ -18,27 +18,12 @@ export default function Apps() {
     appscss.type = 'text/css';
     appscss.href = 'assets/css/item-cards.css';
     document.head.appendChild(appscss);
-    const wispSrv = `${window.location.protocol.replace("http", "ws")}//${window.location.host}/wisp/`
-    libcurl.set_websocket(`${wispSrv}`)
-    document.addEventListener("libcurl_load", async () => {
-        console.log('Libcurl is Ready')
-        getApps()
-    })
-
     async function getApps() {
-            if (window.location.origin.includes("localhost:5173") || window.location.origin.includes(".pages.dev")) {
-                console.log('The vite dev server doesnt support wisp at the moment. Use the production server for "internet access" or if your static hosting the wisp server isnt online for obvious reasons. Ignore this message')
-                const wispSrv = `wss://tomp.app/wisp/`
-                libcurl.set_websocket(`${wispSrv}`)
-            } else {
-                const wispSrv = `${window.location.protocol.replace("http", "ws")}//${window.location.host}/wisp/`
-                libcurl.set_websocket(`${wispSrv}`)
-            }
         // @ts-expect-error stfu
         const appsContainer: HTMLElement = document.getElementById("apps-container");
         try {
-            const appsResponse = await libcurl.fetch("https://api.z1g.top/api/apps")
-            .then((req: any) => req.json())
+            const appsResponse = await fetch("https://api.z1g.top/api/apps", { wisp: true })
+            .then((req: Response) => req.json())
             .catch((err: any) => {
                 console.error(err);
                 return null;
@@ -59,7 +44,7 @@ export default function Apps() {
                     const a = document.createElement("a");
                     a.onclick = () => loadapp(app.url);
                     const img = document.createElement("img");
-                    const image = await libcurl.fetch(app.icon).then((req: any) => req.blob()).then((blob: any) => URL.createObjectURL(blob));
+                    const image = await fetch(app.icon).then((req: any) => req.blob()).then((blob: any) => URL.createObjectURL(blob));
                     img.src = image;
                     img.width = 150;
                     img.height = 75;
@@ -78,6 +63,7 @@ export default function Apps() {
             }
         }
     }
+    getApps()
 
     function loadapp(value: any) {
         let url = value.trim();

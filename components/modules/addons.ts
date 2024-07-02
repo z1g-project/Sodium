@@ -1,8 +1,7 @@
-// @ts-expect-error stfu
-import { libcurl } from "libcurl.js/bundled"
+import { fetch as bFetch } from "./fetch";
 
 export default async function populateAddons() {
-    const addons = await libcurl.fetch('https://api.z1g.top/api/plugins')
+    const addons = await bFetch('https://api.z1g.top/api/plugins', { wisp: true })
     // @ts-expect-error stfu
     const addonCategory: HTMLSelectElement = document.getElementById('addon-category');
     // @ts-expect-error stfu

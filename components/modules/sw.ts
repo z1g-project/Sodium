@@ -1,5 +1,5 @@
 // @ts-expect-error stfu
-import { SetTransport } from "@mercuryworkshop/bare-mux"
+import { SetTransport } from "@mercuryworkshop/bare-mux/node"
 
 export async function regSW() {
     navigator.serviceWorker.register('/sw.js', {scope: "/sw/"}).then(await updateTransports)
