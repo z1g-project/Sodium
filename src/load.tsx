@@ -9,11 +9,6 @@ export default function sLoad() {
         const cssthing = document.createElement("link")
         cssthing.href = "/assets/css/frames.css"
         cssthing.type = "stylesheet"
-        const ing = document.createElement("script")
-        ing.src = "/injectify/bundle.js"
-        const ingcfg = document.createElement("script")
-        ingcfg.src = "/injectify/config.js"
-        document.head.appendChild(ingcfg)
         document.head.appendChild(cssthing)
         const urlParams = new URLSearchParams(window.location.search);
         const siteValue = urlParams.get('site');
@@ -33,7 +28,6 @@ export default function sLoad() {
             const iframe: HTMLIFrameElement = document.getElementById('apploader')
             // @ts-expect-error stfu
             iframe.src = sessionStorage.getItem('encodedUrl')
-            document.head.appendChild(ing)
         })
     }
     return (

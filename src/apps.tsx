@@ -7,7 +7,7 @@ import loadSettings from "@components/modules/settings"
 import "../public/assets/css/home.css"
 import "../public/assets/css/item-cards.css"
 // @ts-expect-error stfu
-import { fetch } from "@components/modules/fetch";
+import { fetch as bfetch } from "@components/modules/fetch";
 // @ts-expect-error stfu
 import { XOR as xor } from "@components/modules/xor"
 export default function Apps() {
@@ -22,7 +22,7 @@ export default function Apps() {
         // @ts-expect-error stfu
         const appsContainer: HTMLElement = document.getElementById("apps-container");
         try {
-            const appsResponse = await fetch("https://api.z1g.top/api/apps", { wisp: true })
+            const appsResponse = await bfetch("https://api.z1g.top/api/apps", { wisp: true })
             .then((req: Response) => req.json())
             .catch((err: any) => {
                 console.error(err);

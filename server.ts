@@ -12,7 +12,6 @@ import { libcurlPath } from "@mercuryworkshop/libcurl-transport"
 // @ts-expect-error no thank you TS
 import { baremuxPath } from "@mercuryworkshop/bare-mux";
 import { Socket, Head } from "ws";
-import { ingPath } from "@z1g-project/injectify"
 import config from "dotenv";
 
 config.config();
@@ -108,7 +107,6 @@ app.get('*', (req, res) => {
 });
 app.use("/libcurl/", express.static(libcurlPath));
 app.use("/baremux/", express.static(baremuxPath));
-app.use("/injectify/", express.static(ingPath));
 const server = createServer();
 
 server.on("request", (req: Request, res: Response) => {

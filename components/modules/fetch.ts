@@ -1,5 +1,4 @@
 import type { APIData, APIError, APIResponse } from "../types/api";
-// @ts-expect-error stfu
 import { BareClient } from "@mercuryworkshop/bare-mux";
 
 const _fetch = globalThis.fetch;
@@ -30,6 +29,7 @@ async function fetch<T>(
 
 	if (wisp) {
 		const client = new BareClient();
+		// @ts-ignore
 		return (await client.fetch(url)).rawResponse as Promise<T>;
 	}
 	return _fetch(url) as Promise<T>;

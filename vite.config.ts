@@ -8,7 +8,6 @@ import { execSync } from "child_process";
 import { epoxyPath } from "@mercuryworkshop/epoxy-transport";
 //@ts-ignore
 import { libcurlPath } from "@mercuryworkshop/libcurl-transport";
-import { ingPath } from "@z1g-project/injectify"
 export default defineConfig({
   esbuild: {
     jsxInject: `import "dreamland/dev";`,
@@ -24,11 +23,6 @@ export default defineConfig({
         {
           src: `${libcurlPath}/**/*`.replace(/\\/g, "/"),
           dest: "libcurl",
-          overwrite: false
-        },
-        {
-          src: `${ingPath}/**/*`.replace(/\\/g, "/"),
-          dest: "injectify",
           overwrite: false
         }
       ]

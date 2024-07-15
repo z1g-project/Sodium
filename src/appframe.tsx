@@ -4,11 +4,8 @@ import Nav from "@components/nav.tsx"
 import Footer from "@components/footer"
 // @ts-expect-error stfu
 import runUtils from "@components/modules/utils"
-import { cfg as injcfg } from "@z1g-project/injectify/types"
-import injectify from "@z1g-project/injectify/blunder"
 interface Window {
     __uv$config: any;
-    __injectify$cfg: injcfg;
 }
 export default function Appframe() {
     if (window.location.href.includes('/appframe')) {
@@ -24,7 +21,6 @@ export default function Appframe() {
             const iframe: HTMLIFrameElement = document.getElementById('apploader')
             // @ts-expect-error stfu
             iframe.src = sessionStorage.getItem('appUrl')
-            injectify()
         })
     }
     return (
