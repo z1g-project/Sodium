@@ -29,8 +29,8 @@ export default async function runUtils(sessionCheck: string) {
         const urltoencode = sessionStorage.getItem(sessionCheck);
         console.log(sessionCheck)
         console.log(urltoencode)
-        if (proxyOption && proxyOption.toLowerCase() === "dynamic") {
-            iframe.src = `${window.location.origin}/service/route?url=${urltoencode}`;
+        if (proxyOption && proxyOption.toLowerCase() === "meteor") {
+            iframe.src = `${window.location.origin}/service/${urltoencode}`;
         } else {
             // @ts-expect-error stfu
             const encodedURL = self.encoder.encode(urltoencode.toString)

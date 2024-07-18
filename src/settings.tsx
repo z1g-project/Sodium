@@ -8,6 +8,7 @@ import loadSettings, { getSettings, applyCSS } from "@components/modules/setting
 import populateAddons from "@components/modules/addons"
 import "../public/assets/css/home.css"
 import "../public/assets/css/settings.css"
+import { saveSettings } from "../components/modules/settings"
 export function exportCSS(editor: string) {
   // @ts-expect-error stfu
   const cssContent = editor.getValue();
@@ -223,7 +224,7 @@ export default function Settings() {
               <label for="proxySelect" class="config-label">Default Proxy:</label>
               <select id="proxySelect" class="config-select">
                 <option value="ultraviolet">Ultraviolet (Default)</option>
-                <option value="dynamic">Dynamic (Beta)</option>
+                <option value="meteor">Meteor (Beta)</option>
               </select>
               <br />
               <label for="toggle-beta">Enable Tabs:</label>
@@ -266,35 +267,12 @@ export default function Settings() {
             <input type="checkbox" id="disable-clock" />
             <label for="disable-clock">Disable Clock</label>
             <br />
-            {//<div class="editor-container">
-            //<div class="editor-header">
-            //  <button id="import-button">Import</button>
-            //  <button id="export-button">Export</button>
-            //  <button id="apply-button">Apply</button>
-            //</div>
-            //<div id="css-editor" class="css-editor"></div>
-            //</div>
-            //<select id="css-select" class="config-select">
-            //  <option value="assets/css/ui.css">Refreshed (Defualt)</option>
-            //  <option value="assets/css/generic.css">Generic Moddable Theme</option>
-            //  <option value="assets/css/amoled.css">Amoled</option>
-            //  <option value="assets/css/mocha.css">Mochoa</option>
-            //  <option value="assets/css/dark.css">Dark</option>
-            //  <option value="assets/css/legacy.css">Legacy Dark</option>
-            //  <option value="assets/css/festive.css">Festive</option>
-            //  <option value="custom">Custom CSS</option>
-            //</select>
             <button id="apply-css-button" style="width: 150px; margin-left: 41%; z-index: 99999;" on:click={() => {applyCSS()}}>Apply CSS</button>
-            // <br />    
-            //</div>
-            }
             </div>
             <div class="slide" id="proxy">
             <h2 style="margin-top: -42%">Proxy</h2>
             <label for="connection-status" class="config-label">Connection Status:</label>
             <p id="connection-status">Detecting...</p>
-            <label for="bare-server-select" class="config-label">Custom Bare Server (Dynamic Only):</label>
-            <input type="text" id="custom-bare-server-input" placeholder="Enter a url like so: https://bare.example.com" class="config-input" />
             <div id="ping-status">Checking wisp server status...</div>
             <label for="transport-type" class="config-label">Transport</label>
             <select class="config-select" id="transport-type">
@@ -307,7 +285,7 @@ export default function Settings() {
             <h2 style="margin-top: -90px;">Addons</h2>
             <div class="addon-controls">
               <label for="addon-category">Category:</label>
-              <select id="addon-category" name="addonCategory" class="config-select">
+              <select id="addon-category" name="addonCategory" onchange={saveSettings} class="config-select">
                 <option value="all">All</option>
                 <option value="plugins">Plugins</option>
                 <option value="themes">Themes</option>

@@ -1,8 +1,8 @@
 let workerLoaded;
 
 async function worker() {
-  return await navigator.serviceWorker.register("/dyn.sw.js", {
-    scope: "/service",
+  return await navigator.serviceWorker.register("/meteor-sw.js", {
+    scope: "/service/",
   });
 }
 

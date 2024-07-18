@@ -47,7 +47,11 @@ self.addEventListener('install', (event) => {
           '/assets/img/loader.svg',
           '/ultra/uv.config.js',
           '/ultra/uv.bundle.js',
-          '/dyn/dynamic.config.js',
+          '/meteor/meteor.config.js',
+          '/meteor/meteor.codecs.js',
+          '/meteor/meteor.client.js',
+          '/meteor/meteor.bundle.js',
+          '/meteor/meteor.worker.js',
           '/assets/font/montserrat/JTUSjIg1_i6t8kCHKm459Wlhyw.woff2',
         ]);
       })

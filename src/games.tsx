@@ -69,7 +69,7 @@ export default function Games() {
     function loadapp(value: any) {
         let url = value.trim();
         const proxyOption = localStorage.getItem("proxyOption");
-        if (proxyOption && proxyOption.toLowerCase() === "dynamic") {
+        if (proxyOption && proxyOption.toLowerCase() === "meteor") {
             const dynamicURL = `${window.location.origin}/service/${xor.encode(url)}`;
             sessionStorage.setItem("encodedUrl", dynamicURL);
         } else {

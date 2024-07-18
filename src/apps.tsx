@@ -22,13 +22,8 @@ export default function Apps() {
         // @ts-expect-error stfu
         const appsContainer: HTMLElement = document.getElementById("apps-container");
         try {
-            const appsResponse = await bfetch("https://api.z1g.top/api/apps", { wisp: true })
-            .then((req: Response) => req.json())
-            .catch((err: any) => {
-                console.error(err);
-                return null;
-            });
-            console.log(appsResponse);
+            const appsResponse = await bfetch("https://api.z1g.top/api/apps");
+            console.log(appsResponse.data)
             if (!appsResponse || appsResponse.status !== "success") {
                 if (appsContainer) {
                     appsContainer.innerHTML = "<p>Failed to load apps</p>";
@@ -36,15 +31,17 @@ export default function Apps() {
                 return;
             }
             const apps = appsResponse.data;
+            console.log(apps)
             if (appsContainer) {
-                appsContainer.innerHTML = ``
+                appsContainer.innerHTML = "";
                 apps.forEach(async (app: any) => {
+                    console.log(app)
                     const column = document.createElement("div");
                     column.classList.add("column");
                     const a = document.createElement("a");
                     a.onclick = () => loadapp(app.url);
                     const img = document.createElement("img");
-                    const image = await fetch(app.icon).then((req: any) => req.blob()).then((blob: any) => URL.createObjectURL(blob));
+                    const image = await bfetch(app.icon).then((blob: any) => URL.createObjectURL(blob));
                     img.src = image;
                     img.width = 150;
                     img.height = 75;
@@ -54,7 +51,7 @@ export default function Apps() {
                     a.appendChild(p);
                     column.appendChild(a);
                     appsContainer.appendChild(column);
-                });        
+                });
             }
         } catch (err) {
             console.warn(err);
@@ -63,12 +60,13 @@ export default function Apps() {
             }
         }
     }
+    console.log('run')
     getApps()
 
     function loadapp(value: any) {
         let url = value.trim();
         const proxyOption = localStorage.getItem("proxyOption");
-        if (proxyOption && proxyOption.toLowerCase() === "dynamic") {
+        if (proxyOption && proxyOption.toLowerCase() === "meteor") {
             // @ts-expect-error stfu
             const dynamicURL = `${window.location.origin}/service/${self.encoder.encode(url)}`;
             sessionStorage.setItem("appUrl", dynamicURL);
