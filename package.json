@@ -16,7 +16,7 @@
   "author": "z1g Project",
   "license": "MIT",
   "dependencies": {
-    "@tomphttp/bare-server-node": "^2.0.3",
+    "@tomphttp/bare-server-node": "^2.0.4",
     "@types/axios": "^0.14.0",
     "axios": "^1.6.8",
     "express": "^4.19.2",
