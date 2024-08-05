@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="assets/css/montserrat.css"/>
     <link rel="stylesheet" href="assets/css/item-cards.css"/>
     <link rel="stylesheet" href="assets/css/ui.css" id="custom-css"/>
+    <script src="assets/js/libcurl_full.js" defer></script>
     <script src="ultra/ultra.bundle.js" defer></script>
     <script src="ultra/ultra.config.js" defer></script>
     <script src="assets/js/register-sw.js" defer></script>
@@ -23,14 +24,54 @@
     <script src="assets/js/time.js" defer></script>
     <script src="assets/js/settings.js" defer></script>
     <script src="assets/js/fade.js" defer></script>
-    <script src="assets/js/games.js" defer></script>
+    <script src="assets/js/apps.js" defer></script>
     <script src="regcache.js" defer></script>
     <script>
+    document.addEventListener("libcurl_load", async () => {
+      if (window.location.origin.includes('.pages.dev')) {
+        const wispSrv = `wss://tomp.app/wisp/`
+        libcurl.set_websocket(`${wispSrv}`)
+      } else {
+        const wispSrv = `${window.location.protocol.replace("http", "ws")}//${window.location.host}/wisp/`
+        libcurl.set_websocket(`${wispSrv}`)
+      }
+      const appsContainer = document.getElementById("apps-container");
+      try {
+      const { data: apps } = await libcurl.fetch("https://z1g-backend.vercel.app/api/apps").then((req) => req.json()).catch((err) => {
+        console.error(err)
+        return null;
+      });
+      if (!apps) {
+        appsContainer.innerHTML = "<p>Failed to load apps</p>";
+        return;
+      }
+      apps.forEach(async (app) => {
+        const column = document.createElement("div");
+        column.classList.add("column");
+        const a = document.createElement("a");
+        a.onclick = () => loadapp(app.url);
+        const img = document.createElement("img");
+        const image = await libcurl.fetch(app.icon).then((req) => req.blob()).then((blob) => URL.createObjectURL(blob));
+        img.src = image;
+        img.width = 150;
+        img.height = 75;
+        const p = document.createElement("p");
+        p.textContent = app.name;
+        a.appendChild(img);
+        a.appendChild(p);
+        column.appendChild(a);
+        appsContainer.appendChild(column);
+      });
+      } catch (err) {
+        console.error(err);
+        appsContainer.innerHTML = "<p>Failed to load apps</p>";
+      }
+    });
       function loadapp(value) {
         let url = value.trim();
-      
+
         const proxyOption = localStorage.getItem("proxyOption");
-  
+
         if (proxyOption && proxyOption.toLowerCase() === "dynamic") {
           const dynamicURL = `${window.location.origin}/service/${Ultraviolet.codec.xor.encode(url)}`;
           sessionStorage.setItem("appUrl", dynamicURL);
@@ -40,22 +81,23 @@
           } else if (!(url.startsWith("https://") || url.startsWith("http://"))) {
             url = "https://" + url;
           }
-  
+
           sessionStorage.removeItem("appUrl");
-  
+
           const encodedUrl = `${window.location.origin}/sw/${Ultraviolet.codec.xor.encode(url)}`;
           sessionStorage.setItem("appUrl", encodedUrl);
         }
-      
+
         location.href = "appframe.html";
       };
-  
+
       function checkUrl(val = "") {
         if (/^http(s?):\/\//.test(val) || (val.includes(".") && val.substr(0, 1) !== " ")) {
           return true;
         }
        return false;
       }
+
       if (navigator.onLine) {
         navigator.serviceWorker.register('acache.js')
         .then((registration) => {
@@ -65,9 +107,9 @@
           console.error('Error registering Service Worker:', error);
         });
       } else {
-        console.warn("You're offline: Using existing cache")
+        console.warn('Your Offline: Using existing Cache')
       }
-  </script>  
+  </script>
   </head>
 
   <body>
@@ -89,148 +131,17 @@
           <p class="battery-text"></p>
         </div>
       </div>
-    </div>  
+    </div>
 
     <h1 style="text-align: center;">Apps</h1>
     <h3 style="text-align: center;">Official Apps that are working and ready for use!</h3>
 
     <div class="input-container">
         <input class="config-input" type="text" id="gamesearch" onkeyup="searchgames()" placeholder="Search" style="text-align: center;font-size: 16px;">
-        <select class="config-select" id="category" name="category" onchange="showImages()" style="font-size: 16px;">
-          <option value="general">General</option>
-          <option value="media">Media</option>
-          <option value="social">Social</option>
-          <option value="cloud">Cloud</option>
-        </select>
-    </div>
-    <!--
-      SUGGESTION:
-      I'd reccommend not putting these in plain text as a measure against autoblocking. Base64 is good enough.
-      - rare1k
-    -->
-    <div class="container-apps">
-        <div class="column" data-category="general social">
-            <a onclick="loadapp('https://discord.com/app')">
-            <img width="145" height="145" src="/apps/assets/app1.jpg">
-            <p>Discord</p></a>
-        </div>
-        <div class="column" data-category="general cloud">
-            <a onclick="loadapp('https://play.geforcenow.com')">
-            <img width="145" height="145" src="/apps/assets/app2.jpg">
-            <p>GeForce Now</p></a>
-        </div>
-        <div class="column" data-category="general cloud">
-            <a onclick="loadapp('https://coolmathgames')">
-            <img width="145" height="145" src="/apps/assets/app3.jpg">
-            <p>Cool Math Games</p></a>
-        </div>
-        <div class="column" data-category="general cloud">
-          <a onclick="loadapp('https://xbox.com/play')">
-          <img width="145" height="145" src="/apps/assets/app4.jpg">
-          <p>Xbox Cloud Gaming</p></a>
-        </div>
-        <div class="column" data-category="general media social">
-          <a onclick="loadapp('https://youtube.com')">
-          <img width="145" height="145" src="/apps/assets/app5.jpg">
-          <p>Youtube</p></a>
-        </div>
-        <div class="column" data-category="general media">
-          <a onclick="loadapp('https://open.spotify.com')">
-          <img width="145" height="145" src="/apps/assets/app6.jpg">
-          <p>Spotify</p></a>
-        </div>
-        <div class="column" data-category="general">
-          <a onclick="loadapp('https://ruffle.rs/demo')">
-          <img width="145" height="145" src="/apps/assets/app13.jpg">
-          <p>Ruffle</p></a>
-        </div>
-        <div class="column" data-category="general media">
-          <a onclick="loadapp('https://soundcloud.com')">
-          <img width="145" height="145" src="/apps/assets/app15.jpg">
-          <p>Sound Cloud</p></a>
-        </div>
-        <div class="column" data-category="general media">
-          <a onclick="loadapp('https://bing.com')">
-          <img width="145" height="145" src="/apps/assets/app14.jpg">
-          <p>Bing</p></a>
-        </div>
-        <div class="column" data-category="general media social">
-          <a onclick="loadapp('https://reddit.com')">
-          <img width="145" height="145" src="/apps/assets/app7.jpg">
-          <p>Reddit</p></a>
-        </div>
-        <div class="column" data-category="general media">
-          <a onclick="loadapp('https://fmovies.llc/')">
-          <img width="145" height="145" src="/apps/assets/app8.jpg">
-          <p>fmovies</p></a>
-        </div>
-        <div class="column" data-category="general">
-          <a onclick="loadapp('https://github.com')">
-          <img width="145" height="145" src="/apps/assets/app9.jpg">
-          <p>Github</p></a>
-        </div>
-        <div class="column" data-category="general cloud media">
-          <a onclick="loadapp('https://sflix.to')">
-          <img width="145" height="145" src="/apps/assets/app10.jpg">
-          <p>SFlix</p></a>
-        </div>
-        <div class="column" data-category="general">
-          <a onclick="loadapp('https://neal.fun')">
-          <img width="145" height="145" src="/apps/assets/app11.jpg">
-          <p>Neal.fun</p></a>
-        </div>
-        <div class="column" data-category="general media">
-          <a onclick="loadapp('https://9anime.se')">
-          <img width="145" height="145" src="/apps/assets/app12.jpg">
-          <p>9anime</p></a>
-        </div>
-        <div class="column" data-category="general media social">
-          <a onclick="loadapp('https://tiktok.com')">
-          <img width="145" height="145" src="/apps/assets/app15.jpg">
-          <p>TikTok</p></a>
-        </div>
-        <div class="column" data-category="general media social">
-          <a onclick="loadapp('https://x.com')">
-          <img width="145" height="145" src="/apps/assets/app16.jpg">            
-          <p>Twitter (X)</p></a>
-        </div>
-        <div class="column" data-category="general media">
-          <a onclick="loadapp('https://vscode.dev')">
-          <img width="145" height="145" src="/apps/assets/app17.jpg">
-          <p>VS Code</p></a>
-        </div>
-        <div class="column" data-category="general media">
-          <a onclick="loadapp('https://twitch.tv')">
-          <img width="145" height="145" src="/apps/assets/app18.jpg">
-          <p>Twitch</p></a>
-        </div>
-        <div class="column" data-category="general media">
-          <a onclick="loadapp('https://poki.com')">
-          <img width="145" height="145" src="/apps/assets/app19.jpg">
-          <p>Poki</p></a>
-        </div>
-        <div class="column" data-category="general social">
-          <a onclick="loadapp('https://chess.com')">
-          <img width="145" height="145" src="/apps/assets/app20.jpg">
-          <p>Chess.com</p></a>
-        </div>
-        <div class="column" data-category="general media">
-          <a onclick="loadapp('https://amazon.com')">
-          <img width="145" height="145" src="/apps/assets/app21.jpg">
-          <p>Amazon</p></a>
-        </div>
-        <div class="column" data-category="general media">
-          <a onclick="loadapp('https://web.parsec.app')">
-          <img width="145" height="145" src="/apps/assets/app22.jpg">
-          <p>Parsec</p></a>
-        </div>
-        <div class="column" data-category="general media">
-          <a onclick="loadapp('https://movie-web.app')">
-          <img width="145" height="145" src="/apps/assets/app23.jpg">
-          <p>Movie Web</p></a>
-        </div>
     </div>
 
+    <div class="container-apps" id="apps-container">
+    </div>
     <br>
     <br>
     <br>
@@ -248,7 +159,7 @@
         <img src="assets/img/z1g.png" alt="z1g Project" title="The z1g Project GitHub organization" height="30" width="30" onclick="location.href='/github/z1g-project/'">
         <img src="assets/img/discord.jpg" alt="Discord" title="The z1g Project Discord" height="30" width="30" onclick="location.href='/discord/'">
         <img src="assets/img/github.png" alt="GitHub" title="The official deployment repository for Sodium" height="30" width="30" onclick="location.href='/github/'">
-        <img src="assets/img/license.svg" alt="Credits" title="License information" height="30" width="30" onclick="location.href='/credits/'">   
+        <img src="assets/img/license.svg" alt="Credits" title="License information" height="30" width="30" onclick="location.href='/credits/'">
       </div>
     </div>
   </body>
