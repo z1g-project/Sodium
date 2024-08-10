@@ -9,8 +9,7 @@ import cookieParser from "cookie-parser";
 import wisp from "wisp-server-node";
 // @ts-expect-error stfu
 import { libcurlPath } from "@mercuryworkshop/libcurl-transport"
-// @ts-expect-error no thank you TS
-import { baremuxPath } from "@mercuryworkshop/bare-mux";
+import { baremuxPath } from "@mercuryworkshop/bare-mux/node";
 import { Socket, Head } from "ws";
 import config from "dotenv";
 

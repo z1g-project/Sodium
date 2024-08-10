@@ -8,6 +8,7 @@ import { execSync } from "child_process";
 import { epoxyPath } from "@mercuryworkshop/epoxy-transport";
 //@ts-ignore
 import { libcurlPath } from "@mercuryworkshop/libcurl-transport";
+import { baremuxPath } from '@mercuryworkshop/bare-mux/node';
 export default defineConfig({
   esbuild: {
     jsxInject: `import "dreamland/dev";`,
@@ -23,6 +24,11 @@ export default defineConfig({
         {
           src: `${libcurlPath}/**/*`.replace(/\\/g, "/"),
           dest: "libcurl",
+          overwrite: false
+        },
+        {
+          src: `${baremuxPath}/**/*`.replace(/\\/g, "/"),
+          dest: "baremux",
           overwrite: false
         }
       ]
