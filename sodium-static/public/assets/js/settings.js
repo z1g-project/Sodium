@@ -66,7 +66,7 @@
 
       const bareServerInput = document.getElementById('custom-bare-server-input');
       if (bareServerInput) {
-        bareServerInput.value = localStorage.getItem('bareServer') || '';
+        bareServerInput.value = localStorage.getItem('wispServer') || '';
       }
       
       const toggleBeta = document.getElementById('toggle-beta');
@@ -256,8 +256,8 @@
       console.log('Search engine saved:', searchEngine);
     }
 
-    var proxySelect = document.getElementById('proxySelect');
-    var selectedOption = proxySelect.options[proxySelect.selectedIndex].value;
+    let proxySelect = document.getElementById('proxySelect');
+    let selectedOption = proxySelect.options[proxySelect.selectedIndex].value;
 
     localStorage.setItem('proxyOption', selectedOption);
     console.log('Default Proxy Saved:', selectedOption);
@@ -312,45 +312,18 @@
     const bareServerInput = document.getElementById('custom-bare-server-input');
     if (bareServerInput) {
       const bareServer = bareServerInput.value.trim();
-      caches.open('bareServerCache').then(cache => {
-        cache.put('bareServerKey', new Response(bareServer));
-      });
-
-      async function savebareDB() {
-        try {
-          const db = await Ultraviolet.openDB('bareServerDB', 1);
-          const transaction = db.transaction('bareServerStore', 'readwrite');
-          const store = transaction.objectStore('bareServerStore');
-          store.put(bareServer, 'bareServerKey');
-          await transaction.complete;
-          db.close();
-    
-          if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.controller.postMessage({
-              action: 'updateBareServerUrl',
-            });
-          }
-    
-          console.log('BareServer URL saved:', bareServer);
-        } catch (error) {
-          console.error('Error saving to bare server DB:', error);
-        }
-      }
-    
-      savebareDB();
-
-      localStorage.setItem('bareServer', bareServer);
+      localStorage.setItem('wispServer', bareServer);
       console.log('BareServer URL saved:', bareServer);
 
       if ('serviceWorker' in navigator) {
         navigator.serviceWorker.getRegistrations().then((registrations) => {
           for (const registration of registrations) {
-           if (registration.active && registration.active.scriptURL.includes('dyn.sw.js')) {
+           if (registration.active && registration.active.scriptURL.includes('meteor-sw.js')) {
             registration.unregister().then(() => {
-              navigator.serviceWorker.register('/dyn.sw.js', {
+              navigator.serviceWorker.register('/meteor-sw.js', {
                 scope: '/service',
               });
-                console.log('Dynamic service worker re-registered.');
+                console.log('Meteor service worker re-registered.');
               });
             }
           }

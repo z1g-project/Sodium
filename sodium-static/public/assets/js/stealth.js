@@ -107,7 +107,7 @@ window.addEventListener('DOMContentLoaded', () => {
       const script = document.createElement('script');
       
       if (useProxy) {
-        if (proxyOption && proxyOption.toLowerCase() === "dynamic") {
+        if (proxyOption && proxyOption.toLowerCase() === "Meteor") {
           script.src = `${window.location.origin}/service/route?url=${(pluginUrl)}`;
         } else {
           script.src = `${window.location.origin}/sw/${Ultraviolet.codec.xor.encode(pluginUrl)}`;

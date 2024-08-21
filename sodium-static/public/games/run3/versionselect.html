@@ -21,7 +21,6 @@
     <script src="assets/js/time.js" defer></script>
     <script src="assets/js/settings.js" defer></script>
     <script src="assets/js/fade.js" defer></script>
-    <script src="assets/js/bare.js" defer></script>
     <style>
       body {
         background-color: transparent;
@@ -29,7 +28,7 @@
     </style>
     <script>
       function html() {
-        const proxyOption = localStorage.getItem('proxyOption'); const urlToLoad = proxyOption && proxyOption.toLowerCase() === 'dynamic'
+        const proxyOption = localStorage.getItem('proxyOption'); const urlToLoad = proxyOption && proxyOption.toLowerCase() === 'Meteor'
         ? `${window.location.origin}/service/route?url=https://lekug.github.io/tn6pS9dCf37xAhkJv/`
         : `${window.location.origin}/sw/${Ultraviolet.codec.xor.encode('https://lekug.github.io/tn6pS9dCf37xAhkJv/')}`;
         window.location.href = urlToLoad;

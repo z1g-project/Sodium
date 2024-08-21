@@ -17,7 +17,6 @@
   <link rel="manifest" href="manifest.webmanifest"/>
   <script src="ultra/ultra.bundle.js" defer></script>
   <script src="ultra/ultra.config.js" defer></script>
-  <script src="dyn/dyn.config.js" defer></script>
   <script src="assets/js/register-sw.js" defer></script>
   <script src="assets/js/search.js" defer></script>
   <script src="assets/js/index.js" defer></script>
@@ -197,7 +196,7 @@
     <label for="proxySelect" class="config-label">Default Proxy:</label>
     <select id="proxySelect" class="config-select">
       <option value="ultraviolet">Ultraviolet (Default)</option>
-      <option value="dynamic">Dynamic (Beta)</option>
+      <option value="Meteor">Meteor (Beta)</option>
     </select>
     <br>
     <br>
@@ -262,47 +261,8 @@
         <h2>Network</h2>
         <label for="connection-status" class="config-label">Connection Status:</label>
         <p id="connection-status">Detecting...</p>
-        <label for="bare-server-select" class="config-label">Custom Bare Server (Beta):</label>
-        <input type="text" id="custom-bare-server-input" placeholder="Enter a url like so: https://bare.example.com" class="config-input">
-        <div id="ping-status">Checking server status...</div>
-        <script>
-          const connectionStatusElem = document.getElementById('connection-status');
-
-          function updateConnectionStatus() {
-            connectionStatusElem.textContent = navigator.onLine ? '🟢Online' : '🔴Offline';
-          }
-
-          window.addEventListener('online', updateConnectionStatus);
-          window.addEventListener('offline', updateConnectionStatus);
-
-          updateConnectionStatus();
-
-          function checkServerStatus(url) {
-            const startTime = performance.now();
-  
-            return fetch(url, { method: 'HEAD' })
-              .then(response => {
-                const endTime = performance.now();
-                const ping = Math.round(endTime - startTime);
-      
-                if (response.status === 200) {
-                  return `🟢Online - ${ping}ms`;
-                } else {
-                  return `🔴Offline - 0ms`;
-                }
-              })
-            .catch(() => `🔴Offline - 0ms`);
-          }
-
-          const bareServerUrl = localStorage.getItem('bareServer') || 'https://server.flow-works.me/bare/';
-          checkServerStatus(bareServerUrl)
-          .then(status => {
-            const pingElement = document.getElementById('ping-status');
-            if (pingElement) {
-              pingElement.textContent = status;
-            }
-          });
-        </script>
+        <label for="bare-server-select" class="config-label">Wisp Server:</label>
+        <input type="text" id="custom-bare-server-input" placeholder="Enter a url like so: wss://wisp.example.com" class="config-input">
       </div>        
 
     <div class="section" data-section="account">

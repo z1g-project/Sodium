@@ -221,13 +221,13 @@ body {
           <label for="proxySelect" class="config-label">Default Proxy:</label>
           <select id="proxySelect" class="config-select">
             <option value="ultraviolet">Ultraviolet (Default)</option>
-            <option value="dynamic">Dynamic (Beta)</option>
+            <option value="Meteor">Meteor (Beta)</option>
           </select>
         </div>
 
         <div class="config-row">
-          <label for="bare-server-select" class="config-label">Custom Bare Server (Beta):</label>
-          <input type="text" id="custom-bare-server-input" placeholder="Enter a url like so: https://bare.example.com" class="config-input">
+          <label for="bare-server-select" class="config-label">Wisp Server:</label>
+          <input type="text" id="custom-bare-server-input" placeholder="Enter a url like so: wss://wisp.example.com" class="config-input">
         </div>
       </div>
     </div>
@@ -425,8 +425,8 @@ showSlide(currentSlide);
       console.log('Search engine saved:', searchEngine);
     }
 
-    var proxySelect = document.getElementById('proxySelect');
-    var selectedOption = proxySelect.options[proxySelect.selectedIndex].value;
+    let proxySelect = document.getElementById('proxySelect');
+    let selectedOption = proxySelect.options[proxySelect.selectedIndex].value;
 
     localStorage.setItem('proxyOption', selectedOption);
     console.log('Default Proxy Saved:', selectedOption);
@@ -458,12 +458,9 @@ showSlide(currentSlide);
     const bareServerInput = document.getElementById('custom-bare-server-input');
     if (bareServerInput) {
       const bareServer = bareServerInput.value.trim();     
-      caches.open('bareServerCache').then(cache => {
-        cache.put('bareServerKey', new Response(bareServer));
-      });
-      localStorage.setItem('bareServer', bareServer);
+      localStorage.setItem('wispServer', bareServer);
       //self.__uv$config.bare = bareServer;
-      //self.__dynamic$config.bare.path = bareServer;
+      //self.__Meteor$config.bare.path = bareServer;
       console.log('BareServer URL saved:', bareServer);
       if ('serviceWorker' in navigator) {
         navigator.serviceWorker.getRegistrations().then(registrations => {
@@ -471,7 +468,7 @@ showSlide(currentSlide);
             if (registration.active && registration.active.scriptURL.includes('dyn.sw.js')) {
               registration.unregister().then(() => {
                 navigator.serviceWorker.register('/dyn.sw.js');
-                console.log('Dynamic service worker re-registered.');
+                console.log('Meteor service worker re-registered.');
               });
             }
           }

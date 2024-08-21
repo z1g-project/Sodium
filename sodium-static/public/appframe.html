@@ -19,8 +19,8 @@
   <script id="proxloader" src="assets/js/index.js" defer></script>
   <script src="assets/js/time.js" defer></script>
   <script src="assets/js/settings.js" defer></script>
+  <script src="baremux/index.js" defer></script>
   <script src="assets/js/fade.js" defer></script>
-  <script src="assets/js/bare.js" defer></script>
   <script src="assets/js/debug.js" defer></script>
   <script src="regcache.js" defer></script>
   <style>
@@ -72,10 +72,6 @@
     .info-menu-item {
       font-size: 12px;
     }
-
-    #footer {
-      margin-top: 50%;
-    }
   </style>
   <script>
     window.addEventListener("DOMContentLoaded", () => {
@@ -109,7 +105,7 @@
           const script = document.createElement('script');
   
           if (useProxy) {
-            if (proxyOption && proxyOption.toLowerCase() === "dynamic") {
+            if (proxyOption && proxyOption.toLowerCase() === "Meteor") {
               script.src = `${window.location.origin}/service/route?url=${pluginUrl}`;
             } else {
               script.src = `${window.location.origin}/sw/${Ultraviolet.codec.xor.encode(pluginUrl)}`;
@@ -247,7 +243,7 @@
       <div class="footerflex">
           <div class="footerbrand">
               <h3><a href="/">Sodium</a></h3>
-              <p>Evading Internet Censorship for over 6 Months!</p>
+              <p>Evading Internet Censorship for a year!</p>
           </div>
           <div class="footerlist">
             <p style="margin-top: 58px;">Sodium © z1g Project 2024</hp>
