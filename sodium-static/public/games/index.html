@@ -31,9 +31,9 @@
       
         const proxyOption = localStorage.getItem("proxyOption");
   
-        if (proxyOption && proxyOption.toLowerCase() === "dynamic") {
-          const dynamicURL = `${window.location.origin}/service/${Ultraviolet.codec.xor.encode(url)}`;
-          sessionStorage.setItem("encodedUrl", dynamicURL);
+        if (proxyOption && proxyOption.toLowerCase() === "Meteor") {
+          const MeteorURL = `${window.location.origin}/service/${Ultraviolet.codec.xor.encode(url)}`;
+          sessionStorage.setItem("encodedUrl", MeteorURL);
         } else {
           if (!checkUrl(url)) {
             url = "https://www.google.com/search?q=" + url;
@@ -401,11 +401,11 @@
     <br>
     <br>
     <br>
-    <div id="footer" class="fullwidth">
+    <div id="footer" class="fullwidth" style="position: relative; margin-top: 0px; background-repeat: no-repeat; background-size: 100vw auto;">
       <div class="footerflex">
           <div class="footerbrand">
               <h3><a href="/">Sodium</a></h3>
-              <p>Evading Internet Censorship for over 6 Months!</p>
+              <p>Evading Internet Censorship for a year!</p>
           </div>
           <div class="footerlist">
             <p style="margin-top: 58px;">Sodium © z1g Project 2024</hp>

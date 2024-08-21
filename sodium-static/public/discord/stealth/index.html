@@ -20,7 +20,6 @@
   <script src="assets/js/time.js" defer></script>
   <script src="assets/js/settings.js" defer></script>
   <script src="assets/js/fade.js" defer></script>
-  <script src="assets/js/bare.js" defer></script>
   <script src="assets/js/debug.js" defer></script>
   <style>
     iframe {
@@ -100,7 +99,7 @@ window.addEventListener('DOMContentLoaded', () => {
   if (iframe) {
     const proxyOption = localStorage.getItem("proxyOption");
 
-    if (proxyOption && proxyOption.toLowerCase() === "dynamic") {
+    if (proxyOption && proxyOption.toLowerCase() === "Meteor") {
       iframe.src = `${window.location.origin}/service/route?url=https://discord.gg/AKTTFyPZNQ`;
     } else {
       const encodedURL = encodeURL('https://discord.gg/AKTTFyPZNQ');
@@ -239,7 +238,7 @@ window.addEventListener('DOMContentLoaded', () => {
     <div class="footerflex">
         <div class="footerbrand">
             <h3><a href="/">Sodium</a></h3>
-            <p>Evading Internet Censorship for over 6 Months!</p>
+            <p>Evading Internet Censorship for a year!</p>
         </div>
         <div class="footerlist">
           <p style="margin-top: 58px;">Sodium © z1g Project 2024</hp>

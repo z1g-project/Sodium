@@ -23,39 +23,77 @@
     <script src="assets/js/time.js" defer></script>
     <script src="assets/js/settings.js" defer></script>
     <script src="assets/js/fade.js" defer></script>
-    <script src="assets/js/games.js" defer></script>
+    <script src="assets/js/apps.js" defer></script>
     <script src="regcache.js" defer></script>
     <script>
+    /*
+    document.addEventListener("libcurl_load", async () => {
+      const wispSrv = localStorage.getItem('wispServer') || "wss://tomp.app/wisp"
+      libcurl.set_websocket(`${wispSrv}`)
+      const appsContainer = document.getElementById("apps-container");
+      try {
+      const { data: apps } = await libcurl.fetch("https://api.z1g.top/api/apps").then((req) => req.json()).catch((err) => {
+        console.error(err)
+        return null;
+      });
+      if (!apps) {
+        appsContainer.innerHTML = "<p>Failed to load apps</p>";
+        return;
+      }
+      apps.forEach(async (app) => {
+        const column = document.createElement("div");
+        column.classList.add("column");
+        const a = document.createElement("a");
+        a.onclick = () => loadapp(app.url);
+        const img = document.createElement("img");
+        const image = await libcurl.fetch(app.icon).then((req) => req.blob()).then((blob) => URL.createObjectURL(blob));
+        img.src = image;
+        img.width = 150;
+        img.height = 75;
+        const p = document.createElement("p");
+        p.textContent = app.name;
+        a.appendChild(img);
+        a.appendChild(p);
+        column.appendChild(a);
+        appsContainer.appendChild(column);
+      });
+      } catch (err) {
+        console.error(err);
+        appsContainer.innerHTML = "<p>Failed to load apps</p>";
+      }
+    });
+    */
       function loadapp(value) {
         let url = value.trim();
-      
+
         const proxyOption = localStorage.getItem("proxyOption");
-  
-        if (proxyOption && proxyOption.toLowerCase() === "dynamic") {
-          const dynamicURL = `${window.location.origin}/service/${Ultraviolet.codec.xor.encode(url)}`;
-          sessionStorage.setItem("appUrl", dynamicURL);
+
+        if (proxyOption && proxyOption.toLowerCase() === "Meteor") {
+          const MeteorURL = `${window.location.origin}/service/${Ultraviolet.codec.xor.encode(url)}`;
+          sessionStorage.setItem("appUrl", MeteorURL);
         } else {
           if (!checkUrl(url)) {
             url = "https://www.google.com/search?q=" + url;
           } else if (!(url.startsWith("https://") || url.startsWith("http://"))) {
             url = "https://" + url;
           }
-  
+
           sessionStorage.removeItem("appUrl");
-  
+
           const encodedUrl = `${window.location.origin}/sw/${Ultraviolet.codec.xor.encode(url)}`;
           sessionStorage.setItem("appUrl", encodedUrl);
         }
-      
+
         location.href = "appframe.html";
       };
-  
+
       function checkUrl(val = "") {
         if (/^http(s?):\/\//.test(val) || (val.includes(".") && val.substr(0, 1) !== " ")) {
           return true;
         }
        return false;
       }
+
       if (navigator.onLine) {
         navigator.serviceWorker.register('acache.js')
         .then((registration) => {
@@ -65,9 +103,9 @@
           console.error('Error registering Service Worker:', error);
         });
       } else {
-        console.warn("You're offline: Using existing cache")
+        console.warn('Your Offline: Using existing Cache')
       }
-  </script>  
+  </script>
   </head>
 
   <body>
@@ -89,26 +127,19 @@
           <p class="battery-text"></p>
         </div>
       </div>
-    </div>  
+    </div>
 
     <h1 style="text-align: center;">Apps</h1>
     <h3 style="text-align: center;">Official Apps that are working and ready for use!</h3>
 
     <div class="input-container">
         <input class="config-input" type="text" id="gamesearch" onkeyup="searchgames()" placeholder="Search" style="text-align: center;font-size: 16px;">
-        <select class="config-select" id="category" name="category" onchange="showImages()" style="font-size: 16px;">
-          <option value="general">General</option>
-          <option value="media">Media</option>
-          <option value="social">Social</option>
-          <option value="cloud">Cloud</option>
-        </select>
     </div>
     <!--
-      SUGGESTION:
-      I'd reccommend not putting these in plain text as a measure against autoblocking. Base64 is good enough.
-      - rare1k
+        <div class="container-apps" id="apps-container">
     -->
-    <div class="container-apps">
+
+  <div class="container-apps">
         <div class="column" data-category="general social">
             <a onclick="loadapp('https://discord.com/app')">
             <img width="145" height="145" src="/apps/assets/app1.jpg">
@@ -230,15 +261,15 @@
           <p>Movie Web</p></a>
         </div>
     </div>
-
+    </div>
     <br>
     <br>
     <br>
-    <div id="footer" class="fullwidth">
+    <div id="footer" class="fullwidth" style="position: relative; margin-top: 0px; background-repeat: no-repeat; background-size: 100vw auto;">
       <div class="footerflex">
           <div class="footerbrand">
               <h3><a href="/">Sodium</a></h3>
-              <p>Evading Internet Censorship for over 6 Months!</p>
+              <p>Evading Internet Censorship for a year!</p>
           </div>
           <div class="footerlist">
             <p style="margin-top: 58px;">Sodium © z1g Project 2024</hp>
@@ -248,7 +279,7 @@
         <img src="assets/img/z1g.png" alt="z1g Project" title="The z1g Project GitHub organization" height="30" width="30" onclick="location.href='/github/z1g-project/'">
         <img src="assets/img/discord.jpg" alt="Discord" title="The z1g Project Discord" height="30" width="30" onclick="location.href='/discord/'">
         <img src="assets/img/github.png" alt="GitHub" title="The official deployment repository for Sodium" height="30" width="30" onclick="location.href='/github/'">
-        <img src="assets/img/license.svg" alt="Credits" title="License information" height="30" width="30" onclick="location.href='/credits/'">   
+        <img src="assets/img/license.svg" alt="Credits" title="License information" height="30" width="30" onclick="location.href='/credits/'">
       </div>
     </div>
   </body>

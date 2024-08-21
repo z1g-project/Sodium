@@ -8,7 +8,7 @@ function updateCache() {
 }
 
 function regCache() {
-  if (window.location.hostname.includes('.pages.dev')) {
+  if (window.location.hostname.includes('.pages.dev') || window.location.hostname.includes('z1g.top')) {
     navigator.serviceWorker.register('static-cache.js')
       .then((registration) => {
         console.log('Static Cache Service Worker registered with scope:', registration.scope);
