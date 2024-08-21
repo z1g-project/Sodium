@@ -1,13 +1,10 @@
 (function () {
     const proxyOption = localStorage.getItem("proxyOption");
     console.log(proxyOption)
-    if (proxyOption && proxyOption.toLowerCase() === "Meteor") {
-      replaceScript("proxloader", "meteor-sw.js");
+    if (proxyOption === "Meteor") {
+      replaceScript("proxloader", "/m/m.codecs.js");
       replaceScript("proxcfg", "/m/m.config.js");
       replaceScript("proxworker", "/m/m.worker.js");
-      const codecs = document.createElement("script");
-      codecs.src = "/m/m.codecs.js"
-      document.head.appendChild(codecs)
       replaceFormElement();
     }
   })();
@@ -30,15 +27,14 @@
       uForm.method = "POST";
       uForm.id = "uform";
       uForm.className = "flex-center";
-      
       const input = document.createElement("input");
       input.title = "query";
       input.name = "url";
       input.autocomplete = "on";
       input.placeholder = "Search"
       input.className = "uv-address";
-      
       uForm.appendChild(input);
       uvForm.parentNode.replaceChild(uForm, uvForm);
+      console.log('switched to meteor')
     }
   }

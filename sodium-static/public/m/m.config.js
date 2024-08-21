@@ -1,6 +1,6 @@
 // src/config.ts
 var config = {
-  prefix: "/route/",
+  prefix: "/service/",
   codec: self.$meteor_codecs.xor,
   debug: true,
   plugins: [

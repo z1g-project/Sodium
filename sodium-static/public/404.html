@@ -71,8 +71,6 @@
     <script id="proxsw" src="assets/js/register-sw.js"></script>
     <script src="assets/js/proxhandler.js" defer></script>
     <script id="proxworker" defer></script>
-    <script src="dyn.sw.js" defer></script>
-    <script src="dynsw.js" defer></script>
     <script src="assets/js/error.js"></script>
     <script src="assets/js/time.js"></script>
     <script src="assets/js/debug.js" defer></script>
@@ -80,7 +78,7 @@
       async function regSW() {
         console.log('Waiting on SW Cache to Register...');
         const stockSW = "/sw.js";
-        const dynSW = "/dyn.sw.js"
+        const dynSW = "/meteor-sw.js"
         const swAllowedHostnames = ["localhost", "127.0.0.1"];
 
         if (
