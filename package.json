@@ -17,12 +17,10 @@
   "dependencies": {
     "@mercuryworkshop/wisp-js": "^0.1.1",
     "@tomphttp/bare-server-node": "2.0.3",
-    "@types/axios": "^0.14.0",
     "axios": "^1.7.4",
     "express": "^4.19.2",
     "ip": "^2.0.1",
     "prettier": "^3.3.3",
-    "sodium-instance": "file:",
     "sodium-static": "file:sodium-static"
   }
 }
