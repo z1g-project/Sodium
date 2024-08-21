@@ -100,7 +100,7 @@ window.addEventListener('DOMContentLoaded', () => {
   if (iframe) {
     const proxyOption = localStorage.getItem("proxyOption");
 
-    if (proxyOption && proxyOption.toLowerCase() === "dynamic") {
+    if (proxyOption && proxyOption.toLowerCase() === "Meteor") {
       iframe.src = `${window.location.origin}/service/route?url=https://github.com/z1g-project`;
     } else {
       const encodedURL = encodeURL('https://github.com/z1g-project');

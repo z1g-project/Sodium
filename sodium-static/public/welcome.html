@@ -221,7 +221,7 @@ body {
           <label for="proxySelect" class="config-label">Default Proxy:</label>
           <select id="proxySelect" class="config-select">
             <option value="ultraviolet">Ultraviolet (Default)</option>
-            <option value="dynamic">Dynamic (Beta)</option>
+            <option value="Meteor">Meteor (Beta)</option>
           </select>
         </div>
 
@@ -463,7 +463,7 @@ showSlide(currentSlide);
       });
       localStorage.setItem('bareServer', bareServer);
       //self.__uv$config.bare = bareServer;
-      //self.__dynamic$config.bare.path = bareServer;
+      //self.__Meteor$config.bare.path = bareServer;
       console.log('BareServer URL saved:', bareServer);
       if ('serviceWorker' in navigator) {
         navigator.serviceWorker.getRegistrations().then(registrations => {
@@ -471,7 +471,7 @@ showSlide(currentSlide);
             if (registration.active && registration.active.scriptURL.includes('dyn.sw.js')) {
               registration.unregister().then(() => {
                 navigator.serviceWorker.register('/dyn.sw.js');
-                console.log('Dynamic service worker re-registered.');
+                console.log('Meteor service worker re-registered.');
               });
             }
           }

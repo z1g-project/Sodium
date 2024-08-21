@@ -350,7 +350,7 @@
               navigator.serviceWorker.register('/dyn.sw.js', {
                 scope: '/service',
               });
-                console.log('Dynamic service worker re-registered.');
+                console.log('Meteor service worker re-registered.');
               });
             }
           }

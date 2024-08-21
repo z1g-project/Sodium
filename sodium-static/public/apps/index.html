@@ -72,9 +72,9 @@
 
         const proxyOption = localStorage.getItem("proxyOption");
 
-        if (proxyOption && proxyOption.toLowerCase() === "dynamic") {
-          const dynamicURL = `${window.location.origin}/service/${Ultraviolet.codec.xor.encode(url)}`;
-          sessionStorage.setItem("appUrl", dynamicURL);
+        if (proxyOption && proxyOption.toLowerCase() === "Meteor") {
+          const MeteorURL = `${window.location.origin}/service/${Ultraviolet.codec.xor.encode(url)}`;
+          sessionStorage.setItem("appUrl", MeteorURL);
         } else {
           if (!checkUrl(url)) {
             url = "https://www.google.com/search?q=" + url;
@@ -145,7 +145,7 @@
     <br>
     <br>
     <br>
-    <div id="footer" class="fullwidth">
+    <div id="footer" class="fullwidth" style="position: relative; margin-top: 0px; background-repeat: no-repeat; background-size: 100vw auto;">
       <div class="footerflex">
           <div class="footerbrand">
               <h3><a href="/">Sodium</a></h3>

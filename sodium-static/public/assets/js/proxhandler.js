@@ -1,12 +1,10 @@
 (function () {
     const proxyOption = localStorage.getItem("proxyOption");
   
-    if (proxyOption && proxyOption.toLowerCase() === "dynamic") {
-      replaceScript("proxloader", "dyn.sw.js");
-      replaceScript("proxcfg", "/dyn/dyn.config.js");
-      replaceScript("proxsw", "dynsw.js");
-      replaceScript("proxworker", "/dyn/dyn.worker.js");
-  
+    if (proxyOption && proxyOption.toLowerCase() === "Meteor") {
+      replaceScript("proxloader", "meteor-sw.js");
+      replaceScript("proxcfg", "/m/m.config.js");
+      replaceScript("proxworker", "/m/m.worker.js");
       replaceFormElement();
     }
   })();

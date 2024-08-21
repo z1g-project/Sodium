@@ -14,5 +14,9 @@ async function registerSW() {
 
   await navigator.serviceWorker.register(stockSW, {
     scope: __uv$config.prefix,
-  });  
+  }).then(async () => {
+    const connection = new BareMux.BareMuxConnection("/baremux/worker.js")
+    const wispServer = localStorage.getItem('wispServer') || "wss://tomp.app"
+    await connection.setTransport("/epoxy/index.mjs", [{ wisp: wispServer }]);
+  });
 }
