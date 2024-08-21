@@ -35,6 +35,3 @@ var config = {
   }
 };
 self.$meteor_config = config;
-export {
-  config
-};

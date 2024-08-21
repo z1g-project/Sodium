@@ -11,33 +11,30 @@
         <head>
         <meta charset='utf-8' />
         <title>Error</title>
-        <style>
-        * { background-color: white }
-        </style>
+        <link href="/ultra/ultra.styles.css" rel="stylesheet">
         </head>
         <body>
         <h1 id='errorTitle'>Error processing your request</h1>
-        <hr />
         <p>Failed to load <b id="fetchedURL"></b></p>
         <p id="errorMessage">Internal Server Error</p>
         <textarea id="errorTrace" cols="40" rows="10" readonly></textarea>
         <p>Try:</p>
         <ul>
-        <li>Checking your internet connection</li>
-        <li>Verifying you entered the correct address</li>
-        <li>Clearing the site data</li>
-        <li>Contacting <b id="uvHostname"></b>'s administrator</li>
-        <li>Verify the server isn't censored</li>
+        <p>Checking your internet connection</p>
+        <p>Verifying you entered the correct address</p>
+        <p>Clearing the site data</p>
+        <p>Contacting <b id="uvHostname"></b>'s administrator</p>
+        <p>Verify the server isn't censored</p>
         </ul>
         <p>If you're the administrator of <b id="uvHostname"></b>, try:</p>
         <ul>
-        <li>Restarting your server</li>
-        <li>Updating Ultraviolet</li>
-        <li>Troubleshooting the error on the <a href="https://github.com/titaniumnetwork-dev/Ultraviolet" target="_blank">GitHub repository</a></li>
+        <p>Restarting your server</p>
+        <p>Updating Ultraviolet</p>
+        <p>Troubleshooting the error on the <a href="https://github.com/titaniumnetwork-dev/Ultraviolet" target="_blank">GitHub repository</a></p>
         </ul>
         <button id="reload">Reload</button>
         <hr />
-        <p><i>Ultraviolet v<span id="uvVersion"></span></i></p>
+        <p><i>Ultraviolet (Sodium Hybrid) v<span id="uvVersion"></span></i></p>
         <script src="${"data:application/javascript,"+encodeURIComponent(s)}"><\/script>
         </body>
         </html>

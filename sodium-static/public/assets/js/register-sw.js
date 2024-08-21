@@ -17,6 +17,13 @@ async function registerSW() {
   }).then(async () => {
     const connection = new BareMux.BareMuxConnection("/baremux/worker.js")
     const wispServer = localStorage.getItem('wispServer') || "wss://tomp.app"
-    await connection.setTransport("/epoxy/index.mjs", [{ wisp: wispServer }]);
+    await connection.setTransport("/epx/index.mjs", [{ wisp: wispServer }]);
+  });
+  await navigator.serviceWorker.register('meteor-sw.js', {
+    scope: '/service/',
+  }).then(async () => {
+    const connection = new BareMux.BareMuxConnection("/baremux/worker.js")
+    const wispServer = localStorage.getItem('wispServer') || "wss://tomp.app"
+    await connection.setTransport("/epx/index.mjs", [{ wisp: wispServer }]);
   });
 }

@@ -1,7 +1,16 @@
-await navigator.serviceWorker.register('m-sw.js', {
-    scope: '/service/',
-}).then(async () => {
-    const connection = new BareMux.BareMuxConnection("/baremux/worker.js")
-    const wispServer = localStorage.getItem('wispServer') || "wss://tomp.app"
-    await connection.setTransport("/epoxy/index.mjs", [{ wisp: wispServer }]);
-});
+importScripts('/m/m.codecs.js')
+importScripts('/m/m.config.js')
+importScripts('/m/m.bundle.js')
+importScripts('/m/m.worker.js')
+
+const meteor = new MeteorServiceWorker()
+function handleRequest(event) {
+  if (meteor.shouldRoute(event)) {
+    return meteor.handleFetch(event)
+  }
+
+  return fetch(event.request)
+}
+self.addEventListener('fetch', (event) => {
+  event.respondWith(handleRequest(event))
+})

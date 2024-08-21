@@ -1,10 +1,13 @@
 (function () {
     const proxyOption = localStorage.getItem("proxyOption");
-  
+    console.log(proxyOption)
     if (proxyOption && proxyOption.toLowerCase() === "Meteor") {
       replaceScript("proxloader", "meteor-sw.js");
       replaceScript("proxcfg", "/m/m.config.js");
       replaceScript("proxworker", "/m/m.worker.js");
+      const codecs = document.createElement("script");
+      codecs.src = "/m/m.codecs.js"
+      document.head.appendChild(codecs)
       replaceFormElement();
     }
   })();
