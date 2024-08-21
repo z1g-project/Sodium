@@ -66,7 +66,7 @@
 
       const bareServerInput = document.getElementById('custom-bare-server-input');
       if (bareServerInput) {
-        bareServerInput.value = localStorage.getItem('bareServer') || '';
+        bareServerInput.value = localStorage.getItem('wispServer') || '';
       }
       
       const toggleBeta = document.getElementById('toggle-beta');
