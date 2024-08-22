@@ -465,15 +465,17 @@ showSlide(currentSlide);
       if ('serviceWorker' in navigator) {
         navigator.serviceWorker.getRegistrations().then(registrations => {
           for (const registration of registrations) {
-            if (registration.active && registration.active.scriptURL.includes('dyn.sw.js')) {
+            if (registration.active && registration.active.scriptURL.includes('meteor-sw.js')) {
               registration.unregister().then(() => {
-                navigator.serviceWorker.register('/dyn.sw.js');
+                navigator.serviceWorker.register('/meteor-sw.js');
                 console.log('Meteor service worker re-registered.');
               });
             }
           }
         });
       }
+    } else {
+      localStorage.setItem('wispServer', 'wss://wisp.mercurywork.shop');
     }
 
     const use24HourTimeCheckbox = document.getElementById('use-24hour-checkbox');
