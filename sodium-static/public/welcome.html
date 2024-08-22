@@ -457,25 +457,13 @@ showSlide(currentSlide);
 
     const bareServerInput = document.getElementById('custom-bare-server-input');
     if (bareServerInput) {
-      const bareServer = bareServerInput.value.trim();     
-      localStorage.setItem('wispServer', bareServer);
-      //self.__uv$config.bare = bareServer;
-      //self.__Meteor$config.bare.path = bareServer;
+      const bareServer = bareServerInput.value.trim(); 
+      if (bareServer === '') {
+        localStorage.setItem('wispServer', 'wss://wisp.mercurywork.shop');
+      } else {
+        localStorage.setItem('wispServer', bareServer);
+      }   
       console.log('BareServer URL saved:', bareServer);
-      if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.getRegistrations().then(registrations => {
-          for (const registration of registrations) {
-            if (registration.active && registration.active.scriptURL.includes('meteor-sw.js')) {
-              registration.unregister().then(() => {
-                navigator.serviceWorker.register('/meteor-sw.js');
-                console.log('Meteor service worker re-registered.');
-              });
-            }
-          }
-        });
-      }
-    } else {
-      localStorage.setItem('wispServer', 'wss://wisp.mercurywork.shop');
     }
 
     const use24HourTimeCheckbox = document.getElementById('use-24hour-checkbox');
