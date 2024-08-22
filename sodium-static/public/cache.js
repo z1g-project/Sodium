@@ -16,7 +16,7 @@ self.addEventListener('install', (event) => {
           '/assets/js/debug.js',
           '/assets/js/credits.js',
           '/assets/js/register-sw.js',
-          '/meteor-sw',
+          '/meteor-sw.js',
           '/assets/js/fade.js',
           '/assets/js/error.js',
           '/favicon.ico',

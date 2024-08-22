@@ -16,14 +16,14 @@ async function registerSW() {
     scope: __uv$config.prefix,
   }).then(async () => {
     const connection = new BareMux.BareMuxConnection("/baremux/worker.js")
-    const wispServer = localStorage.getItem('wispServer') || "wss://tomp.app/wisp"
+    const wispServer = localStorage.getItem('wispServer') || "wss://wisp.mercurywork.shop"
     await connection.setTransport("/epx/index.mjs", [{ wisp: wispServer }]);
   });
   await navigator.serviceWorker.register('meteor-sw.js', {
     scope: '/service/',
   }).then(async () => {
     const connection = new BareMux.BareMuxConnection("/baremux/worker.js")
-    const wispServer = localStorage.getItem('wispServer') || "wss://tomp.app/wisp"
+    const wispServer = localStorage.getItem('wispServer') || "wss://wisp.mercurywork.shop"
     await connection.setTransport("/epx/index.mjs", [{ wisp: wispServer }]);
   });
 }
