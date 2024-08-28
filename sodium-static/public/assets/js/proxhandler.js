@@ -26,6 +26,8 @@
       uForm.action = "/service/route";
       uForm.method = "POST";
       uForm.id = "uform";
+      uForm.style.position = "relative"
+      uForm.style.zIndex = "99"
       uForm.className = "flex-center";
       const input = document.createElement("input");
       input.title = "query";
