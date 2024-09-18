@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@mercuryworkshop/wisp-js':
-        specifier: ^0.1.1
-        version: 0.1.1
+        specifier: ^0.1.2
+        version: 0.1.2
       '@tomphttp/bare-server-node':
         specifier: 2.0.3
         version: 2.0.3(bufferutil@4.0.8)
@@ -32,8 +32,8 @@ importers:
 
 packages:
 
-  '@mercuryworkshop/wisp-js@0.1.1':
-    resolution: {integrity: sha512-mpsoKteEPkuY6uGGY6B73lU+EBGMlh/A39yXG4hNKzV6FZZ9CWmq3bAREmsLqA8adK/Y+OV8MkYWBEaRJHVhTw==}
+  '@mercuryworkshop/wisp-js@0.1.2':
+    resolution: {integrity: sha512-1buzaDqzOcupG17lmxLATTDGnYpBO7VK5TVYyqbgws0IcEguW46JPQjiRYjlw6IdPME5ZIzIJfmcmDYFX4NBrw==}
 
   '@tomphttp/bare-server-node@2.0.3':
     resolution: {integrity: sha512-IGzZspDwzto+oPsvlV99OALJKH3X1nRWnpBE8EY6nrqu5I83xw3uSUacEdHNnW4rXG0IQ8vZwMH87VOMoArJ3A==}
@@ -375,7 +375,7 @@ packages:
 
 snapshots:
 
-  '@mercuryworkshop/wisp-js@0.1.1':
+  '@mercuryworkshop/wisp-js@0.1.2':
     dependencies:
       bufferutil: 4.0.8
       ws: 8.18.0(bufferutil@4.0.8)
