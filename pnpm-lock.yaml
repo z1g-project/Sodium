@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@mercuryworkshop/wisp-js':
-        specifier: ^0.1.1
-        version: 0.1.1
+        specifier: ^0.2.2
+        version: 0.2.2
       '@tomphttp/bare-server-node':
         specifier: 2.0.3
         version: 2.0.3(bufferutil@4.0.8)
@@ -32,8 +32,9 @@ importers:
 
 packages:
 
-  '@mercuryworkshop/wisp-js@0.1.1':
-    resolution: {integrity: sha512-mpsoKteEPkuY6uGGY6B73lU+EBGMlh/A39yXG4hNKzV6FZZ9CWmq3bAREmsLqA8adK/Y+OV8MkYWBEaRJHVhTw==}
+  '@mercuryworkshop/wisp-js@0.2.2':
+    resolution: {integrity: sha512-9IpA4d8peV531IE3byRuNrcP7wZ4O+io59FTtz3jkHSfxbPhqfU9BP773cvDQGF7FtE7G3HY9aJS3sWk9lgHJA==}
+    hasBin: true
 
   '@tomphttp/bare-server-node@2.0.3':
     resolution: {integrity: sha512-IGzZspDwzto+oPsvlV99OALJKH3X1nRWnpBE8EY6nrqu5I83xw3uSUacEdHNnW4rXG0IQ8vZwMH87VOMoArJ3A==}
@@ -83,6 +84,10 @@ packages:
   commander@10.0.1:
     resolution: {integrity: sha512-y4Mg2tXshplEbSGzx7amzPwKKOCGuoSRP/CjEdwwk0FOGlUbq6lKuoyDZTNZkmxHdJtp54hdfY/JUrdL7Xfdug==}
     engines: {node: '>=14'}
+
+  commander@12.1.0:
+    resolution: {integrity: sha512-Vw8qHK3bZM9y/P10u3Vib8o/DdkvA2OtPtZvD871QKjy74Wj1WSKFILMPRPSdUSx5RFK1arlJzEtA4PkFgnbuA==}
+    engines: {node: '>=18'}
 
   content-disposition@0.5.4:
     resolution: {integrity: sha512-FveZTNuGw04cxlAiWbzi6zTAL/lhehaWbTtgluJh4/E95DqMwTmha3KZN1aAWA8cFIhHzMZUvLevkw5Rqk+tSQ==}
@@ -375,9 +380,11 @@ packages:
 
 snapshots:
 
-  '@mercuryworkshop/wisp-js@0.1.1':
+  '@mercuryworkshop/wisp-js@0.2.2':
     dependencies:
       bufferutil: 4.0.8
+      commander: 12.1.0
+      ipaddr.js: 2.2.0
       ws: 8.18.0(bufferutil@4.0.8)
     transitivePeerDependencies:
       - utf-8-validate
@@ -452,6 +459,8 @@ snapshots:
       delayed-stream: 1.0.0
 
   commander@10.0.1: {}
+
+  commander@12.1.0: {}
 
   content-disposition@0.5.4:
     dependencies:
