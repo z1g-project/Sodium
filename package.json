@@ -15,7 +15,7 @@
   "author": "z1g Project",
   "license": "MIT",
   "dependencies": {
-    "@mercuryworkshop/wisp-js": "^0.1.1",
+    "@mercuryworkshop/wisp-js": "^0.3.1",
     "@tomphttp/bare-server-node": "2.0.3",
     "axios": "^1.7.5",
     "express": "^4.19.2",
