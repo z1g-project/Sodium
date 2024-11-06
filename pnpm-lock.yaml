@@ -12,8 +12,8 @@ importers:
         specifier: ^0.1.1
         version: 0.1.1
       '@tomphttp/bare-server-node':
-        specifier: 2.0.3
-        version: 2.0.3(bufferutil@4.0.8)
+        specifier: 2.0.5
+        version: 2.0.5(bufferutil@4.0.8)
       axios:
         specifier: ^1.7.5
         version: 1.7.5
@@ -35,8 +35,8 @@ packages:
   '@mercuryworkshop/wisp-js@0.1.1':
     resolution: {integrity: sha512-mpsoKteEPkuY6uGGY6B73lU+EBGMlh/A39yXG4hNKzV6FZZ9CWmq3bAREmsLqA8adK/Y+OV8MkYWBEaRJHVhTw==}
 
-  '@tomphttp/bare-server-node@2.0.3':
-    resolution: {integrity: sha512-IGzZspDwzto+oPsvlV99OALJKH3X1nRWnpBE8EY6nrqu5I83xw3uSUacEdHNnW4rXG0IQ8vZwMH87VOMoArJ3A==}
+  '@tomphttp/bare-server-node@2.0.5':
+    resolution: {integrity: sha512-j3355H1hsrsFCkFVePm7ccuUkjQq+Hgj/wnLmCQa2FzBh9B6+zRkd66kFHaYZ4PAOjSX5wHTKQuXVJrnb7GBxg==}
     engines: {node: '>=18.0.0'}
     hasBin: true
 
@@ -382,7 +382,7 @@ snapshots:
     transitivePeerDependencies:
       - utf-8-validate
 
-  '@tomphttp/bare-server-node@2.0.3(bufferutil@4.0.8)':
+  '@tomphttp/bare-server-node@2.0.5(bufferutil@4.0.8)':
     dependencies:
       async-exit-hook: 2.0.1
       commander: 10.0.1
