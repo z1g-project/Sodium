@@ -453,8 +453,12 @@ showSlide(currentSlide);
 
     const bareServerInput = document.getElementById('custom-bare-server-input');
     if (bareServerInput) {
-      const bareServer = bareServerInput.value.trim();     
-      localStorage.setItem('wispServer', bareServer);
+      const bareServer = bareServerInput.value.trim();
+      if (bareServer === '') {
+        localStorage.setItem('wispServer', 'wss://wisp.terbiumon.top');
+      } else {
+        localStorage.setItem('wispServer', bareServer);
+      } 
       console.log('BareServer URL saved:', bareServer);
       if ('serviceWorker' in navigator) {
         navigator.serviceWorker.getRegistrations().then(registrations => {
