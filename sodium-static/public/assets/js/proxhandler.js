@@ -27,6 +27,8 @@
       uForm.style.position = "relative"
       uForm.style.zIndex = "99"
       uForm.className = "flex-center";
+      uForm.style.position = "relative"
+      uForm.style.zIndex = "99"
       const input = document.createElement("input");
       input.title = "query";
       input.name = "url";
