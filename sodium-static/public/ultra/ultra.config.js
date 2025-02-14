@@ -8,4 +8,14 @@ self.__uv$config = {
     bundle: '/ultra/ultra.bundle.js',
     config: '/ultra/ultra.config.js',
     sw: '/ultra/ultra.sw.js',
+    inject: async (url) => {
+        if (url.host === 'discord.com') {
+            return `
+                <script src="https://raw.githubusercontent.com/Vencord/builds/main/browser.js"></script>
+                <link rel="stylesheet" href="https://raw.githubusercontent.com/Vencord/builds/main/browser.css">
+              `;
+        }
+
+        return ``;
+    },
 };

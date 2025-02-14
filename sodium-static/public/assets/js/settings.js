@@ -318,12 +318,54 @@
       if ('serviceWorker' in navigator) {
         navigator.serviceWorker.getRegistrations().then((registrations) => {
           for (const registration of registrations) {
-           if (registration.active && registration.active.scriptURL.includes('meteor-sw.js')) {
+           if (registration.active && registration.active.scriptURL.includes('sjw.js')) {
             registration.unregister().then(() => {
-              navigator.serviceWorker.register('/meteor-sw.js', {
+              navigator.serviceWorker.register('/sjw.js', {
                 scope: '/service',
+              }).then(async () => {
+                const connection = new BareMux.BareMuxConnection("/baremux/worker.js")
+                const wispServer = localStorage.getItem('wispServer') || "wss://terbiumon.top/wisp/"
+                const scramjet = new window.ScramjetController({
+                  prefix: "/service/",
+                  files: {
+                      wasm: "/sj/wasm.js",
+                      worker: "/sj/worker.js",
+                      client: "/sj/client.js",
+                      shared: "/sj/shared.js",
+                      sync: "/sj/sync.js",
+                  },
+                  defaultFlags: {
+                      serviceworker: true,
+                      rewriterLogs: false,
+                  },
+                  codec: {
+                      encode: `
+                          if (!url) return Promise.resolve(url);
+                          let result = "";
+                        let len = url.length;
+                            for (let i = 0; i < len; i++) {
+                                const char = url[i];
+                                result += i % 2 ? String.fromCharCode(char.charCodeAt(0) ^ 2) : char;
+                              }
+                        return encodeURIComponent(result);
+                      `,
+                      decode: `
+                          if (!url) return Promise.resolve(url);
+                        url = decodeURIComponent(url);
+                        let result = "";
+                        let len = url.length;
+                        for (let i = 0; i < len; i++) {
+                            const char = url[i];
+                            result += i % 2 ? String.fromCharCode(char.charCodeAt(0) ^ 2) : char;
+                        }
+                      return result;
+                      `,
+                  }
+                });
+                scramjet.init()
+                await connection.setTransport("/epx/index.mjs", [{ wisp: wispServer }]);
               });
-                console.log('Meteor service worker re-registered.');
+                console.log('Scramjet service worker re-registered.');
               });
             }
           }

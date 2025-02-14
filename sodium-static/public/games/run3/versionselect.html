@@ -28,7 +28,7 @@
     </style>
     <script>
       function html() {
-        const proxyOption = localStorage.getItem('proxyOption'); const urlToLoad = proxyOption && proxyOption.toLowerCase() === 'Meteor'
+        const proxyOption = localStorage.getItem('proxyOption'); const urlToLoad = proxyOption && proxyOption.toLowerCase() === 'Scramjet'
         ? `${window.location.origin}/service/route?url=https://lekug.github.io/tn6pS9dCf37xAhkJv/`
         : `${window.location.origin}/sw/${Ultraviolet.codec.xor.encode('https://lekug.github.io/tn6pS9dCf37xAhkJv/')}`;
         window.location.href = urlToLoad;

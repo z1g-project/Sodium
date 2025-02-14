@@ -13,7 +13,7 @@ You can copy the debug info from the console and attach the console information 
 Example: [https://beta.sodium-5h8.pages.dev](https://beta.sodium-5h8.pages.dev)
 
 **UserAgent**
-Example: Mozilla/5.0 (X11; CrOS x86_64 14541.0.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36
+Example: Mozilla/5.0 (X11; CrOS x86_64 14541.0.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36
 
 **Sodium Version**
 Example: 1.3.7 (LTS)
