@@ -31,9 +31,9 @@
       
         const proxyOption = localStorage.getItem("proxyOption");
   
-        if (proxyOption && proxyOption.toLowerCase() === "Meteor") {
-          const MeteorURL = `${window.location.origin}/service/${Ultraviolet.codec.xor.encode(url)}`;
-          sessionStorage.setItem("encodedUrl", MeteorURL);
+        if (proxyOption && proxyOption.toLowerCase() === "Scramjet") {
+          const ScramjetURL = `${window.location.origin}/service/${Ultraviolet.codec.xor.encode(url)}`;
+          sessionStorage.setItem("encodedUrl", ScramjetURL);
         } else {
           if (!checkUrl(url)) {
             url = "https://www.google.com/search?q=" + url;

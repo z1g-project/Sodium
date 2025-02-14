@@ -20,7 +20,7 @@ app.use((req, res, next) => {
   }
 });
 
-async function checkForUpdates() {
+async function updateCheck() {
   try {
     const packageJson = JSON.parse(fs.readFileSync('package.json', 'utf8'));
     const localVersion = packageJson.version;
@@ -45,12 +45,12 @@ function logServerDetails(port) {
 
 const port = parseInt(process.env.PORT, 10) || 8080;
 app.listen(port, () => {
-  checkForUpdates();
+  updateCheck();
   logServerDetails(port);
 });
 
 const shutdown = () => {
-  console.log('Server Shutdown. Goodbye!');
+  console.log('Goodbye!');
   process.exit(0);
 };
 

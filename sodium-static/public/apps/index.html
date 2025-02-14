@@ -26,51 +26,14 @@
     <script src="assets/js/apps.js" defer></script>
     <script src="regcache.js" defer></script>
     <script>
-    /*
-    document.addEventListener("libcurl_load", async () => {
-      const wispSrv = localStorage.getItem('wispServer') || "wss://wisp.terbiumon.top"
-      libcurl.set_websocket(`${wispSrv}`)
-      const appsContainer = document.getElementById("apps-container");
-      try {
-      const { data: apps } = await libcurl.fetch("https://api.z1g.top/api/apps").then((req) => req.json()).catch((err) => {
-        console.error(err)
-        return null;
-      });
-      if (!apps) {
-        appsContainer.innerHTML = "<p>Failed to load apps</p>";
-        return;
-      }
-      apps.forEach(async (app) => {
-        const column = document.createElement("div");
-        column.classList.add("column");
-        const a = document.createElement("a");
-        a.onclick = () => loadapp(app.url);
-        const img = document.createElement("img");
-        const image = await libcurl.fetch(app.icon).then((req) => req.blob()).then((blob) => URL.createObjectURL(blob));
-        img.src = image;
-        img.width = 150;
-        img.height = 75;
-        const p = document.createElement("p");
-        p.textContent = app.name;
-        a.appendChild(img);
-        a.appendChild(p);
-        column.appendChild(a);
-        appsContainer.appendChild(column);
-      });
-      } catch (err) {
-        console.error(err);
-        appsContainer.innerHTML = "<p>Failed to load apps</p>";
-      }
-    });
-    */
       function loadapp(value) {
         let url = value.trim();
 
         const proxyOption = localStorage.getItem("proxyOption");
 
-        if (proxyOption && proxyOption.toLowerCase() === "Meteor") {
-          const MeteorURL = `${window.location.origin}/service/${Ultraviolet.codec.xor.encode(url)}`;
-          sessionStorage.setItem("appUrl", MeteorURL);
+        if (proxyOption && proxyOption.toLowerCase() === "Scramjet") {
+          const ScramjetURL = `${window.location.origin}/service/${Ultraviolet.codec.xor.encode(url)}`;
+          sessionStorage.setItem("appUrl", ScramjetURL);
         } else {
           if (!checkUrl(url)) {
             url = "https://www.google.com/search?q=" + url;

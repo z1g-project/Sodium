@@ -15,12 +15,9 @@
   <link rel="stylesheet" href="assets/css/ui.css" id="custom-css"/>
   <link rel="manifest" href="manifest.webmanifest"/>
   <link rel="json" href="assets/json/appx.json"></link>
-  <script src="/dyn/dyn.config.js"></script>
-  <script src="/dyn/dyn.worker.js"></script>
   <script src="assets/js/debug.js" defer></script>
   <script>
 "use strict";
-const stockSW = "/sw.js";
 const swAllowedHostnames = ["localhost", "127.0.0.1"];
 
 async function registerSW() {
@@ -33,7 +30,7 @@ async function registerSW() {
   if (!navigator.serviceWorker)
     throw new Error("Your browser doesn't support service workers.");
 
-  await navigator.serviceWorker.register(stockSW, {
+  await navigator.serviceWorker.register("/sw.js", {
     scope: "/sw/",
   });
 
@@ -53,7 +50,6 @@ async function registerSW() {
 registerSW()
   </script>
   <script src="regcache.js" defer></script>
-  <script src="dynsw.js"></script>
   <script src="assets/js/time.js" defer></script>
   <script src="assets/js/settings.js" defer></script>
   <script src="assets/js/fade.js" defer></script>
@@ -221,7 +217,7 @@ body {
           <label for="proxySelect" class="config-label">Default Proxy:</label>
           <select id="proxySelect" class="config-select">
             <option value="ultraviolet">Ultraviolet (Default)</option>
-            <option value="Meteor">Meteor (Beta)</option>
+            <option value="Scramjet">Scramjet (Beta)</option>
           </select>
         </div>
 
@@ -457,13 +453,68 @@ showSlide(currentSlide);
 
     const bareServerInput = document.getElementById('custom-bare-server-input');
     if (bareServerInput) {
-      const bareServer = bareServerInput.value.trim(); 
+      const bareServer = bareServerInput.value.trim();
       if (bareServer === '') {
         localStorage.setItem('wispServer', 'wss://wisp.terbiumon.top');
       } else {
         localStorage.setItem('wispServer', bareServer);
-      }   
+      } 
       console.log('BareServer URL saved:', bareServer);
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.getRegistrations().then(registrations => {
+          for (const registration of registrations) {
+            if (registration.active && registration.active.scriptURL.includes('sjw')) {
+              registration.unregister().then(() => {
+                navigator.serviceWorker.register('/sjw.js').then(async () => {
+                  const connection = new BareMux.BareMuxConnection("/baremux/worker.js");
+                  const wispServer = localStorage.getItem('wispServer') || "wss://terbiumon.top/wisp/";
+                  const scramjet = new window.ScramjetController({
+                    prefix: "/service/",
+                    files: {
+                      wasm: "/sj/wasm.js",
+                      worker: "/sj/worker.js",
+                      client: "/sj/client.js",
+                      shared: "/sj/shared.js",
+                      sync: "/sj/sync.js",
+                    },
+                    defaultFlags: {
+                      serviceworker: true,
+                      rewriterLogs: false,
+                    },
+                    codec: {
+                      encode: `
+                        if (!url) return Promise.resolve(url);
+                        let result = "";
+                        let len = url.length;
+                        for (let i = 0; i < len; i++) {
+                          const char = url[i];
+                          result += i % 2 ? String.fromCharCode(char.charCodeAt(0) ^ 2) : char;
+                        }
+                        return encodeURIComponent(result);
+                      `,
+                      decode: `
+                        if (!url) return Promise.resolve(url);
+                        url = decodeURIComponent(url);
+                        let result = "";
+                        let len = url.length;
+                        for (let i = 0; i < len; i++) {
+                          const char = url[i];
+                          result += i % 2 ? String.fromCharCode(char.charCodeAt(0) ^ 2) : char;
+                        }
+                        return result;
+                      `,
+                    }
+                  });
+                  scramjet.init();
+                  await connection.setTransport("/epx/index.mjs", [{ wisp: wispServer }]);
+                  console.log('Scramjet service worker re-registered.');
+                });
+                console.log('Scramjet service worker re-registered.');
+              });
+            }
+          }
+        });
+      }
     }
 
     const use24HourTimeCheckbox = document.getElementById('use-24hour-checkbox');

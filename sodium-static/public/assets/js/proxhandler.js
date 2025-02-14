@@ -1,10 +1,8 @@
 (function () {
     const proxyOption = localStorage.getItem("proxyOption");
     console.log(proxyOption)
-    if (proxyOption === "Meteor") {
-      replaceScript("proxloader", "/m/m.codecs.js");
-      replaceScript("proxcfg", "/m/m.config.js");
-      replaceScript("proxworker", "/m/m.worker.js");
+    if (proxyOption === "Scramjet") {
+      replaceScript("proxcfg", "/sj/controller.js");
       replaceFormElement();
     }
   })();
@@ -26,6 +24,8 @@
       uForm.action = "/service/route";
       uForm.method = "POST";
       uForm.id = "uform";
+      uForm.style.position = "relative"
+      uForm.style.zIndex = "99"
       uForm.className = "flex-center";
       uForm.style.position = "relative"
       uForm.style.zIndex = "99"
@@ -37,6 +37,6 @@
       input.className = "uv-address";
       uForm.appendChild(input);
       uvForm.parentNode.replaceChild(uForm, uvForm);
-      console.log('switched to meteor')
+      console.log('switched to Scramjet')
     }
   }

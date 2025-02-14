@@ -6,9 +6,9 @@ Only current versions of the site are being updated, if you are using an older v
 
 | Version | Supported          |
 | ------- | ------------------ |
+| 2.7.x   | :green_check_mark: |
 | 2.5.x   | :green_check_mark: |
-| 2.4.x   | :white_check_mark: |
-| 2.3.x   | :blue_check_mark: |
+| 2.3.x   | :x: |
 | < 2.2   | :x:                |
 
 ## Reporting a Vulnerability
