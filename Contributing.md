@@ -27,5 +27,5 @@ If you have questions or need clarification on any contribution-related matters,
 
 Thank you for contributing to Sodium!
 
-- (C) Copyright 2021-2024 z1g Project All rights reserved
+- (C) Copyright 2021-2025 z1g Project All rights reserved
 - Licensed under [The MIT License](https://github.com/z1g-project/sodium/blob/master/LICENSE.txt)

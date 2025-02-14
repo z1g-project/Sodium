@@ -2,7 +2,6 @@
     const proxyOption = localStorage.getItem("proxyOption");
     console.log(proxyOption)
     if (proxyOption === "Scramjet") {
-      replaceScript("proxcfg", "/sj/controller.js");
       replaceFormElement();
     }
   })();

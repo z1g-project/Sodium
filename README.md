@@ -47,5 +47,5 @@ To set up Sodium, it is super simple. Below are some instructions to get you sta
 - UI & Design: [xstars](https://github.com/notplayingallday383)
 - README improvements: [3kh0](https://github.com/3kh0) & [rare1k](https://github.com/uhidontkno)
 - Frontend Improvements: badpinghere & [rare1k](https://github.com/uhidontkno)
-- (C) Copyright 2021-2024 [z1g Project](https://github.com/z1g-project/) All rights reserved
+- (C) Copyright 2021-2025 [z1g Project](https://github.com/z1g-project/) All rights reserved
 - Licensed under [The MIT License](https://github.com/z1g-project/sodium/blob/master/LICENSE.txt)
