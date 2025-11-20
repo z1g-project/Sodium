@@ -1,10 +1,11 @@
 import express from 'express';
 import path from 'path';
-import fs from 'fs';
+import fs from 'node:fs';
 import ip from 'ip';
 import { hostname } from 'os';
 import { server as wisp } from '@mercuryworkshop/wisp-js';
 import { publicPath } from 'sodium-static';
+import { version } from "./package.json"
 
 const app = express();
 app.use(express.static(publicPath));
@@ -22,10 +23,8 @@ app.use((req, res, next) => {
 
 async function updateCheck() {
   try {
-    const packageJson = JSON.parse(fs.readFileSync('package.json', 'utf8'));
-    const localVersion = packageJson.version;
     const versionTxt = fs.readFileSync('./sodium-static/public/version.txt', 'utf8').trim();
-    if (localVersion !== versionTxt) {
+    if (version !== versionTxt) {
       console.log(`\x1b[32m[Sodium] Update is available: ${versionTxt}. Check the GitHub for more info.\x1b[0m`);
     } else {
       console.log('\x1b[32m[Sodium] Your system is up to date!\x1b[0m');

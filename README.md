@@ -29,12 +29,11 @@ To set up Sodium, it is super simple. Below are some instructions to get you sta
 [![Run on Replit](https://raw.githubusercontent.com/BinBashBanana/deploy-buttons/master/buttons/remade/replit.svg)](https://replit.com/github/z1g-project/Sodium)
 [![Run on Cyclic](https://raw.githubusercontent.com/BinBashBanana/deploy-buttons/master/buttons/official/cyclic.svg)](https://app.cyclic.sh/api/app/deploy/z1g-project/Sodium)
 [![Deploy to Cloudflare](https://raw.githubusercontent.com/z1g-project/terbium/main/static/resources/cflogo.png)](https://github.com/z1g-project/Terbium/wiki/Deploy-to-Cloudflare-Pages)
-[![Run on Glitch](https://raw.githubusercontent.com/BinBashBanana/deploy-buttons/master/buttons/official/glitch.svg)](https://glitch.com/edit/#!/import/github/z1g-project/Sodium)
 
 > **NOTE** If you wish to use a site such as Cloudflare pages or any other static hosts, it is possible you need to follow [This guide](static-hosting.md)
 
 - Fork This Repository, Clone into the repository by using: `git clone https://github.com/z1g-project/sodium.git`, or download the [Latest Release](https://github.com/z1g-project/sodium/releases) and extract it to your deployments directory.
-- Make sure that you have NodeJS 18.x installed to check this in your operating system of choice command line or terminal type: `Node --Version` and if it says 18.0.0 or anything later than that you are fine. If you need to install or update NodeJS Please Refer to [This Page](https://nodejs.org/en/download)
+- Make sure that you have NodeJS 22.x installed to check this in your operating system of choice command line or terminal type: `Node --Version` and if it says 22.0.0 or anything later than that you are fine. If you need to install or update NodeJS Please Refer to [This Page](https://nodejs.org/en/download)
 - Next, after all these things have been completed. Please make sure you are in the directory with all the files inside it. Next Run `npm i` or `npm install` (they are the same command) and wait for it to finish installing Dependencies.
 
 > ⚠️ Note if you are on Replit, Glitch, Heroku (or any other host that doesn't allow proxies), This Repository will probably automatically flag your repository. Check out how to Bypass these Restrictions here: [Bypassing Restrictions](https://github.com/holy-unblocker/website-aio/wiki/Circumventing-deployment-restrictions)
@@ -47,5 +46,5 @@ To set up Sodium, it is super simple. Below are some instructions to get you sta
 - UI & Design: [xstars](https://github.com/notplayingallday383)
 - README improvements: [3kh0](https://github.com/3kh0) & [rare1k](https://github.com/uhidontkno)
 - Frontend Improvements: badpinghere & [rare1k](https://github.com/uhidontkno)
-- (C) Copyright 2021-2025 [z1g Project](https://github.com/z1g-project/) All rights reserved
-- Licensed under [The MIT License](https://github.com/z1g-project/sodium/blob/master/LICENSE.txt)
+- (C) Copyright 2021-2026 [z1g Project](https://github.com/z1g-project/) All rights reserved
+- Licensed under [The AGPL-3.0 License](https://github.com/z1g-project/sodium/blob/master/LICENSE.txt)

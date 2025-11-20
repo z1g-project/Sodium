@@ -22,6 +22,7 @@ async function registerSW() {
   await navigator.serviceWorker.register('sjw.js', {
     scope: '/service/',
   }).then(async () => {
+    // TODO: Update to latest scramjet
     const connection = new BareMux.BareMuxConnection("/baremux/worker.js")
     const wispServer = localStorage.getItem('wispServer') || "wss://terbiumon.top/wisp/"
     const scramjet = new window.ScramjetController({
