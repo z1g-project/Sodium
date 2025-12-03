@@ -19,7 +19,7 @@
     "axios": "^1.9.0",
     "express": "^4.19.2",
     "ip": "^2.0.1",
-    "prettier": "^3.3.3",
+    "prettier": "^3.7.4",
     "sodium-static": "file:sodium-static"
   }
 }
